@@ -1,0 +1,31 @@
+<h2> Page</h2>
+
+<%= form_for @page do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => 'text' %>
+   </p>
+ 
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+
+   
+  
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

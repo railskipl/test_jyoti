@@ -1,0 +1,64 @@
+
+ <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+
+
+   
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Sign in", new_session_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end -%>
+
+<button class="btn btn-facebook"  ><i class="fa fa-facebook"></i></button>
+<button class="btn btn-google-plus" ><i class="fa fa-google-plus"></i></button></br></br>
+
+<%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook),:class=>"btn btn-facebook" %>
+
+<%= link_to "Sign up with Google", user_omniauth_authorize_path(:google_oauth2),:class=>"btn btn-google-plus" %>
+
