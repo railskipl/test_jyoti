@@ -23,3 +23,16 @@ Welcome to user dashboard
 
 <% end %>
 </table>
+
+
+<!-- Code For Invite -->
+<%= form_for Invitation.new do |f| %>
+  <p>
+    <%= f.label :recipient_email, "Your Email:" %>
+    <%= f.text_field :recipient_email %>
+    <%= f.submit 'Invite' %>
+  </p>
+<% end %>
+
+
+

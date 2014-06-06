@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require lightbox-2.6.min
+//= require lightbox
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+

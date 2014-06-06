@@ -53,6 +53,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    css_parser (1.3.5)
+      addressable
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -70,6 +72,7 @@ GEM
       tzinfo
     hashie (2.1.1)
     hike (1.2.3)
+    htmlentities (4.3.2)
     httpclient (2.3.4.1)
     i18n (0.6.9)
     jbuilder (2.0.7)
@@ -90,10 +93,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.3.4)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
       jwt (~> 0.1.8)
@@ -118,6 +124,12 @@ GEM
       rack
     orm_adapter (0.5.0)
     polyglot (0.3.5)
+    premailer (1.8.2)
+      css_parser (>= 1.3.5)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.7.0)
+      actionmailer (>= 3, < 5)
+      premailer (~> 1.7, >= 1.7.9)
     protected_attributes (1.0.7)
       activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
@@ -148,6 +160,12 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
+    ruby-ole (1.2.11.7)
+    rubyzip (1.1.4)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -157,6 +175,8 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    spreadsheet (0.9.7)
+      ruby-ole (>= 1.0)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -198,14 +218,17 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   koala
+  mail
   oauth2
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
   omnicontacts
   paperclip!
+  premailer-rails
   protected_attributes
   rails (= 4.1.0)
+  roo
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
