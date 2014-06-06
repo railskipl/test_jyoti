@@ -21,6 +21,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "mail"
 gem 'premailer-rails'
 gem 'roo'
+gem "omnicontacts"
 
 
 # Use SCSS for stylesheets

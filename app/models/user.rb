@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email
+  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
