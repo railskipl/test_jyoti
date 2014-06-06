@@ -18,11 +18,6 @@ class Invitation < ActiveRecord::Base
 		#     save(false)
 	 #    end
 
-
-	  
- 
-    
-
 		private
 
 		def recipient_is_not_registered
