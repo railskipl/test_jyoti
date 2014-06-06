@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :invitations
 
-  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:sessions => "sessions"}
+  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:sessions => "sessions",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

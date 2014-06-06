@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605102534) do
+ActiveRecord::Schema.define(version: 20140606074352) do
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invitations", force: true do |t|
     t.integer  "sender_id"
@@ -21,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140605102534) do
     t.string   "new"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "random_password"
   end
 
   create_table "mailers", force: true do |t|
@@ -63,7 +68,16 @@ ActiveRecord::Schema.define(version: 20140605102534) do
     t.integer  "invitation_limit"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string   "recipient_email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "sex"
+    t.date     "birthday"
+    t.string   "location"
+    t.string   "organization"
+    t.string   "industry"
+    t.string   "secondary_email"
+    t.string   "zip"
+    t.string   "orgsize"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

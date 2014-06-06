@@ -19,6 +19,44 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
+<div><%= f.label :firstname %><br />
+  <%= f.text_field :first_name,:class=>"pe_tf" %></div>
+
+  <div><%= f.label :last_name%><br />
+  <%= f.text_field :last_name ,:class=>"pe_tf"%></div>
+
+
+ 
+  <div><%= f.label :birthday %><br />
+  <%= f.date_select(:birthday,order: [:day, :month, :year],:start_year => 1950, :class=>"signup_tf")%></div>
+
+  
+  <div><%= f.label :location%><br />
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ] } ,:prompt =>"Select Country" ) %>
+
+</div>
+
+    <div>
+       <%= f.label :sex %>
+                  Male <%= f.radio_button :sex , "male" %>
+                  Female <%= f.radio_button :sex , "female" %>
+    </div>
+
+<div><%= f.label :zip %><br />
+  <%= f.text_field :zip,:class=>"pe_tf" %></div>
+
+ <div><%= f.label :secondary_email %><br />
+  <%= f.text_field :secondary_email, autofocus: true %></div>
+
+  <div><%= f.label :organization %><br />
+  <%= f.text_field :organization %></div>
+
+ <div><%= f.label :industry %><br />
+  <%= f.text_field :industry %></div>
+
+   <div><%= f.label :orgsize %><br />
+  <%= f.text_field :orgsize %></div>
+
   <div><%= f.submit "Update" %></div>
 <% end %>
 
