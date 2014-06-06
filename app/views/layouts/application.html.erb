@@ -2,16 +2,18 @@
 <html>
 <head>
   <title>M360</title>
-  <%= stylesheet_link_tag    '/assets/application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag '/assets/application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+ <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :class => "alert-box #{name}" %>
+ <% end %>
 <%= yield %>
 
 <% if user_signed_in? %>
-  	<% if current_user.is_admin == true%>
+    <% if current_user.is_admin == true%>
     <li> <%= link_to "Pages",  pages_path %>  </li>
     <% end %>
     <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>

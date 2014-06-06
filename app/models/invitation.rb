@@ -9,7 +9,7 @@ class Invitation < ActiveRecord::Base
 
 		before_create :generate_token
 		before_create :decrement_sender_count, :if => :sender
-		before_save :random_password
+		# before_save :random_password
 
 
 		# def random_password
