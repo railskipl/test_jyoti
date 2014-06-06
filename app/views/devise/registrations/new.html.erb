@@ -1,88 +1,82 @@
 
- <div class="container">
- 	
+ 
+<div class="container">
+
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 
 
-<%= f.hidden_field :invitation_token %>                  
+  <%= f.hidden_field :invitation_token %>                  
 
-  <%= devise_error_messages! %>
+    <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <div><%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-  <%= render "devise/shared/links" %>
-   <% end %>
+    <div><%= f.submit "Sign up" %></div>
+    <%= render "devise/shared/links" %>
+     <% end %>
+
+   
+
+   <!-- Code of Popup window For Help us -->
+
+   <%= javascript_include_tag "jquery.js","bootstrap.js" %>
+   
+      <!-- Button to trigger modal -->
+      <a href="#myModal" role="button" class="btn btn-info btn-small" data-toggle="modal">Help Us</a>
+       
+      <!-- Modal -->
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Help Us</h3>
+      </div>
+      <div class="modal-body">
+      <%= form_for Feedback.new do |f| %>
+              <div class="control-group">
+                <label for="inputName" class="control-label">Name</label>
+                <div class="controls">
+                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <label for="inputEmail" class="control-label">Email</label>
+                <div class="controls">
+                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail" %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="inputDescription" class="control-label">Description</label>
+                <div class="controls">
+                  <%= f.text_field :description,:placeholder=>"Description", :id=>"inputDescription" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  
+                  <button class="btn" type="submit">Submit</button>
+                  
+                </div>
+              </div>
+              <% end %>
+      </div>
+      
+      </div>
+
+</div> 	
+  
 
  
-
- <!-- Code of Popup window For Help us -->
-
- <%= javascript_include_tag "jquery.js","bootstrap.js" %>
- 
-    <!-- Button to trigger modal -->
-    <a href="#myModal" role="button" class="btn btn-info btn-small" data-toggle="modal">Help Us</a>
-     
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Help Us</h3>
-    </div>
-    <div class="modal-body">
-    <%= form_for Feedback.new do |f| %>
-            <div class="control-group">
-              <label for="inputName" class="control-label">Name</label>
-              <div class="controls">
-                <!-- <input type="Name" placeholder="Name" id="inputName"> -->
-                <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName" %>
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="inputEmail" class="control-label">Email</label>
-              <div class="controls">
-                <!-- <input type="Email" placeholder="Email" id="inputEmail"> -->
-                <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail" %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <label for="inputDescription" class="control-label">Description</label>
-              <div class="controls">
-                <!-- <input type="Description" placeholder="Description" id="inputDescription"> -->
-                <%= f.text_field :description,:placeholder=>"Description", :id=>"inputDescription" %>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="controls">
-                <!-- <label class="checkbox">
-                  <input type="checkbox"> Remember me
-                </label> -->
-                <button class="btn" type="submit">Submit</button>
-                <!-- 
-                 <%= link_to "Submit", "http://www.google.com" %> -->
-              </div>
-            </div>
-            <% end %>
-    </div>
-    <!-- <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-    </div> -->
-    </div>
-
-
- </div>
 
 
 
