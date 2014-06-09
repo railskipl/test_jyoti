@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
 
+
+
 def index
 end
-
-
-
 
 def dashboard
     @contacts = request.env['omnicontacts.contacts']
