@@ -16,6 +16,10 @@ class UsersController < ApplicationController
      end
   end
 
+  
+
+
+
 
   def contact_callback
     @contacts = request.env['omnicontacts.contacts']
