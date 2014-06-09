@@ -53,6 +53,26 @@ def invitation_token=(token)
   self.invitation = Invitation.find_by_token(token)
 end
 
+def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
+  
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+        @user = User.create! row.to_hash        
+    end
+  end
+
+
+
+
+
+
 
 
 private
