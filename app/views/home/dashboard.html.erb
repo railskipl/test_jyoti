@@ -1,28 +1,5 @@
 Welcome to user dashboard
 
-<br/><br/>
-<table class="admintable">
- <tr class="admintablehd">
-    <td width="25%">Title</td>
-     <td width="25%">Body</td>
-     <td width="25%">Image</td>
-
-  </tr>
-
-<% @pages.each do |page| %>
-  <tr>
-    <td><%= page.title %></td>
-    <td><%= page.body %></td>
-    <td><%= image_tag page.photo.url %></td>
-    
-  </tr>
-  
-
-<% end %>
-</table>
-
-
-<!-- Code For Invite -->
 <%= form_for Invitation.new do |f| %>
   <p>
     <%= f.label :recipient_email, "Your Email:" %>
