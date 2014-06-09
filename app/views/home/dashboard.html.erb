@@ -1,30 +1,5 @@
 Welcome to user dashboard
 
-<br/><br/>
-<table class="admintable">
- <tr class="admintablehd">
-    <td width="25%">Title</td>
-     <td width="25%">Body</td>
-     <td width="25%">Image</td>
-      <td colspan=2 style="text-align: center !important;">Actions</td>
-
-  </tr>
-
-<% @pages.each do |page| %>
-  <tr>
-    <td><%= page.title %></td>
-    <td><%= page.body %></td>
-    <td><%= image_tag page.photo.url %></td>
-    <td style="text-align: center !important;"><%= link_to 'Edit', edit_page_path(page) %></td>
-    <td style="text-align: center !important;"><%= link_to 'Destroy',page_path(page) ,:method => :delete , :data=>{ :confirm=>'Are you sure?' } %>
-    </td>
-  </tr>
-  
-
-<% end %>
-</table>
-
-
 <!-- Code For Invite -->
 <%= form_for Invitation.new do |f| %>
   <p>
