@@ -14,9 +14,10 @@ Welcome to user dashboard
 
 <%= form_for Invitation.new do |f| %>
   <p>
+    <div class="col-xs-4">
     <%= f.label :recipient_email, "Your Email:" %>
-    <%= f.text_field :recipient_email %>
-    <%= f.submit 'Invite' %>
+    <%= f.text_field :recipient_email,:class=>"form-control" %>
+    <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
   </p>
 <% end %>
 
