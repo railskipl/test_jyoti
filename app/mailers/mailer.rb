@@ -19,8 +19,6 @@ def invitation(invitation, signup_url,random_password)
   mail to:  invitation.recipient_email,
   subject: 'Invite',
   signup_url: 'signup_url'
-  invitation.update_attribute(:sent_at, Time.now)
-
- 
+  invitation.update_attribute(:sent_at, Time.now) 
 end
 end

@@ -30,22 +30,26 @@ class InvitationsController < ApplicationController
   @invitation.sender = current_user
   @user = User.new(:email => @invitation.recipient_email, :password => random_password,
                   :password_confirmation => random_password)
-   @user.save
-
-  if @invitation.save
-
+  if @user.save
+    if @invitation.save
     if signed_in?
       Mailer.invitation(@invitation, @signup_url, random_password).deliver
-      flash[:notice] = "Thank you, invitation sent."
+      flash[:success] = "Thank you, invitation sent."
       redirect_to root_url
     else
-      flash[:notice] = "Thank you, we will notify when we are ready."
+      flash[:success] = "Thank you, we will notify when we are ready."
       redirect_to root_url
     end
   else
-    @random_password = ('0'..'z').to_a.shuffle.first(8).join
+    random_password = ('0'..'z').to_a.shuffle.first(8).join
     render :action => 'new'
   end
+  else
+   flash[:error] = "User already exists"
+   redirect_to :back
+  end  
+
+  
 end
 
 
