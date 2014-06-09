@@ -6,7 +6,7 @@ Welcome to user dashboard
 
  <% @contacts.each do |c|%>
   <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%> :  <%= check_box_tag 'contacts[]' %>
+    <li><%= c[:name]%> :  <%= c[:email]%> %>
   </ul> 
   <% end %>
  

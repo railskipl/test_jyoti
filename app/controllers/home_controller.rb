@@ -1,5 +1,11 @@
 class HomeController < ApplicationController
-before_filter :authenticate_user!
+
+def index
+end
+
+
+
+
 def dashboard
     @contacts = request.env['omnicontacts.contacts']
     respond_to do |format|
