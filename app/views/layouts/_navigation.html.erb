@@ -4,7 +4,8 @@
         <div class="col-xs-4">
           <a href="#"><img src="/assets/logo.jpg" alt="" border="0" style="margin:10px 0"></a> </div>
      <div class="col-xs-8">
-    <%= link_to 'Sign in',new_user_session_path,:class=>"btn btn-primary navbar-btn btn-xs", :style=>"float:right; margin-top:40px"%>
+      <% unless user_signed_in? %>
+    <%= link_to 'Sign in',new_user_session_path,:class=>"btn btn-primary navbar-btn btn-xs", :style=>"float:right; margin-top:40px"%><%end%>
   
     </div>
         
@@ -26,9 +27,6 @@
     <% end %>
      <% unless current_user.is_admin == true%>
         <li><a href="/">Home</a></li>
-        <li><a href="#fakelink">Individuals</a></li>
-        <li><a href="#fakelink">Organizations</a></li>
-        <li><a href="#fakelink">Learn More</a></li>
         <li><a href="#fakelink">Help Us Improve</a></li>
         <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
     <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
@@ -38,10 +36,6 @@
 <% unless user_signed_in? %>
 
  <li><a href="/">Home</a></li>
-        <li><a href="#fakelink">Individuals</a></li>
-        <li><a href="#fakelink">Organizations</a></li>
-        <li><a href="#fakelink">Learn More</a></li>
-        <li><a href="#fakelink">Learn More</a></li>
         <li><a href="#fakelink">Help Us Improve</a></li>
   <% end %>
 

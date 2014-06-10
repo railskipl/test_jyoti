@@ -19,7 +19,10 @@
     <div><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control" %></div>
 
-    <div><%= f.submit "Sign up",:class=>"btn btn-primary"  %></div>
+    <div><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
+      <%- if controller_name != 'sessions' %>
+  <%= link_to "Sign in", new_session_path(resource_name),:class=>"btn btn-primary" %><br />
+<% end -%></div>
     <%= render "devise/shared/links" %>
      <% end %>
 
