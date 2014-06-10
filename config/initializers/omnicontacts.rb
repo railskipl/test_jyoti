@@ -1,5 +1,5 @@
 require "omnicontacts"
-Rails.application.middleware.use OmniContacts::Builder do
-  importer :gmail, "390453749585-98jnem85olk2arqb9cdf8oor86q7p3iv.apps.googleusercontent.com", "nglC40-gLAW3sUOrL_iWOPNh", {:redirect_path => "http://localhost:3000/users/gmail/contact_callback", :ssl_ca_file => "/etc/ssl/certs/curl-ca-bundle.crt"}
-  importer :facebook, "276696835845012", "92509aff57114d1880ed8ef664ff30cb", {:callback_path => "http://localhost:3000"}
+ Rails.application.middleware.use OmniContacts::Builder do
+  importer :gmail, "346145848619-a8j01kurgruln2d3gi412f4sndqjbktr.apps.googleusercontent.com","v-u3P65lnQIO4GD9qujYMWzG", {:redirect_path => "/users/gmail/contact_callback"}
+  importer :facebook, "482089455256431", "44bc20584648cf3b8d3a1ec0c8798f83",{:redirect_path =>  "#{Rails.root}"}
 end

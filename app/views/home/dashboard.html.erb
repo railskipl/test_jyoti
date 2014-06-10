@@ -1,35 +1,37 @@
 Welcome to user dashboard
 
-<br/><br/>
-<table class="admintable">
- <tr class="admintablehd">
-    <td width="25%">Title</td>
-     <td width="25%">Body</td>
-     <td width="25%">Image</td>
+<h6>Get your contacts list
+<a href="/contacts/gmail">Gmail</a><h6>
+   <% if !@contacts.nil?%>
 
-  </tr>
+ <% @contacts.each do |c|%>
+  <ul>
+    <li><%= c[:name]%> :  <%= c[:email]%> %>
+  </ul> 
+  <% end %>
+ 
+ <% end %>
 
-<% @pages.each do |page| %>
-  <tr>
-    <td><%= page.title %></td>
-    <td><%= page.body %></td>
-    <td><%= image_tag page.photo.url %></td>
-    
-  </tr>
-  
-
-<% end %>
-</table>
-
-
-<!-- Code For Invite -->
 <%= form_for Invitation.new do |f| %>
   <p>
+    <div class="col-xs-4">
     <%= f.label :recipient_email, "Your Email:" %>
-    <%= f.text_field :recipient_email %>
-    <%= f.submit 'Invite' %>
+    <%= f.text_field :recipient_email,:class=>"form-control" %>
+    <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
   </p>
 <% end %>
+
+<h3>Import Users</h3>
+<%= form_tag import_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload CSV File",:class => "button button-primary" %>
+<% end %>
+
+
+<%= button_to "Add Users!", users_path, method: :post %>
+
+
+
 
 
 
