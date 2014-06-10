@@ -15,24 +15,23 @@ Welcome to user dashboard
 <%= form_for Invitation.new do |f| %>
   <p>
     <div class="col-xs-4">
-    <%= f.label :recipient_email, "Your Email:" %>
+    <%= f.label :recipient_email, "Email:" %>
     <%= f.text_field :recipient_email,:class=>"form-control" %>
     <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
   </p>
 <% end %>
 
-<h3>Import Users</h3>
+<h4>Import Users</h4>
 <%= form_tag import_users_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Upload CSV File",:class => "button button-primary" %>
 <% end %>
 
-
 <%= form_for PasteUser.new do |f| %>
   <p>
-    <%= f.label :email, "Copy Contact Email:" %>
+    <%= f.label :email, "Add List Of Contact Email:" %>
     <%= f.text_area :email %>
-    <%= f.submit 'Paste' %>
+    <%= f.submit 'Paste Here' %>
   </p>
 <% end %>
 

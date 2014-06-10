@@ -52,10 +52,13 @@ end
   
 
 def import
+  if params[:file].nil?
+    redirect_to :back, notice: "Please Attach file" 
+  else
     User.import(params[:file])
     redirect_to root_url, notice: "Users imported."
+  end
 end
-
 
 
 
