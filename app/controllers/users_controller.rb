@@ -8,14 +8,13 @@ class UsersController < ApplicationController
 
   def index
 	   @users = User.where(:is_admin.exists => false).order("id DESC").paginate(page: params[:page], per_page: 10)
+
 	   @contacts = request.env['omnicontacts.contacts']
        respond_to do |format|
        format.html
        format.csv { send_data @users.to_csv }
      end
   end
-
-  
 
 
   def contact_callback
@@ -24,6 +23,7 @@ class UsersController < ApplicationController
     puts "List of contacts of #{user[:name]} obtained from #params[:importer]}:"
     @contacts.each do|contact|puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
     end
+
   end
 
 
@@ -44,6 +44,16 @@ def import
     User.import(params[:file])
     redirect_to root_url, notice: "Users imported."
   end
+end
+
+
+
+
+  
+
+def import
+    User.import(params[:file])
+    redirect_to root_url, notice: "Users imported."
 end
 
 

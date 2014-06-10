@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
 	  attr_accessible :title, :body, :photo
-	  has_attached_file :photo, :styles => { :small => "150x150>" }
-      do_not_validate_attachment_file_type :photo
+	  validates_presence_of :photo
+	  has_attached_file  :photo,:styles => { :thumb => "176x100", :medium => "480x270>", :profile => "130x126"}
+	  validates_attachment :photo, content_type: { content_type: ['image/jpeg', 'image/GIF'] }
 end

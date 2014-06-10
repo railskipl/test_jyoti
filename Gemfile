@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# gem 'mysql'
+#gem 'sqlite3'
+gem 'mysql'
 gem 'devise'
 gem 'execjs'
 gem 'therubyracer'
@@ -17,7 +17,7 @@ gem "fb_graph"
 gem  'koala'
 gem 'oauth2'
 gem "omnicontacts"
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip"
 gem "mail"
 gem 'premailer-rails'
 gem 'roo'

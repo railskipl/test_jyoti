@@ -1,67 +1,77 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> 
+   <script type="text/javascript">
+    $(function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy'});
+    });  
+</script>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="col-xs-4">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.email_field :email, autofocus: true,:class=>"form-control"  %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <%= f.password_field :password, autocomplete: "off",:class=>"form-control"  %></div>
 
   <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control"  %></div>
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+    <%= f.password_field :current_password, autocomplete: "off",:class=>"form-control"  %></div>
 
 <div><%= f.label :firstname %><br />
-  <%= f.text_field :first_name,:class=>"pe_tf" %></div>
+  <%= f.text_field :first_name,:class=>"form-control" %></div>
 
   <div><%= f.label :last_name%><br />
-  <%= f.text_field :last_name ,:class=>"pe_tf"%></div>
-
-
+  <%= f.text_field :last_name ,:class=>"form-control"%></div>
  
-  <div><%= f.label :birthday %><br />
-  <%= f.date_select(:birthday,order: [:day, :month, :year],:start_year => 1950, :class=>"signup_tf")%></div>
+  <div>
+      <%= f.label :birthday %>
+        <%= f.text_field :birthday,:id=>"datepicker",:class=>"form-control" %>
+     </div>
+     
 
   
   <div><%= f.label :location%><br />
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ] } ,:prompt =>"Select Country" ) %>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
 
 </div>
 
     <div>
-       <%= f.label :sex %>
-                  Male <%= f.radio_button :sex , "male" %>
-                  Female <%= f.radio_button :sex , "female" %>
+       <%= f.label :sex %></br>
+                  Male <%= f.radio_button :sex , "male",:class=>"first-icon fui-radio-unchecked" %>
+                  Female <%= f.radio_button :sex , "female",:class=>"second-icon fui-radio-checked" %>
     </div>
 
+ 
 <div><%= f.label :zip %><br />
-  <%= f.text_field :zip,:class=>"pe_tf" %></div>
+  <%= f.text_field :zip,:class=>"form-control"  %></div>
 
  <div><%= f.label :secondary_email %><br />
-  <%= f.text_field :secondary_email, autofocus: true %></div>
+  <%= f.text_field :secondary_email, autofocus: true ,:class=>"form-control" %></div>
 
   <div><%= f.label :organization %><br />
-  <%= f.text_field :organization %></div>
+  <%= f.text_field :organization,:class=>"form-control"  %></div>
 
  <div><%= f.label :industry %><br />
-  <%= f.text_field :industry %></div>
+  <%= f.text_field :industry,:class=>"form-control"  %></div>
 
    <div><%= f.label :orgsize %><br />
-  <%= f.text_field :orgsize %></div>
+  <%= f.text_field :orgsize,:class=>"form-control"  %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Update",:class=>"btn btn-primary" %></div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,:class=>"btn btn-primary" %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
+</div>

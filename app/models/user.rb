@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
 
+
   attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
@@ -62,11 +63,6 @@ def self.to_csv(options = {})
         @user = User.create! row.to_hash        
     end
   end
-
-  
-
-
-
 
 
 private

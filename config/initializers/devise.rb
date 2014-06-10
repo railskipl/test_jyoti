@@ -256,7 +256,10 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  #local api crediantials
   config.omniauth :facebook, '276696835845012', '92509aff57114d1880ed8ef664ff30cb'
-  config.omniauth :google_oauth2, '390453749585-98jnem85olk2arqb9cdf8oor86q7p3iv.apps.googleusercontent.com','nglC40-gLAW3sUOrL_iWOPNh'
-  
+  #config.omniauth :google_oauth2, '390453749585-98jnem85olk2arqb9cdf8oor86q7p3iv.apps.googleusercontent.com','nglC40-gLAW3sUOrL_iWOPNh'
+
+  # heroku api credintials
+  config.omniauth :google_oauth2, '881639063021-cna2s7l4sqot6vh1kf2s735vhi6gbl7d.apps.googleusercontent.com','9CnwRY9v0a1q-xd7civFE9D5'
 end

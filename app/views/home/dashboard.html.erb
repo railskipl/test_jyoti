@@ -1,12 +1,12 @@
 Welcome to user dashboard
 
-<p>Get your contacts list
-<a href="/contacts/gmail">Gmail</a>
+<h6>Get your contacts list
+<a href="/contacts/gmail">Gmail</a><h6>
    <% if !@contacts.nil?%>
 
  <% @contacts.each do |c|%>
   <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%> :  <%= check_box_tag 'contacts[]' %>
+    <li><%= c[:name]%> :  <%= c[:email]%> %>
   </ul> 
   <% end %>
  
@@ -14,9 +14,10 @@ Welcome to user dashboard
 
 <%= form_for Invitation.new do |f| %>
   <p>
+    <div class="col-xs-4">
     <%= f.label :recipient_email, "Your Email:" %>
-    <%= f.text_field :recipient_email %>
-    <%= f.submit 'Invite' %>
+    <%= f.text_field :recipient_email,:class=>"form-control" %>
+    <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
   </p>
 <% end %>
 
@@ -25,6 +26,7 @@ Welcome to user dashboard
   <%= file_field_tag :file %>
   <%= submit_tag "Upload CSV File",:class => "button button-primary" %>
 <% end %>
+
 
 <%= form_for PasteUser.new do |f| %>
   <p>
