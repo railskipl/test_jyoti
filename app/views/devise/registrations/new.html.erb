@@ -19,17 +19,19 @@
     <div><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control" %></div>
 
-    <div><%= f.submit "Sign up",:class=>"btn btn-primary"  %></div>
+    <div><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
+      <%- if controller_name != 'sessions' %>
+  <%= link_to "Sign in", new_session_path(resource_name),:class=>"btn btn-primary" %><br />
+<% end -%></div>
     <%= render "devise/shared/links" %>
      <% end %>
-
    
-   <%= javascript_include_tag "jquery.js","bootstrap.js" %>
+   
    <!-- Code of Popup window For Help us -->
    
       <!-- Button to trigger modal -->
       <a href="#myModal" role="button" class="btn btn-info btn-small" data-toggle="modal">Help Us Improve</a>
-       </div>
+     
       <!-- Modal -->
       <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
@@ -41,26 +43,26 @@
               <div class="control-group">
                 <label for="inputName" class="control-label">Name</label>
                 <div class="controls">
-                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName" %>
+                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName",:class=>"form-control" %>
                 </div>
               </div>
               <div class="control-group">
                 <label for="inputEmail" class="control-label">Email</label>
                 <div class="controls">
-                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail" %>
+                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control" %>
                 </div>
               </div>
 
               <div class="control-group">
                 <label for="inputDescription" class="control-label">Feedback</label>
                 <div class="controls">
-                  <%= f.text_area :description,:placeholder=>"Feedback", :id=>"inputDescription" %>
+                  <%= f.text_area :description,:placeholder=>"Feedback", :id=>"inputDescription",:class=>"form-control11" %>
                 </div>
               </div>
               <div class="control-group">
                 <div class="controls">
-                  
-                  <button class="btn" type="submit">Submit</button>
+                  <%= f.submit "Submit",:class=>"btn"  %>
+                  <!-- <button class="btn" type="submit">Submit</button> -->
                   
                 </div>
               </div>
