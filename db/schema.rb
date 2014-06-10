@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609102220) do
+ActiveRecord::Schema.define(version: 20140606091443) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -53,8 +53,6 @@ ActiveRecord::Schema.define(version: 20140609102220) do
     t.datetime "photo_updated_at"
   end
 
- 
-
   create_table "users", force: true do |t|
     t.string   "email",                     default: "", null: false
     t.string   "password",                  default: "", null: false
@@ -92,7 +90,6 @@ ActiveRecord::Schema.define(version: 20140609102220) do
     t.string   "secondary_email"
     t.string   "zip"
     t.string   "orgsize"
-    t.boolean  "guest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,6 +1,6 @@
 <h2> Page</h2>
-
-<%= form_for @page do |f| %>
+<div class="col-xs-4">
+<%= form_for @page,:html => { :multipart => true } do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:</h2>
@@ -14,12 +14,12 @@
   <% end %>
 	<p>
     <%= f.label :title %>
-    <%= f.text_field :title, :class => 'text' %>
+    <%= f.text_field :title, :class=>"form-control" %>
    </p>
  
   <p>
     <%= f.label :body %>
-    <%= f.text_area :body %>
+    <%= f.text_area :body,:class=>"form-control" %>
   </p>
 
   <p>
@@ -28,7 +28,9 @@
    
   
    <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit",:class=>"btn btn-primary"  %>
   </div>
 
+
 <% end %>
+</div>
