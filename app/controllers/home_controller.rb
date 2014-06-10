@@ -3,6 +3,8 @@ class HomeController < ApplicationController
 
 
 def index
+	#@pages= Page.all
+	#@page = Page.find(params[:id])
 end
 
 def dashboard
