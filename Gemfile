@@ -21,7 +21,7 @@ gem "fb_graph"
 gem  'koala'
 gem 'oauth2'
 gem "omnicontacts"
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip"
 gem "mail"
 gem 'premailer-rails'
 gem 'roo'

@@ -16,9 +16,9 @@ respond_to :html, :js
   def create
     @page = Page.new(params[:page])
     if @page.save
-      respond_with(@page, location: root_path)
+     redirect_to pages_path
     else
-      respond_with(@page, action: 'new')
+      render 'new'
     end
   end
 
@@ -29,7 +29,7 @@ respond_to :html, :js
   def update
     @page = Page.find(params[:id])
     if @page.update_attributes(params[:page])
-      respond_with(@page, location: root_path)
+       redirect_to pages_path
     else
       render 'edit'
     end
@@ -38,7 +38,7 @@ respond_to :html, :js
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-    respond_with(@page, location: root_path)
+    redirect_to pages_path
   end
   
 
