@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'csv'
  before_filter :authenticate_user!
  helper_method :resource, :resource_name, :devise_mapping
 
@@ -10,8 +11,11 @@ class UsersController < ApplicationController
 	   @contacts = request.env['omnicontacts.contacts']
        respond_to do |format|
        format.html
+       format.csv { send_data @users.to_csv }
      end
   end
+
+  
 
 
   def contact_callback
@@ -27,7 +31,22 @@ class UsersController < ApplicationController
   def new
   @user = User.new(:invitation_token => params[:invitation_token])
   @user.email = @user.invitation.recipient_email if @user.invitation
+  @user.email = @user.paste_user.email if @user.invitation
   end
+
+
+  
+
+def import
+  if params[:file].nil?
+    redirect_to :back, notice: "Please Attach file" 
+  else
+    User.import(params[:file])
+    redirect_to root_url, notice: "Users imported."
+  end
+end
+
+
 
 
 end

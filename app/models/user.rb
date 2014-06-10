@@ -9,16 +9,11 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
   belongs_to :invitation
+  has_many :paste_users
 
   before_create :set_invitation_limit
 
- # class << self
- #    def serialize_from_session(key, salt)
- #      record = to_adapter.get(key.first["$oid"]) if key.present? # to_adapter.get(key.to_s)
- #      record if record && record.authenticatable_salt == salt
- #    end
- #  end
-
+ 
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
@@ -52,6 +47,25 @@ end
 def invitation_token=(token)
   self.invitation = Invitation.find_by_token(token)
 end
+
+def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
+  
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+        @user = User.create! row.to_hash        
+    end
+  end
+
+  
+
+
 
 
 

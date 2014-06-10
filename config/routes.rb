@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
 
+  resources :paste_users
+
   resources :feedbacks
 
   resources :invitations
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
+
+  resources :users do
+    collection { post :import }
+  end
 
   #get 'users/sign_out' => "devise/sessions#destroy"
   #get  '/sign_out' :to 'sessions#destroy', :via [:delete]
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  
   get "home/dashboard"
   root 'home#index'
 

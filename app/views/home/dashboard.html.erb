@@ -20,5 +20,21 @@ Welcome to user dashboard
   </p>
 <% end %>
 
+<h3>Import Users</h3>
+<%= form_tag import_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload CSV File",:class => "button button-primary" %>
+<% end %>
+
+<%= form_for PasteUser.new do |f| %>
+  <p>
+    <%= f.label :email, "Copy Contact Email:" %>
+    <%= f.text_area :email %>
+    <%= f.submit 'Paste' %>
+  </p>
+<% end %>
+
+
+
 
 
