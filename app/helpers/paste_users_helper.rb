@@ -1,0 +1,2 @@
+module PasteUsersHelper
+end

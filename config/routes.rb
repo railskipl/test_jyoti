@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :paste_users
+
   resources :feedbacks
 
   resources :invitations

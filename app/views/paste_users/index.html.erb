@@ -1,0 +1,29 @@
+<h1>Listing paste_users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paste_users.each do |paste_user| %>
+      <tr>
+        <td><%= paste_user.user_id %></td>
+        <td><%= paste_user.name %></td>
+        <td><%= paste_user.email %></td>
+        <td><%= link_to 'Show', paste_user %></td>
+        <td><%= link_to 'Edit', edit_paste_user_path(paste_user) %></td>
+        <td><%= link_to 'Destroy', paste_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paste user', new_paste_user_path %>

@@ -28,8 +28,13 @@ Welcome to user dashboard
 <% end %>
 
 
-
-
+<%= form_for PasteUser.new do |f| %>
+  <p>
+    <%= f.label :email, "Copy Contact Email:" %>
+    <%= f.text_area :email %>
+    <%= f.submit 'Paste' %>
+  </p>
+<% end %>
 
 
 

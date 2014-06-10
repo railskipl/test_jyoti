@@ -21,4 +21,12 @@ def invitation(invitation, signup_url,random_password)
   signup_url: 'signup_url'
   invitation.update_attribute(:sent_at, Time.now) 
 end
+
+def paste_user(paste_user,signup_url,random_password)
+  @paste_user = paste_user
+  @random_password = random_password
+  mail to:  paste_user.email,
+  subject: 'Paste User',
+  signup_url: 'signup_url'
+end
 end
