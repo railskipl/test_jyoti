@@ -8,5 +8,8 @@ ActionMailer::Base.smtp_settings = {
   :password => "!@#kunalinfotechkipl"
 
 }
-
-ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+if Rails.env == "development"
+	ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+else
+	ActionMailer::Base.default_url_options[:host] = "http://m360.herokuapp.com"
+end
