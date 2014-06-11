@@ -22,6 +22,13 @@ respond_to :html, :js
     end
   end
 
+ def status
+  @page = Page.find(params[:id])
+  @page.status = !@page.status?
+    @page.save!
+    redirect_to :back 
+ end
+
   def edit
     @page = Page.find(params[:id])
   end
