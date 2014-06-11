@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 
-  resources :paste_users
+  resources :paste_users do
+    member {get :contact}
+  end
 
   resources :feedbacks
 
