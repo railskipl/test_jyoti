@@ -1,7 +1,9 @@
 <%= form_tag complete_paste_users_path, :method => :post do %>
+<% if !@contacts.nil? %>
   <% @contacts.each do |c| %>
     <%= check_box_tag "paste_users[paste_user_emails][]", c.email %>
     <%= c.email %><br/>
+  <% end %>
   <% end %>
 <%= submit_tag "Invite"%>
  <% end %>
