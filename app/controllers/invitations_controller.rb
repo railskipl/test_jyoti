@@ -35,10 +35,10 @@ class InvitationsController < ApplicationController
     if signed_in?
       Mailer.invitation(@invitation, @signup_url, random_password).deliver
       flash[:success] = "Thank you, invitation sent."
-      redirect_to root_url
+      redirect_to :back
     else
       flash[:success] = "Thank you, we will notify when we are ready."
-      redirect_to root_url
+      redirect_to :back
     end
   else
     random_password = ('0'..'z').to_a.shuffle.first(8).join

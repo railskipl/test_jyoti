@@ -27,7 +27,7 @@
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end %>
      <% unless current_user.is_admin == true%>
-        <li><a href="/">Home</a></li>
+        <li><a href="/home/dashboard">Home</a></li>
         <li><a href="#myModal" role="button" data-toggle="modal">Help Us Improve</a></li>
         <li> <%= link_to "Invite" , invite_paste_users_path %></li>
         <li> <%= link_to "My Invitations" , invitation_paste_users_path %></li>
