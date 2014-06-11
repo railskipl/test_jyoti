@@ -20,6 +20,7 @@
     <td><%= page.title %></td>
     <td><%= page.body %></td>
     <td><%= image_tag page.photo.url, :width => "165", :height=>"100" %></td>
+    <td><%= link_to format_boolean(page.status?), {:controller => 'pages', :action => 'status', :id => page.id} %></td>
     <td style="text-align: center !important;"><%= link_to 'Edit', edit_page_path(page) %></td>
     <td style="text-align: center !important;"><%= link_to 'Destroy',page_path(page) ,:method => :delete , :data=>{ :confirm=>'Are you sure?' } %>
     </td>

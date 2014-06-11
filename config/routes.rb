@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "/contacts/failure" => "home#failure"
 
    resources :pages
+   get "/pages/:id/status", :to => "pages#status"
    
    resources :dashboard
 

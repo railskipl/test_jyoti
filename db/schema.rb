@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140610123143) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "status"
+    t.boolean  "status",             default: false
   end
 
   create_table "paste_users", force: true do |t|
