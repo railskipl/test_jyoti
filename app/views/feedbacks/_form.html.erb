@@ -3,7 +3,7 @@
 <%= form_for @feedback ,:html => {:id =>"feedback"} do |f| %>
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+     <%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:
 
       <ul>
       <% @feedback.errors.full_messages.each do |message| %>
