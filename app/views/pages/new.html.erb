@@ -3,7 +3,7 @@
 <%= form_for @page,:html => { :multipart => true } do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:</h2>
+     <%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:
 
       <ul>
       <% @page.errors.full_messages.each do |msg| %>
