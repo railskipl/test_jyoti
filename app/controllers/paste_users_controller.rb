@@ -21,6 +21,7 @@ class PasteUsersController < ApplicationController
   def edit
   end
 
+
   # POST /paste_users
   # POST /paste_users.json
   def create
