@@ -1,31 +1,30 @@
 
 <%= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation.js" %>
-<%= form_for @feedback ,:html => {:id =>"feedback"} do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-     <%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:
+<%= form_for Feedback.new do |f| %>
+              <div class="control-group">
+                <label for="inputName" class="control-label">Name</label>
+                <div class="controls">
+                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName",:class=>"form-control" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <label for="inputEmail" class="control-label">Email</label>
+                <div class="controls">
+                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control" %>
+                </div>
+              </div>
 
-      <ul>
-      <% @feedback.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+              <div class="control-group">
+                <label for="inputDescription" class="control-label">Feedback</label>
+                <div class="controls">
+                  <%= f.text_area :description,:placeholder=>"Feedback", :id=>"inputDescription",:class=>"form-control11" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <%= f.submit "Submit",:class=>"btn"  %>
+                  <!-- <button class="btn" type="submit">Submit</button> -->
+                  
+                </div>
+              </div>
+              <% end %>

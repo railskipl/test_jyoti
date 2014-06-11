@@ -8,7 +8,7 @@ def index
 	#@page = Page.find(params[:id])
 end
 
- 
+
 
 def dashboard
     @contacts = request.env['omnicontacts.contacts']

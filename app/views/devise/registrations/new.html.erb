@@ -36,45 +36,4 @@
       <!-- Button to trigger modal -->
     
      
-      <!-- Modal -->
-      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Help Us</h3>
-      </div>
-      <div class="modal-body">
-      <%= form_for Feedback.new do |f| %>
-              <div class="control-group">
-                <label for="inputName" class="control-label">Name</label>
-                <div class="controls">
-                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName",:class=>"form-control" %>
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="inputEmail" class="control-label">Email</label>
-                <div class="controls">
-                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control" %>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label for="inputDescription" class="control-label">Feedback</label>
-                <div class="controls">
-                  <%= f.text_area :description,:placeholder=>"Feedback", :id=>"inputDescription",:class=>"form-control11" %>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="controls">
-                  <%= f.submit "Submit",:class=>"btn"  %>
-                  <!-- <button class="btn" type="submit">Submit</button> -->
-                  
-                </div>
-              </div>
-              <% end %>
-      </div>
-      
-      </div>
-
-</div>
-  
-
+     
