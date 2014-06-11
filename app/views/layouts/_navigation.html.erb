@@ -1,4 +1,5 @@
-
+<%= stylesheet_link_tag "facebox" %>
+<%= javascript_include_tag "facebox" %>
   
   <div class="row">
         <div class="col-xs-4">
@@ -28,28 +29,24 @@
      <% unless current_user.is_admin == true%>
         <li><a href="/">Home</a></li>
         <li><a href="#myModal" role="button" data-toggle="modal">Help Us Improve</a></li>
+        <li> <%= link_to "Invite" , invite_paste_users_path %></li>
+        <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
         <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
-    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end%>
   <% end %>
 
 <% unless user_signed_in? %>
 
- <li><a href="/">Home</a></li>
-        <li><a href="#myModal" role="button" data-toggle="modal">Help Us Improve</a></li>
-        
+ <li><a href="/">Home</a></li> 
+       <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
   <% end %>
  </ul>
 </div><!-- /.navbar-collapse -->
           </nav>
-     
     
-    
-    
-    
-    
-    
-  
     <!-- /.container -->
+
+
   
-  
+

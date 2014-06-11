@@ -4465,6 +4465,7 @@ footer {
   color: #bac1c8;
   font-size: 15px;
   padding: 0;
+  margin-top: 40px;
 }
 footer a {
   color: #9aa4af;
@@ -4891,8 +4892,11 @@ button.ccr-price-host {
     background: none repeat scroll 0 0 #F39C12;
     box-shadow: -1px 2px 0 0 #E67E22;
 }
+.row_margin{ 
+    margin-bottom:20px
+  }
 
+  form .btn{ 
+    margin-top:10px
+  }
 
-.row_margin{ margin-bottom:20px}
-
-form button{ margin-top:10px}

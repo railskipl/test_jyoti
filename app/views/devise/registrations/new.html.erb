@@ -1,8 +1,9 @@
 
-
 <div class="container">
 
-<h2>Sign up</h2>
+<h4>Sign up</h4>
+
+<div class="row">
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="col-xs-4">
@@ -18,59 +19,20 @@
 
     <div><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control" %></div>
-
-    <div><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
+  <div class="control-group">
+    <div class="controls"><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
       <%- if controller_name != 'sessions' %>
   <%= link_to "Sign in", new_session_path(resource_name),:class=>"btn btn-primary" %><br />
-<% end -%></div>
+<% end -%></div></div>
     <%= render "devise/shared/links" %>
      <% end %>
-   
+   </div>
+   </div>
+ </div>
    
    <!-- Code of Popup window For Help us -->
    
       <!-- Button to trigger modal -->
-      <a href="#myModal" role="button" class="btn btn-info btn-small" data-toggle="modal">Help Us Improve</a>
+    
      
-      <!-- Modal -->
-      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Help Us</h3>
-      </div>
-      <div class="modal-body">
-      <%= form_for Feedback.new do |f| %>
-              <div class="control-group">
-                <label for="inputName" class="control-label">Name</label>
-                <div class="controls">
-                  <%= f.text_field :name,:placeholder=>"Name", :id=>"inputName",:class=>"form-control" %>
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="inputEmail" class="control-label">Email</label>
-                <div class="controls">
-                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control" %>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label for="inputDescription" class="control-label">Feedback</label>
-                <div class="controls">
-                  <%= f.text_area :description,:placeholder=>"Feedback", :id=>"inputDescription",:class=>"form-control11" %>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="controls">
-                  <%= f.submit "Submit",:class=>"btn"  %>
-                  <!-- <button class="btn" type="submit">Submit</button> -->
-                  
-                </div>
-              </div>
-              <% end %>
-      </div>
-      
-      </div>
-
-</div>
-  
-
+     

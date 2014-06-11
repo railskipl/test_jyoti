@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
 
-  resources :paste_users
+  resources :paste_users do
+    collection {
+      get :invite
+      get :select_contacts
+      post :complete
+    }
+  end
 
   resources :feedbacks
 
@@ -18,13 +24,15 @@ Rails.application.routes.draw do
   #get  '/sign_out' :to 'sessions#destroy', :via [:delete]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :omniauth_callbacks 
+  resources :omniauth_callbacks
 
+  
 
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
 
    resources :pages
+   get "/pages/:id/status", :to => "pages#status"
    
    resources :dashboard
 

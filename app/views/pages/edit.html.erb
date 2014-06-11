@@ -1,6 +1,6 @@
 <h2>Editing Page</h2>
 <div class="col-xs-4">
-<%= form_for @page  do |f| %>
+<%= form_for @page,:html => { :multipart => true }  do |f| %>
 
 	<p>
     <b><%= f.label :title %></b><br />

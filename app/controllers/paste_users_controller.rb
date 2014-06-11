@@ -21,6 +21,7 @@ class PasteUsersController < ApplicationController
   def edit
   end
 
+
   # POST /paste_users
   # POST /paste_users.json
   def create
@@ -97,6 +98,34 @@ class PasteUsersController < ApplicationController
       format.html { redirect_to paste_users_url, notice: 'Paste user was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def select_contacts
+    @contacts = Contact.where("user_id like ? " ,current_user.id)
+  end
+
+  def complete
+    @paste_users = params[:paste_users][:paste_user_emails]
+    
+    @paste_users.each do |email|
+     random_password = ('0'..'z').to_a.shuffle.first(8).join
+     @user = User.new(:email => email, :password => random_password,
+                  :password_confirmation => random_password)
+     
+     p = PasteUser.new(:user_id => current_user.id, :email => email)
+     p.save
+      if @user.save
+        Mailer.paste_user(p,@signup_url, random_password).deliver
+        # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
+        # format.json { render :show, status: :created, location: @paste_user }
+       else
+        # random_password = ('0'..'z').to_a.shuffle.first(8).join
+        # format.html { render :new }
+        # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+      end
+    end
+      redirect_to :back
+    
   end
 
   private

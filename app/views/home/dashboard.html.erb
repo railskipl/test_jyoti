@@ -1,25 +1,25 @@
-Welcome to user dashboard
+<h4>Welcome to user dashboard<h4>
 
 
 <h6>Get your contacts list
-<a href="/contacts/gmail">Gmail</a><h6>
+<a href="/contacts/gmail">Gmail</a></h6>
    <% if !@contacts.nil?%>
 
  <% @contacts.each do |c|%>
   <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%> %>
+    <li><%= c[:name]%> :  <%= c[:email]%> 
   </ul> 
   <% end %>
  
  <% end %>
 
 <%= form_for Invitation.new do |f| %>
-  <p>
+
     <div class="col-xs-4">
     <%= f.label :recipient_email, "Email:" %>
     <%= f.text_field :recipient_email,:class=>"form-control" %>
     <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
-  </p>
+ 
 <% end %>
 
 <div class="col-xs-4">
@@ -33,11 +33,11 @@ Import Users
 
 <div class="col-xs-4">
 <%= form_for PasteUser.new do |f| %>
-  <p>
+
     <%= f.label :email, "Add List Of Contact Email:" %>
     <%= f.text_area :email %>
     <%= f.submit 'Paste Here',:class=>"btn btn-primary" %>
-  </p>
+
 <% end %>
 </div>
 
