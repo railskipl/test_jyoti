@@ -128,6 +128,10 @@ class PasteUsersController < ApplicationController
     
   end
 
+  def invitation
+    @invitations = PasteUser.where("user_id like ?",current_user.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paste_user
