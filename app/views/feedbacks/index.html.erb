@@ -1,7 +1,5 @@
-<!-- <h1>Listing feedbacks</h1>
-
-<table>
-  <thead>
+<h5>Listing feedbacks</h5>
+<table class="table table-bordered">  <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
@@ -16,15 +14,11 @@
         <td><%= feedback.name %></td>
         <td><%= feedback.email %></td>
         <td><%= feedback.description %></td>
-        <td><%= link_to 'Show', feedback %></td>
-        <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
         <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Feedback', new_feedback_path %>
- -->
+
