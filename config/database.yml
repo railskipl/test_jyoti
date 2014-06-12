@@ -10,7 +10,6 @@ development:
 
   username: root
   password: root
-  
 
 
 # Warning: The database defined as "test" will be erased and
