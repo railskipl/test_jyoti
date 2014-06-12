@@ -101,7 +101,7 @@ class PasteUsersController < ApplicationController
   end
 
   def select_contacts
-    @contacts = Contact.where("user_id like ? " ,current_user.id)
+    @contacts = Contact.where("user_id = ? " ,current_user.id)
   end
 
   def complete
@@ -129,7 +129,7 @@ class PasteUsersController < ApplicationController
   end
 
   def invitation
-    @invitations = PasteUser.where("user_id like ?",current_user.id)
+    @invitations = PasteUser.where("user_id = ?",current_user.id)
   end
 
   private
