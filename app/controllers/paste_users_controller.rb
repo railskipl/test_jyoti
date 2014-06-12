@@ -67,7 +67,7 @@ class PasteUsersController < ApplicationController
      respond_to do |format|
       if @paste_user.save
         @paste_user.user_invitations.each do |ui|
-          # Mailer.paste_user(@paste_user,@signup_url).deliver
+           Mailer.paste_user(ui,@signup_url).deliver
         end
         # 
         format.html { redirect_to @paste_user, notice: 'User was successfully created.' }
@@ -97,8 +97,7 @@ class PasteUsersController < ApplicationController
   #   end
   # end
 
-
-
+ 
 
 
   # PATCH/PUT /paste_users/1

@@ -3,6 +3,7 @@ class PasteUser < ActiveRecord::Base
 	belongs_to :user
     has_many :circles
     has_many :user_invitations
+    has_many :contacts
    accepts_nested_attributes_for :user_invitations,  allow_destroy: true
 
 
