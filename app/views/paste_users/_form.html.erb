@@ -11,18 +11,21 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :user_id,:value => current_user.id %>
+
+<!-- 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :circle_id %><br>
+    <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"}%>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
+ -->
+  
+
+  <%= f.fields_for :user_invitations do |builder| %>
+  <%= render  "user_invitation_fields", :f => builder %>
+  <% end %>
+
+      <%= link_to_add_fields "Add User Invitation",f,:user_invitations%>
   <div class="actions">
     <%= f.submit %>
   </div>

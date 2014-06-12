@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  resources :user_invitations
+
+  resources :circles
+
   resources :paste_users do
     collection {
       get :invite

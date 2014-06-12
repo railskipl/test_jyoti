@@ -15,6 +15,9 @@ class PasteUsersController < ApplicationController
   # GET /paste_users/new
   def new
     @paste_user = PasteUser.new
+    # 1.times do
+    #   @paste_user.user_invitations.build
+    # end
   end
 
   # GET /paste_users/1/edit
@@ -24,37 +27,59 @@ class PasteUsersController < ApplicationController
 
   # POST /paste_users
   # POST /paste_users.json
-  def create
-    @paste_user = PasteUser.new
-    paste_users = paste_user_params
-    @paste_users = paste_users[:email].split(",")
-    @paste_users.delete_if {|i| User.find_by_email(i).present? }
+  # def create
+  #   @paste_user = PasteUser.new
+  #   paste_users = paste_user_params
+  #   @paste_users = paste_users[:email].split(",")
+  #   @paste_users.delete_if {|i| User.find_by_email(i).present? }
 
-       # @emails_txt = @paste_user.email
-       # @paste_user = @emails_txt.split(/\s*,\s*/)
+  #      # @emails_txt = @paste_user.email
+  #      # @paste_user = @emails_txt.split(/\s*,\s*/)
   
-      # email = @paste_users.join(',')
-       # raise paste_users.inspect
-    @paste_users.each do |email|
-     random_password = ('0'..'z').to_a.shuffle.first(8).join
-     @user = User.new(:email => email, :password => random_password,
-                  :password_confirmation => random_password)
+  #     # email = @paste_users.join(',')
+  #      # raise paste_users.inspect
+  #   @paste_users.each do |email|
+  #    random_password = ('0'..'z').to_a.shuffle.first(8).join
+  #    @user = User.new(:email => email, :password => random_password,
+  #                 :password_confirmation => random_password)
      
-     p = PasteUser.new(:user_id => current_user.id, :email => email)
-     p.save
-      if @user.save
-        Mailer.paste_user(p,@signup_url, random_password).deliver
-        # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-        # format.json { render :show, status: :created, location: @paste_user }
-       else
-        # random_password = ('0'..'z').to_a.shuffle.first(8).join
-        # format.html { render :new }
-        # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+  #    p = PasteUser.new(:user_id => current_user.id, :email => email)
+  #    p.save
+  #     if @user.save
+  #       Mailer.paste_user(p,@signup_url, random_password).deliver
+  #       # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
+  #       # format.json { render :show, status: :created, location: @paste_user }
+  #      else
+  #       # random_password = ('0'..'z').to_a.shuffle.first(8).join
+  #       # format.html { render :new }
+  #       # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  #     redirect_to :back
+     
+  # end
+
+
+
+  def create
+    @paste_user = PasteUser.new(paste_user_params)
+     # raise params.inspect
+     respond_to do |format|
+      if @paste_user.save
+        @paste_user.user_invitations.each do |ui|
+          Mailer.paste_user(@paste_user,@signup_url, random_password).deliver
+        end
+        # 
+        format.html { redirect_to @paste_user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @circle }
+      else
+        format.html { render :new }
+        format.json { render json: @paste_user.errors, status: :unprocessable_entity }
       end
     end
-      redirect_to :back
-     
   end
+
+
 
 
 
@@ -128,6 +153,11 @@ class PasteUsersController < ApplicationController
     
   end
 
+
+
+
+
+
   def invitation
     @invitations = PasteUser.where("user_id = ?",current_user.id)
   end
@@ -140,6 +170,8 @@ class PasteUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paste_user_params
-      params.require(:paste_user).permit(:user_id, :name, :email)
+      params.require(:paste_user).permit(:user_id, :name, :email,:circle_id,user_invitations_attributes: [:circle_id,:id,:email,:opinion_value,:invite_for_feedback,:invite_for_curiosity,:paste_user_id,:user_id])
     end
+
+    
 end

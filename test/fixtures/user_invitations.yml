@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paste_user_id: 1
+  email: MyString
+  invite_for_feedback: false
+  invite_for_curiosity: false
+  opinion_value: MyString
+  user_id: 1
+
+two:
+  paste_user_id: 1
+  email: MyString
+  invite_for_feedback: false
+  invite_for_curiosity: false
+  opinion_value: MyString
+  user_id: 1

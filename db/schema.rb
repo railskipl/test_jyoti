@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611095202) do
+ActiveRecord::Schema.define(version: 20140612091714) do
+
+  create_table "circles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contacts", force: true do |t|
     t.string   "email"
@@ -67,6 +73,19 @@ ActiveRecord::Schema.define(version: 20140611095202) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "circle_id"
+  end
+
+  create_table "user_invitations", force: true do |t|
+    t.integer  "paste_user_id"
+    t.string   "email"
+    t.boolean  "invite_for_feedback"
+    t.boolean  "invite_for_curiosity"
+    t.string   "opinion_value"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "circle_id"
   end
 
   create_table "users", force: true do |t|
