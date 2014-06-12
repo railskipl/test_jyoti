@@ -15,17 +15,32 @@ class User < ActiveRecord::Base
   before_create :set_invitation_limit
 
  
-  def self.find_for_facebook_oauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
-   end
-  end
+  # def self.find_for_facebook_oauth(auth)
+  #   where(auth.slice(:provider, :uid)).first_or_create do |user|
+  #     user.provider = auth.provider
+  #     user.uid = auth.uid
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0,20]
+  #     # user.name = auth.info.name   # assuming the user model has a name
+  #     # user.image = auth.info.image # assuming the user model has an image
+  #  end
+  # end
 
+def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+      data = access_token.extra.raw_info
+      user = User.where(:email => data["email"],:provider => "Facebook").first
+        #User.skip_confirmation!
+      unless user
+       user= User.create(name: data["name"],# if user in not present then create user email,name and provider.
+                         email: data["email"],
+                         provider: "Facebook",
+                         password: Devise.friendly_token[0,20]
+       )
+      user.skip_confirmation!
+      user.save
+    end
+    user
+ end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info #access_token contain all the information about user provider.
@@ -36,6 +51,8 @@ class User < ActiveRecord::Base
                          provider: "Google",
                          password: Devise.friendly_token[0,20]
       )
+      user.skip_confirmation!
+      user.save
     end
     user
   end

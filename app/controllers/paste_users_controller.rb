@@ -136,7 +136,7 @@ class PasteUsersController < ApplicationController
      p = PasteUser.new(:user_id => current_user.id, :email => email)
     
       if p.save
-        Mailer.paste_user(p,@signup_url, random_password).deliver
+        Mailer.paste_user(p,@signup_url).deliver
         # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
         # format.json { render :show, status: :created, location: @paste_user }
        else
