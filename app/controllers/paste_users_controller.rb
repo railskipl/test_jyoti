@@ -97,8 +97,7 @@ class PasteUsersController < ApplicationController
   #   end
   # end
 
-
-
+ 
 
 
   # PATCH/PUT /paste_users/1

@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to :back, notice: "Please Attach file" 
     else
       User.import(params[:file],current_user)
-      redirect_to root_url, notice: "Users imported."
+      redirect_to invite_paste_users_path, notice: "Users imported."
     end
   end
 
