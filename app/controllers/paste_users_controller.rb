@@ -133,13 +133,10 @@ class PasteUsersController < ApplicationController
     @paste_users = params[:paste_users][:paste_user_emails]
     
     @paste_users.each do |email|
-     random_password = ('0'..'z').to_a.shuffle.first(8).join
-     @user = User.new(:email => email, :password => random_password,
-                  :password_confirmation => random_password)
      
      p = PasteUser.new(:user_id => current_user.id, :email => email)
-     p.save
-      if @user.save
+    
+      if p.save
         Mailer.paste_user(p,@signup_url, random_password).deliver
         # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
         # format.json { render :show, status: :created, location: @paste_user }

@@ -41,28 +41,30 @@ class User < ActiveRecord::Base
   end
 
 
-def invitation_token
-  invitation.token if invitation
-end
+  def invitation_token
+    invitation.token if invitation
+  end
 
-def invitation_token=(token)
-  self.invitation = Invitation.find_by_token(token)
-end
+  def invitation_token=(token)
+    self.invitation = Invitation.find_by_token(token)
+  end
 
-def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |user|
-        csv << user.attributes.values_at(*column_names)
+  def self.to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |user|
+          csv << user.attributes.values_at(*column_names)
+        end
       end
     end
-  end
-  
-  def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-        @user = User.create! row.to_hash        
+    
+    def self.import(file,current_user)
+      CSV.foreach(file.path, headers: true) do |row|
+        if !row["email"].nil?
+          @user = Contact.where(:email => row["email"], :user_id => current_user.id).first_or_create
+        end
+      end
     end
-  end
 
 
 private
