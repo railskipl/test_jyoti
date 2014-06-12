@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
                          provider: "Google",
                          password: Devise.friendly_token[0,20]
       )
+      user.skip_confirmation!
+      user.save
     end
     user
   end
