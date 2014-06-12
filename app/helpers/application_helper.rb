@@ -9,6 +9,9 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
+  def link_to_remove_fields(name, f)
+    f.hidden_field(:_destroy) + link_to(name, "remove_fields(this)")
+  end
 
 def format_boolean(approved)
     if approved

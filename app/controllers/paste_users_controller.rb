@@ -70,7 +70,7 @@ class PasteUsersController < ApplicationController
            Mailer.paste_user(ui,@signup_url).deliver
         end
         # 
-        format.html { redirect_to @paste_user, notice: 'User was successfully created.' }
+        format.html { redirect_to :back, notice: 'Invitation was successfully sent.' }
         format.json { render :show, status: :created, location: @paste_user }
       else
         format.html { render :new }
@@ -129,26 +129,43 @@ class PasteUsersController < ApplicationController
   end
 
   def complete
-    @paste_users = params[:paste_users][:paste_user_emails]
+    users = params[:emails]
     
-    @paste_users.each do |email|
+    # @paste_users.each do |email|
      
-     p = PasteUser.new(:user_id => current_user.id, :email => email)
+    #  p = PasteUser.new(:user_id => current_user.id, :email => email)
     
-      if p.save
-        Mailer.paste_user(p,@signup_url).deliver
-        # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-        # format.json { render :show, status: :created, location: @paste_user }
-       else
-        # random_password = ('0'..'z').to_a.shuffle.first(8).join
-        # format.html { render :new }
-        # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
-      end
-    end
-      redirect_to :back
+    #   if p.save
+    #     Mailer.paste_user(p,@signup_url).deliver
+    #     # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
+    #     # format.json { render :show, status: :created, location: @paste_user }
+    #    else
+    #     # random_password = ('0'..'z').to_a.shuffle.first(8).join
+    #     # format.html { render :new }
+    #     # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+      redirect_to select_contact_invitation_paste_users_path(:emails => users)
     
   end
 
+
+  def select_contact_invitation
+    @users = params[:emails]
+    if request.post?
+      paste_user = PasteUser.create(:user_id => current_user.id)
+      feedback = params[:feedback].nil? ? 0 : params[:feedback]
+      invite = params[:invite].nil? ? 0 : params[:invite]
+      users = @users.split
+      paste_user ||= []
+      users.each do |email|
+        u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email, 
+          :invite_for_feedback => feedback,:invite_for_curiosity => invite )
+         Mailer.paste_user(u,@signup_url).deliver
+      end
+      redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
+    end
+  end
 
 
 

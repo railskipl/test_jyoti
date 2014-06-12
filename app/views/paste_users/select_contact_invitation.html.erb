@@ -1,0 +1,18 @@
+<%= form_tag select_contact_invitation_paste_users_path, :method => :post do %>
+  <table class="table table-bordered">
+  	<tr>
+  		<th>Email</th>
+  		<th>Request Feedback</th>
+  		<th>Send Invitation</th>
+  	</tr>
+  <% @users.each do |user| %>
+    <tr>
+       <td> <%= user %>
+       <td><%= check_box_tag "feedback", 1, :checked %><br/>
+       <td><%= check_box_tag "invite" %><br/>
+    </tr>
+  <% end %>
+   	<%= hidden_field_tag "emails" , params[:emails] %>
+  </table>
+ <%= submit_tag "Send" %>
+<% end %>
