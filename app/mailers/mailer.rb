@@ -22,7 +22,7 @@ def invitation(invitation, signup_url,random_password)
   invitation.update_attribute(:sent_at, Time.now) 
 end
 
-def paste_user(paste_user,signup_url,random_password)
+def paste_user(paste_user,signup_url)
   @paste_user = paste_user
   mail to:  paste_user.email,
   subject: 'Paste User',

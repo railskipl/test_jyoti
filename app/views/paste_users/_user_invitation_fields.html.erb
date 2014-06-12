@@ -1,16 +1,17 @@
 <p>
 <%= f.hidden_field :user_id,:value => current_user.id %>
   <%= f.label :email, "Email" %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email %></br>
   <%= f.label :circle_id %>
-  <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"}%>
+  <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"}%></br>
 
   <%= f.label :invite_for_feedback, "Send Mirror Invite(to give me feedback)" %>
-  <%= f.check_box :invite_for_feedback %> 
+  <%= f.check_box(:invite_for_feedback,  {:checked=>true}) %></br> 
   <%= f.label :invite_for_curiosity, "Send Standard Invite(just for curiosity)" %>
-  <%= f.check_box :invite_for_curiosity %> 
+  <%= f.check_box :invite_for_curiosity %></br> 
  
   <%= f.hidden_field :_destroy %>
 
    <%= link_to "remove", '#', class: "remove_fields" %> 
 </p>
+

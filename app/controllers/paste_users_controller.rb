@@ -15,9 +15,9 @@ class PasteUsersController < ApplicationController
   # GET /paste_users/new
   def new
     @paste_user = PasteUser.new
-    # 1.times do
-    #   @paste_user.user_invitations.build
-    # end
+    1.times do
+      @paste_user.user_invitations.build
+    end
   end
 
   # GET /paste_users/1/edit
@@ -67,11 +67,11 @@ class PasteUsersController < ApplicationController
      respond_to do |format|
       if @paste_user.save
         @paste_user.user_invitations.each do |ui|
-          Mailer.paste_user(@paste_user,@signup_url, random_password).deliver
+          # Mailer.paste_user(@paste_user,@signup_url).deliver
         end
         # 
         format.html { redirect_to @paste_user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @circle }
+        format.json { render :show, status: :created, location: @paste_user }
       else
         format.html { render :new }
         format.json { render json: @paste_user.errors, status: :unprocessable_entity }
