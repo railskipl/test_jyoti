@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       get :invite
       get :select_contacts
       post :complete
+      get :select_contact_invitation
+      post :select_contact_invitation
       get :invitation
     }
   end
