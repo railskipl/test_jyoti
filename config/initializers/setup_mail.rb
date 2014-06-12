@@ -4,8 +4,8 @@ ActionMailer::Base.smtp_settings = {
   :port => 587,
   :domain => "imap.gmail.com",
   :authentication => :login,
-  :user_name => "atishkunalinfotech@gmail.com",
-  :password => "!@#kunalinfotechkipl"
+  :user_name => "rubyrails9@gmail.com",
+  :password => "kipl123!@#"
 
 }
 if Rails.env == "development"

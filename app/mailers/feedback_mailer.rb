@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "rubyrails9@gmail.com"
 
   # def feedback_mailer(feedback)
   #   @feedback = feedback
