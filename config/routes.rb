@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
 
+  resources :friends, : only => [:index] do
+   post 'fb_friends', : on => :collection
+  end
+
   resources :user_invitations
 
   resources :circles
 
   resources :paste_users do
     collection {
-      get :importuser
       get :invite
       get :select_contacts
       post :complete

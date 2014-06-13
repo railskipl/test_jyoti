@@ -1,0 +1,62 @@
+<!-- <h1>Listing friends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= link_to 'Show', friend %></td>
+        <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
+        <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Friend', new_friend_path %>
+
+ -->
+
+
+<div class="span6">
+<div class="portlet box yellow">
+<div class="portlet-title">
+<h4 class="glyphicons no-js facebook">
+<i></i>
+Facebook Friend list
+</h4>
+<div class="tools">
+<a class="collapse" href="javascript:;"></a>
+<a class="reload" href="javascript:;"></a>
+</div>
+</div>
+<div class="portlet-body" style="display: block;" id="fbPortlet">
+<div id="fbFriends" class="span12 float-left">
+Loading....
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
