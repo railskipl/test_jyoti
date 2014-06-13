@@ -1,0 +1,36 @@
+<h5>Organization</h5>
+
+<%= form_for @organization,:html => { :multipart => true } do |f| %>
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+     <%= pluralize(@organization.errors.count, "error") %> prohibited this car model from being saved:
+
+      <ul>
+      <% @organization.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, :class=>"form-control",:style=>"width:300px;" %>
+
+
+    <%= f.label :body %>
+
+    <%= f.cktext_area :body %>
+
+
+    <%= f.label :Uploadphoto %>
+
+    <%= f.file_field :img %>
+
+   
+  
+   <div class="actions">
+    <%= f.submit "Submit",:class=>"btn btn-primary"  %>
+  </div>
+
+
+<% end %>

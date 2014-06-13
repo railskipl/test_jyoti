@@ -1,0 +1,31 @@
+<%= link_to 'New Individual', new_individual_path,:class=>"btn btn-primary" %>
+<br/><br/>
+<div class="row">
+<div class="col-xs-12">
+<table class="table table-bordered">
+ 
+ <tr>
+    <th>Title</th>
+     <th>Body</th>
+     <th>Image</th>
+      <th>Status</th>
+      <th colspan=2>Actions</td>
+  </tr>
+
+<% @individuals.each do |individual| %>
+
+  <tr>
+    <td><%= individual.title %></td>
+    <td><%= individual.body.html_safe %></td>
+    <td><%= image_tag individual.pic.url, :width => "165", :height=>"100" %></td>
+    <td><%= link_to format_boolean(individual.status?), {:controller => 'individuals', :action => 'status', :id => individual.id} %></td>
+    <td style="text-align: center !important;"><%= link_to 'Edit', edit_individual_path(individual) %></td>
+    <td style="text-align: center !important;"><%= link_to 'Destroy',individual_path(individual) ,:method => :delete , :data=>{ :confirm=>'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+
+</table>
+</div>
+</div>
+

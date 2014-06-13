@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :feedbacks
 
   resources :invitations
+  resources :organizations
+  resources :individuals
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
@@ -55,7 +57,8 @@ Rails.application.routes.draw do
   get "home/dashboard"
   root :to => 'home#dashboard'
 
-
+   get '/home/organization' => 'home#organization'
+   get '/home/individual' => 'home#individual'
  
 
 
