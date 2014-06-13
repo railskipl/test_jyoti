@@ -13,9 +13,9 @@ class Mailer < ActionMailer::Base
   # end
 
 
-def invitation(invitation, signup_url,random_password)
+def invitation(invitation, signup_url)
   @invitation = invitation
-  @random_password = random_password
+  # @random_password = random_password
   mail to:  invitation.recipient_email,
   subject: 'Invite',
   signup_url: 'signup_url'

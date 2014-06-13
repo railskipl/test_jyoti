@@ -1,8 +1,6 @@
 <h4>Welcome to user dashboard<h4>
 
 
-<h6>Get your contacts list
-<a href="/contacts/gmail">Gmail</a></h6>
    <% if !@contacts.nil?%>
 
  <% @contacts.each do |c|%>
@@ -21,14 +19,6 @@
     <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
  
 <% end %>
-
-<div class="col-xs-4">
-Import Users
-<%= form_tag import_users_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Upload CSV File",:class => "button button-primary" %>
-<% end %>
-</div>
 
 
 <div class="col-xs-4">

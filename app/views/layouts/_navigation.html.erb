@@ -29,7 +29,9 @@
     <% end %>
      <% unless current_user.is_admin == true%>
         <li><a href="/home/dashboard">Home</a></li>
+        <li><a href="/contacts/gmail">Gmail Contacts</a></li>
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
+        <li> <%= link_to "Import" , import_contact_path %></li>
         <li> <%= link_to "Invite" , invite_paste_users_path %></li>
         <li> <%= link_to "My Invitations" , invitation_paste_users_path %></li>
         <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
