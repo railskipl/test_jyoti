@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require_tree .
 
+
+// $(document).ready(function () {
+// $(“#new_feedback).validate({
+// debug: true,
+// rules: {
+// feedback[email]“: {required: true, email: true, remote:”/feedbacks/email” },  //added this
+// }
+// });
+// });
+

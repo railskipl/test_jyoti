@@ -51,3 +51,54 @@
 
 
    });
+
+
+
+
+
+
+
+
+
+
+
+    $("#new_page").validate({
+    errorElement:'span',
+    rules: {
+
+
+    "page[title]" :{
+    required: true
+
+    },
+
+    "page[body]" :{
+    required: true
+
+    },
+
+    
+
+    "page[photo]" :{
+    required: true
+
+    },
+    messages: {
+
+    "page[title]" :{
+    required: "Please enter name"
+
+    },
+    "page[body]" :{
+    required: "Please enter email"
+
+    },
+
+    "page[photo]" :{
+    required: "Please add feedback."
+
+    },
+
+   }
+
+ });

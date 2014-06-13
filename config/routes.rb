@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :paste_users do
     collection {
+      get :importuser
       get :invite
       get :select_contacts
       post :complete
