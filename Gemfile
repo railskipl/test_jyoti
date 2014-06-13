@@ -6,9 +6,9 @@ gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 
 
-gem 'pg'
+#gem 'pg'
 
-# gem 'sqlite3'
+gem 'sqlite3'
 
 
 # gem 'mysql'
@@ -28,7 +28,8 @@ gem "paperclip"
 gem "mail"
 gem 'premailer-rails'
 gem 'roo'
-
+gem "ckeditor", :git => "https://github.com/adamico/ckeditor.git",
+:branch => "rails-4-compatibility"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
