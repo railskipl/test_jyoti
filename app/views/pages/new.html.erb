@@ -4,6 +4,7 @@
 <h2> Page</h2>
 <div class="col-xs-4">
 <%= form_for @page,:html => { :multipart => true,:id =>"new_page" } do |f| %>
+
   <% if @page.errors.any? %>
     <div id="error_explanation">
      <%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:
@@ -15,21 +16,20 @@
       </ul>
     </div>
   <% end %>
-	<p>
+
     <%= f.label :title %>
-    <%= f.text_field :title, :class=>"form-control" %>
-   </p>
- 
-  <p>
+    <%= f.text_field :title, :class=>"form-control",:style=>"width:300px;" %>
+
+
     <%= f.label :body %>
 
-    <%= f.text_area :body,:class=>"form-control11" %>
+    <%= f.cktext_area :body %>
 
-  </p>
 
-  <p>
+    <%= f.label :Uploadphoto %>
+
     <%= f.file_field :photo %>
-  </p>
+
    
   
    <div class="actions">
@@ -38,4 +38,3 @@
 
 
 <% end %>
-</div>

@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/adamico/ckeditor.git
+  revision: f99a8c9265ffb59d690fceac0fcc20109bef5f33
+  branch: rails-4-compatibility
+  specs:
+    ckeditor (4.0.4)
+      mime-types
+      orm_adapter
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,7 +126,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    pg (0.17.1)
     polyglot (0.3.5)
     premailer (1.8.2)
       css_parser (>= 1.3.5)
@@ -206,6 +214,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ckeditor!
   coffee-rails (~> 4.0.0)
   devise
   execjs
@@ -220,7 +229,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   omnicontacts
   paperclip
-  pg
   premailer-rails
   protected_attributes
   rails (= 4.1.0)
