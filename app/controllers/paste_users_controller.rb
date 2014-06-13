@@ -70,7 +70,7 @@ class PasteUsersController < ApplicationController
            Mailer.paste_user(ui,@signup_url).deliver
         end
         # 
-        format.html { redirect_to :back, notice: 'Invitation was successfully sent.' }
+        format.html { redirect_to  new_paste_user_path, notice: 'Invitation was successfully sent.' }
         format.json { render :show, status: :created, location: @paste_user }
       else
         format.html { render :new }
@@ -105,7 +105,7 @@ class PasteUsersController < ApplicationController
   def update
     respond_to do |format|
       if @paste_user.update(paste_user_params)
-        format.html { redirect_to @paste_user, notice: 'Paste user was successfully updated.' }
+        format.html { redirect_to  new_paste_user, notice: 'Paste user was successfully updated.' }
         format.json { render :show, status: :ok, location: @paste_user }
       else
         format.html { render :edit }
@@ -130,7 +130,7 @@ class PasteUsersController < ApplicationController
 
   def complete
     users = params[:emails]
-    
+    if users.nil?
     # @paste_users.each do |email|
      
     #  p = PasteUser.new(:user_id => current_user.id, :email => email)
@@ -145,8 +145,10 @@ class PasteUsersController < ApplicationController
     #     # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
     #   end
     # end
+    redirect_to select_contacts_paste_users_path, :notice => "Please select contacts"
+    else
       redirect_to select_contact_invitation_paste_users_path(:emails => users)
-    
+    end
   end
 
 

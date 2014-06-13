@@ -26,26 +26,26 @@ class InvitationsController < ApplicationController
   # POST /invitations.json
   def create
   @invitation = Invitation.new(params[:invitation])
-  random_password = ('0'..'z').to_a.shuffle.first(8).join
+  # random_password = ('0'..'z').to_a.shuffle.first(8).join
   @invitation.sender = current_user
-  @user = User.new(:email => @invitation.recipient_email, :password => random_password,
-                  :password_confirmation => random_password)
-  if @user.save
+  # @user = User.new(:email => @invitation.recipient_email, :password => random_password,
+  #                 :password_confirmation => random_password)
+  if !@invitation.recipient_email.blank?
     if @invitation.save
-    if signed_in?
-      Mailer.invitation(@invitation, @signup_url, random_password).deliver
-      flash[:success] = "Thank you, invitation sent."
-      redirect_to :back
-    else
-      flash[:success] = "Thank you, we will notify when we are ready."
-      redirect_to :back
-    end
+      if signed_in?
+        Mailer.invitation(@invitation, @signup_url).deliver
+        flash[:success] = "Thank you, invitation sent."
+        redirect_to :back
+      else
+        flash[:success] = "Thank you, we will notify when we are ready."
+        redirect_to :back
+      end
   else
-    random_password = ('0'..'z').to_a.shuffle.first(8).join
+    # random_password = ('0'..'z').to_a.shuffle.first(8).join
     render :action => 'new'
   end
   else
-   flash[:error] = "User already exists"
+   flash[:error] = "Something went wrong"
    redirect_to :back
   end  
 

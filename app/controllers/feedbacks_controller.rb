@@ -25,16 +25,21 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
-
-    respond_to do |format|
-      if @feedback.save
-        FeedbackMailer.feedback_mailer(@feedback).deliver
-        format.html { redirect_to  new_user_registration_path, notice: 'Feedback was successfully submited.' }
-        format.json { render :show, status: :created, location: @feedback }
-      else
-        format.html { render :new }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
+    email = @feedback.email =~ email_regex
+    if email == 0
+      respond_to do |format|
+        if @feedback.save
+          FeedbackMailer.feedback_mailer(@feedback).deliver
+          format.html { redirect_to  root_path, notice: 'Feedback was successfully submited.' }
+          format.json { render :show, status: :created, location: @feedback }
+        else
+          format.html { render :new }
+          format.json { render json: @feedback.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path, :notice => "Please Enter Valid Email"
     end
   end
 
