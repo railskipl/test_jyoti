@@ -13,6 +13,21 @@
  
  <% end %>
 
+
+
+ <h6>Get your contacts list
+<a href="/contacts/facebook">Facebook</a></h6>
+   <% if !@contacts.nil?%>
+
+ <% @contacts.each do |c|%>
+  <ul>
+    <li><%= c[:name]%> :  <%= c[:email]%> 
+  </ul> 
+  <% end %>
+ 
+ <% end %>
+
+
 <%= form_for Invitation.new do |f| %>
 
     <div class="col-xs-4">
