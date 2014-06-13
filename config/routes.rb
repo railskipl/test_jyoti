@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   resources :omniauth_callbacks
 
-  
+  get "/import_contact" => "home#import_contact"
+
+  get "import_social_contacts" => "paste_users#import_social_contacts"
 
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
