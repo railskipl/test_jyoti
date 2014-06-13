@@ -25,7 +25,7 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
-
+    raise @feedback.email.inspect
     respond_to do |format|
       if @feedback.save
         FeedbackMailer.feedback_mailer(@feedback).deliver

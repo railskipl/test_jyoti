@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   get "/import_contact" => "home#import_contact"
 
+  get "import_social_contacts" => "paste_users#import_social_contacts"
+
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
 
