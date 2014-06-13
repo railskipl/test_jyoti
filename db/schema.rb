@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20140613114339) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "invitations", force: true do |t|
