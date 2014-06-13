@@ -2,7 +2,7 @@
 <%#= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation.js" %> 
 
 <h2> Page</h2>
-<div class="col-xs-4">
+
 <%= form_for @page,:html => { :multipart => true,:id =>"new_page" } do |f| %>
 
   <% if @page.errors.any? %>
