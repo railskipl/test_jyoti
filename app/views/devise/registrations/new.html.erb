@@ -27,6 +27,23 @@
     <%= render "devise/shared/links" %>
      <% end %>
    </div>
+
+   <div class="col-xs-1" style="text-align:center">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h5>OR</h5>
+</div>
+<div class="col-xs-3" style="text-align:center">
+  <p>&nbsp;</p>  <p>&nbsp;</p>
+<%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook),:class=>"btn btn-facebook" %>
+
+<hr/>
+  
+
+<%= link_to "Sign up with Google", user_omniauth_authorize_path(:google_oauth2),:class=>"btn btn-google-plus" %></br>
+</div>
    </div>
  </div>
    

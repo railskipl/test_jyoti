@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
 
+  resources :advice_contacts
+
   resources :user_invitations
 
   resources :circles
