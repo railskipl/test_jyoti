@@ -40,6 +40,10 @@ class AdviceContactsController < ApplicationController
     end
   end
 
+  def post_login
+    @contacts = Contact.where("user_id = ?",current_user.id)
+  end
+
   # PATCH/PUT /advice_contacts/1
   # PATCH/PUT /advice_contacts/1.json
   # def update

@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :advice_contacts
+  resources :advice_contacts do
+    collection {
+      get :post_login
+    }
+  end
 
   resources :user_invitations
 
