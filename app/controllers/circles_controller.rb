@@ -1,5 +1,6 @@
 class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
 
   # GET /circles
   # GET /circles.json
@@ -70,5 +71,17 @@ class CirclesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def circle_params
       params.require(:circle).permit(:name)
+    end
+
+
+    def check_user
+      if user_signed_in?
+        if current_user.is_admin?
+        else
+          redirect_to root_path, :alert => "Unauthorised Access"
+        end
+      else 
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end
     end
 end

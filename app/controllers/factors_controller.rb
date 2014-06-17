@@ -1,5 +1,7 @@
 class FactorsController < ApplicationController
   before_action :set_factor, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
+
 
   # GET /factors
   # GET /factors.json
@@ -70,5 +72,17 @@ class FactorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def factor_params
       params.require(:factor).permit(:name, :circle_id)
+    end
+
+
+    def check_user
+      if user_signed_in?
+        if current_user.is_admin?
+        else
+          redirect_to root_path, :alert => "Unauthorised Access"
+        end
+      else 
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end
     end
 end

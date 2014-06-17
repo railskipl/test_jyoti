@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy]
 
   # GET /feedbacks
   # GET /feedbacks.json
@@ -77,4 +78,16 @@ class FeedbacksController < ApplicationController
     def feedback_params
       params.require(:feedback).permit(:name, :email, :description)
     end
+
+    def check_user
+      if user_signed_in?
+        if current_user.is_admin?
+        else
+          redirect_to root_path, :alert => "Unauthorised Access"
+        end
+      else 
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end
+    end
+
 end
