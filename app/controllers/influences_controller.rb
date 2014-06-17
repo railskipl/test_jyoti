@@ -1,5 +1,7 @@
 class InfluencesController < ApplicationController
   before_action :set_influence, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
+
 
   # GET /influences
   # GET /influences.json
@@ -74,5 +76,13 @@ class InfluencesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def influence_params
       params.require(:influence).permit(:user_id,:your_influence, :influence_on_your, :email,power_groups_attributes: [:email,:influence_on_your,:your_influence,:influence_id,:user_id])
+    end
+
+    def check_user
+      if user_signed_in?
+        else
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end
+     
     end
 end
