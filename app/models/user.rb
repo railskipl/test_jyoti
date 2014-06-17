@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
 
   has_many :influences
 
-
   before_create :set_invitation_limit
 
  
