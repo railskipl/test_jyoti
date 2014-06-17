@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617064834) do
+
+ActiveRecord::Schema.define(version: 20140616103935) do
+
+  create_table "advice_contacts", force: true do |t|
+    t.string   "email"
+    t.text     "praise"
+    t.text     "criticism"
+    t.text     "helpful_tips"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "circles", force: true do |t|
     t.string   "name"
@@ -40,9 +51,15 @@ ActiveRecord::Schema.define(version: 20140617064834) do
     t.datetime "updated_at"
   end
 
-  create_table "friends", force: true do |t|
+  create_table "individuals", force: true do |t|
+    t.string   "title"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "influences", force: true do |t|
@@ -67,6 +84,17 @@ ActiveRecord::Schema.define(version: 20140617064834) do
   create_table "mailers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
   create_table "pages", force: true do |t|

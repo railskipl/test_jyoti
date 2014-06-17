@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index]
+ before_filter :authenticate_user!, except: [:index,:organization,:individual]
 
 def index
   
@@ -8,7 +8,11 @@ def index
 	#@page = Page.find(params[:id])
 end
 
+def organization
+end
 
+def individual
+end
 
 def dashboard
     @contacts = request.env['omnicontacts.contacts']

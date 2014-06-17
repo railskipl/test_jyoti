@@ -1,0 +1,35 @@
+<%= form_for(@advice_contact) do |f| %>
+  <% if @advice_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advice_contact.errors.count, "error") %> prohibited this advice_contact from being saved:</h2>
+
+      <ul>
+      <% @advice_contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-xs-4">
+    <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email ,:placeholder => "abc@example.com", :class=>"form-control" %>
+    </div>
+  <div class="field">
+    <%= f.label :praise %><br>
+    <%= f.text_area :praise ,:placeholder => "Type in your praise here",:class=>"form-control" , :style => "height:80px !important;" %>
+  </div>
+  <div class="field">
+    <%= f.label :criticism %><br>
+    <%= f.text_area :criticism ,:placeholder => "Type in your criticism here",:class=>"form-control" , :style => "height:80px !important;" %>
+  </div>
+  <div class="field">
+    <%= f.label :helpful_tips %><br>
+    <%= f.text_area :helpful_tips ,:placeholder => "Type in your helpful tips here",:class=>"form-control" , :style => "height:80px !important;" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit Comments",:class => "btn btn-primary" %>
+  </div>
+   </div>
+<% end %>

@@ -1,16 +1,12 @@
+<h5>Organization</h5>
 
-<%#= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation.js" %> 
-
-<h2> Page</h2>
-
-<%= form_for @page,:html => { :multipart => true,:id =>"new_page" } do |f| %>
-
-  <% if @page.errors.any? %>
+<%= form_for @organization,:html => { :multipart => true } do |f| %>
+  <% if @organization.errors.any? %>
     <div id="error_explanation">
-     <%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:
+     <%= pluralize(@organization.errors.count, "error") %> prohibited this car model from being saved:
 
       <ul>
-      <% @page.errors.full_messages.each do |msg| %>
+      <% @organization.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -28,7 +24,7 @@
 
     <%= f.label :Uploadphoto %>
 
-    <%= f.file_field :photo %>
+    <%= f.file_field :img %>
 
    
   

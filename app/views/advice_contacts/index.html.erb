@@ -1,0 +1,31 @@
+<h1>Listing advice_contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Praise</th>
+      <th>Criticism</th>
+      <th>Helpful tips</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advice_contacts.each do |advice_contact| %>
+      <tr>
+        <td><%= advice_contact.email %></td>
+        <td><%= advice_contact.praise %></td>
+        <td><%= advice_contact.criticism %></td>
+        <td><%= advice_contact.helpful_tips %></td>
+        <td><%= link_to 'Show', advice_contact %></td>
+        <td><%= link_to 'Edit', edit_advice_contact_path(advice_contact) %></td>
+        <td><%= link_to 'Destroy', advice_contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Advice contact', new_advice_contact_path %>

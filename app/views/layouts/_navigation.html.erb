@@ -24,6 +24,8 @@
 <% if user_signed_in? %>
     <% if current_user.is_admin == true%>
      <li> <%= link_to "Pages",  pages_path %>  </li>
+      <li> <%= link_to "Organizations",  organizations_path %>  </li>
+       <li> <%= link_to "Individuals",  individuals_path %>  </li>
      <li> <%= link_to "feedbacks",  feedbacks_path %>  </li>
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end %>
@@ -32,6 +34,8 @@
         <li> <%= link_to "Import CSV" , import_contact_path %></li>
         <li> <%= link_to "Power Groups" ,  new_influence_path %></li>
         <li> <%= link_to "Invite" , invite_paste_users_path %></li>
+          <li> <%= link_to "Organizations", home_organization_path  %>  </li>
+       <li> <%= link_to "Individuals",  home_individual_path %>  </li>
         <!-- <li> <%#= link_to "My Invitations" , invitation_paste_users_path %></li> -->
         <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
@@ -42,7 +46,10 @@
 <% unless user_signed_in? %>
 
  <li><a href="/">Home</a></li> 
-       <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
+  <li> <%= link_to "Organizations", home_organization_path  %>  </li>
+  <li> <%= link_to "Individuals",  home_individual_path %>  </li>
+  <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
+   <li> <%= link_to "Pre Login Tips",  new_advice_contact_path %>  </li>
   <% end %>
  </ul>
 </div><!-- /.navbar-collapse -->

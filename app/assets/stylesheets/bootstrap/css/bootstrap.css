@@ -306,6 +306,7 @@ figure {
 }
 img {
   vertical-align: middle;
+  max-width: 100%;
 }
 .img-responsive {
   display: block;
@@ -5832,4 +5833,7 @@ td.visible-print {
 .col-xs-4 {width: auto;}
 
 }
+
+
+
 /*# sourceMappingURL=bootstrap.css.map */
