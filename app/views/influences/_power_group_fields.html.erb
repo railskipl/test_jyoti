@@ -1,13 +1,12 @@
 <fieldset>
-<table style="width:300px">
 <p>
 <%= f.hidden_field :user_id,:value => current_user.id %>
 
   <%= f.label :email, "Email:" %>
-  <%= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %>
+  <%= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %></br>
   
    <%= f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
-        <%= f.select :your_influence, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %>
+        <%= f.select :your_influence, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br>
    
 
   <%= f.label :Their_influence_on_your_future,"Their Influence On Your Future:" %>
@@ -17,7 +16,6 @@
 
    <%= link_to "Remove groups", '#', class: "remove_fields" %> 
 </p>
-</table>
 
 </fieldset> 
 
