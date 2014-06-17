@@ -27,6 +27,8 @@
       <li> <%= link_to "Organizations",  organizations_path %>  </li>
        <li> <%= link_to "Individuals",  individuals_path %>  </li>
      <li> <%= link_to "feedbacks",  feedbacks_path %>  </li>
+     <li> <%= link_to "Circle",  circles_path %>  </li>
+     <li> <%= link_to "Factor",  factors_path %>  </li>
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end %>
      <% unless current_user.is_admin == true%>

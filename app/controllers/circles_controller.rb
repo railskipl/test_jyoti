@@ -28,7 +28,7 @@ class CirclesController < ApplicationController
 
     respond_to do |format|
       if @circle.save
-        format.html { redirect_to @circle, notice: 'Circle was successfully created.' }
+        format.html { redirect_to circles_path, notice: 'Circle was successfully created.' }
         format.json { render :show, status: :created, location: @circle }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CirclesController < ApplicationController
   def update
     respond_to do |format|
       if @circle.update(circle_params)
-        format.html { redirect_to @circle, notice: 'Circle was successfully updated.' }
+        format.html { redirect_to circles_path, notice: 'Circle was successfully updated.' }
         format.json { render :show, status: :ok, location: @circle }
       else
         format.html { render :edit }
