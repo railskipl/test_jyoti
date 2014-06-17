@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+before_filter :check_user, only: [:new]
 
 def index
 	
@@ -17,5 +18,22 @@ def create
     end
 	
 end
+
+
+
+private
+    # Use callbacks to share common setup or constraints between actions.
+
+    def check_user
+      if user_signed_in?
+        if current_user.is_admin?
+        else
+          redirect_to root_path, :alert => "Unauthorised Access"
+        end
+      else 
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end
+    end
+
 
 end
