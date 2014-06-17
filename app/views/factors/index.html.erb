@@ -1,0 +1,26 @@
+<h4>Listing factors</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Circle</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @factors.each do |factor| %>
+      <tr>
+        <td><%= factor.name %></td>
+        <td><%= factor.circle.name rescue nil %></td>
+        <td><%= link_to 'Edit', edit_factor_path(factor) %></td>
+        <td><%= link_to 'Destroy', factor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Factor', new_factor_path %>

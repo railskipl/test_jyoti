@@ -2938,7 +2938,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   background-color: #3498db;
 }
 .ui-slider {
-  background: #ebedef;
+  background: #1ABC9C;
   border-radius: 32px;
   height: 12px;
   -webkit-box-shadow: none;
@@ -2967,7 +2967,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   background-color: #16a085;
 }
 .ui-slider-range {
-  background-color: #1abc9c;
+  background-color: #1ABC9C;
   display: block;
   height: 100%;
   position: absolute;

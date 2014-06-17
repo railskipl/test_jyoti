@@ -1,0 +1,54 @@
+<%= javascript_include_tag "progress"%>
+
+ <%= form_for(@rating) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:
+      <ul>
+      <% @raitng.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+ <% end %>
+
+   <%= f.label :trustworthy %><br>
+
+
+  <%= f.range_field :trustworthy, :min=>1, :max=>10, :class=>"ui-slider", :id =>"slider" %></br>
+ 
+    <%= f.label :kind_helpful %><br>
+
+
+    <%= f.range_field :kind_helpful, :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+
+
+    <%= f.label :potential %><br>
+
+    <%= f.range_field :potential, :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+
+    <%= f.label :perform_well %><br>
+
+
+   <%= f.range_field :perform_well, :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+ 
+      <%= f.label :presentable %><br>
+
+       <%= f.range_field :presentable, :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+
+
+   <%= f.label :emotianally_mature %><br>
+
+
+   <%= f.range_field :emotianally_mature , :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+
+   <%= f.label :friendly_social %><br>
+
+
+ <%= f.range_field :friendly_social , :min=>1, :max=>10, :class=>"ui-slider", :id=>"slider" %></br>
+
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+  
+    <%= f.submit "Submit",:class=>"btn btn-primary" %>
+
+<% end %>
