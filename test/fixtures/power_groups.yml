@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  influce_id: 1
+  user_id: 1
+  email: MyString
+  your_influence: MyString
+  influence_on_your: MyString
+
+two:
+  influce_id: 1
+  user_id: 1
+  email: MyString
+  your_influence: MyString
+  influence_on_your: MyString

@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
- 
+
+
+  resources :influences
+
+
+  resources :advice_contacts do
+    collection {
+      get :post_login
+    }
+  end
+
+
   resources :user_invitations
 
   resources :circles

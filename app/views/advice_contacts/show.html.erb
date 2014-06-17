@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @advice_contact.email %>
+</p>
+
+<p>
+  <strong>Praise:</strong>
+  <%= @advice_contact.praise %>
+</p>
+
+<p>
+  <strong>Criticism:</strong>
+  <%= @advice_contact.criticism %>
+</p>
+
+<p>
+  <strong>Helpful tips:</strong>
+  <%= @advice_contact.helpful_tips %>
+</p>
+
+<%= link_to 'Edit', edit_advice_contact_path(@advice_contact) %> |
+<%= link_to 'Back', advice_contacts_path %>

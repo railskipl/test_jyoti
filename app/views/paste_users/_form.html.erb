@@ -19,7 +19,9 @@
   <%= render  "user_invitation_fields", :f => builder %>
   <% end %>
 
-      <%= link_to_add_fields "Add User Invitation",f,:user_invitations%>
+  <%= link_to_add_fields "Add User Invitation",f,:user_invitations%>
+
+
   <div class="actions">
     <%= f.submit "Send Invite" ,:class => "btn btn-primary"%>
   </div>

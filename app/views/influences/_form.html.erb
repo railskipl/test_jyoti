@@ -1,0 +1,47 @@
+<%= form_for(@influence) do |f| %>
+  <% if @influence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@influence.errors.count, "error") %> prohibited this influence from being saved:</h2>
+
+      <ul>
+      <% @influence.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- <div class="field">
+    <%= f.label :email %><br>
+    <%= f.collection_select :email, UserInvitation.all, :email, :email %>
+  </div>
+   
+
+<div class="field">
+        <%= f.label :your_influence %>
+        <%= f.select :your_influence, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %>
+ </div>
+
+
+
+ <div class="field">
+        <%= f.label :influence_on_your %>
+        <%= f.select :influence_on_your, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %>
+ </div> -->
+
+
+
+
+
+ <%= f.hidden_field :user_id,:value => current_user.id %>
+
+ <%= f.fields_for :power_groups do |builder| %>
+  <%= render  "power_group_fields", :f => builder %>
+  <% end %>
+ <%= link_to_add_fields "Add  More",f,:power_groups%>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

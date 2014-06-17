@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616070753) do
+
+
+ActiveRecord::Schema.define(version: 20140616103935) do
+
+  create_table "advice_contacts", force: true do |t|
+    t.string   "email"
+    t.text     "praise"
+    t.text     "criticism"
+    t.text     "helpful_tips"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
 
   create_table "circles", force: true do |t|
     t.string   "name"
@@ -45,6 +58,15 @@ ActiveRecord::Schema.define(version: 20140616070753) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "influences", force: true do |t|
+    t.string   "your_influence"
+    t.string   "influence_on_your"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.integer  "user_id"
   end
 
   create_table "invitations", force: true do |t|
@@ -94,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140616070753) do
     t.integer  "circle_id"
   end
 
+
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
     t.integer  "trustworthy"
@@ -106,6 +129,17 @@ ActiveRecord::Schema.define(version: 20140616070753) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "count",              default: 0, null: false
+  end
+
+  create_table "power_groups", force: true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "your_influence"
+    t.string   "influence_on_your"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "influence_id"
+
   end
 
   create_table "user_invitations", force: true do |t|

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @influence.email %>
+</p>
+
+<p>
+  <strong>Your influence on the person's future:</strong>
+  <%= @influence.your_influence %>
+</p>
+
+<p>
+  <strong>Their influence on your future:</strong>
+  <%= @influence.influence_on_your %>
+</p>
+
+<%= link_to 'Edit', edit_influence_path(@influence) %> |
+<%= link_to 'Back', influences_path %>

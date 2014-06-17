@@ -1,0 +1,21 @@
+<%= form_tag post_login_advice_contacts_path, :method => :post do %>
+<table>
+<tr>
+	<th >Name/Email</th>
+	<th >Offer My Feedback</th>
+	<th >Praise</th>
+	<th >Criticism</th>
+	<th >Helpful Tips</th>
+</tr>
+<% @contacts.each do |c| %>
+<tr>
+	<td ><%= c.email %></td>
+	<td ><%= check_box_tag "Feedback" %></td> 
+	<td ><%= text_area_tag "praise" %></td> 
+	<td ><%= text_area_tag "criticism" %></td>
+	<td ><%= text_area_tag "helpful_tips" %></td>
+</tr>
+<% end %>
+</table>
+<%= submit_tag "Save" ,:class => "btn btn-primary" %>
+<% end %>
