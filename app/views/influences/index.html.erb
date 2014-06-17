@@ -1,0 +1,29 @@
+<h1>Listing influences</h1>
+
+<table>
+  <thead>
+    <tr>
+     <th>Email</th>
+      <th>Your influence on the person's future</th>
+      <th>Their influence on your future</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @influences.each do |influence| %>
+      <tr>
+      <td><%= influence.email %></td>
+        <td><%= influence.your_influence %></td>
+        <td><%= influence.influence_on_your %></td>
+        <td><%= link_to 'Show', influence %></td>
+        <td><%= link_to 'Edit', edit_influence_path(influence) %></td>
+        <td><%= link_to 'Destroy', influence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Influence', new_influence_path %>

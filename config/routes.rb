@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 
-  resources :friends, : only => [:index] do
-   post 'fb_friends', : on => :collection
-  end
+  resources :influences
+
+  resources :friends
 
   resources :user_invitations
 
