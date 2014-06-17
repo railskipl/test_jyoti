@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
   belongs_to :invitation
   has_many :paste_users
+  has_many :ratings
 
   before_create :set_invitation_limit
 
