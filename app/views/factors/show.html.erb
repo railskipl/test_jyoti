@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @factor.name %>
+</p>
+
+<p>
+  <strong>Circle:</strong>
+  <%= @factor.circle_id %>
+</p>
+
+<%= link_to 'Edit', edit_factor_path(@factor) %> |
+<%= link_to 'Back', factors_path %>

@@ -11,27 +11,6 @@
     </div>
   <% end %>
 
-  <!-- <div class="field">
-    <%= f.label :email %><br>
-    <%= f.collection_select :email, UserInvitation.all, :email, :email %>
-  </div>
-   
-
-<div class="field">
-        <%= f.label :your_influence %>
-        <%= f.select :your_influence, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %>
- </div>
-
-
-
- <div class="field">
-        <%= f.label :influence_on_your %>
-        <%= f.select :influence_on_your, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %>
- </div> -->
-
-
-
-
 
  <%= f.hidden_field :user_id,:value => current_user.id %>
 
@@ -42,6 +21,6 @@
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

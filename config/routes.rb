@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
 
+  resources :factors
+
   resources :influences
+  resources :friends
+
 
 
   resources :advice_contacts do

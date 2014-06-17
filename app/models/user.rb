@@ -18,6 +18,19 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
+  # before_create :check_user_date
+
+
+  # def check_user_date
+  #   c = AdviceContact.where("email like ? ",self.email).first
+  #   current_date = Date.today
+  #   if c
+  #     created_date = c.created_at.to_date
+  #     if (current_date - created_date) <= 7
+  #     end
+  #   end
+  # end
+
  
   # def self.find_for_facebook_oauth(auth)
   #   where(auth.slice(:provider, :uid)).first_or_create do |user|
