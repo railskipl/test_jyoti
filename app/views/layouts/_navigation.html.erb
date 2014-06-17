@@ -34,7 +34,7 @@
      <% unless current_user.is_admin == true%>
         <li><a href="/home/dashboard">Home</a></li>
         <li> <%= link_to "Import CSV" , import_contact_path %></li>
-        <li> <%= link_to "Power Groups" ,  new_influence_path %></li>
+        <li> <%= link_to "Power Groups" ,  new_influence_path,'data-no-turbolink' => true %></li>
         <li> <%= link_to "Invite" , invite_paste_users_path %></li>
           <li> <%= link_to "Organizations", home_organization_path  %>  </li>
        <li> <%= link_to "Individuals",  home_individual_path %>  </li>
