@@ -5,7 +5,7 @@ class InfluencesController < ApplicationController
   # GET /influences.json
   def index
     @influences = Influence.all
-    @user_invitations = UserInvitation.where("user_id = ? " ,current_user.id)
+    @user_invitations = UserInvitation.find_by_user_id(current_user)
   end
 
   # GET /influences/1
@@ -16,7 +16,7 @@ class InfluencesController < ApplicationController
   # GET /influences/new
   def new
     @influence = Influence.new
-    2.times do
+    3.times do
       @influence.power_groups.build
     end
   end

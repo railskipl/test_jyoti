@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "updated_at"
   end
 
+  create_table "friends", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "individuals", force: true do |t|
     t.string   "title"
     t.text     "body"
