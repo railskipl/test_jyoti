@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "facebox" %>
-<%= javascript_include_tag "facebox" %>
+<%= javascript_include_tag "facebox"%>
   
   <div class="row">
         <div class="col-xs-4">
@@ -38,6 +38,7 @@
        <li> <%= link_to "Individuals",  home_individual_path %>  </li>
         <!-- <li> <%#= link_to "My Invitations" , invitation_paste_users_path %></li> -->
         <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
+         <li> <%= link_to 'Self Rate',  new_rating_path %> </li>
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end%>

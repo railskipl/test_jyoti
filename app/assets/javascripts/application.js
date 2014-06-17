@@ -14,6 +14,11 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require turbolinks
+//= require jquery-1.8.3.min
+//= require jquery-ui-1.10.3.custom.min
+//= require bootstrap-select
+//= require jquery.tagsinput
+
 //= require_tree .
 
 

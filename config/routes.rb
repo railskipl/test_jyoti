@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-
   resources :influences
 
 
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
       get :post_login
     }
   end
+
 
   resources :user_invitations
 
@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   end
 
   resources :feedbacks
-
   resources :invitations
   resources :organizations
   resources :individuals
+  resources :ratings
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'

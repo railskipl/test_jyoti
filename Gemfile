@@ -30,6 +30,7 @@ gem 'premailer-rails'
 gem 'roo'
 gem "ckeditor", :git => "https://github.com/adamico/ckeditor.git",
 :branch => "rails-4-compatibility"
+gem "simple_form"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
