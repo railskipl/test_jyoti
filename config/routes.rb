@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :influences
+  resources :friends
 
 
   resources :advice_contacts do
