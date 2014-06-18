@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-before_filter :check_user, only: [:new]
+ before_filter :check_user, only: [:new]
 
 def index
 	

@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140617104025) do
-
+ActiveRecord::Schema.define(version: 20140618045736) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -59,20 +57,11 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "updated_at"
   end
 
-  create_table "friends", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "individuals", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "pic_file_name"
-    t.string   "pic_content_type"
-    t.integer  "pic_file_size"
-    t.datetime "pic_updated_at"
   end
 
   create_table "influences", force: true do |t|
@@ -139,6 +128,21 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "influence_id"
+  end
+
+  create_table "ratingothers", force: true do |t|
+    t.string   "email"
+    t.string   "user_id"
+    t.integer  "trustworthy"
+    t.integer  "kind_helpful"
+    t.integer  "potential"
+    t.integer  "perform_well"
+    t.integer  "presentable"
+    t.integer  "emotianally_mature"
+    t.integer  "friendly_social"
+    t.integer  "rate_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ratings", force: true do |t|

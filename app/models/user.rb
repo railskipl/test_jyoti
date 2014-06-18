@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
+  has_many :ratingothers
 
   has_many :influences
 
