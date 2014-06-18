@@ -26,13 +26,10 @@ private
 
     def check_user
       if user_signed_in?
-        if current_user.is_admin?
-        else
-          redirect_to root_path, :alert => "Unauthorised Access"
-        end
-      else 
+      else
         redirect_to root_path, :alert => "Unauthorised Access"
       end
+     
     end
 
 
