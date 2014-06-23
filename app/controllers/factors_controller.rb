@@ -71,7 +71,7 @@ class FactorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def factor_params
-      params.require(:factor).permit(:name, :circle_id)
+      params.require(:factor).permit(:custom_factor, :circle_id)
     end
 
 

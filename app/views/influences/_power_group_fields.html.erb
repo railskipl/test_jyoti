@@ -1,16 +1,51 @@
+
+
 <fieldset>
 <p>
 <%= f.hidden_field :user_id,:value => current_user.id %>
 
+
+<!-- 
+
+  <% @relationship.each do |relationship| %>
+  <p><%= relationship.email %></p>
+  <% end %>
+
+ -->
+
+
+
+
+
   <%= f.label :email, "Email:" %>
-  <%= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %></br>
+  <%= f.collection_select :email, PowerGroup.where("user_id = ?", current_user.id).all, :email, :email %></br>
+
+ 
+
+
+   <%= f.label :know_how_for_long_year, "You've known this person for about:" %>
+  <%= f.select :know_how_for_long_year, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8']]) %>years
+
+  <%= f.select :know_how_for_long_month, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9'], ['10', '10'], ['11', '11']]) %>months</br>
+
+
+
+  <%= f.label :circle_id,"Primary Circle" %>
+  <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Choose One"}%></br>
+
+ 
+
+  <%= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
+        <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', 'Choose One'], ['Extremely High', '7'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br>
   
    <%= f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
-        <%= f.select :your_influence, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br>
+        <%= f.select :your_influence, options_for_select([['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br>
    
 
   <%= f.label :Their_influence_on_your_future,"Their Influence On Your Future:" %>
-        <%= f.select :influence_on_your, options_for_select([['Select', 'Select'], ['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br> 
+        <%= f.select :influence_on_your, options_for_select([['Choose One', 'Choose One'], ['Extremely High', 'Extremely High'], ['Very High', 'Very High'], ['Very High', 'Very High'], ['Above Average', 'Above Average'], ['Below Average', 'Below Average'], ['Low', 'Low'], ['None', 'None']]) %></br> 
+
+        
  
   <%= f.hidden_field :_destroy %>
 
@@ -18,6 +53,14 @@
 </p>
 
 </fieldset> 
+
+  
+
+
+
+
+
+
 
 
 

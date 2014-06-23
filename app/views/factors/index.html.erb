@@ -12,7 +12,7 @@
   <tbody>
     <% @factors.each do |factor| %>
       <tr>
-        <td><%= factor.name %></td>
+        <td><%= factor.custom_factor %></td>
         <td><%= factor.circle.name rescue nil %></td>
         <td><%= link_to 'Edit', edit_factor_path(factor) %></td>
         <td><%= link_to 'Destroy', factor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

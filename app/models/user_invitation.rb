@@ -4,5 +4,6 @@ class UserInvitation < ActiveRecord::Base
 	belongs_to :influence
 	validates_uniqueness_of :email
 	validates_presence_of   :email
+	has_many :relationships
 
 end

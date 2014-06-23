@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  know_how_for_long_year: 1
+  know_how_for_long_month: 1
+  how_well_you_know_the_person: MyString
+  your_influence: MyString
+  influence_on_your: MyString
+  user_id: 1
+
+two:
+  email: MyString
+  know_how_for_long_year: 1
+  know_how_for_long_month: 1
+  how_well_you_know_the_person: MyString
+  your_influence: MyString
+  influence_on_your: MyString
+  user_id: 1

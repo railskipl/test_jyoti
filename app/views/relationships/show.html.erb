@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @relationship.email %>
+</p>
+
+<p>
+  <strong>Circle:</strong>
+  <%= @relationship.name %>
+</p>
+
+<p>
+  <strong>Circle:</strong>
+  <%= @relationship.custom_factor %>
+</p>
+
+
+<p>
+  <strong>Know how for long year:</strong>
+  <%= @relationship.know_how_for_long_year %>
+</p>
+
+<p>
+  <strong>Know how for long month:</strong>
+  <%= @relationship.know_how_for_long_month %>
+</p>
+
+<p>
+  <strong>How well you know the person:</strong>
+  <%= @relationship.how_well_you_know_the_person %>
+</p>
+
+<p>
+  <strong>Your influence:</strong>
+  <%= @relationship.your_influence %>
+</p>
+
+<p>
+  <strong>Influence on your:</strong>
+  <%= @relationship.influence_on_your %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @relationship.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_relationship_path(@relationship) %> |
+<%= link_to 'Back', relationships_path %>

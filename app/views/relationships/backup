@@ -1,0 +1,1 @@
+ rails g migration add_custom_factor_to_user_invitation^Cood_coach:text empowers_team:text expresses_interest_concern:text productive_results_oriented:text good_communicator:text helps_with_career_development:text clear_vision_and_strategy:text uses_special_skills_to_advise:text romantic:text

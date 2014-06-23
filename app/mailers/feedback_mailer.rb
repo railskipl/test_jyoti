@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default from: "rubyrails9@gmail.com"
+   default from: "m360.com"
 
   # def feedback_mailer(feedback)
   #   @feedback = feedback
@@ -14,5 +14,12 @@ class FeedbackMailer < ActionMailer::Base
    
     subject = "Feedback"
     mail(:subject => 'Feedback', :to => feedback.email) 
+  end 
+
+  def relationship_feedback(relationship)
+    @relationship = relationship
+   
+    subject = "Please send me Feedback"
+    mail(:subject => 'Relationship Feedback', :to => relationship.email) 
   end 
 end

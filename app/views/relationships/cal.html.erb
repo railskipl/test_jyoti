@@ -1,0 +1,9 @@
+
+<% @relationships.each do |relationship| %>
+	<% @y = relationship.know_how_for_long_year %>
+	<% @m = relationship.know_how_for_long_month %>
+	<% @month = @y*12 %>
+	<% @total_month = @month+@m %>
+	<% @how_long_you_know_each_other_avg = @total_month*20/36 %>
+	<%= @how_long_you_know_each_other_avg %>
+<% end %>

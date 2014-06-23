@@ -1,4 +1,5 @@
 class TipsController < ApplicationController
+
  before_filter :authenticate_user!
  before_filter :check_user, only: [:new,:index]
 
@@ -46,5 +47,6 @@ private
       end
      
     end
+
 
 end

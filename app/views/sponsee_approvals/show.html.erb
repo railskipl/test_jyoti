@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Approve custom factor:</strong>
+  <%= @sponsee_approval.approve_custom_factor %>
+</p>
+
+<p>
+  <strong>Custom factor:</strong>
+  <%= @sponsee_approval.custom_factor %>
+</p>
+
+<p>
+  <strong>Your choise custom factor:</strong>
+  <%= @sponsee_approval.your_choise_custom_factor %>
+</p>
+
+<%= link_to 'Edit', edit_sponsee_approval_path(@sponsee_approval) %> |
+<%= link_to 'Back', sponsee_approvals_path %>

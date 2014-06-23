@@ -6,6 +6,7 @@
   <%= f.label :circle_id %>
   <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"}%></br>
 
+  
   <%= f.label :invite_for_feedback, "Send Mirror Invite(to give me feedback)" %>
   <%= f.check_box(:invite_for_feedback,  {:checked=>true}) %></br> 
   <%= f.label :invite_for_curiosity, "Send Standard Invite(just for curiosity)" %>
