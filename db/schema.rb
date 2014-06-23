@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140623051345) do
-
+ActiveRecord::Schema.define(version: 20140623123000) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -178,16 +176,6 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.integer  "count",              default: 0, null: false
   end
 
-  create_table "tips", force: true do |t|
-    t.string   "email"
-    t.string   "praise"
-    t.string   "criticism"
-    t.string   "helpful"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "relationships", force: true do |t|
     t.string   "email"
     t.integer  "know_how_for_long_year"
@@ -201,7 +189,6 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.float    "how_long_you_know_each_other_avg"
     t.float    "well_known_user_avg"
     t.float    "influence_avg"
-    t.string   "custom_factor"
     t.integer  "circle_id"
     t.string   "name"
     t.text     "good_coach"
@@ -213,8 +200,6 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.text     "clear_vision_and_strategy"
     t.text     "uses_special_skills_to_advise"
     t.text     "romantic"
-    t.boolean  "approve"
-    t.boolean  "reject"
     t.boolean  "approve_custom_factor"
     t.string   "your_choise_custom_factor"
   end
@@ -228,9 +213,11 @@ ActiveRecord::Schema.define(version: 20140623051345) do
   end
 
   create_table "tips", force: true do |t|
-    t.text     "praise_tips"
-    t.text     "criticism_tips"
-    t.text     "helpful_tips"
+    t.string   "email"
+    t.string   "praise"
+    t.string   "criticism"
+    t.string   "helpful"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -245,15 +232,6 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "circle_id"
-    t.text     "good_coach"
-    t.text     "empowers_team"
-    t.text     "expresses_interest_concern"
-    t.text     "productive_results_oriented"
-    t.text     "good_communicator"
-    t.text     "helps_with_career_development"
-    t.text     "clear_vision_and_strategy"
-    t.text     "uses_special_skills_to_advise"
-    t.text     "romantic"
   end
 
   create_table "users", force: true do |t|
@@ -294,7 +272,6 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
-    t.boolean  "status"
     t.boolean  "toggled_status",            default: false
   end
 
