@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623051345) do
+ActiveRecord::Schema.define(version: 20140623110920) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -62,6 +62,10 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "influences", force: true do |t|
@@ -158,6 +162,17 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.integer  "friendly_social"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count",              default: 0, null: false
+  end
+
+  create_table "tips", force: true do |t|
+    t.string   "email"
+    t.string   "praise"
+    t.string   "criticism"
+    t.string   "helpful"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_invitations", force: true do |t|
@@ -173,13 +188,13 @@ ActiveRecord::Schema.define(version: 20140623051345) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                     default: "", null: false
-    t.string   "password",                  default: "", null: false
-    t.string   "encrypted_password",        default: "", null: false
+    t.string   "email",                     default: "",    null: false
+    t.string   "password",                  default: "",    null: false
+    t.string   "encrypted_password",        default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",             default: 0,  null: false
+    t.integer  "sign_in_count",             default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -210,7 +225,8 @@ ActiveRecord::Schema.define(version: 20140623051345) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
-    t.string   "security_question"
+    t.boolean  "status"
+    t.boolean  "toggled_status",            default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

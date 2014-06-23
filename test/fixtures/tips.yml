@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  praise: MyString
+  criticism: MyString
+  helpful: MyString
+  user_id: 1
+
+two:
+  email: MyString
+  praise: MyString
+  criticism: MyString
+  helpful: MyString
+  user_id: 1

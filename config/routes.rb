@@ -36,12 +36,23 @@ Rails.application.routes.draw do
   resources :ratings
   resources :ratingothers
 
+  resources :tips do
+    collection {
+      post :merge_email
+      post :demerge_email
+    }
+  end
+
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
 
   resources :users do
     collection { post :import }
   end
+
+   get '/users/:id/toggled_status', :to => 'users#toggled_status'
+
+   get "/pages/:id/status", :to => "pages#status"
 
   #get 'users/sign_out' => "devise/sessions#destroy"
   #get  '/sign_out' :to 'sessions#destroy', :via [:delete]
@@ -57,7 +68,8 @@ Rails.application.routes.draw do
   get "/contacts/failure" => "home#failure"
 
    resources :pages
-   get "/pages/:id/status", :to => "pages#status"
+
+ 
    
    resources :dashboard
 

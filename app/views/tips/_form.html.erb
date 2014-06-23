@@ -1,0 +1,40 @@
+<%= form_for(@tip) do |f| %>
+  <% if @tip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tip.errors.count, "error") %> prohibited this factor from being saved:</h2>
+
+      <ul>
+      <% @tip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email,:class=>"form-control11" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :praise %><br>
+    <%= f.text_field :praise,:class=>"form-control11" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :criticism %><br>
+    <%= f.text_field :criticism,:class=>"form-control11" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :helpful %><br>
+    <%= f.text_field :helpful,:class=>"form-control11"%>
+  </div>
+
+  <%= f.hidden_field :user_id,:value => current_user.id %>
+
+
+  <div class="actions">
+    <%= f.submit "Save" ,:class => "btn btn-primary"%>
+  </div>
+<% end %>
