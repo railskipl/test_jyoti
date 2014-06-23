@@ -3,6 +3,7 @@ class CreateRatingothers < ActiveRecord::Migration
     create_table :ratingothers do |t|
       t.string  :email
       t.string  :user_id
+      t.integer :friend_id
       t.integer :trustworthy
       t.integer :kind_helpful
       t.integer :potential

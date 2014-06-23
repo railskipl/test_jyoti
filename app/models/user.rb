@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
 
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize
+  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:security_question,:location,:birthday,:secondary_email,:organization,:industry,:orgsize
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
@@ -13,14 +13,11 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
-  has_many :ratingothers
-
   has_many :influences
 
   before_create :set_invitation_limit
 
   # before_create :check_user_date
-
 
   # def check_user_date
   #   c = AdviceContact.where("email like ? ",self.email).first

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618045736) do
+ActiveRecord::Schema.define(version: 20140623051345) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20140618045736) do
   create_table "ratingothers", force: true do |t|
     t.string   "email"
     t.string   "user_id"
+    t.integer  "friend_id"
     t.integer  "trustworthy"
     t.integer  "kind_helpful"
     t.integer  "potential"
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20140618045736) do
 
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
+    t.integer  "friend_id"
     t.integer  "trustworthy"
     t.integer  "kind_helpful"
     t.integer  "potential"
@@ -156,7 +158,6 @@ ActiveRecord::Schema.define(version: 20140618045736) do
     t.integer  "friendly_social"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "count",              default: 0, null: false
   end
 
   create_table "user_invitations", force: true do |t|
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(version: 20140618045736) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
+    t.string   "security_question"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

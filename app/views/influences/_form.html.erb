@@ -13,7 +13,6 @@
 
 
  <%= f.hidden_field :user_id,:value => current_user.id %>
-
  <%= f.fields_for :power_groups do |builder| %>
   <%= render  "power_group_fields", :f => builder %>
   <% end %>
