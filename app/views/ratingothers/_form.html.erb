@@ -1,19 +1,25 @@
 <%= javascript_include_tag "progress"%>
 
- <%= form_for(@rating) do |f| %>
-  <% if @rating.errors.any? %>
+ <%= form_for(@ratingother) do |f| %>
+  <% if @ratingother.errors.any? %>
     <div id="error_explanation">
-      <%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:
+      <%= pluralize(@ratingother.errors.count, "error") %> prohibited this rating from being saved:
       <ul>
-      <% @raitng.errors.full_messages.each do |message| %>
+      <% @ratingother.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
- <% end %>
+  <% end %>
+
+
+
+   <%= f.label :email %><br>
+
+   <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+
 
    <%= f.label :trustworthy %><br>
-
 
   <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
  
@@ -47,7 +53,7 @@
 
  <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
 
-   
+    <%= f.hidden_field :user_id,:value => current_user.id %>
   
     <%= f.submit "Submit",:class=>"btn btn-primary" %>
 

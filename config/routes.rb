@@ -26,7 +26,6 @@ Rails.application.routes.draw do
     }
   end
 
-
   resources :user_invitations
 
   resources :circles
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :individuals
   resources :ratings
+  resources :ratingothers
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
