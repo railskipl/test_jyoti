@@ -1,0 +1,29 @@
+<h1>Listing tips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Praise Tips </th>
+      <th>Criticism Tips </th>
+      <th>Helpful Tips</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tips.each do |tip| %>
+      <tr>
+        <td><%= tip.praise_tips %></td>
+        <td><%= tip.criticism_tips %></td>
+        <td><%= tip.helpful_tips %></td>
+        <td><%= link_to 'Show', tip %></td>
+        <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
+        <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tip', new_tip_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  praise: MyText
+  criticism: MyText
+  helpful_tips: MyText
+
+two:
+  praise: MyText
+  criticism: MyText
+  helpful_tips: MyText

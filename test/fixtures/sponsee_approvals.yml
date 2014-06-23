@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  approve_custom_factor: false
+  custom_factor: MyString
+  your_choise_custom_factor: MyString
+
+two:
+  approve_custom_factor: false
+  custom_factor: MyString
+  your_choise_custom_factor: MyString

@@ -1,0 +1,29 @@
+<%= form_for(@sponsee_approval) do |f| %>
+  <% if @sponsee_approval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sponsee_approval.errors.count, "error") %> prohibited this sponsee_approval from being saved:</h2>
+
+      <ul>
+      <% @sponsee_approval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :approve_custom_factor %><br>
+    <%= f.check_box :approve_custom_factor %>
+  </div>
+  <div class="field">
+    <%= f.label :custom_factor %><br>
+    <%= f.text_field :custom_factor %>
+  </div>
+  <div class="field">
+    <%= f.label :your_choise_custom_factor %><br>
+    <%= f.text_field :your_choise_custom_factor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

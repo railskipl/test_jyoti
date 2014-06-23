@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
 
 
+  resources :sponsee_approvals
+
+  resources :relationships do
+    collection {
+      get :cal
+      post :add_power_group
+      get :power_group
+    }
+  end
+
+  resources :tips
+
   resources :factors
 
   resources :influences

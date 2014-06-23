@@ -1,0 +1,28 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>Approve custom factor</th>
+      <th>Custom factor</th>
+      <th>Your choise custom factor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sponsee_approvals.each do |sponsee_approval| %>
+      <tr>
+        <td><%= sponsee_approval.approve_custom_factor %></td>
+        <td><%= sponsee_approval.custom_factor %></td>
+        <td><%= sponsee_approval.your_choise_custom_factor %></td>
+        <td><%= link_to 'Show', sponsee_approval %></td>
+        <td><%= link_to 'Edit', edit_sponsee_approval_path(sponsee_approval) %></td>
+        <td><%= link_to 'Destroy', sponsee_approval, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sponsee approval', new_sponsee_approval_path %>

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :ratings
 
   has_many :influences
+  has_many :relationships
 
   before_create :set_invitation_limit
 

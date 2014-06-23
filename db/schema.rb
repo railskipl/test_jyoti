@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140617104025) do
-
+ActiveRecord::Schema.define(version: 20140623123000) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -45,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140617104025) do
   end
 
   create_table "factors", force: true do |t|
-    t.string   "name"
+    t.string   "custom_factor"
     t.integer  "circle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,11 +53,6 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.string   "name"
     t.string   "email"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "friends", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "updated_at"
     t.string   "email"
     t.integer  "user_id"
+    t.integer  "relationship_id"
   end
 
   create_table "invitations", force: true do |t|
@@ -139,6 +133,16 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "influence_id"
+    t.integer  "circle_id"
+    t.integer  "know_how_for_long_year"
+    t.integer  "know_how_for_long_month"
+    t.string   "how_well_you_know_the_person"
+    t.text     "praise_tips"
+    t.text     "criticism_tips"
+    t.text     "helpful_tips"
+    t.string   "power_group_eamil"
+    t.string   "custom_factor"
+    t.integer  "relationship_id"
   end
 
   create_table "ratings", force: true do |t|
@@ -155,6 +159,53 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.integer  "count",              default: 0, null: false
   end
 
+  create_table "relationships", force: true do |t|
+    t.string   "email"
+    t.integer  "know_how_for_long_year"
+    t.integer  "know_how_for_long_month"
+    t.string   "how_well_you_know_the_person"
+    t.string   "your_influence"
+    t.string   "influence_on_your"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "how_long_you_know_each_other_avg"
+    t.float    "well_known_user_avg"
+    t.float    "influence_avg"
+    t.string   "custom_factor"
+    t.integer  "circle_id"
+    t.string   "name"
+    t.text     "good_coach"
+    t.text     "empowers_team"
+    t.text     "expresses_interest_concern"
+    t.text     "productive_results_oriented"
+    t.text     "good_communicator"
+    t.text     "helps_with_career_development"
+    t.text     "clear_vision_and_strategy"
+    t.text     "uses_special_skills_to_advise"
+    t.text     "romantic"
+    t.boolean  "approve"
+    t.boolean  "reject"
+    t.boolean  "approve_custom_factor"
+    t.string   "your_choise_custom_factor"
+  end
+
+  create_table "sponsee_approvals", force: true do |t|
+    t.boolean  "approve_custom_factor"
+    t.string   "custom_factor"
+    t.string   "your_choise_custom_factor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tips", force: true do |t|
+    t.text     "praise_tips"
+    t.text     "criticism_tips"
+    t.text     "helpful_tips"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_invitations", force: true do |t|
     t.integer  "paste_user_id"
     t.string   "email"
@@ -165,6 +216,15 @@ ActiveRecord::Schema.define(version: 20140617104025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "circle_id"
+    t.text     "good_coach"
+    t.text     "empowers_team"
+    t.text     "expresses_interest_concern"
+    t.text     "productive_results_oriented"
+    t.text     "good_communicator"
+    t.text     "helps_with_career_development"
+    t.text     "clear_vision_and_strategy"
+    t.text     "uses_special_skills_to_advise"
+    t.text     "romantic"
   end
 
   create_table "users", force: true do |t|

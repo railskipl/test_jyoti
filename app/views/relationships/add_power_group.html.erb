@@ -1,0 +1,31 @@
+Your Power Group 
+
+ <%= form_tag add_power_group_relationships_path, :method => :post do %> 
+  <table class="table table-bordered">
+    <tr>
+      <th>Email</th>      
+    </tr>
+  <% @relationships.each do |relationship| %>
+    <tr>
+       <td><%= relationship.email %> </td>
+       
+    </tr>
+  <% end %>
+    
+  </table>
+
+
+ <%= submit_tag "submit" ,:class => "btn btn-primary"%>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
