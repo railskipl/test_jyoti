@@ -1,22 +1,24 @@
+ <h5>Tips</h5>
 
-
-<h5>Link/Unlink Email</h5>
 <table class="table table-bordered"> 
     <tr>
-      <th>Email</th>
-      <th>Merge with primary email</th>
-      <th colspan="3">Actions</th>
+      <th>Praise</th>
+       <th>Criticism</th>
+        <th>Helpful</th>
+        <th colspan="1"></th>
     </tr>
   
-   <% @users.each do |user| %>
+   <% @tips.each do |tip| %>
+        <%# if email.merged %>
+
       <tr>
-        <td><%= user.secondary_email %></td>
-        <td><%= link_to format_boolean(user.status?),{:controller => 'users', :action => 'toggled_status', :id => user.id} %></td>
-        <td><%= link_to "messages",:controller=>"users",:action=>"index" %></td>
+        <td><%= tip.praise rescue nil%></td>
+         <td><%= tip.criticism rescue nil%></td>
+          <td><%= tip.helpful rescue nil %></td>
+          <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
       </tr>
     <% end %>
+    <%# end %>
  
 </table>
-
-

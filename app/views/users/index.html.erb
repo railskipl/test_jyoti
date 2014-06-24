@@ -7,26 +7,33 @@
     <%end%>
     <%end%>
 
-    <h5>Tips</h5>
+  
+
+<h5>Link/Unlink Email</h5>
 
 <table class="table table-bordered"> 
     <tr>
-      <th>Praise</th>
-       <th>Criticism</th>
-        <th>Helpful</th>
-        <th colspan="1"></th>
+      <th>Email</th>
+    </tr>
+      <tr>
+        <td><%= current_user.email rescue nil%><p>primary</p></td>
+      </tr>
+</table>
+
+
+<table class="table table-bordered"> 
+    <tr>
+      <th>Email</th>
+      <th>Action</th>
     </tr>
   
-   <% @tips.each do |tip| %>
-
+   <% @emails.each do |email| %>
       <tr>
-        <td><%= tip.praise rescue nil%></td>
-         <td><%= tip.criticism rescue nil%></td>
-          <td><%= tip.helpful rescue nil %></td>
-          <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <td><%= email.email rescue nil%></td>
+         <td><p>merge with primary</p><%= link_to format_boolean(email.merged?), {:controller => 'emails', :action => 'merge', :id => email.id} %></td>
+         <td><%= link_to "make primary" %></td>
+         <td><%= link_to "messages",tips_path %></td>
       </tr>
-
     <% end %>
  
 </table>

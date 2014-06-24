@@ -1,0 +1,6 @@
+Hi <%= @email.email %>!<br />
+
+<p>You have to verified your email</p><br />
+
+<%= link_to "Verified Email",  verify_emails_url(:identity =>@email.token,:email=> @email.email, :host => "localhost:3000")%><br/><br/>
+

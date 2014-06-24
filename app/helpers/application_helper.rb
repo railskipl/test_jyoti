@@ -22,11 +22,11 @@ def format_boolean(approved)
   end
 
   def icon_tick(alt_text='Tick')
-    build_image_tag("/assets/001_06.png", alt_text, 'Unsuspend Account')
+    build_image_tag("/assets/001_06.png", alt_text, 'UnMerged with Primary')
   end
 
   def icon_cross(alt_text='Cross')
-    build_image_tag("/assets/001_05.png", alt_text, 'Suspend Account')
+    build_image_tag("/assets/001_05.png", alt_text, 'Merged with Primary')
   end
 
   def build_image_tag(image_file, alt_text, title)

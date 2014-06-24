@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623123000) do
+ActiveRecord::Schema.define(version: 20140624044708) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20140623123000) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "emails", force: true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "token"
+    t.boolean  "verified"
+    t.boolean  "merged",     default: false
+    t.boolean  "primary"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -256,7 +267,7 @@ ActiveRecord::Schema.define(version: 20140623123000) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin"
+    t.boolean  "is_admin",                  default: false
     t.integer  "invitation_id"
     t.integer  "invitation_limit"
     t.string   "remember_token"

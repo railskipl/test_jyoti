@@ -48,6 +48,13 @@ Rails.application.routes.draw do
   resources :ratings
   resources :ratingothers
 
+  resources :emails do 
+     collection {
+      get  :verify
+      get  :merge
+     }
+   end
+
   resources :tips do
     collection {
       post :merge_email
@@ -59,7 +66,9 @@ Rails.application.routes.draw do
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
 
   resources :users do
-    collection { post :import }
+    collection { 
+      post :import 
+    }
   end
 
    get '/users/:id/toggled_status', :to => 'users#toggled_status'
