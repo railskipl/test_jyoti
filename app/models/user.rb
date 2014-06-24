@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :tips
   has_many :influences
   has_many :relationships
+  has_and_belongs_to_many :roles
 
   before_create :set_invitation_limit
 

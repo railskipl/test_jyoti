@@ -128,6 +128,10 @@ class PasteUsersController < ApplicationController
     @contacts = Contact.where("user_id = ? " ,current_user.id)
   end
 
+  def import_csv
+    @contacts = Contact.where("user_id = ? " ,current_user.id)
+  end
+
   def complete
     users = params[:emails]
     if users.nil?
