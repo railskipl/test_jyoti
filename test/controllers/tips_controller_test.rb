@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TipsControllerTest < ActionController::TestCase
+
   setup do
     @tip = tips(:one)
   end
@@ -46,4 +47,5 @@ class TipsControllerTest < ActionController::TestCase
 
     assert_redirected_to tips_path
   end
+
 end

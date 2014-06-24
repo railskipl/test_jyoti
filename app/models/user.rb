@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,:confirmable
 
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize
+  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
+  has_many :tips
   has_many :influences
   has_many :relationships
 

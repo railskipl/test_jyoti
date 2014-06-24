@@ -1,6 +1,7 @@
 <%= form_for(@tip) do |f| %>
   <% if @tip.errors.any? %>
     <div id="error_explanation">
+
       <h2><%= pluralize(@tip.errors.count, "error") %> prohibited this tip from being saved:</h2>
 
       <ul>
@@ -12,18 +13,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :praise_tips %><br>
-    <%= f.text_area :praise_tips %>
+
+    <%= f.label :email %><br>
+    <%= f.text_field :email,:class=>"form-control11" %>
   </div>
+
   <div class="field">
-    <%= f.label :criticism_tips %><br>
-    <%= f.text_area :criticism_tips %>
+    <%= f.label :praise %><br>
+    <%= f.text_field :praise,:class=>"form-control11" %>
   </div>
+
   <div class="field">
-    <%= f.label :helpful_tips %><br>
-    <%= f.text_area :helpful_tips %>
+    <%= f.label :criticism %><br>
+    <%= f.text_field :criticism,:class=>"form-control11" %>
   </div>
+
+  <div class="field">
+    <%= f.label :helpful %><br>
+    <%= f.text_field :helpful,:class=>"form-control11"%>
+  </div>
+
+  <%= f.hidden_field :user_id,:value => current_user.id %>
+
+
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Save" ,:class => "btn btn-primary"%></div>
 <% end %>

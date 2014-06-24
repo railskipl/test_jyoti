@@ -7,11 +7,12 @@ class UsersController < ApplicationController
 
 
   def index
-	   @users = User.where(:is_admin.exists => false).order("id DESC").paginate(page: params[:page], per_page: 10)
+      @tips = Tip.all
       @contacts = request.env['omnicontacts.contacts']
        respond_to do |format|
        format.html
        format.csv { send_data @users.to_csv }
+       
      end
   end
 
@@ -24,8 +25,6 @@ class UsersController < ApplicationController
   end
 
 
-  
-
   def import
     if params[:file].nil?
       redirect_to :back, notice: "Please Attach file" 
@@ -35,7 +34,11 @@ class UsersController < ApplicationController
     end
   end
 
-
-
+def toggled_status
+   @user = User.find(params[:id])
+   @user.status = !@user.status?
+    @user.save!
+    redirect_to :back 
+ end
 
 end

@@ -1,9 +1,11 @@
 class CreateTips < ActiveRecord::Migration
   def change
     create_table :tips do |t|
-      t.text :praise_tips
-      t.text :criticism_tips
-      t.text :helpful_tips
+      t.string :email
+      t.string :praise
+      t.string :criticism
+      t.string :helpful
+      t.integer :user_id
 
       t.timestamps
     end
