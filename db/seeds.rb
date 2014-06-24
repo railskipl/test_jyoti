@@ -5,5 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+	# Role.create(:name => "admin")
+	# Role.create(:name => "user")
+	# Role.create(:name => "subuser")
 
-User.where(:email => "admin@gmail.com",:password => "admin123",:is_admin => true,:confirmed_at => Date.today).first_or_create
+
+	# admin = User.create(:username => 'admin', :email=> 'admin@gmail.com', :password => 'admin123', :firstname => "admin",
+	# :lastname => "padmin",:confirmed_at => Date.today)
+	#      admin.roles = [Role.first]
+	#      admin.save
+
+
+ User.where(:email => "admin@gmail.com",:password => "admin123",:is_admin => true,:confirmed_at => Date.today).first_or_create

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     collection {
       get :invite
       get :select_contacts
+      get :import_csv
       post :complete
       get :select_contact_invitation
       post :select_contact_invitation
