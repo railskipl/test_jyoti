@@ -8,7 +8,7 @@ gem 'rails', '4.1.0'
 
 gem 'pg'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 
 
 # gem 'mysql'
@@ -31,6 +31,7 @@ gem 'roo'
 gem "ckeditor", :git => "https://github.com/adamico/ckeditor.git",
 :branch => "rails-4-compatibility"
 gem "simple_form"
+gem "pry"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

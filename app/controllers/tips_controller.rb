@@ -5,6 +5,7 @@ class TipsController < ApplicationController
 
 def index
   @users = User.all
+  #@emails = Email.all
   @tips = Tip.all
 end
 

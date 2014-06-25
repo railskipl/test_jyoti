@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   has_many :sponsers
   has_and_belongs_to_many :roles
 
+  has_many :emails
+
+
   before_create :set_invitation_limit
 
   # before_create :check_user_date

@@ -7,13 +7,17 @@ class UsersController < ApplicationController
 
 
   def index
-      @tips = Tip.all
-      @contacts = request.env['omnicontacts.contacts']
+
+     @users = User.all
+      @emails= Email.where("user_id = ?" ,current_user.id).all
+
+      # @emails= Email.all
+       @contacts = request.env['omnicontacts.contacts']
        respond_to do |format|
        format.html
        format.csv { send_data @users.to_csv }
-       
-     end
+      end
+     
   end
 
 
@@ -40,5 +44,11 @@ def toggled_status
     @user.save!
     redirect_to :back 
  end
+
+
+
+
+
+
 
 end
