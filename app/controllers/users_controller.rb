@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def index
 
-      @users = current_user.email
+     @users = User.all
       @emails= Email.where("user_id = ?" ,current_user.id).all
 
       # @emails= Email.all

@@ -14,9 +14,11 @@
 <table class="table table-bordered"> 
     <tr>
       <th>Email</th>
+      <th>Action</th>
     </tr>
       <tr>
         <td><%= current_user.email rescue nil%><p>primary</p></td>
+         <td><%= link_to "messages",tips_path %></td>
       </tr>
 </table>
 
@@ -30,10 +32,17 @@
    <% @emails.each do |email| %>
       <tr>
         <td><%= email.email rescue nil%></td>
+           <% if email.verified %>
          <td><p>merge with primary</p><%= link_to format_boolean(email.merged?), {:controller => 'emails', :action => 'merge', :id => email.id} %></td>
-         <td><%= link_to "make primary" %></td>
-         <td><%= link_to "messages",tips_path %></td>
+
+         <td><p>make primary</p><%= link_to format_boolean(email.primary?), {:controller => 'emails', :action => 'primary', :id => email.id} %></td>
+         <% else %>
+         <td><p>Email is not veriifed</p></td>
+         <td><p>Email should be veriifed to make primary</p></td>
+        <% end %>
+
+        
       </tr>
-    <% end %>
- 
+   
+ <%end%>
 </table>

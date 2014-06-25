@@ -40,9 +40,15 @@ def merge
     redirect_to :back
 end
 
+
 def primary
-
-
+ @email = Email.find(params[:id])
+ @secondary_email = current_user.email
+ current_user.update_column("email",@email.email)
+ @email.email = @secondary_email
+ @email.primary = !@email.primary?
+ @email.save!
+ redirect_to :back
 end
 
 
