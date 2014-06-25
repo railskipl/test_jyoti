@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sponser:</strong>
+  <%= @sponsercf.sponser_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sponsercf.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sponsercf.name %>
+</p>
+
+<p>
+  <strong>Custom factor string:</strong>
+  <%= @sponsercf.custom_factor_string %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @sponsercf.email %>
+</p>
+
+<%= link_to 'Edit', edit_sponsercf_path(@sponsercf) %> |
+<%= link_to 'Back', sponsercfs_path %>

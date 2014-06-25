@@ -1,0 +1,37 @@
+<%= form_for(@sponsercf) do |f| %>
+  <% if @sponsercf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sponsercf.errors.count, "error") %> prohibited this sponsercf from being saved:</h2>
+
+      <ul>
+      <% @sponsercf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sponser_id %><br>
+    <%= f.number_field :sponser_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :custom_factor_string %><br>
+    <%= f.text_field :custom_factor_string %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sponsee.user_id %>
+</p>
+
+<p>
+  <strong>Relationship:</strong>
+  <%= @sponsee.relationship_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @sponsee.email %>
+</p>
+
+<p>
+  <strong>Approve admin custom factor:</strong>
+  <%= @sponsee.approve_admin_custom_factor %>
+</p>
+
+<p>
+  <strong>Your choise custom factor:</strong>
+  <%= @sponsee.your_choise_custom_factor %>
+</p>
+
+<%= link_to 'Edit', edit_sponsee_path(@sponsee) %> |
+<%= link_to 'Back', sponsees_path %>

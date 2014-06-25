@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624045838) do
+ActiveRecord::Schema.define(version: 20140625103532) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -220,6 +220,37 @@ ActiveRecord::Schema.define(version: 20140624045838) do
     t.string   "your_choise_custom_factor"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sponsees", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "relationship_id"
+    t.string   "email"
+    t.boolean  "approve_admin_custom_factor"
+    t.string   "your_choise_custom_factor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "custom_factor"
+    t.string   "name"
+  end
+
+  create_table "sponsercfs", force: true do |t|
+    t.integer  "sponser_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "custom_factor_string"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "custom_factor"
+  end
+
+  create_table "sponsers", force: true do |t|
+    t.string   "name"
+    t.string   "custom_factor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "tips", force: true do |t|

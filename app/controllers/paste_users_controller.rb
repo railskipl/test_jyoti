@@ -1,5 +1,6 @@
 class PasteUsersController < ApplicationController
   before_action :set_paste_user, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
 
   # GET /paste_users
   # GET /paste_users.json
@@ -190,6 +191,13 @@ class PasteUsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def paste_user_params
       params.require(:paste_user).permit(:user_id, :name, :email,:circle_id,user_invitations_attributes: [:circle_id,:id,:email,:opinion_value,:invite_for_feedback,:invite_for_curiosity,:paste_user_id,:user_id])
+    end
+
+    def check_user
+      if user_signed_in?
+        else
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end     
     end
 
     

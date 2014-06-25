@@ -6,4 +6,5 @@ class Circle < ActiveRecord::Base
 	has_many :power_groups
 	has_many :factors, dependent: :destroy
 	has_many :relationships
+	has_many :sponsers
 end

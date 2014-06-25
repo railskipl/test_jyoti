@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
 
   # GET /invitations
   # GET /invitations.json
@@ -87,5 +88,12 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def invitation_params
       params.require(:invitation).permit(:sender_id, :recipient_email, :token, :sent_at, :new,:random_password)
+    end
+
+    def check_user
+      if user_signed_in?
+        else
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end     
     end
 end

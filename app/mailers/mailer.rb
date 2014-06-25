@@ -34,4 +34,12 @@ class Mailer < ActionMailer::Base
     subject: 'Tip'
   end
 
+  def sponsee_invitation(relationship, signup_url)
+    @relationship = relationship
+    # @random_password = random_password
+    mail to:  relationship.email,
+    subject: 'Invite',
+    signup_url: 'signup_url'
+  end
+
 end

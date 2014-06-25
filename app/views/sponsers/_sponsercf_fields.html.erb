@@ -1,0 +1,14 @@
+<fieldset>
+<p>
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+
+
+ 
+    <%= f.label :custom_factor, "Custom Factor:" %>
+    <%= f.text_field :custom_factor %></br>        
+ 
+    <%= f.hidden_field :_destroy %>
+
+    <%= link_to "Remove groups", '#', class: "remove_fields" %> 
+</p>
+</fieldset>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sponser_id: 1
+  user_id: 1
+  name: MyString
+  custom_factor_string: MyString
+  email: MyString
+
+two:
+  sponser_id: 1
+  user_id: 1
+  name: MyString
+  custom_factor_string: MyString
+  email: MyString

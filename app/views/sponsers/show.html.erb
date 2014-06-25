@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sponser.name %>
+</p>
+
+<p>
+  <strong>Custom factor:</strong>
+  <%= @sponser.custom_factor %>
+</p>
+
+<%= link_to 'Edit', edit_sponser_path(@sponser) %> |
+<%= link_to 'Back', sponsers_path %>

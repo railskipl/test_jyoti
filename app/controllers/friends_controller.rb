@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
 
   # GET /friends
   # GET /friends.json
@@ -82,5 +83,12 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def friend_params
       params[:friend]
+    end
+
+    def check_user
+      if user_signed_in?
+        else
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end     
     end
 end

@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  resources :sponsercfs
+
+  resources :sponsers
+
+  resources :sponsees
+
   resources :sponsee_approvals
 
   resources :relationships do

@@ -6,4 +6,5 @@ class Relationship < ActiveRecord::Base
 	belongs_to :factor
 	belongs_to :user_invitation
 	belongs_to :influence
+	has_many :sponsees
 end

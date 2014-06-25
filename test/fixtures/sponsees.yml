@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  relationship_id: 1
+  email: MyString
+  approve_admin_custom_factor: false
+  your_choise_custom_factor: MyString
+
+two:
+  user_id: 1
+  relationship_id: 1
+  email: MyString
+  approve_admin_custom_factor: false
+  your_choise_custom_factor: MyString

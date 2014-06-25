@@ -1,0 +1,32 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Relationship</th>
+      <th>Email</th>
+      <th>Approve admin custom factor</th>
+      <th>Your choise custom factor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sponsees.each do |sponsee| %>
+      <tr>
+        <td><%= sponsee.user_id %></td>
+        <td><%= sponsee.relationship_id %></td>
+        <td><%= sponsee.email %></td>
+        <td><%= sponsee.approve_admin_custom_factor %></td>
+        <td><%= sponsee.your_choise_custom_factor %></td>
+        <td><%= link_to 'Show', sponsee %></td>
+        <td><%= link_to 'Edit', edit_sponsee_path(sponsee) %></td>
+        <td><%= link_to 'Destroy', sponsee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sponsee', new_sponsee_path %>

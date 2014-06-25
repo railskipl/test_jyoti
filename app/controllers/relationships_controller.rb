@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
 
   # GET /relationships
   # GET /relationships.json
@@ -57,7 +58,10 @@ class RelationshipsController < ApplicationController
 
     respond_to do |format|
       if @relationship.save
-         # FeedbackMailer.relationship_feedback(@relationship).deliver
+        sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
+        sponsee.save!
+        # Mailer.sponsee_invitation(@relationship, @signup_url).deliver
+        # FeedbackMailer.relationship_feedback(@relationship).deliver
         format.html { redirect_to @relationship, notice: 'Relationship was successfully created.' }
         format.json { render :show, status: :created, location: @relationship }
       else
@@ -96,29 +100,34 @@ class RelationshipsController < ApplicationController
   def add_power_group
     relationship_ids = params["relationship_ids"]
     @relationships ||= []
+    
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
+
     relationship_ids.to_a.each do |r|
-    @relationships << Relationship.find(r)
-    u = PowerGroup.new( :user_id => current_user.id)
-    u.save!
-  end 
+       @relationships << Relationship.find(r)
+    end 
+
+    @relationships.each do |r|
+      pg = PowerGroup.create( :user_id => current_user.id, :email => r.email )
+    pg.save!
+    end
 
   end
 
   
   
 
-  def power_group
-    @relationships = Relationship.find(params[:relationship_id])
+  # def power_group
+  #   @relationships = Relationship.find(params[:relationship_id])
 
-    # @users = params[:emails]
-    if request.post?
-      # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-        u = PowerGroup.new( :user_id => current_user.id, :email => email )
-        u.save!
-      end  
-      redirect_to relationships_path, :notice => "Add in Power Group successfully"
-  end
+  #   # @users = params[:emails]
+  #   if request.post?
+  #     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
+  #       u = PowerGroup.new( :user_id => current_user.id, :email => email )
+  #       u.save!
+  #     end  
+  #     redirect_to relationships_path, :notice => "Add in Power Group successfully"
+  # end
 
 
 
@@ -132,5 +141,12 @@ class RelationshipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def relationship_params
       params.require(:relationship).permit(:email, :know_how_for_long_year, :know_how_for_long_month, :how_well_you_know_the_person, :your_influence, :influence_on_your, :user_id,:well_known_user_avg,:influence_avg,:how_long_you_know_each_other_avg,:custom_factor,:name,:circle_id,:good_coach,:empowers_team,:expresses_interest_concern,:productive_results_oriented,:good_communicator,:helps_with_career_development,:clear_vision_and_strategy,:uses_special_skills_to_advise,:romantic,:approve_custom_factor,:your_choise_custom_factor)
+    end
+
+    def check_user
+      if user_signed_in?
+        else
+        redirect_to root_path, :alert => "Unauthorised Access"
+      end     
     end
 end

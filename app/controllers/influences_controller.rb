@@ -92,7 +92,6 @@ class InfluencesController < ApplicationController
       if user_signed_in?
         else
         redirect_to root_path, :alert => "Unauthorised Access"
-      end
-     
+      end     
     end
 end
