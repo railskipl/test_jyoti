@@ -98,6 +98,7 @@ Rails.application.routes.draw do
 
    resources :pages
 
+
  
    
    resources :dashboard
@@ -112,7 +113,9 @@ Rails.application.routes.draw do
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
- 
+   get '/plan' => 'home#plan'
+    resource :contactus
+   get '/home/contactus' => 'home#contactus'
 
 
   # Example of regular route:

@@ -21,7 +21,9 @@ class User < ActiveRecord::Base
   has_many :sponsers
   has_and_belongs_to_many :roles
 
-  has_many :emails
+  has_many   :emails
+  has_many   :plans
+  has_many   :subscriptions
 
 
   before_create :set_invitation_limit

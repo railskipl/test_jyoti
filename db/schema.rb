@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140625103532) do
-
+ActiveRecord::Schema.define(version: 20140626065524) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -34,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140625103532) do
   create_table "contacts", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contactus", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -136,6 +143,15 @@ ActiveRecord::Schema.define(version: 20140625103532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "circle_id"
+  end
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.string   "price"
+    t.integer  "user_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "power_groups", force: true do |t|
@@ -249,7 +265,6 @@ ActiveRecord::Schema.define(version: 20140625103532) do
     t.integer  "sponser_id"
     t.integer  "user_id"
     t.string   "name"
-    t.string   "custom_factor_string"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -262,6 +277,19 @@ ActiveRecord::Schema.define(version: 20140625103532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.string   "email"
+    t.string   "name"
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "paypal_customer_token"
+    t.string   "paypal_recurring_profile_token"
+    t.string   "token"
+    t.string   "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tips", force: true do |t|
