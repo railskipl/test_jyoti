@@ -96,8 +96,10 @@ Rails.application.routes.draw do
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
 
-   resources :pages
-
+  resources :pages
+  resources :plans 
+  resources :subscriptions
+  get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
 
  
    
@@ -113,7 +115,7 @@ Rails.application.routes.draw do
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
-   get '/plan' => 'home#plan'
+   get '/home/plan' => 'home#plan'
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

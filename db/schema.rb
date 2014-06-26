@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626065524) do
+ActiveRecord::Schema.define(version: 20140626101702) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -134,6 +134,11 @@ ActiveRecord::Schema.define(version: 20140626065524) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "status",             default: false
+  end
+
+  create_table "palpal_payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "paste_users", force: true do |t|

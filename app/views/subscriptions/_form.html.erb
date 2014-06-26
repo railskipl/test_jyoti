@@ -1,0 +1,34 @@
+
+
+<h4> <%= @subscription.plan.name %></h4>
+
+<%= form_for @subscription do |f| %>
+  <% if @subscription.errors.any? %>
+    <div class="error_messages">
+      
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :plan_id %>
+  <%= f.hidden_field :user_id %>>
+  <%= f.hidden_field :paypal_customer_token %>
+  <%= f.hidden_field :paypal_payment_token %>
+  <%= f.hidden_field :price %>
+
+    <%= link_to image_tag("/assets/btn_xpressCheckout.gif"), paypal_checkout_path(plan_id: @subscription.plan_id) %>
+
+
+ 
+    <div class="actions">
+      <%= f.submit "Subscribe", :class=>"btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>
+
+

@@ -28,9 +28,12 @@ def dashboard
 
 end
 
-def plan
-  
-end
+
+   def plan
+    @plans = Plan.all
+
+   end
+
 
 
 def contactus
