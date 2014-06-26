@@ -1,0 +1,26 @@
+
+    <% if current_user.is_admin == true %>
+   <table class="table table-responsive">
+         <thead>
+            <tr>
+              <th>Email</th> 
+            
+               <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+           <% @subscriptions.each do |subscription| %>
+               <tr>
+           <td><%= subscription.user.email rescue nil %></td>
+            <td><%= subscription.price rescue nil %></td>
+            
+            <% end %>
+
+            
+            
+              </tr>
+       
+          </tbody>
+     </table>
+    <% end %>
+ <%= will_paginate @subscriptions %>

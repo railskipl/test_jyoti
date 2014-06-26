@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   has_many :user_invitations
   has_many :emails
 
+  has_many   :emails
+  has_many   :plans
+  has_many   :subscriptions
+
 
   before_create :set_invitation_limit
 

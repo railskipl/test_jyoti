@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index,:organization,:individual]
+ before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus]
 
 def index
   
@@ -26,6 +26,18 @@ def dashboard
       format.html 
     end
 
+end
+
+
+   def plan
+    @plans = Plan.all
+
+   end
+
+
+
+def contactus
+  
 end
 
 end

@@ -17,3 +17,9 @@
 
 
  User.where(:email => "admin@gmail.com",:password => "admin123",:is_admin => true,:confirmed_at => Date.today).first_or_create
+ Plan.where(:price => "0").first_or_create
+ Plan.where(:price => "25").first_or_create
+ Plan.where(:price => "50").first_or_create
+ Plan.where(:price => "100").first_or_create
+ Plan.where(:price => "200").first_or_create
+ Plan.where(:price => "300").first_or_create

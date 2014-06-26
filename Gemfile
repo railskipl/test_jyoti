@@ -31,6 +31,10 @@ gem 'roo'
 gem "ckeditor", :git => "https://github.com/adamico/ckeditor.git",
 :branch => "rails-4-compatibility"
 gem "simple_form"
+gem 'paypal-recurring'
+gem 'paypal-sdk-rest'
+gem 'paypal-sdk-adaptivepayments'
+gem 'paypal-sdk-merchant'
 gem "pry"
 
 # Use SCSS for stylesheets
