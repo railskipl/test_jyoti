@@ -1,6 +1,7 @@
 <fieldset>
 <p>
 <%= f.hidden_field :user_id,:value => current_user.id %>
+ <!-- <%= f.hidden_field :user_invitation_id, :value => @user %> -->
   <%= f.label :email, "Email" %>
   <%= f.text_field :email %></br>
   <%= f.label :circle_id %>

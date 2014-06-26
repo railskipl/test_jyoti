@@ -26,10 +26,18 @@ class SponseesController < ApplicationController
   # POST /sponsees.json
   def create
     @sponsee = Sponsee.new(sponsee_params)
-    
+   #  if @sponsee.approve_admin_custom_factor == true
+   #     name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name 
+   #     sponser =  Sponser.where("name like ?", name).first 
+   #     sponser.id
+   #     sponser.sponsercfs.each do |s|
+   #     @a = s.custom_factor
+   #   end
+   # end
+
     respond_to do |format|
       if @sponsee.save
-        format.html { redirect_to @sponsee, notice: 'Sponsee was successfully created.' }
+        format.html { redirect_to sponsees_path, notice: 'Sponsee was successfully created.' }
         format.json { render :show, status: :created, location: @sponsee }
       else
         format.html { render :new }
@@ -70,7 +78,7 @@ class SponseesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sponsee_params
-      params.require(:sponsee).permit(:user_id, :relationship_id, :email, :approve_admin_custom_factor, :your_choise_custom_factor,:custom_factor,:name)
+      params.require(:sponsee).permit(:user_id, :relationship_id, :email, :approve_admin_custom_factor, :your_choise_custom_factor,:custom_factor,:name,:sponser_id)
     end
 
     def check_user

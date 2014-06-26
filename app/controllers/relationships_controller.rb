@@ -117,17 +117,9 @@ class RelationshipsController < ApplicationController
   
   
 
-  # def power_group
-  #   @relationships = Relationship.find(params[:relationship_id])
-
-  #   # @users = params[:emails]
-  #   if request.post?
-  #     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-  #       u = PowerGroup.new( :user_id => current_user.id, :email => email )
-  #       u.save!
-  #     end  
-  #     redirect_to relationships_path, :notice => "Add in Power Group successfully"
-  # end
+  def power_group
+    @relationships = PowerGroup.all     
+  end
 
 
 

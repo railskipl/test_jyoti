@@ -1,3 +1,5 @@
+<h6>Custom factors suggested by your sponsor</h6>
+
 <%= form_for(@sponsee) do |f| %>
   <% if @sponsee.errors.any? %>
     <div id="error_explanation">
@@ -11,18 +13,47 @@
     </div>
   <% end %>
 
-<% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
-<% sponser =  Sponser.where("name like ?", name).first %>
-<% sponser.sponsercfs.each do |s|%>
-<%= s.custom_factor%>
-<% end %>
+<!--   
+
+
+
   <div class="field">
-    <%#= f.label :approve_admin_custom_factor  %><br /> 
-    <%= f.label :approve_admin_custom_factor, "Reject", :value => "false"  %>
+    <%= f.label :approve_admin_custom_factor, "Reject"  %>
     <%= f.check_box :approve_admin_custom_factor %>
-    <%= f.label :approve_admin_custom_factor, "Approve", :value => "false" %>
+    <%= f.label :approve_admin_custom_factor, "Approve" %>
     <%= f.check_box :approve_admin_custom_factor %>
   </div>
+
+ -->
+
+
+Approve <input type="checkbox" id="checkbox1"/>
+<div id="autoUpdate" class="autoUpdate">
+  <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
+  <% sponser =  Sponser.where("name like ?", name).first %>
+  <% sponser.id %>
+  <% sponser.sponsercfs.each do |s|%>
+  <% @cf = s.custom_factor%>
+  <%= @cf %>
+  <% end %>
+  </div>
+
+
+
+
+<script>
+$(document).ready(function(){
+$('#checkbox1').change(function(){
+if(this.checked)
+$('#autoUpdate').fadeIn('fast');
+else
+$('#autoUpdate').fadeOut('fast');
+
+});
+});
+</script>
+
+
 <!-- 
    <div class="field">
     <%= f.label :custom_factor, "Custom Factor:" %>
@@ -35,8 +66,20 @@
     <%= f.label :your_choise_custom_factor %><br>
     <%= f.text_field :your_choise_custom_factor %>
   </div> -->
-  
+
+<!--   
   <div class="actions">
     <%= f.submit %>
   </div>
+ -->
+
+
+
+
+
+
+
+
+
+
 <% end %>

@@ -1,0 +1,23 @@
+
+
+  <h6> List of Power Group Users</h6>
+<div class="row">
+<div class="col-xs-4">
+<table class="table table-bordered">
+ 
+ <tr>
+    <th>Sr no.</th>
+    <th>Email</th>
+ </tr>
+
+<% @relationships.each_with_index do |relationship,index| %>
+
+  <tr>
+    <td> <%= index+1 %> </td>
+    <td> <%= relationship.email %></td>
+  </tr>
+<% end %>
+
+</table>
+</div>
+</div>

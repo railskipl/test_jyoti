@@ -14,7 +14,7 @@
       <%= f.label :name, "Circle:" %>
     <%= f.collection_select :name, Circle.all, :name, :name %></br>
   <%= f.hidden_field :user_id,:value => current_user.id %>
-  <%= f.fields_for :sponsercfs do |builder| %>
+  <%= f.fields_for :sponsercfs do |builder| %>   
   <%= render  "sponsercf_fields", :f => builder %>
   <% end %>
  <%= link_to_add_fields "Add More Custom Factors",f,:sponsercfs %></br>

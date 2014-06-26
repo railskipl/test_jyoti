@@ -37,7 +37,10 @@
 
       
     <% end %>
-   <%= submit_tag "Add To Power Group" %>
+   <%#= submit_tag "Add To Power Group" %>
+
+   
+   <%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"button-clear" %>
   </tbody>
 </table>
 <% end %>
@@ -48,4 +51,4 @@
 
 
 
-
+                     

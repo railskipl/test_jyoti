@@ -31,3 +31,21 @@
 // });
 // });
 
+
+// function remove_fields (link) {
+
+//  jQuery(link).prev("input[type=hidden]:first").val('1');
+//    jQuery(link).closest(".fields").hide();
+
+
+// }
+
+
+// function add_fields(link, association, content) {
+//   if ($('.fields :text').length < 5){
+//   var new_id = new Date().getTime();
+//   var regexp = new RegExp("new_" + association, "g")
+//    jQuery(link).parent().before(content.replace(regexp, new_id));
+//  }
+
+// }

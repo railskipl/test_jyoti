@@ -1,0 +1,84 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Show Hide Using Checkboxes</title>
+<style type="text/css">
+    .box{
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+        border: 1px solid #000;
+    }
+    .red{ background: #FFFFFF; }
+    .green{ background: #FFFFFF; }
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input[type="checkbox"]').click(function(){
+            if($(this).attr("value")=="red"){
+                $(".red").toggle();
+            }
+            if($(this).attr("value")=="green"){
+                $(".green").toggle();
+            }
+            
+        });
+    });
+</script>
+</head>
+<body>
+    <div>
+        <label><input type="checkbox" name="colorCheckbox" value="red"> Approve</label>
+        <label><input type="checkbox" name="colorCheckbox" value="green">Reject</label>
+    </div>
+    <div class="red box"><% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
+  <% sponser =  Sponser.where("name like ?", name).first %>
+  <% sponser.id %>
+  <% sponser.sponsercfs.each do |s|%>
+  <% @cf = s.custom_factor%>
+  <%= @cf %><% end %></div>
+    <div class="green box">You have selected <strong>green checkbox</strong> so i am here</div>
+</body>
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Approve <input type="checkbox" id="checkbox1"/>
+<div id="autoUpdate" class="autoUpdate">
+  <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
+  <% sponser =  Sponser.where("name like ?", name).first %>
+  <% sponser.id %>
+  <% sponser.sponsercfs.each do |s|%>
+  <% @cf = s.custom_factor%>
+  <%= @cf %>
+  <% end %>
+  </div>
+
+
+
+
+<script>
+$(document).ready(function(){
+$('#checkbox1').change(function(){
+if(this.checked)
+$('#autoUpdate').fadeIn('fast');
+else
+$('#autoUpdate').fadeOut('fast');
+
+});
+});
+</script>
