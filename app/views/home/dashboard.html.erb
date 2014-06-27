@@ -1,4 +1,4 @@
-<h4>Welcome to user dashboard<h4>
+<!-- <h4>Welcome to user dashboard<h4>
 
 <% if !@contacts.nil?%>
 
@@ -11,9 +11,6 @@
  <% end %>
 
  
-<!-- 
- <h6>Get your contacts list
-<a href="/contacts/facebook">Facebook</a></h6> -->
    <% if !@contacts.nil?%>
 
  <% @contacts.each do |c|%>
@@ -33,19 +30,130 @@
     <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
  
 <% end %>
-
-
-<div class="col-xs-4">
-<%#= form_for PasteUser.new do |f| %>
-
-    <%#= f.label :email, "Add List Of Contact Email:" %>
-    <%#= f.text_area :email %>
-    <%#= f.submit 'Paste Here',:class=>"btn btn-primary" %>
-
-<%# end %>
-</div>
+ -->
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ <h4> My Mirror </h4>
+
+ <div class="row row_margin">
+ 
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;">           
+
+    <h6><div> <%= link_to "Ratings" ,  new_rating_path ,:style=>"color:#FFFFFF;font-size:19px;"%></div></h6>
+
+
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background: #008B8B;padding: 10px;">            
+
+     <h6 style="margin-bottom: 2px;margin-top: 2px;"><a href="#" style="color:#FFFFFF;font-size:19px;">Reputation Report  and Score</a></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">           
+
+
+   <h6><div> <%= link_to "Give Feedback" ,  new_ratingother_path ,:style=>"color:#FFFFFF;font-size:19px;", :class=>"just_reload"%></div></h6>
+
+
+        </div>
+  </div>    
+ 
+ </div>
+ 
+
+
+ <div class="row row_margin">
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">    
+
+
+    <h6><div> <%= link_to "Power Groups" ,  power_group_relationships_path ,:style=>"color:#FFFFFF; font-size:19px;"%></div></h6> 
+
+
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;"> 
+
+    <h6><div> <%= link_to "Tips" , new_tip_path ,:style=>"color:#FFFFFF; font-size:19px;"%></div></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF; font-size:19px;">Participation stats </a></h6>
+
+        </div>
+  </div>    
+ 
+ </div>
+
+
+ <div class="row row_margin">
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF;font-size:19px;">Progress Journal </a></h6>
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px; ">            
+
+     <h6 style="margin-bottom: 2px;margin-top: 2px;"><div> <%= link_to "Invite Others or Get Feedback" , invite_paste_users_path ,:style=>"color:#FFFFFF;font-size:19px;"%></div></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF;font-size:19px;">Notification </a></h6>
+
+        </div>
+  </div>   
+ 
+ </div>
+   
+ 
+ 
+ 
+
+  
+    
+    </div>
+    <!-- /.container -->
+  
