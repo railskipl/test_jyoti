@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626112049) do
+ActiveRecord::Schema.define(version: 20140627063050) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
   end
 
   create_table "contacts", force: true do |t|
-    t.string   "name"
+    t.string   "email"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(version: 20140626112049) do
 
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
-    t.integer  "friend_id"
     t.integer  "trustworthy"
     t.integer  "kind_helpful"
     t.integer  "potential"
@@ -223,6 +222,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.float    "how_long_you_know_each_other_avg"
     t.float    "well_known_user_avg"
     t.float    "influence_avg"
+    t.string   "custom_factor"
     t.integer  "circle_id"
     t.string   "name"
     t.text     "good_coach"
@@ -234,6 +234,8 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.text     "clear_vision_and_strategy"
     t.text     "uses_special_skills_to_advise"
     t.text     "romantic"
+    t.boolean  "approve"
+    t.boolean  "reject"
     t.boolean  "approve_custom_factor"
     t.string   "your_choise_custom_factor"
   end
@@ -297,14 +299,13 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "paypal_payment_token"
   end
 
   create_table "tips", force: true do |t|
-    t.string   "email"
-    t.string   "praise"
-    t.string   "criticism"
-    t.string   "helpful"
-    t.integer  "user_id"
+    t.text     "praise_tips"
+    t.text     "criticism_tips"
+    t.text     "helpful_tips"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -319,6 +320,15 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "circle_id"
+    t.text     "good_coach"
+    t.text     "empowers_team"
+    t.text     "expresses_interest_concern"
+    t.text     "productive_results_oriented"
+    t.text     "good_communicator"
+    t.text     "helps_with_career_development"
+    t.text     "clear_vision_and_strategy"
+    t.text     "uses_special_skills_to_advise"
+    t.text     "romantic"
     t.string   "name"
   end
 
@@ -344,7 +354,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin",                  default: false
+    t.boolean  "is_admin"
     t.integer  "invitation_id"
     t.integer  "invitation_limit"
     t.string   "remember_token"
@@ -360,7 +370,9 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
+    t.string   "security_question"
     t.boolean  "toggled_status",            default: false
+    t.integer  "user_invitation_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

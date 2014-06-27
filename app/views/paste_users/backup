@@ -1,0 +1,103 @@
+
+ 
+ <h6> My Mirror </h6>
+
+ <div class="row row_margin">
+ 
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;">           
+
+    <h6><div> <%= link_to "Ratings" ,  new_ratingother_path ,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+
+
+        </div>
+  </div>
+		
+		
+	<div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background: #008B8B;padding: 10px;">            
+
+     <h6><a href="#" style="color:#FFFFFF;font-size:21px;">Reputation</a></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">           
+
+   <h6><div> <%= link_to "Feedback" ,  new_feedback_path ,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+
+        </div>
+  </div>		
+ 
+ </div>
+ 
+
+
+ <div class="row row_margin">
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">    
+
+    <h6><div> <%= link_to "Power Groups" ,  power_group_relationships_path ,:style=>"color:#FFFFFF; font-size:21px;"%></div></h6> 
+
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;"> 
+
+    <h6><div> <%= link_to "Tips" , new_tip_path ,:style=>"color:#FFFFFF; font-size:21px;"%></div></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF; font-size:21px;">Participation stats </a></h6>
+
+        </div>
+  </div>    
+ 
+ </div>
+
+
+ <div class="row row_margin">
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF;font-size:21px;">Progress Journal </a></h6>
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px; ">            
+
+     <h6><div> <%= link_to "Invite Others" , invite_paste_users_path ,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+
+        </div>
+  </div>
+
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#008B8B;padding: 10px;">           
+
+    <h6><a href="#" style="color:#FFFFFF;font-size:21px;">Notification </a></h6>
+
+        </div>
+  </div>   
+ 
+ </div>
+   
+ 
+ 
+ 
+
+	
+	  
+    </div>
+    <!-- /.container -->
+	

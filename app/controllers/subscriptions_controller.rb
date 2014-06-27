@@ -53,6 +53,11 @@ class SubscriptionsController < ApplicationController
      @subscription = Subscription.find_by(params[:plan_id])
    end
 
+   private
+    def paypal
+    PaypalPayment.new(self)
+    end
+
 
   
 end

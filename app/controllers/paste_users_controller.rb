@@ -182,6 +182,10 @@ class PasteUsersController < ApplicationController
     @invitations = PasteUser.where("user_id = ?",current_user.id)
   end
 
+  def my_mirror
+    @relationships = Relationship.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paste_user
