@@ -44,13 +44,17 @@
         
 
 
-        <% if invitation.present? %>
+        
          <li> <%= link_to "Import CSV" , import_csv_paste_users_path %></li>
 
         <li> <%= link_to "Power Groups" ,  power_group_relationships_path,'data-no-turbolink' => true %></li> 
-        
+        <% if invitation.present? %>
           <li> <%= link_to "Sponser" ,  new_sponser_path,'data-no-turbolink' => true %></li>
+          <% else %>
+         <li><%= link_to "Sponsee", new_sponsee_path,'data-no-turbolink' => true  %>  </li>
           <li> <%= link_to "Relationships" , relationships_path,'data-no-turbolink' => true %></li>
+          <% end %>
+
           <li> <%= link_to "Invite" , invite_paste_users_path %></li>
           <li> <%= link_to "Organizations", home_organization_path  %></li>
           <li> <%= link_to "Individuals",  home_individual_path %>  </li>
@@ -58,10 +62,8 @@
           <li> <%= link_to 'Rate others',  new_ratingother_path %> </li>
           <li> <%= link_to 'Tips',  new_tip_path %> </li>
           <li> <%= link_to 'Link/Unlink', users_path %> </li>
-        <% else %>
-         <li><%= link_to "Sponsee", new_sponsee_path,'data-no-turbolink' => true  %>  </li>
-        <% end %>
-
+        
+        
 
        
         
@@ -69,7 +71,7 @@
         <li> <%= link_to 'Edit account', edit_user_registration_path,'data-no-turbolink' => true %> </li>
           
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
-         <li> <%#= link_to 'Plan', home_plan_path %> </li>
+         <li> <%= link_to 'Plan', home_plan_path %> </li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end %>
 

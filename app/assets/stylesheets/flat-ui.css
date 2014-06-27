@@ -4900,3 +4900,635 @@ button.ccr-price-host {
     margin-top:10px
   }
 
+
+.yearly {
+    display: none;
+}
+.yearly-billing .monthly {
+    display: none;
+}
+.yearly-billing .yearly {
+    display: inline;
+}
+#super_pricing {
+    color: #676767;
+    position: relative;
+}
+.all-plans-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+}
+.all-plans-wrapper {
+    font-size: 0;
+}
+@media (max-width: 650px) {
+.all-plans-wrapper {
+    width: 100%;
+}
+.all-plans-wrapper .plans_group {
+    width: auto;
+}
+}
+.plans_group {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: left;
+    vertical-align: top;
+}
+@media (max-width: 650px) {
+.plans_group {
+    box-sizing: border-box;
+    display: block;
+    margin-right: 0;
+    padding-left: 8px;
+    text-align: center;
+}
+.plans_group.last {
+    margin-left: 0;
+}
+}
+.plan, .pricing-labels, .billing-interval {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    max-width: 125px;
+    min-height: 350px;
+    text-align: center;
+    vertical-align: top;
+    width: 125px;
+}
+@media (max-width: 960px) {
+.plan, .pricing-labels, .billing-interval {
+    min-height: 312px;
+}
+}
+@media (max-width: 650px) {
+.plan, .pricing-labels, .billing-interval {
+    min-height: 250px;
+    width: 90px;
+}
+}
+.plan .videos, .plan .extra, .plan .bandwidth {
+    padding: 10px 0;
+}
+.plan .extra {
+    box-sizing: border-box;
+    margin-top: 12px;
+    min-height: 64px;
+}
+@media (max-width: 960px) {
+.plan .extra {
+    margin-top: 6px;
+    min-height: 50px;
+}
+.plan .extra.free {
+    margin-bottom: -10px;
+}
+}
+@media (max-width: 650px) {
+.plan .extra {
+    min-height: 43px;
+}
+.plan .extra.free {
+    margin-bottom: -5px;
+}
+}
+.plan .price {
+    padding: 20px 0;
+}
+.plan .currency {
+    top: -10px;
+}
+@media (max-width: 650px) {
+.plan .currency {
+    top: -4px;
+}
+}
+.plan .price .amount {
+    position: relative;
+}
+.plan .price .amount .monthly:before, .plan .price .amount .yearly:before {
+    content: "$";
+    left: -15px;
+    position: absolute;
+    top: 4px;
+    vertical-align: top;
+}
+@media (max-width: 650px) {
+.plan .price .amount .monthly:before, .plan .price .amount .yearly:before {
+    top: 2px;
+}
+}
+.plan .bandwidth {
+    margin: 3px 0;
+    padding-top: 0;
+}
+.plan .bandwidth.high-volume {
+    margin-top: -10px;
+}
+@media (max-width: 960px) {
+.plan .bandwidth.high-volume {
+    margin-top: auto;
+}
+}
+@media (max-width: 650px) {
+.plan .bandwidth.high-volume {
+    margin: 3px 0;
+}
+}
+@media (max-width: 650px) {
+.plan .bandwidth {
+    padding-top: 0;
+}
+}
+.plan, .highvolume-plan {
+    font-family:;
+    font-size: 16px;
+}
+@media (max-width: 650px) {
+.plan, .highvolume-plan {
+    font-size: 12px;
+}
+}
+.plan .amount, .highvolume-plan .amount {
+    font-weight: 700;
+}
+.plan .price .amount, .highvolume-plan .price .amount {
+    font-size: 36px;
+}
+@media (max-width: 650px) {
+.plan .price .amount, .highvolume-plan .price .amount {
+    font-size: 24px;
+}
+}
+.plan .price .amount .monthly:before, .highvolume-plan .price .amount .monthly:before, .plan .price .amount .yearly:before, .highvolume-plan .price .amount .yearly:before {
+    font-size: 22px;
+    font-weight: 400;
+}
+@media (max-width: 650px) {
+.plan .price .amount .monthly:before, .highvolume-plan .price .amount .monthly:before, .plan .price .amount .yearly:before, .highvolume-plan .price .amount .yearly:before {
+    font-size: 18px;
+}
+}
+.plan .bandwidth a:hover, .highvolume-plan .bandwidth a:hover, .plan .extra a.branding:hover, .highvolume-plan .extra a.branding:hover {
+    text-decoration: underline;
+}
+.plan .bandwidth a, .highvolume-plan .bandwidth a {
+    color: #3EA9F5;
+    text-decoration: none;
+}
+.plan .extra a.branding, .highvolume-plan .extra a.branding {
+    color: #3EA9F5;
+    letter-spacing: 0;
+    position: relative;
+    text-decoration: none;
+    text-transform: none;
+    top: -10px;
+}
+.plan .create, .highvolume-plan .create {
+    bottom: 10px;
+    position: absolute;
+    width: 100%;
+}
+.plan .label, .highvolume-plan .label {
+    font-weight: 200; color:#34495E
+}
+.plan {
+    background: none repeat scroll 0 0 #eee;
+    border-top: 7px solid #FFFFFF;
+    position: relative;
+}
+.plan .buy {
+    display: none;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    width: 80%;
+}
+@media (max-width: 650px) {
+.plan .buy {
+    display: block;
+}
+}
+.plan:hover a.buy {
+    display: block;
+}
+.pricing-labels {
+    padding-top: 8px;
+    text-align: right;
+}
+.pricing-labels .label {
+    padding-right: 10px;
+}
+.pricing-labels .price {
+    padding: 20px 10px 20px 0;
+}
+.pricing-labels .videos {
+    padding-top: 10px;
+}
+.pricing-labels .bandwidth {
+    padding-top: 76px;
+}
+@media (max-width: 960px) {
+.pricing-labels {
+    display: none;
+}
+}
+.billing-interval, .small-billing-interval {
+    box-sizing: border-box;
+}
+.billing-interval .save, .small-billing-interval .save {
+    font-weight: 700;
+}
+.billing-interval .label, .small-billing-interval .label {
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+.billing-interval .choices .choice, .small-billing-interval .choices .choice {
+    font-size: 16px;
+    padding: 18px 0 0 20px;
+    position: relative;
+}
+.billing-interval input, .small-billing-interval input {
+    left: -7px;
+    position: absolute;
+    top: 17px;
+}
+.billing-interval {
+    max-width: 125px;
+    text-align: left;
+}
+.billing-interval .label {
+    padding-left: 10px;
+    padding-top: 33px;
+}
+.billing-interval .choices {
+    padding-left: 15px;
+    padding-top: 7px;
+    white-space: nowrap;
+}
+@media (max-width: 1080px) {
+.billing-interval {
+    display: none;
+}
+}
+.small-billing-interval {
+    clear: both;
+    margin: 0;
+    min-height: 100px;
+    padding: 20px 40px;
+    text-align: center;
+    width: 100%;
+}
+.small-billing-interval .label, .small-billing-interval .choices {
+    text-align: left;
+}
+.small-billing-interval .label {
+    line-height: 200%;
+    text-align: center;
+}
+.small-billing-interval .choices {
+    padding-top: 0;
+    text-align: center;
+}
+.small-billing-interval .choices .choice {
+    display: inline-block;
+    padding: 20px 15px 0;
+    vertical-align: top;
+}
+.small-billing-interval input {
+    left: 0;
+    position: relative;
+    top: -1px;
+}
+.plan-0 {
+    border-color: #56BE8E;
+}
+.plan-0 .price {
+    color: #56BE8E;
+}
+@media (max-width: 650px) {
+.plan-0 .price {
+    background: none repeat scroll 0 0 #7ED9A2;
+    color: #FFFFFF;
+}
+}
+.plan-0 .buy {
+    background: none repeat scroll 0 0 #7ED9A2;
+    width: 80%;
+}
+.plan-0 .buy:hover {
+    background: none repeat scroll 0 0 #56BE8E;
+}
+@media (max-width: 650px) {
+.plan-0 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #56BE8E;
+}
+.plan-0 .buy:hover {
+    background: none repeat scroll 0 0 #56BE8E;
+    color: #FFFFFF;
+}
+}
+.plan-0:hover .price {
+    background: none repeat scroll 0 0 #7ED9A2;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-0 td:last-child .buy {
+    color: #56BE8E;
+}
+.small-pricing-matrix tr.plan-0 td:last-child:hover, .small-pricing-matrix tr.plan-0 td:last-child:active {
+    background-color: #56BE8E;
+}
+.small-pricing-matrix tr.plan-0 td:last-child:hover .buy, .small-pricing-matrix tr.plan-0 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-0 {
+    border-color: #56BE8E;
+}
+.plan-0 .price {
+    color: #56BE8E;
+}
+@media (max-width: 650px) {
+.plan-0 .price {
+    background: none repeat scroll 0 0 #7ED9A2;
+    color: #FFFFFF;
+}
+}
+.plan-0 .buy {
+    background: none repeat scroll 0 0 #7ED9A2;
+    width: 80%;
+}
+.plan-0 .buy:hover {
+    background: none repeat scroll 0 0 #56BE8E; color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-0 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #56BE8E;
+}
+.plan-0 .buy:hover {
+    background: none repeat scroll 0 0 #56BE8E;
+    color: #FFFFFF;
+}
+}
+.plan-0:hover .price {
+    background: none repeat scroll 0 0 #7ED9A2;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-0 td:last-child .buy {
+    color: #56BE8E;
+}
+.small-pricing-matrix tr.plan-0 td:last-child:hover, .small-pricing-matrix tr.plan-0 td:last-child:active {
+    background-color: #56BE8E;
+}
+.small-pricing-matrix tr.plan-0 td:last-child:hover .buy, .small-pricing-matrix tr.plan-0 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-1 {
+    border-color: #64C5A9;
+}
+.plan-1 .price {
+    color: #64C5A9;
+}
+@media (max-width: 650px) {
+.plan-1 .price {
+    background: none repeat scroll 0 0 #87DEC5;
+    color: #FFFFFF;
+}
+}
+.plan-1 .buy {
+    background: none repeat scroll 0 0 #87DEC5;
+    width: 80%;
+}
+.plan-1 .buy:hover {
+    background: none repeat scroll 0 0 #64C5A9;
+  color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-1 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #64C5A9;
+}
+.plan-1 .buy:hover {
+    background: none repeat scroll 0 0 #64C5A9;
+    color: #FFFFFF;
+}
+}
+.plan-1:hover .price {
+    background: none repeat scroll 0 0 #87DEC5;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-1 td:last-child .buy {
+    color: #ECEEF1;
+}
+.small-pricing-matrix tr.plan-1 td:last-child:hover, .small-pricing-matrix tr.plan-1 td:last-child:active {
+    background-color: #64C5A9;
+}
+.small-pricing-matrix tr.plan-1 td:last-child:hover .buy, .small-pricing-matrix tr.plan-1 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-2 {
+    border-color: #6DCCCF;
+}
+.plan-2 .price {
+    color: #6DCCCF;
+}
+@media (max-width: 650px) {
+.plan-2 .price {
+    background: none repeat scroll 0 0 #92E5E8;
+    color: #FFFFFF;
+}
+}
+.plan-2 .buy {
+    background: none repeat scroll 0 0 #92E5E8;
+    width: 80%;
+}
+.plan-2 .buy:hover {
+    background: none repeat scroll 0 0 #6DCCCF;
+  color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-2 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #6DCCCF;
+}
+.plan-2 .buy:hover {
+    background: none repeat scroll 0 0 #6DCCCF;
+    color: #FFFFFF;
+}
+}
+.plan-2:hover .price {
+    background: none repeat scroll 0 0 #92E5E8;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-2 td:last-child .buy {
+    color: #ECEEF1;
+}
+.small-pricing-matrix tr.plan-2 td:last-child:hover, .small-pricing-matrix tr.plan-2 td:last-child:active {
+    background-color: #6DCCCF;
+}
+.small-pricing-matrix tr.plan-2 td:last-child:hover .buy, .small-pricing-matrix tr.plan-2 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-3 {
+    border-color: #3EA9F5;
+}
+.plan-3 .price {
+    color: #3EA9F5;
+}
+@media (max-width: 650px) {
+.plan-3 .price {
+    background: none repeat scroll 0 0 #73C5FF;
+    color: #FFFFFF;
+}
+}
+.plan-3 .buy {
+    background: none repeat scroll 0 0 #73C5FF;
+    width: 80%;
+}
+.plan-3 .buy:hover {
+    background: none repeat scroll 0 0 #3EA9F5;
+  color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-3 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #3EA9F5;
+}
+.plan-3 .buy:hover {
+    background: none repeat scroll 0 0 #3EA9F5;
+    color: #FFFFFF;
+}
+}
+.plan-3:hover .price {
+    background: none repeat scroll 0 0 #73C5FF;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-3 td:last-child .buy {
+    color: #ECEEF1;
+}
+.small-pricing-matrix tr.plan-3 td:last-child:hover, .small-pricing-matrix tr.plan-3 td:last-child:active {
+    background-color: #3EA9F5;
+}
+.small-pricing-matrix tr.plan-3 td:last-child:hover .buy, .small-pricing-matrix tr.plan-3 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-4 {
+    border-color: #0899E4;
+}
+.plan-4 .price {
+    color: #0899E4;
+}
+@media (max-width: 650px) {
+.plan-4 .price {
+    background: none repeat scroll 0 0 #21B3FC;
+    color: #FFFFFF;
+}
+}
+.plan-4 .buy {
+    background: none repeat scroll 0 0 #21B3FC;
+    width: 80%;
+}
+.plan-4 .buy:hover {
+    background: none repeat scroll 0 0 #0899E4;
+  color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-4 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #0899E4;
+}
+.plan-4 .buy:hover {
+    background: none repeat scroll 0 0 #0899E4;
+    color: #FFFFFF;
+}
+}
+.plan-4:hover .price {
+    background: none repeat scroll 0 0 #21B3FC;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-4 td:last-child .buy {
+    color: #ECEEF1;
+}
+.small-pricing-matrix tr.plan-4 td:last-child:hover, .small-pricing-matrix tr.plan-4 td:last-child:active {
+    background-color: #0899E4;
+}
+.small-pricing-matrix tr.plan-4 td:last-child:hover .buy, .small-pricing-matrix tr.plan-4 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.plan-5 {
+    border-color: #0E7AC4;
+}
+.plan-5 .price {
+    color: #0E7AC4;
+}
+@media (max-width: 650px) {
+.plan-5 .price {
+    background: none repeat scroll 0 0 #1E92E5;
+    color: #FFFFFF;
+}
+}
+.plan-5 .buy {
+    background: none repeat scroll 0 0 #1E92E5;
+    width: 80%;
+}
+.plan-5 .buy:hover {
+    background: none repeat scroll 0 0 #0E7AC4;
+  color:#FFFFFF
+}
+@media (max-width: 650px) {
+.plan-5 .buy {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #0E7AC4;
+}
+.plan-5 .buy:hover {
+    background: none repeat scroll 0 0 #0E7AC4;
+    color: #FFFFFF;
+}
+}
+.plan-5:hover .price {
+    background: none repeat scroll 0 0 #1E92E5;
+    color: #FFFFFF;
+}
+.small-pricing-matrix tr.plan-5 td:last-child .buy {
+    color: #ECEEF1;
+}
+.small-pricing-matrix tr.plan-5 td:last-child:hover, .small-pricing-matrix tr.plan-5 td:last-child:active {
+    background-color: #0E7AC4;
+}
+.small-pricing-matrix tr.plan-5 td:last-child:hover .buy, .small-pricing-matrix tr.plan-5 td:last-child:active .buy {
+    color: #FFFFFF;
+}
+.pricing-labels .price {
+    padding: 20px 10px 20px 0;
+}
+
+.plan, .pricing-labels, .billing-interval {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    max-width: 125px;
+    min-height: 360px;
+    text-align: center;
+    vertical-align: top;
+    width: 125px;
+}
+
+.pricing-labels .videos {
+    clear: both;
+    display: block;
+    float: right !important;
+    padding-top: 10px;
+    text-align: right !important;
+}
+.pricing-labels .label {
+    float: right;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.pricing-labels .bandwidth {
+    padding-top: 76px;
+}
