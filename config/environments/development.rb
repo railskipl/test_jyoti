@@ -50,4 +50,16 @@ Rails.application.configure do
             :password => "!@#kunalinfotechkipl"
         }
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      :login => "m360_api1.kipl.com",
+      :password => "1403868718",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AyDvC2cpAY12QuyLk9LYsPMZlTS4",
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

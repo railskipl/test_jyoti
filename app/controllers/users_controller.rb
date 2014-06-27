@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   @user = User.new(:invitation_token => params[:invitation_token])
   @user.email = @user.invitation.recipient_email if @user.invitation
   @user.email = @user.paste_user.email if @user.invitation
-  @userinvite = UserInvitation.all
-    
+  @userinvite = UserInvitation.all    
   end
 
 
