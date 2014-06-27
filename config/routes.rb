@@ -117,6 +117,7 @@ Rails.application.routes.draw do
   
   get "home/dashboard"
   root :to => 'home#dashboard'
+  
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
