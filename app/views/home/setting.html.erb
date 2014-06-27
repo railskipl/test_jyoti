@@ -1,16 +1,71 @@
-<h5>My Account</h5>
+
+   <h5>My Account</h5>
+
+ <div class="row row_margin">
+ 
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;">           
+
+    <h6><div> <%= link_to 'Edit account', edit_user_registration_path,'data-no-turbolink' => true,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
 
 
- <%= link_to 'Edit account', edit_user_registration_path,'data-no-turbolink' => true,:class=>"btn btn-info btn-large" %>&nbsp;&nbsp;
+        </div>
+  </div>
+		
+		
+	<div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background: #008B8B;padding: 10px;">            
 
-   <%= link_to 'Link/Unlink', users_path,:class=>"btn btn-primary" %> &nbsp;&nbsp;
+     <h6><div><%= link_to 'Link/Unlink', users_path,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
 
-  <%= link_to 'Pricing Plan', home_plan_path,:class=>"btn btn-warning btn-large" %></br></br>
+        </div>
+  </div>
 
-   <%= link_to "M$ points",home_history_path,'data-no-turbolink' => true,:class=>"btn btn-warning btn-large" %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">           
 
-  <%= link_to 'Billing History',home_history_path,'data-no-turbolink' => true,:class=>"btn btn-info btn-large" %> &nbsp;&nbsp;
+   <h6><div> <%= link_to 'Pricing Plan', home_plan_path ,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
 
-  <%= link_to "Sponser",new_sponser_path,'data-no-turbolink' => true,:class=>"btn btn-primary" %>
-           
-         
+        </div>
+  </div>		
+ 
+ </div>
+ 
+
+
+ <div class="row row_margin">
+ <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">    
+
+    <h6><div> <%= link_to "M$ points",home_history_path ,:style=>"color:#FFFFFF; font-size:21px;"%></div></h6> 
+
+
+        </div>
+  </div>
+    
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#1E90FF;padding: 10px;"> 
+
+    <h6><div> <%= link_to 'Billing History',home_history_path,:style=>"color:#FFFFFF; font-size:21px;"%></div></h6>
+
+        </div>
+  </div>
+
+ 
+
+
+    
+  <div class="col-xs-3" style="width: 20%;">
+        <div class="tile" style="background:#D2691E;padding: 10px; ">            
+     <% if invitation.present? %>
+     <h6><div> <%= link_to "Sponser",new_sponser_path,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+     <% else %>
+     <h6><div> <%= link_to "Sponsee",new_sponsee_path,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+        </div>
+        <% end %>
+  </div>
+
+ </div>
+
+   

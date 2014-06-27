@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus]
+ before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus,:help,:faq,:term_condition,:privacypolicy]
 
 def index
   
@@ -47,5 +47,18 @@ end
 
 def help
 end
+
+
+def faq
+end
+
+def term_condition
+end
+
+def privacypolicy
+end
+
+
+
 
 end

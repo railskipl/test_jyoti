@@ -69,7 +69,7 @@
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
 
           <li> <%= link_to 'Setting', home_setting_path %> </li>
-          <li> <%= link_to 'Help', home_help_path %> </li>
+         
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 
     <% end %>
@@ -85,7 +85,7 @@
   <li> <%= link_to "Individuals",  home_individual_path %>  </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
   <li> <%= link_to "Pre Login Tips",  new_advice_contact_path %>  </li>
-  <li> <%= link_to "Contactus", home_contactus_path  %> </li>
+   <li> <%= link_to 'Help', home_help_path %> </li>
   <% end %>
 
 

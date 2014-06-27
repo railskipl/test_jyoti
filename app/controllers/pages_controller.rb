@@ -22,6 +22,10 @@ respond_to :html, :js
     end
   end
 
+def show
+   @page = Page.find(params[:id])
+end
+
  def status
   @page = Page.find(params[:id])
   @page.status = !@page.status?
@@ -48,5 +52,7 @@ respond_to :html, :js
     redirect_to pages_path
   end
   
+
+
 
 end
