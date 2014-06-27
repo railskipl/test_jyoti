@@ -13,9 +13,9 @@
   <%= f.hidden_field :user_id,:value => current_user.id %>
 
   <div class="field">
-    <%= f.label :email %>
-    <!-- <%= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %></br> -->
-     <%= f.text_field :email %> 
+   <%= f.label :email %>
+   <%= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %></br> 
+     <!-- <%= f.text_field :email %>  -->
   </div>
   <div class="field">
     <%= f.label :custom_factor,"Primary Circle" %>
@@ -25,21 +25,7 @@
 
 
 
-<!-- 
- 
-<div class="field">
-    <%= f.label :approve_custom_factor  %><br />
-    <%= f.label :approve_custom_factor, "Approve", :value => "true"  %>
-    <%= f.radio_button :approve_custom_factor, true %>
-    <%= f.label :approve_custom_factor, "Reject", :value => "false" %>
-    <%= f.radio_button :approve_custom_factor, false, :checked => true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :custom_factor,"Custom Factor(Sponsor choices need your approval)" %></br>
-    <%= f.collection_select :custom_factor, Factor.all, :custom_factor, :custom_factor, {prompt: "Choose One"}%></br>
-    </div>
- -->
 
  
   <div class="field">
@@ -51,38 +37,6 @@
 
 
 
-
-<!-- 
-
-  <%= f.label :good_coach, "Good Coach" %>
-  <%= f.text_field :good_coach %></br>
-
-  <%= f.label :empowers_team, "Empowers Team" %>
-  <%= f.text_field :empowers_team %></br>
-
-  <%= f.label :expresses_interest_concern, "Expresses Interest/Concern" %>
-  <%= f.text_field :expresses_interest_concern %></br>
-
-  <%= f.label :productive_results_oriented, "Productive Results Oriented" %>
-  <%= f.text_field :productive_results_oriented %></br>
-
-  <%= f.label :good_communicator, "Good Communicator" %>
-  <%= f.text_field :good_communicator %></br>
-
-  <%= f.label :helps_with_career_development, "Helps With Carrer Development" %>
-  <%= f.text_field :helps_with_career_development %></br>
-
-  <%= f.label :clear_vision_and_strategy, "Clear Vision and Strategy" %>
-  <%= f.text_field :clear_vision_and_strategy %></br>
-
-  <%= f.label :uses_special_skills_to_advise, "Uses Special Skills to Advise" %>
-  <%= f.text_field :uses_special_skills_to_advise %></br>
-
-  <%= f.label :romantic, "Romantic" %>
-  <%= f.text_field :romantic %></br>
-
-
- -->
   <div class="field">
     <%= f.label :know_how_for_long_year, "You've known this person for about:" %>
   <%= f.select :know_how_for_long_year, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8']]) %>years

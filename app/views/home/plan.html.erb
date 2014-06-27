@@ -2,18 +2,18 @@
   <thead>
   <tr>
   <th>Price</th>
- </tr>
-  </thead>
+
   <tbody>
   <% @plans.each do |plan| %>
 <tr>
   <td><%= plan.price %></td>
  <div id="paypal_checkout" style="display:none">
- <td> <%= link_to "Pay", new_subscription_path(:plan_id => plan.id) %></div>
+<%= link_to "Pay", new_subscription_path(:plan_id => plan.id) %>
+ </td>
+ </div>
  </tr>
  <% end %>
 </tbody>
 </table>
 <%= link_to "Back", dashboard_index_path%>
 
-<%#= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id:subscription.plan_id) %>
