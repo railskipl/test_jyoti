@@ -49,8 +49,7 @@ def resource_name
 
 
   def invitation
-    Sponser.find_by_user_id(current_user.id)
-    
+    Sponser.find_by_user_id(current_user.id)    
   end
 
 end
