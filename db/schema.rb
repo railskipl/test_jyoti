@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.integer  "sponser_id"
     t.integer  "user_id"
     t.string   "name"
+    t.string   "custom_factor_string"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

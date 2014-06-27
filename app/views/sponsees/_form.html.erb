@@ -1,4 +1,4 @@
-<h6>Custom factors suggested by your sponsor</h6>
+  <!-- <h6>Custom factors suggested by your sponsor</h6> -->
 
 <%= form_for(@sponsee) do |f| %>
   <% if @sponsee.errors.any? %>
@@ -29,14 +29,35 @@
 
 Approve <input type="checkbox" id="checkbox1"/>
 <div id="autoUpdate" class="autoUpdate">
-  <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
-  <% sponser =  Sponser.where("name like ?", name).first %>
-  <% sponser.id %>
-  <% sponser.sponsercfs.each do |s|%>
-  <% @cf = s.custom_factor%>
-  <%= @cf %>
+<h6>Custom factors suggested by your sponsor</h6>
+ <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
+ <% sponser =  Sponser.where("name like ?", name).first %>
+ <% sponser.id %>
+
+<div class="row">
+<div class="col-xs-5">
+<table class="table table-bordered">
+ 
+ <tr>
+    <th>Sr no.</th>
+    <th>Custom Factor</th>
+ </tr>
+
+
+  <% sponser.sponsercfs.each_with_index do |s,index|%>
+
+  <!-- <% @cf = s.custom_factor %> -->
+  <!-- <%= @cf %> -->
+
+  <tr>
+    <td> <%= index+1 %> </td>
+    <td> <%= s.custom_factor %></td>
+  </tr>
   <% end %>
+  </table>
   </div>
+  </div>
+ </div>
 
 
 
@@ -72,14 +93,6 @@ $('#autoUpdate').fadeOut('fast');
     <%= f.submit %>
   </div>
  -->
-
-
-
-
-
-
-
-
 
 
 <% end %>
