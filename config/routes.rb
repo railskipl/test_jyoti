@@ -116,6 +116,10 @@ Rails.application.routes.draw do
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
    get '/home/plan' => 'home#plan'
+   get '/home/setting' => 'home#setting'
+    get '/home/history' => 'home#history'
+    get '/home/mspoint' => 'home#mspoint'
+    get '/home/help' => 'home#help'
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

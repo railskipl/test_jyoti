@@ -33,11 +33,10 @@
   <%= f.text_field :last_name ,:class=>"form-control"%></div>
  
   <div>
-      <%= f.label :birthday %>
-        <%= f.text_field :birthday,:id=>"datepicker",:class=>"form-control" %>
+      <%= f.label :birthday %><br />
+        <%= f.select(:birthday, 1900..Time.now.year,{:class=>"form-control"},:class=>"form-control") %>
      </div>
 
-  
   <div><%= f.label :location%><br />
   <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
 
