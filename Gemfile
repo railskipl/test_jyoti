@@ -36,6 +36,7 @@ gem 'paypal-sdk-rest'
 gem 'paypal-sdk-adaptivepayments'
 gem 'paypal-sdk-merchant'
 gem "pry"
+gem 'activemerchant', :require => 'active_merchant'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

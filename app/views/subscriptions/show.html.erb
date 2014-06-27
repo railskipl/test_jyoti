@@ -1,13 +1,49 @@
-<!-- Subscription completed page -->
- <%= link_to 'Back to dashboard', home_dashboard_path,:class =>"btn btn-primary" %>
-   
+<p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Plan:</strong>
+  <%= @subscription.plan_id %>
+</p>
 
+<p>
+  <strong>User:</strong>
+  <%= @subscription.user_id %>
+</p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @subscription.name %>
+</p>
 
+<p>
+  <strong>Email:</strong>
+  <%= @subscription.email %>
+</p>
 
+<p>
+  <strong>Price:</strong>
+  <%= @subscription.price %>
+</p>
 
+<p>
+  <strong>Paypal payment token:</strong>
+  <%= @subscription.paypal_payment_token %>
+</p>
 
+<p>
+  <strong>Paypal customer token:</strong>
+  <%= @subscription.paypal_customer_token %>
+</p>
 
+<p>
+  <strong>Paypal recurring profile token:</strong>
+  <%= @subscription.paypal_recurring_profile_token %>
+</p>
 
+<p>
+  <strong>Token:</strong>
+  <%= @subscription.token %>
+</p>
 
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>

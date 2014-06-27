@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :plans
+
   resources :sponsercfs
 
   resources :sponsers
@@ -101,6 +103,8 @@ Rails.application.routes.draw do
   resources :plans 
   resources :subscriptions
   get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
+
+  post"/success", :to=> "subscriptions#success", :as => 'success'
 
  
    

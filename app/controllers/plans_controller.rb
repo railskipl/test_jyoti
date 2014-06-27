@@ -1,46 +1,31 @@
 class PlansController < ApplicationController
-	 # before_filter :authenticate, :only => [:edit, :update,:index,:show,:new]
-  before_filter :authenticate_user!
+  before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
-  
+  # GET /plans
+  # GET /plans.json
   def index
-  	
+      
     @plans = Plan.all
-    # @plan_expiry = plan_expiry 
-    # @subscription = Subscription.find_by_user_id(current_user) 
+    @subscription = Subscription.find_by_user_id(current_user)
       # raise current_user.id.inspect
     respond_to do |format|
     format.html # index.html.erb
     format.json { render json: @plans }
-
     end
   end
 
- def show
-    @plan = Plan.find(params[:id])
-        
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @plan }
-
-    end
+  # GET /plans/1
+  # GET /plans/1.json
+  def show
   end
 
   # GET /plans/new
-  # GET /plans/new.json
   def new
     @plan = Plan.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @plan }
-    end
   end
- 
+
   # GET /plans/1/edit
   def edit
-
-     @plan = Plan.find(params[:id])
   end
 
   # POST /plans
@@ -50,49 +35,47 @@ class PlansController < ApplicationController
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to plans_path, notice: 'Plan was successfully created.' }
-        format.json { render json: @plan, status: :created, location: @plan }
+        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
+        format.json { render :show, status: :created, location: @plan }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /plans/1
-  # PUT /plans/1.json
+  # PATCH/PUT /plans/1
+  # PATCH/PUT /plans/1.json
   def update
-
-    @plan = Plan.find(params[:id])
+    respond_to do |format|
       if @plan.update(plan_params)
-
-        redirect_to plans_path, notice: 'Plan was successfully updated.' 
+        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
+        format.json { render :show, status: :ok, location: @plan }
       else
-       render action: "edit" 
-  
+        format.html { render :edit }
+        format.json { render json: @plan.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /plans/1
   # DELETE /plans/1.json
   def destroy
-    @plan = Plan.find(params[:id])
     @plan.destroy
-
     respond_to do |format|
-      format.html { redirect_to plans_url }
+      format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # def authenticate
-    #   deny_access unless signed_in?
-    # end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_plan
+      @plan = Plan.find(params[:id])
+    end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-    params.require(:plan).permit(:name,:price,:description)
-   end
-
-
+      params.require(:plan).permit(:user_id, :name, :email, :description,:price)
+    end
 end

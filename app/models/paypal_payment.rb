@@ -1,4 +1,5 @@
-class PalpalPayment < ActiveRecord::Base
+class PaypalPayment < ActiveRecord::Base
+
   def initialize(subscription)
    @subscription = subscription
   end
@@ -28,11 +29,8 @@ class PalpalPayment < ActiveRecord::Base
    currency: "USD"
    )
    response = PayPal::Recurring.new(options).send(action)
-   raise response.errors.inspect if response.errors.present?
+   raise response.errors.inspect if response.errors.present?rescue nil
    response
   end
 
-  
 end
-
-
