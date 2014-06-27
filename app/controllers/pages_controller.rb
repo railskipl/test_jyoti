@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+before_filter :authenticate_user!
 respond_to :html, :js
   
 
@@ -21,6 +21,10 @@ respond_to :html, :js
       render 'new'
     end
   end
+
+def show
+   @page = Page.find(params[:id])
+end
 
  def status
   @page = Page.find(params[:id])
@@ -48,5 +52,7 @@ respond_to :html, :js
     redirect_to pages_path
   end
   
+
+
 
 end
