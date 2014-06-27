@@ -10,7 +10,10 @@
    <%= link_to "M$ points",home_history_path,'data-no-turbolink' => true,:class=>"btn btn-warning btn-large" %>&nbsp;&nbsp;&nbsp;&nbsp;
 
   <%= link_to 'Billing History',home_history_path,'data-no-turbolink' => true,:class=>"btn btn-info btn-large" %> &nbsp;&nbsp;
-
+ <% if invitation.present? %>
   <%= link_to "Sponser",new_sponser_path,'data-no-turbolink' => true,:class=>"btn btn-primary" %>
+  <% else %>
+  <%= link_to "Sponsee", new_sponsee_path,'data-no-turbolink' => true,:class=>"btn btn-primary"  %> 
+ <% end %>
            
          
