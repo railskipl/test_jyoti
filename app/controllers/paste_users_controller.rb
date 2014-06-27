@@ -6,6 +6,7 @@ class PasteUsersController < ApplicationController
   # GET /paste_users.json
   def index
     @paste_users = PasteUser.all
+    @contacts = Contact.all
   end
 
   # GET /paste_users/1
@@ -186,6 +187,10 @@ class PasteUsersController < ApplicationController
     @relationships = Relationship.all
   end
 
+  def import_social_contacts
+  @contacts = Contact.where("user_id = ? " ,current_user.id)
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paste_user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627063050) do
+ActiveRecord::Schema.define(version: 20140627102352) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -150,13 +150,19 @@ ActiveRecord::Schema.define(version: 20140627063050) do
     t.integer  "circle_id"
   end
 
-  create_table "plans", force: true do |t|
-    t.string   "name"
-    t.string   "price"
-    t.integer  "user_id"
-    t.string   "description"
+  create_table "paypal_payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "price"
   end
 
   create_table "power_groups", force: true do |t|
@@ -289,17 +295,17 @@ ActiveRecord::Schema.define(version: 20140627063050) do
   end
 
   create_table "subscriptions", force: true do |t|
-    t.string   "email"
-    t.string   "name"
     t.integer  "plan_id"
     t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.float    "price"
+    t.string   "paypal_payment_token"
     t.string   "paypal_customer_token"
     t.string   "paypal_recurring_profile_token"
     t.string   "token"
-    t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "paypal_payment_token"
   end
 
   create_table "tips", force: true do |t|

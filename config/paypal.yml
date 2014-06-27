@@ -27,6 +27,6 @@ development:
 production:
   <<: *default
   mode: live
-  username: "jyoti.vskp11_api1.gmail.com"
-  password: "1398338529"
-  signature: "An5ns1Kso7MWUdW4ErQKJJJ4qi4-A3s4rRQcSE2V4YAwXvBN-uow-.vP"
+  username: m360_api1.kipl.com
+  password: 1403868718
+  signature:  AFcWxV21C7fd0v3bYYYRCpSSRl31AyDvC2cpAY12QuyLk9LYsPMZlTS4 

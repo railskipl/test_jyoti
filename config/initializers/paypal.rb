@@ -1,8 +1,15 @@
-PayPal::SDK.load("config/paypal.yml", Rails.env)
-PayPal::SDK.logger = Rails.logger
-PayPal::Recurring.configure do |config|
+	# PayPal::SDK.load("config/paypal.yml", Rails.env)
+	# PayPal::SDK.logger = Rails.logger
+
+
+	PayPal::SDK.load("config/paypal.yml", Rails.env)
+	PayPal::SDK.logger = Rails.logger
+
+	PayPal::Recurring.configure do |config|
 	config.sandbox = true
-	config.username = "jyoti.vskp11_api1.gmail.com"
-	config.password = "1398338529"
-	config.signature = "An5ns1Kso7MWUdW4ErQKJJJ4qi4-A3s4rRQcSE2V4YAwXvBN-uow-.vP"
-end 
+	config.username = "m360_api1.kipl.com"
+	config.password = "1403868718"
+	config.signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AyDvC2cpAY12QuyLk9LYsPMZlTS4"
+	end
+
+

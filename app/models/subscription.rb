@@ -1,11 +1,12 @@
 class Subscription < ActiveRecord::Base
- attr_accessible :email, :paypal_customer_token, :paypal_payment_token, :plan_id, :price, :user_id, :token,:name,:paypal_payment_token
+
+	attr_accessible :email, :paypal_customer_token, :paypal_payment_token, :plan_id, :price, :user_id, :token,:paypal_recurring_profile_token, :fullname, :name, :subscription_startdate, :subscription_enddate, :updated_at_to_make_mass_assignable, :updated_at
+
   belongs_to :plan
   belongs_to :user
-
-   attr_accessor :paypal_payment_token
-
-  def save_with_payment
+  validates_presence_of :email
+  
+ def save_with_payment
     
      if valid?
        if paypal_payment_token.present?
@@ -23,7 +24,9 @@ class Subscription < ActiveRecord::Base
    end
 
 
-  
+  def paypal
+    PaypalPayment.new(self)
+  end
 
 
   # def update_with_paypal_payment(subscribe)
@@ -33,24 +36,20 @@ class Subscription < ActiveRecord::Base
   # end
 
 
- #  def update_with_paypal_payment(subscribe)
+  def update_with_paypal_payment(subscribe)
 
    
- #    response = paypal.make_recurring
+    response = paypal.make_recurring
     
- #    op = subscribe.price
- #    on = subscribe.name
- #    user_id = subscribe.user_id
- #    startdate = subscribe.created_at
- #    enddate = subscribe.updated_at
- #    enddate = DateTime.current
- #    email = subscribe.email
+    op = subscribe.price
+    on = subscribe.name
+    user_id = subscribe.user_id
+    email = subscribe.email
 
- #   @subscription_history = SubscriptionHistory.create(:enddate => enddate,:startdate => startdate,:email => email,:user_id => user_id,:price => op,:subscription_id => subscribe.id,:name => on,:fullname => fullname,:plan_id => plan_id,:paypal_customer_token => paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
- #   subscribe.update_attributes(:name => self.name,:fullname => self.fullname,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
+   subscribe.update_attributes(:name => self.name,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
            
 
- # end
+ end
 
   def update_user(user)
   user.update_attributes(:plan_id => self.plan_id)
@@ -69,6 +68,10 @@ class Subscription < ActiveRecord::Base
   def payment_provided?
     paypal_payment_token.present?
   end
-end
+
+
+ private
+  
 
   
+end
