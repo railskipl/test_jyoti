@@ -188,9 +188,9 @@ class PasteUsersController < ApplicationController
   end
 
   def import_social_contacts
-  @contacts = Contact.where("user_id = ? " ,current_user.id)
+  @contacts = Contact.where("user_id = ? " ,current_user.id) rescue nil
   end
-  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
