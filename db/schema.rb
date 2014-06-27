@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.datetime "updated_at"
   end
 
+  create_table "contacts", force: true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contactus", force: true do |t|
     t.string   "name"
     t.string   "email"
