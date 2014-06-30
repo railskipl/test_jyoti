@@ -21,7 +21,14 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :tips
+  resources :tips do
+    collection {
+      get :helpful_tips
+      get :unhelpful_tips
+      get :tips
+      get :respond_tips
+    }
+  end
 
   resources :factors
 

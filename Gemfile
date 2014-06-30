@@ -8,7 +8,7 @@ gem 'rails', '4.1.0'
 
 gem 'pg'
 
-#gem 'sqlite3'
+gem 'sqlite3'
 
 
 # gem 'mysql'
@@ -39,7 +39,7 @@ gem "pry"
 gem 'activemerchant', :require => 'active_merchant'
 gem 'paypal-subscribe', :github => "dsci/paypal-subscribe"
 gem 'paypal-sdk-core', :git => "https://github.com/paypal/sdk-core-ruby.git"
-
+gem 'will_paginate'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

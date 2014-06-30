@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630085342) do
+ActiveRecord::Schema.define(version: 20140630120427) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -286,6 +286,18 @@ ActiveRecord::Schema.define(version: 20140630085342) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tips", force: true do |t|
+    t.string   "email"
+    t.string   "praise"
+    t.string   "criticism"
+    t.string   "helpful"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "circle_id"
+    t.string   "name"
   end
 
   create_table "trial_days", force: true do |t|
