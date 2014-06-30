@@ -131,9 +131,10 @@ Rails.application.routes.draw do
     get '/home/history' => 'home#history'
     get '/home/mspoint' => 'home#mspoint'
     get '/home/help' => 'home#help'
-     get '/home/faq' => 'home#faq'
+    get '/home/faq' => 'home#faq'
     get '/home/privacypolicy' => 'home#privacypolicy'
     get '/home/term_condition' => 'home#term_condition'
+    
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

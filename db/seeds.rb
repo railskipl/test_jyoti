@@ -25,6 +25,7 @@
  # Plan.where(:price => 200).first_or_create
  # Plan.where(:price => 300).first_or_create
 
+
 #  Plan.create(:name => "Applaud", :price => "0.50")
 # Plan.create(:name => "Award", :price => "0.50")
 #    Plan.create(:name => "Alloy", :price => "1.00")

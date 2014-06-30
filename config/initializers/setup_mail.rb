@@ -8,6 +8,7 @@ ActionMailer::Base.smtp_settings = {
   :password => "kipl123!@#"
 
 }
+
 if Rails.env == "development"
 	ActionMailer::Base.default_url_options[:host] = "localhost:3000"
 else
