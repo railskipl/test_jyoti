@@ -26,7 +26,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
     else
       session["devise.google_data"] = request.env["omniauth.auth"]
-      redirect_to home_dashboard_url
+      redirect_to new_user_registration_url
     end
   end
 
