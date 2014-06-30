@@ -1,5 +1,5 @@
-<!-- <h1>Listing plans</h1>
-
+ <!-- 
+ <% if current_user.is_admin == true %>
 <table>
   <thead>
     <tr>
@@ -29,14 +29,37 @@
 <br>
 
 <%= link_to 'New Plan', new_plan_path %>
-
-
+<% end %>
 
  -->
 
+<h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
 
+<% if current_user.is_admin == true %>
+<table class="table table-bordered table-striped table-highlight">
+  <thead>
+  <tr>
+  <th>Plan Name</th>
+  <th>Price</th>
+  <th>Description</th>
 
-
+  </tr>
+  </thead>
+  <tbody>
+  <% @plans.each do |plan| %>
+  <tr>
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
+  <td><%= link_to 'Show', plan %></td>
+  <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+  <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ <% end %>
+ </tr>
+</tbody>
+</table>
+<%= link_to 'New Plan', new_plan_path %>
+<% else %>
 
 
 
@@ -44,18 +67,27 @@
 <table class="table table-bordered table-striped table-highlight">
   <thead>
   <tr>
+  <th>Plan Name</th>
   <th>Price</th>
+  <th>Description</th>
 
   </tr>
   </thead>
   <tbody>
   <% @plans.each do |plan| %>
   <tr>
+  <td><%= plan.name %></td>
   <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
  <% @subscription = plan.subscriptions.build %>
-  <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td>
- </tr>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td>
+ 
  <% end %>
+ </tr>
 </tbody>
 </table>
-<%= link_to "Back", dashboard_index_path%>
+<% end %>
+
+
+ <!-- <%= link_to "Back", dashboard_index_path%> -->
+

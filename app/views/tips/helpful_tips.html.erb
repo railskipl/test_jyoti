@@ -1,0 +1,26 @@
+ <h5>Tips</h5>
+
+
+<table class="table table-bordered"> 
+    <tr>
+      <th>Praise</th>
+       <!-- <th>Criticism</th> -->
+        <!-- <th>Helpful</th> -->
+        <th colspan="1"></th>
+    </tr>
+  
+   <% @tips.each do |tip| %>
+        <%#if email.primary %>
+
+      <tr>
+        <td><%= tip.praise rescue nil%></td>
+         <!-- <td><%= tip.criticism rescue nil%></td> -->
+          <!-- <td><%= tip.helpful rescue nil %></td> -->
+          <!-- <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <td> <%= link_to 'Respond', respond_tips_tips_path  %> </td>
+
+      </tr>
+    <% end %>
+    <%# end %>
+ 
+</table>

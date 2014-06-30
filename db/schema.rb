@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626112049) do
+ActiveRecord::Schema.define(version: 20140630120427) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -150,6 +150,21 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.integer  "circle_id"
   end
 
+  create_table "paypal_payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "price"
+  end
+
   create_table "power_groups", force: true do |t|
     t.integer  "user_id"
     t.string   "email"
@@ -216,15 +231,6 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.float    "influence_avg"
     t.integer  "circle_id"
     t.string   "name"
-    t.text     "good_coach"
-    t.text     "empowers_team"
-    t.text     "expresses_interest_concern"
-    t.text     "productive_results_oriented"
-    t.text     "good_communicator"
-    t.text     "helps_with_career_development"
-    t.text     "clear_vision_and_strategy"
-    t.text     "uses_special_skills_to_advise"
-    t.text     "romantic"
     t.boolean  "approve_custom_factor"
     t.string   "your_choise_custom_factor"
   end
@@ -266,6 +272,38 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.float    "price"
+    t.string   "paypal_payment_token"
+    t.string   "paypal_customer_token"
+    t.string   "paypal_recurring_profile_token"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tips", force: true do |t|
+    t.string   "email"
+    t.string   "praise"
+    t.string   "criticism"
+    t.string   "helpful"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "circle_id"
+    t.string   "name"
+  end
+
+  create_table "trial_days", force: true do |t|
+    t.integer  "days"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_invitations", force: true do |t|
@@ -319,6 +357,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
+    t.string   "security_question"
     t.boolean  "toggled_status",            default: false
   end
 

@@ -6,9 +6,9 @@ gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 
 
-#gem 'pg'
+gem 'pg'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 
 
 # gem 'mysql'
@@ -30,14 +30,16 @@ gem 'premailer-rails'
 gem 'roo'
 gem "ckeditor", :git => "https://github.com/adamico/ckeditor.git",
 :branch => "rails-4-compatibility"
-gem "simple_form"
+ # gem "simple_form"
 gem 'paypal-recurring'
-gem 'paypal-sdk-rest'
+ gem 'paypal-sdk-rest'
 gem 'paypal-sdk-adaptivepayments'
 gem 'paypal-sdk-merchant'
 gem "pry"
 gem 'activemerchant', :require => 'active_merchant'
-
+gem 'paypal-subscribe', :github => "dsci/paypal-subscribe"
+gem 'paypal-sdk-core', :git => "https://github.com/paypal/sdk-core-ruby.git"
+gem 'will_paginate'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
