@@ -1,7 +1,7 @@
 class PasteUsersController < ApplicationController
   before_action :set_paste_user, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-  # require 'will_paginate/array'
+  require 'will_paginate/array'
   # GET /paste_users
   # GET /paste_users.json
   def index
@@ -188,7 +188,8 @@ class PasteUsersController < ApplicationController
   end
 
   def import_social_contacts
-  @contacts = Contact.where("user_id = ? " ,current_user.id) rescue nil
+  @contactss = Contact.where("user_id = ? " ,current_user.id)
+  @contacts = @contactss.paginate(:page => params[:page],:per_page => 2)
   end
 
 
