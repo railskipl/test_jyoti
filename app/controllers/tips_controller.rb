@@ -57,6 +57,11 @@ def destroy
    
  end
 
+ 
+ def responses_to_your_tips
+   
+ end
+
 private
     # Use callbacks to share common setup or constraints between actions.
 

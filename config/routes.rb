@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get :unhelpful_tips
       get :tips
       get :respond_tips
+      get :responses_to_your_tips
     }
   end
 
