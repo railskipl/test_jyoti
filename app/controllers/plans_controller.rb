@@ -6,6 +6,8 @@ class PlansController < ApplicationController
   def index
       
     @plans = Plan.all
+    @plan_expiry = plan_expiry 
+    # raise @plan_expiry.inspect
     @subscription = Subscription.find_by_user_id(current_user)
       # raise current_user.id.inspect
     respond_to do |format|

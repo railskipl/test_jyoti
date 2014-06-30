@@ -29,6 +29,8 @@
      <li> <%= link_to "feedbacks",  feedbacks_path %>  </li>
      <li> <%= link_to "Circle",  circles_path %>  </li>
      <li> <%= link_to "Factor",  factors_path %>  </li>
+     <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li> 
+         
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
     <% end %>
 
@@ -37,7 +39,7 @@
 
 
      <% unless current_user.is_admin == true%>
-        <!-- <li><a href="/home/dashboard">Home</a></li> -->
+        <!-- <li><a href="/home/dashboard">Home</a></li>  -->
         
 
 
@@ -45,7 +47,7 @@
          <li> <%#= link_to "Import CSV" , import_csv_paste_users_path %></li>
 
         <!-- <li> <%#= link_to "Power Groups" ,  power_group_relationships_path,'data-no-turbolink' => true %></li> -->
-        <li> <%= link_to "My Mirror" ,  home_dashboard_path,'data-no-turbolink' => true %></li>
+        <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
 
       <!-- 
         <% if invitation.present? %>
@@ -56,8 +58,7 @@
 
 
           <!-- <li> <%= link_to "Relationships" , relationships_path,'data-no-turbolink' => true %></li> -->
-          <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li>
-         
+          
           <li> <%= link_to "Invite" , invite_paste_users_path %></li> 
           <!-- <li> <%= link_to 'Self Rate',  new_rating_path %> </li> -->
           <!-- <li> <%= link_to 'Rate others',  new_ratingother_path %> </li> -->

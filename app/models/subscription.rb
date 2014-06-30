@@ -1,10 +1,11 @@
 class Subscription < ActiveRecord::Base
 
-	attr_accessible :email, :paypal_customer_token, :paypal_payment_token, :plan_id, :price, :user_id, :token,:paypal_recurring_profile_token, :fullname, :name, :subscription_startdate, :subscription_enddate, :updated_at_to_make_mass_assignable, :updated_at
+	attr_accessible :email, :paypal_customer_token, :paypal_payment_token, :plan_id, :price, :user_id, :token,:paypal_recurring_profile_token, :fullname, :name, :updated_at_to_make_mass_assignable, :updated_at
 
   belongs_to :plan
   belongs_to :user
   validates_presence_of :email
+  attr_accessor :paypal_payment_token
   
  def save_with_payment
     
@@ -17,11 +18,11 @@ class Subscription < ActiveRecord::Base
         else
           save_with_paypal_payment
         end
-       else
-        raise paypal_payment_token.inspect
+       
        end
      end
    end
+
 
 
   def paypal
@@ -36,20 +37,14 @@ class Subscription < ActiveRecord::Base
   # end
 
 
-  def update_with_paypal_payment(subscribe)
-
-   
-    response = paypal.make_recurring
-    
+  def update_with_paypal_payment(subscribe)   
+    response = paypal.make_recurring    
     op = subscribe.price
     on = subscribe.name
     user_id = subscribe.user_id
     email = subscribe.email
-
-   subscribe.update_attributes(:name => self.name,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
-           
-
- end
+    subscribe.update_attributes(:name => self.name,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
+  end
 
   def update_user(user)
   user.update_attributes(:plan_id => self.plan_id)
@@ -62,7 +57,6 @@ class Subscription < ActiveRecord::Base
     response = paypal.make_recurring
     self.paypal_recurring_profile_token = response.profile_id
     save!
-
   end
 
   def payment_provided?
@@ -70,7 +64,7 @@ class Subscription < ActiveRecord::Base
   end
 
 
- private
+ 
   
 
   

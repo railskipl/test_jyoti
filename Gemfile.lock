@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/dsci/paypal-subscribe.git
+  revision: 08d775f64691e595bd3282326b81fa696d773286
+  specs:
+    paypal-subscribe (0.3.0)
+      activesupport
+
+GIT
   remote: https://github.com/adamico/ckeditor.git
   revision: f99a8c9265ffb59d690fceac0fcc20109bef5f33
   branch: rails-4-compatibility
@@ -6,6 +13,14 @@ GIT
     ckeditor (4.0.4)
       mime-types
       orm_adapter
+
+GIT
+  remote: https://github.com/paypal/sdk-core-ruby.git
+  revision: ba1affc03c84e24d2dfe2fef6676e6d949b286a1
+  specs:
+    paypal-sdk-core (0.2.10)
+      multi_json (~> 1.0)
+      xml-simple
 
 GEM
   remote: https://rubygems.org/
@@ -144,9 +159,6 @@ GEM
     paypal-recurring (1.1.0)
     paypal-sdk-adaptivepayments (1.110.0)
       paypal-sdk-core (~> 0.2.3)
-    paypal-sdk-core (0.2.8)
-      multi_json (~> 1.0)
-      xml-simple
     paypal-sdk-merchant (1.114.0)
       paypal-sdk-core (~> 0.2.7)
     paypal-sdk-rest (0.6.1)
@@ -208,9 +220,6 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    simple_form (3.0.2)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     slop (3.5.0)
     spreadsheet (0.9.7)
       ruby-ole (>= 1.0)
@@ -268,8 +277,10 @@ DEPENDENCIES
   paperclip
   paypal-recurring
   paypal-sdk-adaptivepayments
+  paypal-sdk-core!
   paypal-sdk-merchant
   paypal-sdk-rest
+  paypal-subscribe!
   premailer-rails
   protected_attributes
   pry
@@ -277,7 +288,6 @@ DEPENDENCIES
   roo
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  simple_form
   spring
   sqlite3
   therubyracer

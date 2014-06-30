@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many   :emails
   has_many   :plans
   has_many   :subscriptions
-
+  belongs_to :trial_day
 
   before_create :set_invitation_limit
 
@@ -110,6 +110,16 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
         end
       end
     end
+
+
+
+     #Method for trial days for admin
+  def self.admin_user_plan_expiry(user)
+      @trial_days = TrialDay.first
+      @admin_user_plan_expiry = (user.created_at + @trial_days.days.days)
+      @current_date = (Time.zone.now)
+      @remaining_days = (@admin_user_plan_expiry - @current_date).to_i / 1.day
+  end
 
 
 private

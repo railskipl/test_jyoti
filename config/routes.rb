@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :trial_days
+
   resources :plans
 
   resources :sponsercfs
@@ -103,8 +105,8 @@ Rails.application.routes.draw do
   resources :plans 
   resources :subscriptions
   get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
-
-  post"/success", :to=> "subscriptions#success", :as => 'success'
+  # get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
+  # get "/success", :to=> "subscriptions#success", :as => 'success'
 
  
    
@@ -117,6 +119,9 @@ Rails.application.routes.draw do
   
   get "home/dashboard"
   root :to => 'home#dashboard'
+
+  # get "paste_users/my_mirror"
+  # root :to => 'paste_users#my_mirror'
   
 
    get '/home/organization' => 'home#organization'
