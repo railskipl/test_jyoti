@@ -1,10 +1,9 @@
- <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'} do |f| %>
+ <%= form_for :contactus, :url=>{:controller=>'contactus',:action=>'create'},:html => {:id => "contactus"} do |f| %>
 			
             <div>
 			 <%= f.label :Name %><br />							
 			<%= f.text_field :name,:class=>"form-control11"%>
 			</div>
-			
 			
 			<div>
 			 <%= f.label :Email %><br />								
@@ -21,5 +20,6 @@
 			<%= f.text_area :message,:cols => "30", :rows => "5",:class=>"form-control11"%>
 			</div></br>
 			
-		   <%= f.submit "submit", :class => "btn btn-primary"%>
+		<%= f.submit "submit", :class => "btn btn-primary contact-form"%>
+		    
 <% end %>

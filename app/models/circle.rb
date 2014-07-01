@@ -7,4 +7,5 @@ class Circle < ActiveRecord::Base
 	has_many :factors, dependent: :destroy
 	has_many :relationships
 	has_many :sponsers
+	has_many :tips
 end

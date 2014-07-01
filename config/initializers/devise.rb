@@ -266,5 +266,4 @@ Devise.setup do |config|
   # heroku api credintials
   config.omniauth :facebook, '651706351611014', '09bb2b426d1e494af255ad62569a47e9'
   config.omniauth :google_oauth2, '881639063021-cna2s7l4sqot6vh1kf2s735vhi6gbl7d.apps.googleusercontent.com','9CnwRY9v0a1q-xd7civFE9D5'
-  
 end

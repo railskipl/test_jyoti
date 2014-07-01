@@ -30,8 +30,8 @@ class Mailer < ActionMailer::Base
   end
 
   def prelogin_tips(email)
-    mail to: email,
-    subject: 'Tip'
+     @email = email
+    mail(:to => email.email,:subject => "Tips has been submitted!!!")
   end
 
   def sponsee_invitation(relationship, signup_url)

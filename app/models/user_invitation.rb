@@ -6,5 +6,6 @@ class UserInvitation < ActiveRecord::Base
 	validates_presence_of   :email
 	has_many :relationships
 	belongs_to :user
+	has_many :tips
 
 end

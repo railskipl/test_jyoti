@@ -58,6 +58,8 @@ class RelationshipsController < ApplicationController
 
     respond_to do |format|
       if @relationship.save
+        tips = Tip.create(:circle_id => @relationship.circle_id)
+        tips.save! 
         sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
         sponsee.save!
         # Mailer.sponsee_invitation(@relationship, @signup_url).deliver

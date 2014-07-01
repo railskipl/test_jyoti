@@ -7,6 +7,8 @@ def index
   @users = User.all
   #@emails = Email.all
   @tips = Tip.all
+  @user_invitations = UserInvitation.all
+  
 end
 
 def new
@@ -14,7 +16,8 @@ def new
 end
 
 def create
- @tip = Tip.new(params[:tip])
+  @tip = Tip.new(params[:tip])
+
     if @tip.save
      redirect_to :back, notice: "Tips has been provided to this particular."
     else
@@ -37,6 +40,28 @@ def destroy
   def demerge_email
   end
 
+  def helpful_tips
+    @users = User.all
+    #@emails = Email.all
+    @tips = Tip.all
+  end
+
+ def unhelpful_tips
+   
+ end
+
+ def tips
+   
+ end
+
+ def respond_tips
+   
+ end
+
+ 
+ def responses_to_your_tips
+   
+ end
 
 private
     # Use callbacks to share common setup or constraints between actions.

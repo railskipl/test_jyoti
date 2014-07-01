@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140627102352) do
+=======
+ActiveRecord::Schema.define(version: 20140630120427) do
+>>>>>>> 25842b3650e29a395a40148e4106f8a9b7415929
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -25,13 +29,6 @@ ActiveRecord::Schema.define(version: 20140627102352) do
 
   create_table "circles", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "contacts", force: true do |t|
-    t.string   "email"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -283,6 +280,7 @@ ActiveRecord::Schema.define(version: 20140627102352) do
     t.integer  "user_id"
   end
 
+<<<<<<< HEAD
   create_table "subscriptions", force: true do |t|
     t.integer  "plan_id"
     t.integer  "user_id"
@@ -293,6 +291,22 @@ ActiveRecord::Schema.define(version: 20140627102352) do
     t.string   "paypal_customer_token"
     t.string   "paypal_recurring_profile_token"
     t.string   "token"
+=======
+  create_table "tips", force: true do |t|
+    t.string   "email"
+    t.string   "praise"
+    t.string   "criticism"
+    t.string   "helpful"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "circle_id"
+    t.string   "name"
+  end
+
+  create_table "trial_days", force: true do |t|
+    t.integer  "days"
+>>>>>>> 25842b3650e29a395a40148e4106f8a9b7415929
     t.datetime "created_at"
     t.datetime "updated_at"
   end
