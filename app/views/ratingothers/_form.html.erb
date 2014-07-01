@@ -54,7 +54,7 @@
  <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
 
     <%= f.hidden_field :user_id,:value => current_user.id %>
-  
+    
     <%= f.submit "Submit",:class=>"btn btn-primary" %>
 
 <% end %>

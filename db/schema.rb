@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626112049) do
+ActiveRecord::Schema.define(version: 20140627102352) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -150,6 +150,21 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.integer  "circle_id"
   end
 
+  create_table "paypal_payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "price"
+  end
+
   create_table "power_groups", force: true do |t|
     t.integer  "user_id"
     t.string   "email"
@@ -268,6 +283,20 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.integer  "user_id"
   end
 
+  create_table "subscriptions", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.float    "price"
+    t.string   "paypal_payment_token"
+    t.string   "paypal_customer_token"
+    t.string   "paypal_recurring_profile_token"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_invitations", force: true do |t|
     t.integer  "paste_user_id"
     t.string   "email"
@@ -319,6 +348,7 @@ ActiveRecord::Schema.define(version: 20140626112049) do
     t.string   "zip"
     t.string   "orgsize"
     t.boolean  "guest"
+    t.string   "security_question"
     t.boolean  "toggled_status",            default: false
   end
 
