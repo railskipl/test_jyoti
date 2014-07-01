@@ -2,48 +2,48 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @relationship.email %>
+  <%= @relationship.email rescue nil%>
 </p>
 
 <p>
   <strong>Circle:</strong>
-  <%= @relationship.name %>
+  <%= @relationship.name rescue nil%>
 </p>
 
 <p>
   <strong>Circle:</strong>
-  <%= @relationship.custom_factor %>
+  <%= @relationship.custom_factor rescue nil%>
 </p>
 
 
 <p>
   <strong>Know how for long year:</strong>
-  <%= @relationship.know_how_for_long_year %>
+  <%= @relationship.know_how_for_long_year rescue nil%>
 </p>
 
 <p>
   <strong>Know how for long month:</strong>
-  <%= @relationship.know_how_for_long_month %>
+  <%= @relationship.know_how_for_long_month rescue nil%>
 </p>
 
 <p>
   <strong>How well you know the person:</strong>
-  <%= @relationship.how_well_you_know_the_person %>
+  <%= @relationship.how_well_you_know_the_person rescue nil%>
 </p>
 
 <p>
   <strong>Your influence:</strong>
-  <%= @relationship.your_influence %>
+  <%= @relationship.your_influence rescue nil%>
 </p>
 
 <p>
   <strong>Influence on your:</strong>
-  <%= @relationship.influence_on_your %>
+  <%= @relationship.influence_on_your rescue nil%>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @relationship.user_id %>
+  <%= @relationship.user_id rescue nil%>
 </p>
 
 <%= link_to 'Edit', edit_relationship_path(@relationship) %> |

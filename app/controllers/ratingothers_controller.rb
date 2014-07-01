@@ -14,7 +14,6 @@ def create
 
  @user = User.where('email = ?', @ratingother.email)
 
-
   if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
      flash[:notice] = "No user found."
      redirect_to new_ratingother_path
