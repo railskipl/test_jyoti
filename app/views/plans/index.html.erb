@@ -89,12 +89,14 @@
   <td><%= plan.name %></td>
   <td><%= plan.price %></td>
   <td><%= plan.description %></td>
-  <% @subscription = plan.subscriptions.build %>
+  <% subscription = plan.subscriptions.build %>
   <% if @subscription.plan_id == plan.id%>
   <td><a class="button button-small" href="#"> <span>Current Plan</span> </a></td>
   <% else %>
   <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
-  <% end %><% end %></td>
+  <% end %>
+  <% end %>
+  </td>
 
 
   <% end %>
