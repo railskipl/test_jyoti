@@ -8,6 +8,7 @@ def index
   #@emails = Email.all
   @tips = Tip.all
   @user_invitations = UserInvitation.all
+  
 end
 
 def new
