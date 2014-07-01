@@ -29,9 +29,9 @@ class Mailer < ActionMailer::Base
     signup_url: 'signup_url'
   end
 
-  def prelogin_tips(email)
-     @email = email
-    mail(:to => email.email,:subject => "Tips has been submitted!!!")
+  def prelogin_tips(advice_contact)
+     @advice_contact = advice_contact
+     mail(:to => @advice_contact.email,:subject => "Tips has been submitted!!!")
   end
 
   def sponsee_invitation(relationship, signup_url)

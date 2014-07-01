@@ -8,7 +8,11 @@ def index
   #@emails = Email.all
   @tips = Tip.all
   @user_invitations = UserInvitation.all
-  
+end
+
+def advice
+  @tips = Tip.all
+ 
 end
 
 def new
@@ -19,7 +23,7 @@ def create
   @tip = Tip.new(params[:tip])
 
     if @tip.save
-     redirect_to :back, notice: "Tips has been provided to this particular."
+     redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular."
     else
       render 'new'
     end
@@ -54,12 +58,20 @@ def destroy
    
  end
 
+ def tip
+   
+ end
+
  def respond_tips
    
  end
 
  
  def responses_to_your_tips
+   
+ end
+
+ def tips_and_rating
    
  end
 

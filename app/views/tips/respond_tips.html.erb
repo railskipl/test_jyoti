@@ -17,7 +17,7 @@ Tag tip for Progress Journal (for your eyes only)
                                
  </div>
 
-
+<!-- 
 <div class="row1">
    <div class="form-left">My Response or Question (sent to Reviewer who left the tip - this will also tell the reviewer that you saw this tip)</div>
     <div class="form-right"><%=text_area_tag 'first_name'%> </div>
@@ -26,3 +26,28 @@ Tag tip for Progress Journal (for your eyes only)
                                
 </div>
 <%= link_to "Submit", tips_tips_path, :class => 'btn btn-primary' %>
+
+ -->
+
+<%= form_for Tip.new do |f| %>  
+
+ <div class="field">
+  <%= f.label :respond_for_tip, 'My Response or Question (sent to Reviewer who left the tip - this will also tell the reviewer that you saw this tip)' %><br>
+    <%= f.text_area :respond_for_tip,:class=>"form-control11"%>
+  </div>
+
+  <%= f.hidden_field :user_id,:value => current_user.id %>
+  <%= f.hidden_field :email,:value => current_user.email %>
+
+  <div class="actions">
+    <%= f.submit "submit" ,:class => "btn btn-primary"%></div>
+<% end %> 
+
+
+
+
+
+
+ 
+ 
+

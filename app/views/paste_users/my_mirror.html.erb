@@ -17,8 +17,7 @@
 		
 	<div class="col-xs-3" style="width: 20%;">
         <div class="tile" style="background: #008B8B;padding: 10px;">            
-
-     <h6><a href="#" style="color:#FFFFFF;font-size:19px;">Reputation Report  and Score</a></h6>
+     <h6><div> <%= link_to "Reputation Report and Score" ,  new_ratingother_path ,:style=>"color:#FFFFFF;font-size:19px;"%></div></h6>
 
         </div>
   </div>
@@ -27,7 +26,7 @@
         <div class="tile" style="background:#D2691E;padding: 10px;">           
 
 
-   <h6><div> <%= link_to "Give Feedback" ,  new_tip_path ,:style=>"color:#FFFFFF;font-size:19px;", :class=>"just_reload"%></div></h6>
+   <h6><div> <%= link_to "Give Feedback" ,  tip_tips_path ,:style=>"color:#FFFFFF;font-size:19px;", :class=>"just_reload"%></div></h6>
 
 
         </div>
