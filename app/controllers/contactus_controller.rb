@@ -12,11 +12,14 @@ def create
   @contactus = Contactus.new(params[:contactus])
      if @contactus.save
        ContactusMailer.registration_confirmation(@contactus).deliver
-       redirect_to home_contactus_path, notice: "Your information has been Sent!."
+       flash[:notice] = "Your information has been Sent!." 
+       redirect_to home_contactus_path
    else
-   	render  :new
+      flash[:notice] = 'Contact can not be blank!Everything should be field.'
+      redirect_to home_contactus_path
 end  
 end 
 
 
 end
+ 

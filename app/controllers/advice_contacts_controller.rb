@@ -44,6 +44,13 @@ class AdviceContactsController < ApplicationController
     @contacts = Contact.where("user_id = ?",current_user.id)
   end
 
+
+  def destroy
+    @advice_contact = AdviceContact.find(params[:id])
+    @advice_contact.destroy
+    redirect_to advice_contacts_path
+  end
+
   # PATCH/PUT /advice_contacts/1
   # PATCH/PUT /advice_contacts/1.json
   # def update
