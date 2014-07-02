@@ -1,0 +1,20 @@
+
+<table class="table table-bordered"> 
+    <tr>
+       <th>Index</th>
+       <th>Advice</th>
+    </tr>
+  
+   <% advice.each_with_index do |tip,index| %>
+    <% if tip.email == current_user.email %>
+      <tr>
+        <td><%= index+1%></td> 
+         <td><%= tip.criticism rescue nil%></td>
+
+      </tr>
+      <% end %>
+    <% end %>
+ 
+</table>
+
+

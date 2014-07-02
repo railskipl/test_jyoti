@@ -26,8 +26,11 @@ Rails.application.routes.draw do
       get :helpful_tips
       get :unhelpful_tips
       get :tips
+      get :tip
+      get :advice
       get :respond_tips
       get :responses_to_your_tips
+      get :tips_and_rating
     }
   end
 

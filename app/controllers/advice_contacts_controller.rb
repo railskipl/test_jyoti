@@ -30,7 +30,7 @@ class AdviceContactsController < ApplicationController
 
     respond_to do |format|
       if @advice_contact.save
-        Mailer.prelogin_tips(advice_contact.email).deliver
+        Mailer.prelogin_tips(advice_contact).deliver
         format.html { redirect_to new_advice_contact_path, notice: 'Data send successfully.' }
         format.json { render :show, status: :created, location: @advice_contact }
       else
@@ -83,6 +83,6 @@ class AdviceContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advice_contact_params
-      params.require(:advice_contact).permit(:email, :praise, :criticism, :helpful_tips)
+      params.require(:advice_contact).permit(:email, :praise, :criticism, :helpful_tips,:user_id)
     end
 end

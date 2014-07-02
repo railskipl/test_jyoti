@@ -33,7 +33,7 @@
 
  -->
 
-<h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
+
 
 <% if current_user.is_admin == true %>
 <table class="table table-bordered table-striped table-highlight">
@@ -59,11 +59,12 @@
 </tbody>
 </table>
 <%= link_to 'New Plan', new_plan_path %>
-<% else %>
+<% end %>
 
 
+<% if current_user.is_admin == false %>
 
-
+<h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
 <table class="table table-bordered table-striped table-highlight">
   <thead>
   <tr>
@@ -75,17 +76,35 @@
   </thead>
   <tbody>
   <% @plans.each do |plan| %>
+  <% if @subscription.nil? %>
   <tr>
   <td><%= plan.name %></td>
   <td><%= plan.price %></td>
   <td><%= plan.description %></td>
- <% @subscription = plan.subscriptions.build %>
-  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td>
- 
- <% end %>
+  <% @subscription = plan.subscriptions.build %>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td></tr>
+ <% else %>
+  
+  <tr>
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
+  <% subscription = plan.subscriptions.build %>
+  <% if @subscription.plan_id == plan.id%>
+  <td><a class="button button-small" href="#"> <span>Current Plan</span> </a></td>
+  <% else %>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
+  <% end %>
+  <% end %>
+  </td>
+
+
+  <% end %>
  </tr>
 </tbody>
 </table>
+
+
 <% end %>
 
 

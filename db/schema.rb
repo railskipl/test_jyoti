@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630120427) do
+ActiveRecord::Schema.define(version: 20140701111619) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -231,15 +231,6 @@ ActiveRecord::Schema.define(version: 20140630120427) do
     t.float    "influence_avg"
     t.integer  "circle_id"
     t.string   "name"
-    t.text     "good_coach"
-    t.text     "empowers_team"
-    t.text     "expresses_interest_concern"
-    t.text     "productive_results_oriented"
-    t.text     "good_communicator"
-    t.text     "helps_with_career_development"
-    t.text     "clear_vision_and_strategy"
-    t.text     "uses_special_skills_to_advise"
-    t.text     "romantic"
     t.boolean  "approve_custom_factor"
     t.string   "your_choise_custom_factor"
   end
@@ -307,6 +298,7 @@ ActiveRecord::Schema.define(version: 20140630120427) do
     t.datetime "updated_at"
     t.integer  "circle_id"
     t.string   "name"
+    t.string   "respond_for_tip"
   end
 
   create_table "trial_days", force: true do |t|

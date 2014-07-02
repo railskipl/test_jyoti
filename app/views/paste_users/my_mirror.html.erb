@@ -16,18 +16,17 @@
 		
 		
 	<div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background: #008B8B;padding: 4px;">            
 
-     <h6><a href="#" style="color:#FFFFFF;font-size:19px;">Reputation Report  and Score</a></h6>
-
+        <div class="tile" style="background: #008B8B;padding: 10px;">            
+          <h6><div> <%= link_to "Reputation Report and Score" ,  new_ratingother_path ,:style=>"color:#FFFFFF;font-size:19px;"%></div></h6>
         </div>
-  </div>
+    </div>
 
-  <div class="col-xs-3" style="width: 20%;">
+    <div class="col-xs-3" style="width: 20%;">
         <div class="tile" style="background:#D2691E;padding: 16px;">           
 
 
-   <h6><div> <%= link_to "Give Feedback" ,  new_tip_path ,:style=>"color:#FFFFFF;font-size:19px;", :class=>"just_reload"%></div></h6>
+   <h6><div> <%= link_to "Give Feedback" ,  tip_tips_path ,:style=>"color:#FFFFFF;font-size:19px;", :class=>"just_reload"%></div></h6>
 
 
         </div>
@@ -97,145 +96,5 @@
  
  </div>
    
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="container1" style="min-width: 310px; max-width: 800px; height: 460px; margin: 0 auto"></div>
-
-  
-</body>
-
-<div id="container" style="min-width: 310px; max-width: 800px; height: 550px; margin: 0 auto"></div>
-
-  
-</body>
- 
- 
-
-	
-	  
-    </div>
-    <!-- /.container -->
-	<script type='text/javascript'>//<![CDATA[ 
-
-$(function () {
-        $('#container').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Ratings Comparison'
-            },
-            
-            xAxis: {
-                categories: ['Overall Impression', 'Trustworthy', 'Kind and Helpful', 'Has Ability/Potential', 'Performs Well','Persuasive and Presentable', 'Emotionally Mature','Friendly and Social'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Ratings',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' Ratings'
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-                shadow: true
-            },  
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Self Image',
-                data: [5, 3, 5, 4, 7, 8, 7]
-            }, {
-                name: 'All Mirrors',
-                data: [4.5, 2.1, 8, 4.6, 7.2, 3.7, 9.2]
-            }, {
-                name: 'Power Mirrors',
-                data: [5, 4, 6, 3, 8, 4, 9]
-            }]
-        });
-
-        
-        $('#container1').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Your Ratings from all Mirrors'
-            },
-            
-            xAxis: {
-                categories: ['Overall Impression', 'Trustworthy', 'Kind and Helpful', 'Has Ability/Potential', 'Performs Well','Persuasive and Presentable', 'Emotionally Mature','Friendly and Social'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Ratings',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' Ratings'
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-                shadow: true
-            },  
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'All Mirrors',
-                data: [9, 6, 5, 8, 7, 2, 1, 4]
-            }]
-        });
-    });
+</div>
     
-
-//]]>  
-
-</script>

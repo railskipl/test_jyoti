@@ -54,7 +54,7 @@ def resource_name
 
   def plan_expiry
       @trial_days = TrialDay.first
-      @plan_expiry = (current_user.created_at + @trial_days.day.day)
+      @plan_expiry = (current_user.created_at + @trial_days.day)
       @current_date = (Time.zone.now)
       @remaining_days = (@plan_expiry - @current_date).to_i / 1.day
   end
