@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :response_tips
 
   resources :trial_days
 
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
       get :respond_tips
       get :responses_to_your_tips
       get :tips_and_rating
+      get :rejected_tips
     }
   end
 

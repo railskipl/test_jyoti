@@ -13,18 +13,6 @@
     </div>
   <% end %>
 
-<!--   
-
-
-
-  <div class="field">
-    <%= f.label :approve_admin_custom_factor, "Reject"  %>
-    <%= f.check_box :approve_admin_custom_factor %>
-    <%= f.label :approve_admin_custom_factor, "Approve" %>
-    <%= f.check_box :approve_admin_custom_factor %>
-  </div>
-
- -->
 
 
 Approve <input type="checkbox" id="checkbox1"/>
@@ -46,8 +34,6 @@ Approve <input type="checkbox" id="checkbox1"/>
 
   <% sponser.sponsercfs.each_with_index do |s,index|%>
 
-  <!-- <% @cf = s.custom_factor %> -->
-  <!-- <%= @cf %> -->
 
   <tr>
     <td> <%= index+1 %> </td>
@@ -75,24 +61,7 @@ $('#autoUpdate').fadeOut('fast');
 </script>
 
 
-<!-- 
-   <div class="field">
-    <%= f.label :custom_factor, "Custom Factor:" %>
-   <%= f.collection_select :custom_factor, Sponsercf.all, :custom_factor, :custom_factor %>
-   </div>   
- -->
-<!-- 
 
-  <div class="field">
-    <%= f.label :your_choise_custom_factor %><br>
-    <%= f.text_field :your_choise_custom_factor %>
-  </div> -->
-
-<!--   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
- -->
 
 
 <% end %>

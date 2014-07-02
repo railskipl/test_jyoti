@@ -11,6 +11,7 @@
       </ul>
     </div>
   <% end %>
+  <!-- <%= f.hidden_field :response_for_tip, :value => params[:response_for_tip] %> -->
 
   <div class="field">
     <%= f.label :email %><br>
@@ -32,8 +33,10 @@
     <%= f.text_field :helpful,:class=>"form-control11"%>
   </div>
 
-  <%= f.hidden_field :user_id,:value => current_user.id %>
-
+  <% unless user_signed_in? %>
+   <% else %>
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+   <% end  %>
 
   <div class="actions">
     <%= f.submit "Save" ,:class => "btn btn-primary"%></div>

@@ -47,7 +47,7 @@
 
         <!-- <li> <%#= link_to "Power Groups" ,  power_group_relationships_path,'data-no-turbolink' => true %></li> -->
         <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
-        <li> <%= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li>
+        <!-- <li> <%= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li> -->
 
       <!-- 
         <% if invitation.present? %>
@@ -83,11 +83,13 @@
 
   <li><a href="/">Home</a></li> 
   <li> <%= link_to "Organizations", home_organization_path  %>  </li>
-
+  <li> <%= link_to 'Prelogin Tips',  new_tip_path %> </li> 
+  <li> <%= link_to 'Prelogin Ratings',  new_ratingother_path %>
   <li> <%= link_to "Individuals",  home_individual_path %>  </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
   <li> <%#= link_to "Pre Login Tips",  new_advice_contact_path %>  </li>
    <li> <%= link_to 'Help', home_help_path %> </li>
+
   <% end %>
 
 

@@ -19,21 +19,21 @@
   </div>
   <div class="field">
     <%= f.label :custom_factor,"Primary Circle" %>
-    <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"}%>
+    <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Choose One"}%>
   </div>
 
 
 
 
 
-
+<!-- 
  
   <div class="field">
-   <%= f.label :your_choise_custom_factor, "Custom Factor" %>
-   <%= f.text_field :your_choise_custom_factor %></br>
+   <%#= f.label :your_choise_custom_factor, "Custom Factor" %>
+   <%#= f.text_field :your_choise_custom_factor %></br>
   </div>
   
- 
+  -->
 
 
 

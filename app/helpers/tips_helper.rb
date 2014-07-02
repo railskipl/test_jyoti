@@ -12,9 +12,11 @@ def advice
   b.each do|r|
      tips << Tip.find(r)
      # tips << Tip.where( :user_id => current_user.id, :email => r.email )
-  end  
-
+  end 
  end
  
+  def response
+    @response_tip = ResponseTip.all     
+  end
 
 end

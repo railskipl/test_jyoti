@@ -1,0 +1,54 @@
+<%= form_for(@response_tip) do |f| %>
+  <% if @response_tip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response_tip.errors.count, "error") %> prohibited this response_tip from being saved:</h2>
+
+      <ul>
+      <% @response_tip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- 
+  <div class="field">
+    <%= f.label :tip_id %><br>
+    <%= f.number_field :tip_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+ -->
+
+ 
+<%= f.hidden_field :tip_id, :value => params[:id] %>
+ <%= f.hidden_field :user_id,:value => current_user.id %>
+ <div class="field">
+    <%= f.label :tag_tip,'Tag tip for Progress Journal (for your eyes only):' %>
+    <% [ 'Shows I am improving ', 'Dont know/dont care', 'Shows I need to improve ' ].each do |theme| %>
+      <br><%= radio_button_tag 'theme', theme, @theme == theme %>
+      <%= theme.humanize %>
+    <% end %>
+}
+</div>
+
+ <div class="field">
+  <%= f.label :tag_tip,'Tag tip for Progress Journal (for your eyes only):' %>
+  <br>  
+    <%= f.text_area :tag_tip %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :response_for_tip %><br>
+    <%= f.text_area :response_for_tip %>
+  </div>
+  
+
+
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
