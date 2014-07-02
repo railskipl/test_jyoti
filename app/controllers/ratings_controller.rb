@@ -1,12 +1,20 @@
 class RatingsController < ApplicationController
  before_filter :check_user, only: [:new]
-
+  
 def index
 	
 end
 
 def new
  @rating = Rating.new
+ @ratingother = Ratingother.where('friend_id = ?', current_user.id)#all mirrors
+ @ratingss = Rating.where('user_id = ?', current_user.id) #self image
+ @a = Rating.all_mirrors(@ratingother,current_user.id, @ratingss) #all mirrors
+ #raise @a.inspect
+ 
+
+ #raise @ratingss[0].inspect
+ 
 end
 
 def create
@@ -17,7 +25,6 @@ def create
     else
       render 'new'
     end
-	
 end
 
 private

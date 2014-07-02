@@ -1,7 +1,7 @@
 <%= form_for(@advice_contact) do |f| %>
   <% if @advice_contact.errors.any? %>
     <div id="error_explanation">
-      <h5><%= pluralize(@advice_contact.errors.count, "error") %> prohibited this advice_contact from being saved:</h5>
+      <h5><%= pluralize(@advice_contact.errors.count, "error") %> prohibited from being saved:</h5>
 
       <ul>
       <% @advice_contact.errors.full_messages.each do |message| %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="col-xs-4">
-  <%= f.hidden_field :user_id,:value => current_user.id %>
+  <%#= f.hidden_field :user_id,:value => current_user.id %>
     <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email ,:placeholder => "Type an email address", :class=>"form-control" %>

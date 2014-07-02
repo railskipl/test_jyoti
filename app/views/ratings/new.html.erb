@@ -1,5 +1,5 @@
-<%= javascript_include_tag "jquery-1.9.1.js", "highcharts.js", "exporting.js"%>
-
+<%= javascript_include_tag "/assets/jquery.js" %>
+<%= javascript_include_tag "highcharts.js", "exporting.js" %>
 <h5>Rate yourself</h5>
 
 <div id="container1" style="min-width: 310px; max-width: 800px; height: 460px; margin: 0 auto"></div>
@@ -59,10 +59,10 @@ jQuery(function () {
             },
             series: [{
                 name: 'Self Image',
-                data: [5, 3, 5, 4, 7, 8, 7]
+                data: [<%= raw number_with_precision(@a[8] , :precision => 1) %>, <%=raw @ratingss[0].trustworthy%>, <%=raw @ratingss[0].kind_helpful%>, <%=raw @ratingss[0].potential%>, <%=raw @ratingss[0].perform_well%>, <%=raw @ratingss[0].presentable%>, <%=raw @ratingss[0].emotianally_mature%>, <%=raw @ratingss[0].friendly_social%>]
             }, {
                 name: 'All Mirrors',
-                data: [4.5, 2.1, 8, 4.6, 7.2, 3.7, 9.2]
+                data: [<%= raw number_with_precision(@a[0] , :precision => 1) %>, <%= raw @a[1] %>, <%= raw @a[2] %>, <%= raw @a[3] %>,<%= raw @a[4] %>, <%= raw @a[5] %>, <%= raw @a[6] %>, <%= raw @a[7] %>]
             }, {
                 name: 'Power Mirrors',
                 data: [5, 4, 6, 3, 8, 4, 9]

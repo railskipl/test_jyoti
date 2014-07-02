@@ -13,7 +13,6 @@ def create
  @ratingother = Ratingother.new(params[:ratingother])
 
  @user = User.where('email = ?', @ratingother.email)
-
   if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
      flash[:notice] = "No user found."
      redirect_to new_ratingother_path
@@ -21,16 +20,16 @@ def create
     @user = User.where('email = ?', @ratingother.email)
     @ratingother.friend_id = @user[0].id
     @rating_exist = Ratingother.where('user_id = ? and friend_id = ?', @ratingother.user_id, @ratingother.friend_id)
-    
-    if @rating_exist
-      flash[:notice] = "You have already rated this user."
-      redirect_to new_ratingother_path
-    else
+
+    if @rating_exist.empty?
       if @ratingother.save
         redirect_to :back, notice: "Rating has been done."
       else
         render 'new'
       end
+    else
+      flash[:notice] = "You have already rated this user."
+      redirect_to new_ratingother_path
     end
   end
 
