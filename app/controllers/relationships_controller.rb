@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
   # GET /relationships/1
   # GET /relationships/1.json
   def show
+    
   end
 
   # GET /relationships/new

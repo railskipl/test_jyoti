@@ -11,6 +11,7 @@ end
 
 def create
  @rating = Rating.new(params[:rating])
+ #raise @rating.inspect
     if @rating.save
      redirect_to :back, notice: "Users has been rated."
     else
