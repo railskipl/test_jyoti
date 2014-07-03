@@ -13,14 +13,14 @@
   <% end %>
   <% if params[:email]%>
     <div class="field">
-      <%= f.label :email %><br>
+       <%= f.label :email %><label for="male">The Person You're Commenting On:</label><br>
       <%= f.text_field :email,:value => params[:email],:class=>"form-control11" %>
       <%= f.hidden_field :rating, :value => "true"%>
     </div>
   <%else%>
     <div class="field">
       <%= f.label :email %><br>
-      <%= f.text_field :email,:class=>"form-control11" %>
+      <%= f.text_field :email,:class=>"form-control11" %><label for="male">The Person You're Commenting On:</label>
     </div>
   <%end%>
 
