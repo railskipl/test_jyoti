@@ -6,7 +6,11 @@ gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 
 
+<<<<<<< HEAD
+#gem 'pg'
+=======
 # gem 'pg'
+>>>>>>> bbac92773e1c3c1901614af373e940eaf8a033b0
 
 gem 'sqlite3'
 

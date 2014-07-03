@@ -25,4 +25,15 @@ belongs_to  :friend, :class_name => 'User'
         d_rate = self_rate.inject{ |sum, el| sum + el }.to_f / self_rate.size
 	    a = [d_rate,ratingss[0].trustworthy, ratingss[0].kind_helpful, ratingss[0].potential, ratingss[0].perform_well, ratingss[0].presentable, ratingss[0].emotianally_mature, ratingss[0].friendly_social]
 	end
+
+	def self.power_mirrors(c, current_user)
+		e = []
+		c.each do |r|
+		  
+		  @group = Ratingother.where('user_id = ? and friend_id = ?', r[0], current_user ) rescue nil
+		  e << @group
+		end
+		#@trustworthy = (e.sum(:trustworthy))
+        raise e[2][0].inspect
+	end
 end
