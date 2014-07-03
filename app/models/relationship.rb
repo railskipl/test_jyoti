@@ -7,4 +7,6 @@ class Relationship < ActiveRecord::Base
 	belongs_to :user_invitation
 	belongs_to :influence
 	has_many :sponsees
+
+	validates_uniqueness_of :email 
 end

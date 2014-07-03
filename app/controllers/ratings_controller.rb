@@ -7,12 +7,12 @@ end
 
 def new
  @rating = Rating.new
+ @ratingss = Rating.where('user_id = ?', current_user.id) #self image
+ @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
  @ratingother = Ratingother.where('friend_id = ?', current_user.id)#all mirrors
- @ratingss = Rating.where('user_id = ?', current_user.id) rescue ""#self image
- @a = Rating.all_mirrors(@ratingother,current_user.id, @ratingss) rescue ""#all mirrors
- #raise @a.inspect
- 
+ @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors
 
+ 
  #raise @ratingss[0].inspect
  
 end
