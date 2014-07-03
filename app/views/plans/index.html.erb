@@ -65,42 +65,59 @@
 <% if current_user.is_admin == false %>
 
 <h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
+<table style = "width:100%;">
+  <% @plans.each do |plan| %>
+  <% if @subscription.nil? %>
 
-<div class="row row_margin">
- 
-<div class="col-xs-6" style="width: 20%;line-height: 6.650;">
-          <div class="tile" style="background:#808080">
-<h4>Personal</h4>
+  <tr>
+  <td align="left" valign="top" style="width:33.33%">
+  <table class="table table-hover table-bordered table-responsive table-condensed">
+  <tr>
+   <th><h6 style="text-align:center; margin-top:10px"><%= plan.name %></h6></th>
+ </tr>
+  <tr>
+  <td style="height:190px;"><%= plan.price %></td>
+ </tr>
+ <tr>
+   <td style="height:171px"><%= plan.description %></td>
+ </tr>
+ <tr>
+   <td style="padding-bottom: 39px; padding-top: 29px;text-align:center">
+  <% @subscription = plan.subscriptions.build %>
+ <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td>
+</tr>
+ </table>
 
-<div>10tips/year PrivateReport & Score7StdFactors</div>
+  </td>
+ <% else %>
+  <td align="left" valign="top" style="width:33.33%"><table class="table table-hover table-bordered table-responsive table-condensed">
+  <tr>
+  <th> <h6 style="text-align:center; margin-top:10px"><%= plan.name %></h6></th>
+</tr>
+<tr>
+<td style="height:190px"><%= plan.price %></td>
+</tr>
+<tr>
+   <td style="height:171px"><%= plan.description %></td>
+</tr>
+<tr>
+   
+  <% subscription = plan.subscriptions.build %>
+  <% if @subscription.plan_id == plan.id%>
 
- 
+  <td><a class="button button-small" href="#"> <span>Current Plan</span> </a></td>
+  <% else %>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
+    <% end %>
+     </td>
+  </tr>
+  </table>
+  </td>
 
-          </div>
-        </div>
-  
-  
-  <div class="col-xs-6" style="width: 20%;line-height: 6.670;">
-          <div class="tile" style="background:#00FF7F">
-            
-  <h4>Plus</h4>
-  <div>50 tips/year + Circle Report + 2 Custom Factors Power Group</div>
-          </div>
-    </div>
-
-  
-  
-
- <div class="col-xs-6" style="width: 20%;line-height: 3.998;">
-          <div class="tile" style="background:#1E90FF">
-            
-  <h4>Pro</h4>
-  <div>Unlimited tips + Circle Score 5 Custom Factors Competency Library Sensitive access*</div>
-
-          </div>
-        </div>
-      </div>
+  <% end %>
  <% end %>
-  
-  
+  </tr>
+
+  </table>
  
+<%end%>

@@ -31,9 +31,12 @@ belongs_to  :friend, :class_name => 'User'
 		c.each do |r|
 		  
 		  @group = Ratingother.where('user_id = ? and friend_id = ?', r[0], current_user ) rescue nil
-		  e << @group
+		  unless @group.empty?
+		   e << @group
+		  end
 		end
-		#@trustworthy = (e.sum(:trustworthy))
-        raise e[2][0].inspect
+
+		@trustworthy = e.inject
+        raise @trustworthy.inspect
 	end
 end
