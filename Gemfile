@@ -7,15 +7,11 @@ gem 'rails', '4.1.0'
 
 
 
-<<<<<<< HEAD
-#gem 'pg'
+
+
+
 
 # gem 'pg'
-=======
-# gem 'pg'
-
->>>>>>> b0ca6e17cd31dcb4915d77e622006a54fed8d211
-
 gem 'sqlite3'
 
 
