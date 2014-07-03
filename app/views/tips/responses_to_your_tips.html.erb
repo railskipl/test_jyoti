@@ -9,3 +9,15 @@
 	<% end %>
 	<% end %>
 	<% end %>
+
+
+<% advice.each do |tip| %>
+<% if tip.user_id == current_user.id    %>
+<%= tip.helpful rescue nil%>
+<% response.each do |response| %>
+	<% if current_user.id == response.user_id %>
+	Response -  <%= response.response_for_tip %></br></br>
+	<% end %>
+<% end %>
+<% end %>
+<% end %>
