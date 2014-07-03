@@ -253,14 +253,6 @@ ActiveRecord::Schema.define(version: 20140702095548) do
     t.datetime "updated_at"
   end
 
-  create_table "responses", force: true do |t|
-    t.string   "response_for_tip"
-    t.string   "tag_tip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "tip_id"
-  end
-
   create_table "roles", force: true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
