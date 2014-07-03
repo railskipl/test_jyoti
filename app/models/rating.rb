@@ -27,16 +27,15 @@ belongs_to  :friend, :class_name => 'User'
 	end
 
 	def self.power_mirrors(c, current_user)
-		e = []
+		@e = []
 		c.each do |r|
 		  
 		  @group = Ratingother.where('user_id = ? and friend_id = ?', r[0], current_user ) rescue nil
 		  unless @group.empty?
-		   e << @group
+		   @e << @group
 		  end
 		end
 
-		@trustworthy = e.inject
-        raise @trustworthy.inspect
+        raise @e.inspect
 	end
 end
