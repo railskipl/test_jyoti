@@ -9,4 +9,6 @@ class Relationship < ActiveRecord::Base
 	has_many :sponsees
 
 	validates_uniqueness_of :email 
+
+	validates_presence_of  :email
 end

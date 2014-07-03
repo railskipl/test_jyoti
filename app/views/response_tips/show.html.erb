@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tip:</strong>
+  <%= @response_tip.tip_id %>
+</p>
+
+<p>
+  <strong>Response for tip:</strong>
+  <%= @response_tip.response_for_tip %>
+</p>
+
+<p>
+  <strong>Tag tip:</strong>
+  <%= @response_tip.tag_tip %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @response_tip.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_response_tip_path(@response_tip) %> |
+<%= link_to 'Back', response_tips_path %>
