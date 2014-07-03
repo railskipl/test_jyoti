@@ -875,9 +875,9 @@ fieldset[disabled] .btn-link:focus {
   border-radius: 4px;
 }
 .btn-xs {
-  padding: 6px 9px;
+  /*padding: 6px 9px;
   font-size: 12px;
-  line-height: 1.083;
+  line-height: 1.083;*/
   border-radius: 3px;
 }
 .btn-tip {
@@ -3773,9 +3773,9 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
 .tile {
   background-color: #eff0f2;
   border-radius: 6px;
-  padding: 14px;
+  padding: 9px;
   position: relative;
-  text-align: center;
+  /*text-align: center;*/
 }
 .tile.tile-hot:before {
   background: url(../images/tile/ribbon.png) 0 0 no-repeat;

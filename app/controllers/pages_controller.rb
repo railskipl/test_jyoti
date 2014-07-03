@@ -23,7 +23,7 @@ respond_to :html, :js
   end
 
 def show
-   @page = Page.find(params[:id])
+   @page = Page.all
 end
 
  def status
