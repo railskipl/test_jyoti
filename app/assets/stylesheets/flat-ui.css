@@ -3775,7 +3775,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   border-radius: 6px;
   padding: 9px;
   position: relative;
-  /*text-align: center;*/
+  text-align: center;
 }
 .tile.tile-hot:before {
   background: url(../images/tile/ribbon.png) 0 0 no-repeat;
