@@ -12,7 +12,11 @@
   <% end %>
 
   <div class="col-xs-4">
-  <%#= f.hidden_field :user_id,:value => current_user.id %>
+  <% unless user_signed_in? %>
+   <% else %>
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+   <% end  %>
+
     <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email ,:placeholder => "Type an email address", :class=>"form-control" %>

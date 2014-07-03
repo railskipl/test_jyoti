@@ -4,6 +4,7 @@
   <div class="row">
         <div class="col-xs-4">
           <a href="#"><img src="/assets/logo.jpg" alt="" border="0" style="margin:10px 0"></a> </div>
+
      <div class="col-xs-8">
       <% unless user_signed_in? %>
     <%= link_to 'Sign in',new_user_session_path,:class=>"btn btn-primary navbar-btn btn-xs", :style=>"float:right; margin-top:40px"%><%end%>
@@ -23,13 +24,19 @@
 
  <% if user_signed_in? %>
     <% if current_user.is_admin == true%>
-     <li> <%= link_to "Pages",  pages_path %> </li>
+     <!-- <li> <%#= link_to "Pages",  pages_path %> </li> -->
       <li> <%= link_to "Organizations",  organizations_path %>  </li>
        <li> <%= link_to "Individuals",  individuals_path %>  </li>
-     <li> <%= link_to "feedbacks",  feedbacks_path %>  </li>
+     <li> <%= link_to "Feedbacks",  feedbacks_path %>  </li>
      <li> <%= link_to "Circle",  circles_path %>  </li>
      <li> <%= link_to "Factor",  factors_path %>  </li>
      <li> <%= link_to "Trial Days" , trial_days_path,'data-no-turbolink' => true %></li> 
+     <li> <%= link_to "Contact_us" , home_contactus_path,'data-no-turbolink' => true %></li>
+     <li> <%= link_to "FAQ" , home_faq_path,'data-no-turbolink' => true %></li>
+     <li> <%= link_to "Terms & Conditions" , home_term_condition_path,'data-no-turbolink' => true %></li>
+
+     <li> <%= link_to "Privacy Policy" , home_privacypolicy_path,'data-no-turbolink' => true %></li>
+
      <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li> 
          
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
@@ -83,8 +90,6 @@
 
   <li><a href="/">Home</a></li> 
   <li> <%= link_to "Organizations", home_organization_path  %>  </li>
-  <li> <%= link_to 'Prelogin Tips',  new_tip_path %> </li> 
-  <li> <%= link_to 'Prelogin Ratings',  new_ratingother_path %>
   <li> <%= link_to "Individuals",  home_individual_path %>  </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
   <li> <%#= link_to "Pre Login Tips",  new_advice_contact_path %>  </li>

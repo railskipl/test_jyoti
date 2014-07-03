@@ -4,8 +4,8 @@
 
 <div>
 <p>	
-<%= @page.title %> 
-<%= @page.body.html_safe %>   
+<%= @page.title rescue nil%> 
+<%= @page.body.html_safe rescue nil%>   
 
 </p>
 </div>

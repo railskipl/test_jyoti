@@ -22,6 +22,28 @@
             }
         }); 
      });
+
+
+
+
+    $(".power_group").click(function(e){
+        $("[generated=true]").remove();
+        $("#relationship").validate({
+            rules: {
+                "relationship_ids[]": {
+                    required: true
+                },
+                
+            },
+            messages: {
+                "relationship_ids[]": {
+                    required: "Please Select Email"
+                },
+
+                
+            }
+        }); 
+     });
    
 
     });

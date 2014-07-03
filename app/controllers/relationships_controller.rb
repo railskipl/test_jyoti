@@ -120,6 +120,7 @@ class RelationshipsController < ApplicationController
       redirect_to :back
      end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
+
   end
 
   

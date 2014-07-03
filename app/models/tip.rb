@@ -8,4 +8,5 @@ class Tip < ActiveRecord::Base
 	belongs_to :user_invitation
 	belongs_to :response_tip
 
+    validates_presence_of :email, :praise, :criticism, :helpful
 end
