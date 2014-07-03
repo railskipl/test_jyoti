@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701111619) do
+ActiveRecord::Schema.define(version: 20140702095548) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -244,6 +244,23 @@ ActiveRecord::Schema.define(version: 20140701111619) do
     t.string   "your_choise_custom_factor"
   end
 
+  create_table "response_tips", force: true do |t|
+    t.integer  "tip_id"
+    t.string   "response_for_tip"
+    t.string   "tag_tip"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "responses", force: true do |t|
+    t.string   "response_for_tip"
+    t.string   "tag_tip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tip_id"
+  end
+
   create_table "roles", force: true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
@@ -308,6 +325,7 @@ ActiveRecord::Schema.define(version: 20140701111619) do
     t.integer  "circle_id"
     t.string   "name"
     t.string   "respond_for_tip"
+    t.string   "response_for_tip"
   end
 
   create_table "trial_days", force: true do |t|

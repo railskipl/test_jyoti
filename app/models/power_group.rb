@@ -4,4 +4,7 @@ class PowerGroup < ActiveRecord::Base
 	belongs_to :circle
 	belongs_to :tip
 	has_many :relationships
+
+
+
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tip_id: 1
+  response_for_tip: MyString
+  tag_tip: MyString
+  user_id: 1
+
+two:
+  tip_id: 1
+  response_for_tip: MyString
+  tag_tip: MyString
+  user_id: 1

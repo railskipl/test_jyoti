@@ -19,21 +19,21 @@
   </div>
   <div class="field">
     <%= f.label :custom_factor,"Primary Circle" %>
-    <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"}%>
+    <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Choose One"}%>
   </div>
 
 
 
 
 
-
+<!-- 
  
   <div class="field">
-   <%= f.label :your_choise_custom_factor, "Custom Factor" %>
-   <%= f.text_field :your_choise_custom_factor %></br>
+   <%#= f.label :your_choise_custom_factor, "Custom Factor" %>
+   <%#= f.text_field :your_choise_custom_factor %></br>
   </div>
   
- 
+  -->
 
 
 
@@ -48,20 +48,20 @@
 
   <div class="field">
     <%= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
-        <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', 'Choose One'], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]) %></br>
+        <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]) %></br>
   
   </div>
 
 
   <div class="field">
     <%= f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
-        <%= f.select :your_influence, options_for_select([['Choose One', 'Choose One'], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %></br>
+        <%= f.select :your_influence, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %></br>
   </div>
 
 
   <div class="field">
     <%= f.label :Their_influence_on_your_future,"Their Influence On Your Future:" %>
-        <%= f.select :influence_on_your, options_for_select([['Choose One', 'Choose One'], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
+        <%= f.select :influence_on_your, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
   </div>
 
   <div class="field">  
