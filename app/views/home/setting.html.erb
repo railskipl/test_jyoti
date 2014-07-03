@@ -66,16 +66,30 @@
  
 
 
-    <a href="<%= new_sponser_path %>">
-  <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#D2691E;padding: 10px; ">            
-     <% if invitation.present? %>
-     <h6><div> <%= link_to "Sponser",new_sponser_path,'data-no-turbolink' => true,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
-     <% else %>
+  <a href="<%= new_sponser_path %>">
 
-     <h6><div> <%= link_to "Sponsee",new_sponsee_path,'data-no-turbolink' => true,:style=>"color:#FFFFFF;font-size:21px;"%></div></h6>
+
+     <% if invitation.present? %>
+     <div class="col-xs-3" style="width: 20%;">
+        <a href="/Sponser/new" style="color:#FFFFFF;font-size:19px;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">           
+
+     <h6>Sponser</h6>
 
         </div>
+      </a>
+  </div>
+     <% else %>
+
+    <div class="col-xs-3" style="width: 20%;">
+        <a href="/sponsees/new" style="color:#FFFFFF;font-size:19px;">
+        <div class="tile" style="background:#D2691E;padding: 10px;">           
+
+     <h6>Sponsee</h6>
+
+        </div>
+      </a>
+  </div>
         <% end %>
   </div>
   <a>
@@ -83,3 +97,4 @@
  </div>
 
    
+ 

@@ -13,7 +13,7 @@ def new
    @c << User.where('email = ?', r.email).select('id')
  end
  
- #@d = Rating.power_mirrors(@c, current_user.id)
+ @d = Rating.power_mirrors(@c, current_user.id)
  @ratingss = Rating.where('user_id = ?', current_user.id) #self image
  @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
  @ratingother = Ratingother.where('friend_id = ?', current_user.id)#all mirrors
