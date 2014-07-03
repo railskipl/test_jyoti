@@ -1,39 +1,3 @@
- <!-- 
- <% if current_user.is_admin == true %>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= plan.user_id %></td>
-        <td><%= plan.name %></td>
-        <td><%= plan.email %></td>
-        <td><%= plan.description %></td>
-        <td><%= link_to 'Show', plan %></td>
-        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
-        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Plan', new_plan_path %>
-<% end %>
-
- -->
-
-
 
 <% if current_user.is_admin == true %>
 <table class="table table-bordered table-striped table-highlight">
@@ -65,42 +29,48 @@
 <% if current_user.is_admin == false %>
 
 <h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
+<table class="table table-bordered table-striped table-highlight">
+  <thead>
+  <tr>
+  <th>Plan Name</th>
+  <th>Price</th>
+  <th>Description</th>
 
-<div class="row row_margin">
- 
-<div class="col-xs-6" style="width: 20%;line-height: 6.650;">
-          <div class="tile" style="background:#808080">
-<h4>Personal</h4>
-
-<div>10tips/year PrivateReport & Score7StdFactors</div>
-
- 
-
-          </div>
-        </div>
+  </tr>
+  </thead>
+  <tbody>
+  <% @plans.each do |plan| %>
+  <% if @subscription.nil? %>
+  <tr>
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
+  <% @subscription = plan.subscriptions.build %>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td></tr>
+ <% else %>
   
-  
-  <div class="col-xs-6" style="width: 20%;line-height: 6.670;">
-          <div class="tile" style="background:#00FF7F">
-            
-  <h4>Plus</h4>
-  <div>50 tips/year + Circle Report + 2 Custom Factors Power Group</div>
-          </div>
-    </div>
+  <tr>
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
+  <% subscription = plan.subscriptions.build %>
+  <% if @subscription.plan_id == plan.id%>
+  <td><a class="button button-small" href="#"> <span>Current Plan</span> </a></td>
+  <% else %>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
+  <% end %>
+  <% end %>
+  </td>
 
-  
-  
 
- <div class="col-xs-6" style="width: 20%;line-height: 3.998;">
-          <div class="tile" style="background:#1E90FF">
-            
-  <h4>Pro</h4>
-  <div>Unlimited tips + Circle Score 5 Custom Factors Competency Library Sensitive access*</div>
+  <% end %>
+ </tr>
+</tbody>
+</table>
 
-          </div>
-        </div>
-      </div>
- <% end %>
-  
-  
- 
+
+<% end %>
+
+
+ <!-- <%= link_to "Back", dashboard_index_path%> -->
+
