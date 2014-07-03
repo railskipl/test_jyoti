@@ -8,8 +8,8 @@ end
 def new
  @rating = Rating.new
  @ratingother = Ratingother.where('friend_id = ?', current_user.id)#all mirrors
- @ratingss = Rating.where('user_id = ?', current_user.id) #self image
- @a = Rating.all_mirrors(@ratingother,current_user.id, @ratingss) #all mirrors
+ @ratingss = Rating.where('user_id = ?', current_user.id) rescue ""#self image
+ @a = Rating.all_mirrors(@ratingother,current_user.id, @ratingss) rescue ""#all mirrors
  #raise @a.inspect
  
 
