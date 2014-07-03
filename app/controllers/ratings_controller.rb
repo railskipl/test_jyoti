@@ -7,14 +7,18 @@ end
 
 def new
  @rating = Rating.new
+ @powergroup = PowerGroup.where('user_id = ?', current_user.id)
+ @c = []
+ @powergroup.each do |r|
+   @c << User.where('email = ?', r.email).select('id')
+ end
+ 
+ #@d = Rating.power_mirrors(@c, current_user.id)
  @ratingss = Rating.where('user_id = ?', current_user.id) #self image
  @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
  @ratingother = Ratingother.where('friend_id = ?', current_user.id)#all mirrors
  @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors
 
- 
- #raise @ratingss[0].inspect
- 
 end
 
 def create
