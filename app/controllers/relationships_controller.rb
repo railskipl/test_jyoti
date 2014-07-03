@@ -105,25 +105,21 @@ class RelationshipsController < ApplicationController
   def add_power_group
     relationship_ids = params["relationship_ids"]
     @relationships ||= []
-    
+     @a = PowerGroup.where('user_id = ?', current_user.id)
+
+     if @a.size <= 8 
+      relationship_ids.to_a.each do |r|
+        @relationships << Relationship.find(r)
+      end 
+      @relationships.each do |r|
+        pg = PowerGroup.new( :user_id => current_user.id, :email => r.email )
+        pg.save
+      end
+     else
+      flash[:notice] = "Already added 8 users to your group."
+      redirect_to :back
+     end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-
-    relationship_ids.to_a.each do |r|
-       @relationships << Relationship.find(r)
-    end 
-
-    @relationships.each do |r|
-      powergroup = PowerGroup.create( :user_id => current_user.id, :email => r.email )
-      powergroup.save!
-
-      # if params[:email].present?
-      # redirect_to :back, notice: "Please Attach file"   
-      # end
-      
-      Mailer.power_group_invitation(powergroup,@signup_url).deliver
-    end
-
-     
 
   end
 
