@@ -5,5 +5,8 @@ class PowerGroup < ActiveRecord::Base
 	belongs_to :tip
 	has_many :relationships
 
-	# validates_uniqueness_of :email
+     validates_uniqueness_of :email
+   
+
+
 end

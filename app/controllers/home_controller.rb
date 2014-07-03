@@ -35,7 +35,6 @@ end
 
 def plan
     @plans = Plan.all
-
 end
 
 def contactus

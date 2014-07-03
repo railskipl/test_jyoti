@@ -115,7 +115,15 @@ class RelationshipsController < ApplicationController
     @relationships.each do |r|
       powergroup = PowerGroup.create( :user_id => current_user.id, :email => r.email )
       powergroup.save!
+
+      # if params[:email].present?
+      # redirect_to :back, notice: "Please Attach file"   
+      # end
+      
+      Mailer.power_group_invitation(powergroup,@signup_url).deliver
     end
+
+     
 
   end
 

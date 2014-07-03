@@ -42,4 +42,13 @@ class Mailer < ActionMailer::Base
     signup_url: 'signup_url'
   end
 
+
+  def power_group_invitation(powergroup, signup_url)
+    @powergroup = powergroup
+    # @random_password = random_password
+    mail to:  powergroup.email,
+    subject: 'Power Group',
+    signup_url: 'signup_url'
+  end
+
 end
