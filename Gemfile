@@ -7,10 +7,10 @@ gem 'rails', '4.1.0'
 
 
 
-gem 'pg'
+# gem 'pg'
 
 
-#gem 'sqlite3'
+gem 'sqlite3'
 
 
 # gem 'mysql'
