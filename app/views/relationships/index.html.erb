@@ -1,5 +1,6 @@
 
-<%= form_tag add_power_group_relationships_path, :method => :post do %>
+<%= form_tag add_power_group_relationships_path,:html =>{:id =>"power_group"}, :method => :post do %> 
+
 
 <table class="table table-bordered">
   <thead>
@@ -31,23 +32,20 @@
 
         
         <!-- <td><%= link_to 'Add To Power Group', new_influence_path, :class => 'btn btn-small' %></td> -->
-         
-      
-      </tr>
-
-      
+       
+      </tr>      
     <% end %>
-   <%#= submit_tag "Add To Power Group" %>
+     
 
-   
+
    <%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></p>
+
   </tbody>
 </table>
 <% end %>
+  <%= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
 
-<br>
 
-<%= link_to 'New Relationship', new_relationship_path %>
 
 
 

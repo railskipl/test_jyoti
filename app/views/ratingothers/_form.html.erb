@@ -12,11 +12,12 @@
     </div>
   <% end %>
 
-
-
    <%= f.label :email %><br>
-
-   <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+   <%if params[:email] %>
+     <%= f.text_field :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
+   <%else%>
+     <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+   <%end%>
 
 
    <%= f.label :trustworthy %><br>

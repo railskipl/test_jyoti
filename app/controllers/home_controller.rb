@@ -35,7 +35,6 @@ end
 
 def plan
     @plans = Plan.all
-
 end
 
 def contactus
@@ -50,6 +49,7 @@ def mspoint
 end
 
 def help
+    
 end
 
 
