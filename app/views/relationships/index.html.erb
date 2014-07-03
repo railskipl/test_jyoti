@@ -1,7 +1,7 @@
 
 <%= form_tag add_power_group_relationships_path, :method => :post do %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
     <th> </th>
@@ -40,7 +40,7 @@
    <%#= submit_tag "Add To Power Group" %>
 
    
-   <%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %>
+   <%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></p>
   </tbody>
 </table>
 <% end %>

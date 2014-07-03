@@ -54,6 +54,7 @@ end
 
 
 def faq
+    
 end
 
 def term_condition

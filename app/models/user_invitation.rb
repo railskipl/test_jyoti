@@ -7,5 +7,5 @@ class UserInvitation < ActiveRecord::Base
 	has_many :relationships
 	belongs_to :user
 	has_many :tips
-
+   
 end
