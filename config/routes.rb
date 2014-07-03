@@ -147,6 +147,7 @@ Rails.application.routes.draw do
     get '/home/faq' => 'home#faq'
     get '/home/privacypolicy' => 'home#privacypolicy'
     get '/home/term_condition' => 'home#term_condition'
+    get '/home/tip_rating' => 'home#tip_rating'
     
     resource :contactus
    get '/home/contactus' => 'home#contactus'
