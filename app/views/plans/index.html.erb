@@ -121,3 +121,92 @@
   </table>
  
 <%end%>
+
+
+
+
+  
+  <link rel="stylesheet" type="text/css" href="/assets/theme.css">
+
+</head>
+<body id="pricing">
+  <header class="navbar navbar-inverse normal" role="banner">
+  
+  </header>
+
+  <div id="first-option">
+    <div class="container">
+      <div class="row header">
+        <div class="col-md-12">
+          <h3>Different plans for everyone</h3>
+          <p>Choose the pricing that fits your business needs</p>
+        </div>
+      </div>
+     <% @plans.each do |plan| %>
+          <% if @subscription.nil? %>
+      <div class="row charts">
+        <div class="col-md-4">
+          <div class="chart first">
+       
+            <div class="plan-name"><%= plan.name %></div>
+            <div class="quantity">
+              <span class="dollar">$</span>
+              <span class="price"><%= plan.price %></span>
+              <span class="period">/month</span>
+            </div>
+            <div class="specs">
+              <div class="spec">
+                <span class="variable"></span>
+                <%= plan.description %>
+              </div>
+             
+            </div>
+            <% @subscription = plan.subscriptions.build %>
+            <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id), :class=>"btn-signup button-clear" %> 
+          </div>
+        </div>
+      </div>
+   <%else%>
+   <div class="row charts">
+        <div class="col-md-4">
+          <div class="chart first">
+       
+            <div class="plan-name"><%= plan.name %></div>
+            <div class="quantity">
+              <span class="dollar">$</span>
+              <span class="price"><%= plan.price %></span>
+              <span class="period">/month</span>
+            </div>
+            <div class="specs">
+              <div class="spec">
+                <span class="variable"></span>
+                <%= plan.description %>
+              </div>
+             
+            </div>
+            <% @subscription = plan.subscriptions.build %>
+            <% if @subscription.plan_id == plan.id%>
+            <a class="button button-small" href="#"> <span>Current Plan</span> </a>
+            <%else%>
+            <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id), :class=>"btn-signup button-clear" %> 
+        <% end %>
+            </div>
+        </div>
+       
+      </div>
+       <%end%>
+            <%end%>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
