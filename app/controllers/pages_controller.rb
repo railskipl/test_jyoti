@@ -51,7 +51,23 @@ end
     @page.destroy
     redirect_to pages_path
   end
-  
+
+
+  def privacypolicy
+     @page = Page.where( 'title like ?', '%Privacy Policy%' ) 
+  end
+
+  def faq
+     @page = Page.where( 'title like ?', '%FAQ%' ) 
+  end
+
+  def term_condition
+     @page = Page.where( 'title like ?', '%Terms & Condition%' ) 
+  end
+
+  def contactus
+     @page = Page.where( 'title like ?', '%Contact Us%' ) 
+  end 
 
 
 

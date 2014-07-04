@@ -5,6 +5,7 @@ class AdviceContactsController < ApplicationController
   # GET /advice_contacts.json
   def index
     @advice_contacts = AdviceContact.all
+    @tip = Tip.all
   end
 
   # GET /advice_contacts/1
@@ -30,8 +31,10 @@ class AdviceContactsController < ApplicationController
 
     respond_to do |format|
       if @advice_contact.save
+        @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
+        @tip.save!
         Mailer.prelogin_tips(advice_contact).deliver
-        format.html { redirect_to new_advice_contact_path, notice: 'Data send successfully.' }
+        format.html { redirect_to new_ratingother_path(:email => @advice_contact.email), notice: 'Data send successfully.' }
         format.json { render :show, status: :created, location: @advice_contact }
       else
         format.html { render :new }
