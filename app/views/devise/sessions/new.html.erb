@@ -21,7 +21,7 @@
  <%= f.hidden_field :invitation_token %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true ,:class=>"form-control" %></div>
+  <%= f.text_area :email, autofocus: true ,:class=>"form-control", :maxlength => 500 %></div>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off",:class=>"form-control"  %></div>
@@ -33,7 +33,10 @@
   <div><%= f.submit "Sign in",:class=>"btn btn-primary"  %><br/>
 
   	<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+
+
   <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+
 <% end -%>
   </div>
 

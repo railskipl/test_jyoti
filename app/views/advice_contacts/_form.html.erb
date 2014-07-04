@@ -19,7 +19,7 @@
 
     <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email ,:placeholder => "Type an email address", :class=>"form-control" %>
+    <%= f.text_area :email ,:placeholder => "Type an email address", :class=>"form-control", :maxlength => 500 %>
     </div>
   <div class="field">
     <%= f.label :praise %><br>
@@ -30,11 +30,12 @@
     <%= f.text_area :criticism ,:placeholder => "Type in your criticism here",:class=>"form-control" , :style => "height:80px !important;" %>
   </div>
   <div class="field">
-    <%= f.label :helpful_tips %><br>
+    <%= f.label :General %><br>
     <%= f.text_area :helpful_tips ,:placeholder => "Type in your helpful tips here",:class=>"form-control" , :style => "height:80px !important;" %>
   </div>
   <div class="actions">
     <%= f.submit "Submit Comments",:class => "btn btn-primary" %>
+    
   </div>
    </div>
 <% end %>

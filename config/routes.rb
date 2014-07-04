@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get :cal
       post :add_power_group
       get :power_group
+      get :feedback_relationship
+      post :add_feedback
     }
   end
 
@@ -57,6 +59,7 @@ Rails.application.routes.draw do
     collection {
       get :invite
       get :select_contacts
+      post :select_contacts
       get :import_csv
       post :complete
       get :select_contact_invitation
@@ -114,7 +117,12 @@ Rails.application.routes.draw do
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
 
-  resources :pages
+  resources :pages do
+    collection {
+      get :faq
+    }
+  end
+
   resources :plans 
   resources :subscriptions
   get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
@@ -139,6 +147,8 @@ Rails.application.routes.draw do
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
+   get '/home/learn_more' => 'home#learn_more'
+   get '/home/home' => 'home#home'
    get '/home/plan' => 'home#plan'
    get '/home/setting' => 'home#setting'
     get '/home/history' => 'home#history'
