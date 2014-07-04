@@ -11,11 +11,12 @@ gem 'rails', '4.1.0'
 
 
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 
 
 # gem 'mysql'
+gem 'koala'
 
 gem 'devise'
 gem 'execjs'
@@ -25,7 +26,6 @@ gem 'omniauth'
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "fb_graph"
-gem  'koala'
 gem 'oauth2'
 gem "omnicontacts"
 gem "paperclip"
