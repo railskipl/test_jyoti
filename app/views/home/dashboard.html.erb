@@ -1,90 +1,15 @@
- <h4>Welcome to user dashboard<h4>
-<!-- 
-<% if !@contacts.nil?%>
-
- <% @contacts.each do |c|%>
-  <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%> 
-  </ul> 
-  <% end %>
+ <h4>Know what matters.<h4>
+<div style="color:#D02;font-size:19px;">Succeed at Anything through Awareness</div><br>
+<%= javascript_include_tag "jquery-1.9.1.js"%>
  
- <% end %>
 
- 
-   <% if !@contacts.nil?%>
-
- <% @contacts.each do |c|%>
-  <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%> 
-  </ul> 
-  <% end %>
- 
- <% end %>
-
-
-<%= form_for Invitation.new do |f| %>
-
-    <div class="col-xs-4">
-    <%= f.label :recipient_email, "Email:" %>
-    <%= f.text_field :recipient_email,:class=>"form-control" %>
-    <%= f.submit 'Invite',:class=>"btn btn-primary" %></div>
- 
-<% end %>
-<<<<<<< HEAD
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- <h4> My Mirror </h4>
 
  <div class="row row_margin">
-  <a href="<%= new_rating_path %>">
- <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#1E90FF;padding: 10px;">           
-
-    <h6><div> <span style="color:#FFFFFF;font-size:21px;"> Ratings </span></div></h6>
-    </div>
-  </div>
-  <a>
-    
-    
-  <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background: #008B8B;padding: 10px;">            
-
-     <h6 style="margin-bottom: 2px;margin-top: 2px;"><a href="#" style="color:#FFFFFF;font-size:19px;">Reputation Report  and Score</a></h6>
-
-        </div> 
-  </div>
-
-
-
-   <a href="<%= new_ratingother_path %>">
-  <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#D2691E;padding: 10px;">           
-
-   <h6><div><span style="color:#FFFFFF;font-size:21px;"> Give Feedback </span></div></h6>
-
-
-        </div>
-  </div>  
-  <a>  
+   <div class="col-xs-6">
+   <div class="tile" style="background:#D2691E">
+   <h6> <div><%= link_to "Sign up to see anonymous tips already in your FREE Report and Score", new_registration_path(resource_name), :style=>"color:#FFFFFF;" %></div></h6>
+   </div>
+</div> 
  
  </div>
  
@@ -92,48 +17,33 @@
 
  <div class="row row_margin">
 
-   <a href="<%= relationships_path %>">
- <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#D2691E;padding: 10px;">    
-
-  <h6><div> <span style="color:#FFFFFF;font-size:21px;"> Power Groups </span></div></h6> 
-    </div>
-  </div>
-  <a>
-    
-    
-     <a href="<%= new_tip_path %>">
-  <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#1E90FF;padding: 10px;"> 
-
-    <h6><div> <span style="color:#FFFFFF;font-size:21px;"> Tips </span></div></h6>
-
-        </div>
-  </div>
-  <a>
-
-
+      
 
   <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#008B8B;padding: 10px;">           
-
-    <h6><a href="#" style="color:#FFFFFF; font-size:19px;">Participation stats </a></h6>
+        
+        <div class="tile" style="background:#008B8B;padding: 22px;">           
+  <h6><div><%= link_to "I want to become more successful",  home_individual_path,:style=>"color:#FFFFFF;" %></div></h6>
+    
 
         </div>
+      </a>   
+        </div>
+  
+
+  <div class="col-xs-3" style="width: 20%;">
+        
+        <div class="tile" style="background:#4AC ;padding: 9px;">           
+          <h6> <div><%= link_to "I want my organization or team to become more successful", home_organization_path,:style=>"color:#FFFFFF;" %></div></h6>
+    
+
+        </div>
+      </a>    
+        
   </div>    
  
+ </div>
 
+
+   
+</div>
     
-
-     <a href="<%= invite_paste_users_path %>">
-  <div class="col-xs-3" style="width: 20%;">
-        <div class="tile" style="background:#D2691E;padding: 10px; ">            
-
-     <h6 style="margin-bottom: 2px;margin-top: 2px;"><div> <span style="color:#FFFFFF;font-size:21px;"> Invite Others or Get Feedback </span></div></h6>
-
-        </div>
-  </div>
-  <a>
-
-
-

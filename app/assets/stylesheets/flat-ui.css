@@ -201,7 +201,7 @@ you can use the generic selector below, but it's slower:
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 1.72222;
+  /*line-height: 1.72222;*/
   color: #34495e;
   background-color: #ffffff;
 }
@@ -1173,7 +1173,7 @@ label {
   font-family: "Lato", Helvetica, Arial, sans-serif!important;
   font-size: 15px!important;
   line-height: 1.467!important;
-  padding: 8px 12px!important;
+  padding: 40px 86px !important;
   -webkit-appearance: none;
   border-radius: 6px!important;
   -webkit-box-shadow: none!important;
@@ -3788,8 +3788,8 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   width: 82px;
 }
 .tile p {
-  font-size: 15px;
-  margin-bottom: 33px;
+  /*font-size: 15px;
+  margin-bottom: 33px;*/
 }
 .tile-image {
   height: 100px;

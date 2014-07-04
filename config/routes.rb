@@ -139,6 +139,8 @@ Rails.application.routes.draw do
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
+   get '/home/learn_more' => 'home#learn_more'
+   get '/home/home' => 'home#home'
    get '/home/plan' => 'home#plan'
    get '/home/setting' => 'home#setting'
     get '/home/history' => 'home#history'
@@ -147,6 +149,7 @@ Rails.application.routes.draw do
     get '/home/faq' => 'home#faq'
     get '/home/privacypolicy' => 'home#privacypolicy'
     get '/home/term_condition' => 'home#term_condition'
+    get '/home/tip_rating' => 'home#tip_rating'
     
     resource :contactus
    get '/home/contactus' => 'home#contactus'

@@ -51,17 +51,29 @@ class SubscriptionsController < ApplicationController
 
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @subscription.update(subscription_params)
+  #       format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @subscription }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @subscription.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def update
-    respond_to do |format|
-      if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subscription }
-      else
-        format.html { render :edit }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
+    @subscription = current_user.subscription
+     if @subscription.update_stripe
+      redirect_to edit_subscription_path, :success => 'Updated Card.'
+    else
+      flash.alert = 'Unable to update card.'
+      render :edit
     end
   end
+
+
 
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json

@@ -1,39 +1,3 @@
- <!-- 
- <% if current_user.is_admin == true %>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= plan.user_id %></td>
-        <td><%= plan.name %></td>
-        <td><%= plan.email %></td>
-        <td><%= plan.description %></td>
-        <td><%= link_to 'Show', plan %></td>
-        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
-        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Plan', new_plan_path %>
-<% end %>
-
- -->
-
-
 
 <% if current_user.is_admin == true %>
 <table class="table table-bordered table-striped table-highlight">
@@ -61,152 +25,119 @@
 <%= link_to 'New Plan', new_plan_path %>
 <% end %>
 
-
+<!-- 
 <% if current_user.is_admin == false %>
 
 <h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
-<table style = "width:100%;">
+<table class="table table-bordered table-striped table-highlight">
+
+  <tbody>
   <% @plans.each do |plan| %>
   <% if @subscription.nil? %>
-
   <tr>
-  <td align="left" valign="top" style="width:33.33%">
-  <table class="table table-hover table-bordered table-responsive table-condensed">
-  <tr>
-   <th><h6 style="text-align:center; margin-top:10px"><%= plan.name %></h6></th>
- </tr>
-  <tr>
-  <td style="height:190px;"><%= plan.price %></td>
- </tr>
- <tr>
-   <td style="height:171px"><%= plan.description %></td>
- </tr>
- <tr>
-   <td style="padding-bottom: 39px; padding-top: 29px;text-align:center">
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
   <% @subscription = plan.subscriptions.build %>
- <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td>
-</tr>
- </table>
-
-  </td>
+  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %></td></tr>
  <% else %>
-  <td align="left" valign="top" style="width:33.33%"><table class="table table-hover table-bordered table-responsive table-condensed">
+  
   <tr>
-  <th> <h6 style="text-align:center; margin-top:10px"><%= plan.name %></h6></th>
-</tr>
-<tr>
-<td style="height:190px"><%= plan.price %></td>
-</tr>
-<tr>
-   <td style="height:171px"><%= plan.description %></td>
-</tr>
-<tr>
-   
+  <td><%= plan.name %></td>
+  <td><%= plan.price %></td>
+  <td><%= plan.description %></td>
   <% subscription = plan.subscriptions.build %>
   <% if @subscription.plan_id == plan.id%>
-
   <td><a class="button button-small" href="#"> <span>Current Plan</span> </a></td>
   <% else %>
   <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
-    <% end %>
-     </td>
-  </tr>
-  </table>
+  <% end %>
+  <% end %>
   </td>
 
+
   <% end %>
- <% end %>
-  </tr>
-
-  </table>
- 
-<%end%>
+ </tr>
+</tbody>
+</table>
 
 
+<% end %> -->
 
 
-  
-  <link rel="stylesheet" type="text/css" href="/assets/theme.css">
 
+<% if current_user.is_admin == false %>
+
+  <title>Plans - CodePen</title>
+<%= stylesheet_link_tag "style.css"%>
 </head>
-<body id="pricing">
-  <header class="navbar navbar-inverse normal" role="banner">
+
+<body>
+<h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
+  <section class="layer plans">
+
+  <section>
+  <% @plans.each do |plan| %>
+  <% if @subscription.nil? %>
+
+    <section class="third lift plan-tier" onclick="location.href='#';">
+
+      <h4><%= plan.name %></h4>
+      <h5><sup class="superscript">$</sup><span class="plan-price"><%= plan.price %></span><sub> /mo</sub></h5>
+   
+
+      <ul>
+      <li><%= plan.description %></li>
+     
+      </ul>
+      <% @subscription = plan.subscriptions.build %>
+      <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
+      </section>
+
+      <% elsif Plan.find_by_name("Personal") and (@subscription.plan_id == plan.id) %>
+
+    <section class="third lift plan-tier" onclick="location.href='#';">
   
-  </header>
+      <h4><%= plan.name %></h4>
+      <h5><span class="plan-price">Free</span></h5>
 
-  <div id="first-option">
-    <div class="container">
-      <div class="row header">
-        <div class="col-md-12">
-          <h3>Different plans for everyone</h3>
-          <p>Choose the pricing that fits your business needs</p>
-        </div>
-      </div>
-     <% @plans.each do |plan| %>
-          <% if @subscription.nil? %>
-      <div class="row charts">
-        <div class="col-md-4">
-          <div class="chart first">
-       
-            <div class="plan-name"><%= plan.name %></div>
-            <div class="quantity">
-              <span class="dollar">$</span>
-              <span class="price"><%= plan.price %></span>
-              <span class="period">/month</span>
-            </div>
-            <div class="specs">
-              <div class="spec">
-                <span class="variable"></span>
-                <%= plan.description %>
-              </div>
-             
-            </div>
-            <% @subscription = plan.subscriptions.build %>
-            <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id), :class=>"btn-signup button-clear" %> 
-          </div>
-        </div>
-      </div>
-   <%else%>
-   <div class="row charts">
-        <div class="col-md-4">
-          <div class="chart first">
-       
-            <div class="plan-name"><%= plan.name %></div>
-            <div class="quantity">
-              <span class="dollar">$</span>
-              <span class="price"><%= plan.price %></span>
-              <span class="period">/month</span>
-            </div>
-            <div class="specs">
-              <div class="spec">
-                <span class="variable"></span>
-                <%= plan.description %>
-              </div>
-             
-            </div>
-            <% @subscription = plan.subscriptions.build %>
-            <% if @subscription.plan_id == plan.id%>
-            <a class="button button-small" href="#"> <span>Current Plan</span> </a>
-            <%else%>
-            <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id), :class=>"btn-signup button-clear" %> 
+      <ul>
+      <li> <%= plan.description %></li>
+     
+      </ul>
+      <% subscription = plan.subscriptions.build %>
+        <% if @subscription.plan_id == plan.id%>
+        <div class="tile" style="background:#FFFFFF;padding: 23px;" ><span>Current Plan</span> </div>
+        <% else %>
+        <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
         <% end %>
-            </div>
-        </div>
-       
-      </div>
-       <%end%>
-            <%end%>
-    </div>
-  </div>
+         
+    </section>
+
+ <% else %>
 
 
 
+    <section class="third lift plan-tier" onclick="location.href='#';">
+  
+      <h4><%= plan.name %></h4>
+      <h5><sup class="superscript">$</sup><span class="plan-price"><%= plan.price %></span><sub> /mo</sub></h5>
 
-
-
-
-
-
-
-
-
+      <ul>
+      <li> <%= plan.description %></li>
+     
+      </ul>
+      <% subscription = plan.subscriptions.build %>
+        <% if @subscription.plan_id == plan.id%>
+        <div class="tile" style="background:#FFFFFF;padding: 23px;" ><span>Current Plan</span> </div>
+        <% else %>
+        <%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: @subscription.plan_id) %>
+        <% end %>
+         
+    </section>
+   
+    <% end %>
+     <% end %>
+  </section>
+</section>
+  <%end%>
