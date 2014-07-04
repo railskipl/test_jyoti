@@ -17,18 +17,18 @@ end
 def learn_more
     
 end
-def dashboards
-    @contacts = request.env['omnicontacts.contacts']
-    @plans = Plan.all
-    @trial_days = TrialDay.first
-    # @user = User.find_by_id(current_user)
-    @plan_expiry = plan_expiry
-    @con ||= []
-    if !@contacts.nil?
-	    @contacts.each do |contact|
-	       @con << Contact.where(email: contact[:email],user_id: current_user.id ).first_or_create
-	    end
-	  end
+def dashboard
+   #  @contacts = request.env['omnicontacts.contacts']
+   #  @plans = Plan.all
+   #  @trial_days = TrialDay.first
+   #  # @user = User.find_by_id(current_user)
+   #  @plan_expiry = plan_expiry
+   #  @con ||= []
+   #  if !@contacts.nil?
+	  #   @contacts.each do |contact|
+	  #      @con << Contact.where(email: contact[:email],user_id: current_user.id ).first_or_create
+	  #   end
+	  # end
     respond_to do |format|
       format.html 
     end
