@@ -138,8 +138,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   
-  get "home/dashboard"
-  root :to => 'home#dashboard'
+  get "home/dashboards"
+  root :to => 'home#dashboards'
 
   # get "paste_users/my_mirror"
   # root :to => 'paste_users#my_mirror'
