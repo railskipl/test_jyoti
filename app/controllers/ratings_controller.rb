@@ -47,13 +47,19 @@ def add_array(a,b)
 end
 
 def create
- @rating = Rating.new(params[:rating])
- #raise @rating.inspect
-    if @rating.save
+ @q = Rating.where('user_id = ?', current_user.id)
+ if @q.empty?
+   @rating = Rating.new(params[:rating])
+   if @rating.save
      redirect_to :back, notice: "Users has been rated."
     else
       render 'new'
     end
+ else
+   @ratings = Rating.find(@q[0].id)
+   @rating = @ratings.update_attributes(params[:rating])
+   redirect_to :back, notice: "Users has been rated."
+ end
 end
 
 private
