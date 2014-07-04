@@ -147,6 +147,8 @@ Rails.application.routes.draw do
 
    get '/home/organization' => 'home#organization'
    get '/home/individual' => 'home#individual'
+   get '/home/learn_more' => 'home#learn_more'
+   get '/home/home' => 'home#home'
    get '/home/plan' => 'home#plan'
    get '/home/setting' => 'home#setting'
     get '/home/history' => 'home#history'

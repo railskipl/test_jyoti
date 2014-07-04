@@ -86,6 +86,14 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     user
   end
 
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(access_token)
+    block_given? ? yield(@facebook) : @facebook
+   rescue Koala::Facebook::APIError => e
+    logger.info e.to_s
+    nil
+  end
+
 
   def invitation_token
     invitation.token if invitation
