@@ -6,7 +6,9 @@ def index
 end
 
 def new
+ # @q = Rating.where('user_id = ?', current_user.id)
  @rating = Rating.new
+
  @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
  @c = []
  @powergroup.each do |r|
