@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus,:help,:faq,:term_condition,:privacypolicy,:tip_rating,:dashboard,:learn_more]
+ before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus,:help,:faq,:term_condition,:privacypolicy,:tip_rating,:dashboards,:learn_more]
 
 def index
   
@@ -17,7 +17,7 @@ end
 def learn_more
     
 end
-def dashboard
+def dashboards
     @contacts = request.env['omnicontacts.contacts']
     @plans = Plan.all
     @trial_days = TrialDay.first
