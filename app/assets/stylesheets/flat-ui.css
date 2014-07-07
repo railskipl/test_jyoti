@@ -604,10 +604,161 @@ fieldset[disabled] .btn-default.active {
   background-color: #bdc3c7;
   border-color: #bdc3c7;
 }
+
+.btn-power {
+    background-color: #d35400;
+    color: #ffffff;
+}
+.btn-power:hover,
+.btn-power:focus,
+.btn-power:active,
+.btn-power.active,
+.open .dropdown-toggle.btn-power {
+  color: #ffffff;
+  background-color: #e67e22;
+  border-color: #e67e22;
+}
+.btn-power:active,
+.btn-power.active,
+.open .dropdown-toggle.btn-power {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-power.disabled,
+.btn-power[disabled],
+fieldset[disabled] .btn-power,
+.btn-power.disabled:hover,
+.btn-power[disabled]:hover,
+fieldset[disabled] .btn-power:hover,
+.btn-power.disabled:focus,
+.btn-power[disabled]:focus,
+fieldset[disabled] .btn-power:focus,
+.btn-power.disabled:active,
+.btn-power[disabled]:active,
+fieldset[disabled] .btn-power:active,
+.btn-power.disabled.active,
+.btn-power[disabled].active,
+fieldset[disabled] .btn-power.active {
+  background-color: #d35400;
+  border-color: #d35400;
+}
+.btn-unheapful {
+    background-color: #7f8c8d;
+    color: #ffffff;
+}
+.btn-unheapful:hover,
+.btn-unheapful:focus,
+.btn-unheapful:active,
+.btn-unheapful.active,
+.open .dropdown-toggle.btn-unheapful {
+  color: #ffffff;
+  background-color: #95a5a6;
+  border-color: #95a5a6;
+}
+.btn-unheapful:active,
+.btn-unheapful.active,
+.open .dropdown-toggle.btn-unheapful {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-unheapful.disabled,
+.btn-unheapful[disabled],
+fieldset[disabled] .btn-unheapful,
+.btn-unheapful.disabled:hover,
+.btn-unheapful[disabled]:hover,
+fieldset[disabled] .btn-unheapful:hover,
+.btn-unheapful.disabled:focus,
+.btn-unheapful[disabled]:focus,
+fieldset[disabled] .btn-unheapful:focus,
+.btn-unheapful.disabled:active,
+.btn-unheapful[disabled]:active,
+fieldset[disabled] .btn-unheapful:active,
+.btn-unheapful.disabled.active,
+.btn-unheapful[disabled].active,
+fieldset[disabled] .btn-unheapful.active {
+  background-color: #7f8c8d;
+  border-color: #7f8c8d;
+}
+.btn-rejected {
+    background-color: #B49 ;
+    color: #ffffff;
+}
+.btn-rejected:hover,
+.btn-rejected:focus,
+.btn-rejected:active,
+.btn-rejected.active,
+.open .dropdown-toggle.btn-rejected {
+  color: #ffffff;
+  background-color: #B7B;
+  border-color: #B7B;
+}
+.btn-rejected:active,
+.btn-rejected.active,
+.open .dropdown-toggle.btn-rejected {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-rejected.disabled,
+.btn-rejected[disabled],
+fieldset[disabled] .btn-rejected,
+.btn-rejected.disabled:hover,
+.btn-rejected[disabled]:hover,
+fieldset[disabled] .btn-rejected:hover,
+.btn-rejected.disabled:focus,
+.btn-rejected[disabled]:focus,
+fieldset[disabled] .btn-rejected:focus,
+.btn-rejected.disabled:active,
+.btn-rejected[disabled]:active,
+fieldset[disabled] .btn-rejected:active,
+.btn-rejected.disabled.active,
+.btn-rejected[disabled].active,
+fieldset[disabled] .btn-rejected.active {
+  background-color: #B49 ;
+  border-color: #B49;
+}
+.btn-invite {
+    background-color: #27ae60;
+    color: #ffffff;
+}
+.btn-invite:hover,
+.btn-invite:focus,
+.btn-invite:active,
+.btn-invite.active,
+.open .dropdown-toggle.btn-invite {
+  color: #ffffff;
+  background-color:#2ecc71;
+  border-color:#2ecc71;
+}
+.btn-invite:active,
+.btn-invite.active,
+.open .dropdown-toggle.btn-invite {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-invite.disabled,
+.btn-invite[disabled],
+fieldset[disabled] .btn-invite,
+.btn-invite.disabled:hover,
+.btn-invite[disabled]:hover,
+fieldset[disabled] .btn-invite:hover,
+.btn-invite.disabled:focus,
+.btn-invite[disabled]:focus,
+fieldset[disabled] .btn-invite:focus,
+.btn-invite.disabled:active,
+.btn-invite[disabled]:active,
+fieldset[disabled] .btn-invite:active,
+.btn-invite.disabled.active,
+.btn-invite[disabled].active,
+fieldset[disabled] .btn-invite.active {
+  background-color:#27ae60;
+  border-color: #27ae60;
+}
 .btn-primary {
   color: #ffffff;
   background-color: #1abc9c;
 }
+
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -860,6 +1011,12 @@ fieldset[disabled] .btn-link:focus {
   padding: 13px 20px;
   font-size: 22px;
   line-height: 1.227;
+  border-radius: 6px;
+}
+.btn-lgn {
+
+  font-size: 17px;
+  line-height: 1.471;
   border-radius: 6px;
 }
 .btn-lg {

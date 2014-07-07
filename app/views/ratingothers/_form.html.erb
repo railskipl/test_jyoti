@@ -1,5 +1,9 @@
 <%= javascript_include_tag "progress"%>
 
+
+
+
+
  <%= form_for(@ratingother) do |f| %>
   <% if @ratingother.errors.any? %>
     <div id="error_explanation">
@@ -12,11 +16,16 @@
     </div>
   <% end %>
 
+
+
    <%= f.label :email %><br>
+    <!-- <label for="male">(Select email from dropdown)</label></br> -->
    <%if params[:email] %>
-     <%= f.text_field :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
-   <%else%>
-     <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+     <%= f.text_area :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
+   <%else%>   
+   <%#= f.collection_select :email, Contact.where("user_id = ?", current_user.id).all, :email, :email%></br>
+    <!-- <label for="male">(Type email here)</label></br> -->
+   <%= f.text_area :email, :class=>"form-control",:style=>"width:300px;" %></br>
    <%end%>
 
 

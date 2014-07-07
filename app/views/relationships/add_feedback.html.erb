@@ -1,6 +1,5 @@
-Your Power Group 
 
- <%= form_tag add_power_group_relationships_path, :method => :post do %> 
+ <%= form_tag add_feedback_relationships_path, :method => :post do %> 
   <table class="table table-bordered">
     <tr>
       <th>Email</th> 
@@ -10,13 +9,13 @@ Your Power Group
     <tr>
        <td><%= relationship.email %> </td>
        
-       <!-- <td><%#= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td> -->
+       <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td> 
     </tr>
   <% end %>
     
   </table>
 
-<%= link_to "submit", my_mirror_paste_users_path,:class => "btn btn-primary" %>
+<%#= link_to "submit", my_mirror_paste_users_path,:class => "btn btn-primary" %>
  <%#= submit_tag "submit" ,:class => "btn btn-primary"%>
  
 <% end %>

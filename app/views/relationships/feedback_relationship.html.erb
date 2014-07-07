@@ -1,5 +1,5 @@
-<%= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
-<%= form_tag add_power_group_relationships_path,:html =>{:id =>"power_group"}, :method => :post do %> 
+
+<%= form_tag add_feedback_relationships_path,:html =>{:id =>"relationship"}, :method => :post do %> 
 
 
 <table class="table table-bordered">
@@ -24,22 +24,23 @@
         <td><%= relationship.how_long_you_know_each_other_avg %></td>
         <td><%= relationship.well_known_user_avg %></td>
         <td><%= relationship.influence_avg %></td>
-        
-        <td><%= link_to 'Show', relationship %></td>
-        <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
-        <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        <!-- <td><%#= submit_tag "Select Email",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></td> -->
+        <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td>
 
 
         
        
       </tr>      
-    <% end %>   
+    <% end %>
+     
+
+
+   <!-- <%#= submit_tag "Select Email",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></p> -->
 
   </tbody>
 </table>
-<%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></p>
 <% end %>
-  
+  <%= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
 
 
 

@@ -8,6 +8,11 @@ class RelationshipsController < ApplicationController
     @relationships = Relationship.all
   end
 
+  def feedback_relationship
+    @relationships = Relationship.all
+  end
+
+
   # GET /relationships/1
   # GET /relationships/1.json
   def show
@@ -57,22 +62,16 @@ class RelationshipsController < ApplicationController
    # end
 
 
-    respond_to do |format|
-      if @relationship.save
 
-        # tips = Tip.create(:circle_id => @relationship.circle_id)
-        # tips.save! 
-        
+
+    if @relationship.save        
         sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
         sponsee.save!
-        # Mailer.sponsee_invitation(@relationship, @signup_url).deliver
+        redirect_to relationships_path
+        # Mailer.power_group_invitation(@relationship, @signup_url).deliver
         # FeedbackMailer.relationship_feedback(@relationship).deliver
-        format.html { redirect_to @relationship, notice: 'Relationship was successfully created.' }
-        format.json { render :show, status: :created, location: @relationship }
       else
-        format.html { render :new }
-        format.json { render json: @relationship.errors, status: :unprocessable_entity }
-      end
+        redirect_to  new_relationship_path
     end
   end
 
@@ -112,8 +111,9 @@ class RelationshipsController < ApplicationController
         @relationships << Relationship.find(r)
       end 
       @relationships.each do |r|
-        pg = PowerGroup.new( :user_id => current_user.id, :email => r.email )
-        pg.save
+        powergroup = PowerGroup.new( :user_id => current_user.id, :email => r.email )
+        powergroup.save
+        Mailer.power_group_invitation(powergroup,@signup_url).deliver
       end
      else
       flash[:notice] = "Already added 8 users to your group."
@@ -121,6 +121,18 @@ class RelationshipsController < ApplicationController
      end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
 
+  end
+
+  def add_feedback
+    
+    relationship_ids = params["relationship_ids"]
+    @relationships ||= []
+    
+    # @relationships = Relationship.where("user_id = ? " ,current_user.id)
+
+    relationship_ids.to_a.each do |r|
+       @relationships << Relationship.find(r)
+    end 
   end
 
   

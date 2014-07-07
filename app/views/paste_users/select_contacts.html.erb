@@ -1,4 +1,8 @@
+<% unless !@contacts.empty? %>
+<h4>To Select Contacts you need to Import Contacts.</h4>
+<%end%>
 <% if !@contacts.empty? %>
+
   <%= form_tag complete_paste_users_path, :method => :post do %>
 
   <div class="field">
@@ -72,3 +76,37 @@ jQuery('#submit').on('click', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<%#= form_tag select_contacts_paste_users_path, :method => :post do %>
+ <table class="table table-bordered">
+    <tr>
+      <th>Email</th>
+      <th>Invite</th>
+      <th>Request Feedback</th>
+      <th></th>
+    </tr>
+
+    <%# @contacts.each do |c| %>
+      <tr>
+       <td><%#= c.email %></td>
+       <td><%#= check_box_tag "Invite", 1, :checked %><br/>
+       <td><%# check_box_tag "Request Feedback" %><br/>
+       <td><%#= link_to 'Give Feedback' %></td> 
+      </tr>
+    <%# end %>
+</table>
+<%#= submit_tag "Send", :id => "submit" ,:class => "btn btn-primary" %>
+<%## end %>
+ -->

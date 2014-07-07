@@ -127,7 +127,7 @@ class PasteUsersController < ApplicationController
   end
 
   def select_contacts
-    @contacts = Contact.where("user_id = ? " ,current_user.id)
+    @contacts = Contact.where("user_id = ? " ,current_user.id)    
   end
 
   def import_csv

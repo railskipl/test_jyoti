@@ -18,7 +18,7 @@
 Approve <input type="checkbox" id="checkbox1"/>
 <div id="autoUpdate" class="autoUpdate">
 <h6>Custom factors suggested by your sponsor</h6>
- <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id).name %>
+ <% name = Circle.find(UserInvitation.find_by_email(current_user.email).circle_id ).name  %>
  <% sponser =  Sponser.where("name like ?", name).first %>
  <% sponser.id %>
 

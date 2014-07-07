@@ -7,6 +7,7 @@ class Tip < ActiveRecord::Base
 	belongs_to :circle
 	belongs_to :user_invitation
 	belongs_to :response_tip
+	belongs_to :advice_contact
 
     validates_presence_of :email, :praise, :criticism, :helpful
 end
