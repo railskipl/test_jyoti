@@ -97,7 +97,8 @@
   </div> -->
      <% else %>
   <div class="col-xs-3">
-          <a class="btn btn-block btn-lg btn-primary" href="<%= new_sponsee_path %>">Sponsee</a>
+         
+          <%= link_to "Sponsee", new_sponsee_path, :class => "btn btn-block btn-lg btn-primary"%>
   </div>
 <!--     <div class="col-xs-3" style="width: 20%;">
         <a href="/sponsees/new" style="color:#FFFFFF;font-size:19px;">
