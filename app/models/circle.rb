@@ -8,5 +8,5 @@ class Circle < ActiveRecord::Base
 	has_many :relationships
 	has_many :sponsers
 	has_many :tips
-	
+	validates_presence_of :name
 end

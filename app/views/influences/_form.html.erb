@@ -1,13 +1,10 @@
 <%= form_for(@influence) do |f| %>
   <% if @influence.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@influence.errors.count, "error") %> prohibited this influence from being saved:</h2>
-
-      <ul>
+      
       <% @influence.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 

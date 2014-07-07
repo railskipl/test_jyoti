@@ -7,13 +7,9 @@
 
   <% if @page.errors.any? %>
     <div id="error_explanation">
-     <%= pluralize(@page.errors.count, "error") %> prohibited this car model from being saved:
-
-      <ul>
+     
       <% @page.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
       <% end %>
-      </ul>
     </div>
   <% end %>
 

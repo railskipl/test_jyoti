@@ -1,13 +1,10 @@
 <%= form_for(@advice_contact) do |f| %>
   <% if @advice_contact.errors.any? %>
-    <div id="error_explanation">
-      <h5><%= pluralize(@advice_contact.errors.count, "error") %> prohibited from being saved:</h5>
-
-      <ul>
+  <div id="error_explanation">
+    
       <% @advice_contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 
