@@ -60,7 +60,7 @@
  <% if @subscription.plan_id == plan.id%>
   <td><span>Current Plan</span></td> 
 <% else %>
-  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: plan.id) %></td>
+  <td><%#= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: plan.id) %></td>
   <% end %>
   </tr>
 
