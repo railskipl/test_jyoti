@@ -43,7 +43,7 @@ class Subscription < ActiveRecord::Base
     on = subscribe.name
     user_id = subscribe.user_id
     email = subscribe.email
-    subscribe.update_attributes(:name => self.name,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id)
+    subscribe.update_attributes(:name => self.name,:plan_id => self.plan_id,:price => self.price, :user_id => self.user_id, :email => self.email, :paypal_customer_token => self.paypal_customer_token, :paypal_recurring_profile_token => response.profile_id,:paypal_payment_token => self.token)
   end
 
   def update_user(user)
@@ -63,9 +63,6 @@ class Subscription < ActiveRecord::Base
     paypal_payment_token.present?
   end
 
-
- 
-  
 
   
 end
