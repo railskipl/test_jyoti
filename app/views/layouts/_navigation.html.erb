@@ -38,41 +38,14 @@
 
   
 
-     <% unless current_user.is_admin == true%>
-        <!-- <li><a href="/home/dashboard">Home</a></li>  -->
-        
+     <% unless current_user.is_admin == true%>       
 
-
-        
-         <li> <%#= link_to "Import CSV" , import_csv_paste_users_path %></li>
-
-        <!-- <li> <%#= link_to "Power Groups" ,  power_group_relationships_path,'data-no-turbolink' => true %></li> -->
         <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
-        <!-- <li> <%= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li> -->
-
-      <!-- 
-        <% if invitation.present? %>
-          <li> <%= link_to "Sponser" ,  new_sponser_path,'data-no-turbolink' => true %></li>
-          <% else %>
-          <li><%= link_to "Sponsee", new_sponsee_path,'data-no-turbolink' => true  %>  </li>
-        <% end %> -->
-
-
-          <!-- <li> <%= link_to "Relationships" , relationships_path,'data-no-turbolink' => true %></li> -->
-
-          <li> <%= link_to "Invite" , invite_paste_users_path %></li> 
-          <!-- <li> <%= link_to 'Self Rate',  new_rating_path %> </li> -->
-          <!-- <li> <%= link_to 'Rate others',  new_ratingother_path %> </li> -->
-
-          <!-- <li> <%= link_to 'Tips',  new_tip_path %> </li>  -->
-
-        <!-- <li> <%#= link_to "My Invitations" , invitation_paste_users_path %></li> -->
-      
+          <li> <%= link_to "Invite" , invite_paste_users_path %></li>      
           
          <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li>  
-
-          <li> <%= link_to 'Settings', home_setting_path %> </li>
-         
+          <li> <%= link_to 'Settings', home_setting_path %> </li>  
+          <li> <%= link_to "FAQ" ,  faq_pages_path,'data-no-turbolink' => true %></li>       
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         
     <% end %>
@@ -88,7 +61,6 @@
   <li> <%= link_to "Learn More", home_learn_more_path %></li>
 
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
-  <li> <%#= link_to "Pre Login Tips",  new_advice_contact_path %>  </li>
    <li> <%= link_to 'Help', home_help_path %> </li>
 
   <% end %>

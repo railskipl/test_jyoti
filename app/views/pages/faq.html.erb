@@ -1,26 +1,5 @@
-<br/><br/>
-<div class="row">
-<div class="col-xs-12">
-<table class="table table-bordered">
- 
- <tr>
-    <th>Title</th>
-     <th>Body</th>
-     <th>Image</th>
-      <!-- <th>Status</th> -->
-  </tr>
+    <h4> FAQ </h4>
 
-<% @page.each do |page| %>
-
-  <tr>
-    <td><%= page.title %></td>
-    <td><%= page.body.html_safe %></td>
-    <td><%= image_tag page.photo.url, :width => "165", :height=>"100" %></td>
-    <!-- <td><%#= link_to format_boolean(page.status?), {:controller => 'pages', :action => 'status', :id => page.id} %></td> -->
-    </td>
-  </tr>
-<% end %>
-
-</table>
-</div>
-</div>
+    <% @page.each do |page| %>
+    <%= page.body.html_safe %>
+    <% end %>
