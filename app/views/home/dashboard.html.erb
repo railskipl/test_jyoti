@@ -1,8 +1,9 @@
+<% flash.each do |name, msg| %>
+<%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:#0C3" %>
+<% end %> 
+
  <h4>Know what matters.<h4>
 <div style="color:#D02;font-size:19px;">Succeed at Anything through Awareness</div><br>
-<%= javascript_include_tag "jquery-1.9.1.js"%>
- 
-
 
  <div class="row row_margin">
    <div class="col-xs-6">
