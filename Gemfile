@@ -10,6 +10,8 @@ gem 'sqlite3'
 
 # gem 'mysql'
 gem 'koala'
+gem 'valid_email', require: ['valid_email/all_with_extensions']
+
 
 gem 'devise'
 gem 'execjs'

@@ -1,6 +1,14 @@
 
-<%#= javascript_include_tag "jquery-1.5.2.min","jquery.validate.min","validation.js" %> 
+
 <%= form_for Feedback.new do |f| %>
+<% if @feedback.errors.any? %>
+  <div id="error_explanation">
+    
+      <% @feedback.errors.full_messages.each do |message| %>
+        <p class="alert-box"><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
 
               <div class="control-group">
                 <label for="inputName" class="control-label">Name</label>
