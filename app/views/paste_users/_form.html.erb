@@ -1,13 +1,12 @@
 <%= form_for(@paste_user) do |f| %>
   <% if @paste_user.errors.any? %>
     <div id="error_explanation">
-     <%= pluralize(@paste_user.errors.count, "error") %> prohibited this paste_user from being saved:
+   
 
-      <ul>
+      
       <% @paste_user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 

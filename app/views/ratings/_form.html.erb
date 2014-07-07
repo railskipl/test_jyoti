@@ -3,12 +3,10 @@
  <%= form_for(@rating) do |f| %>
   <% if @rating.errors.any? %>
     <div id="error_explanation">
-      <%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:
-      <ul>
+      
       <% @raitng.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
  <% end %>
 

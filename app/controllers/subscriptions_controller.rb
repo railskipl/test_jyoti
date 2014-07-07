@@ -96,7 +96,6 @@ class SubscriptionsController < ApplicationController
       return_url: new_subscription_url(:plan_id => plan.id,:user_id => current_user.id, :price => plan.price, :name => plan.name),
       cancel_url: root_url
       )
-  
   end
 
 

@@ -3,13 +3,10 @@
 <%= form_for @individual,:html => { :multipart => true } do |f| %>
   <% if @individual.errors.any? %>
     <div id="error_explanation">
-     <%= pluralize(@individual.errors.count, "error") %> prohibited this car model from being saved:
-
-      <ul>
+     
       <% @individual.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 
