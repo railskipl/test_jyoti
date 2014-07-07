@@ -11,11 +11,13 @@
     </div>
   <% end %>
 
+
    <%= f.hidden_field :email, :value => params[:email] %></br>
   
    <% unless user_signed_in?%>
       <%= f.hidden_field :anonymous_user ,:value => true %>
    <%end%>
+
    <%= f.label :trustworthy %><br>
 
   <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
@@ -52,7 +54,7 @@
    <% unless user_signed_in? %>
    <% else %>
     <%= f.hidden_field :user_id,:value => current_user.id %>
-   <% end  %>
+   <% end %>
 
     <%= f.submit "Submit",:class=>"btn btn-primary" %>
 

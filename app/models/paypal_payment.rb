@@ -29,7 +29,7 @@ class PaypalPayment < ActiveRecord::Base
    currency: "USD"
    )
    response = PayPal::Recurring.new(options).send(action)
-   raise response.errors.inspect if response.errors.present? rescue nil
+   raise response.errors.inspect if response.errors.present? 
    response
   end
 

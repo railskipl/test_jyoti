@@ -11,6 +11,7 @@ gem 'sqlite3'
 # gem 'mysql'
 gem 'koala'
 
+
 gem 'devise'
 gem 'execjs'
 gem 'therubyracer'

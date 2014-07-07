@@ -10,4 +10,5 @@ class Tip < ActiveRecord::Base
 	belongs_to :advice_contact
 
     validates_presence_of  :praise, :criticism, :helpful
+    
 end
