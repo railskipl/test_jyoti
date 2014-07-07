@@ -58,7 +58,9 @@ end
   end
 
   def faq
-     @page = Page.where( 'title like ?', '%FAQ%' ) 
+
+    @page = Page.where( 'title like ?', '%FAQ%' ) 
+
   end
 
   def term_condition
@@ -66,8 +68,8 @@ end
   end
 
   def contactus
-     @page = Page.where( 'title like ?', '%Contact Us%' ) 
-  end 
+   @page = Page.where( 'title like ?', '%Contact Us%' ) 
+ end 
 
 
 

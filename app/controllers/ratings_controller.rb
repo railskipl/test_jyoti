@@ -41,7 +41,7 @@ def new
  @over = add_array(@a, @b) #added to array
  @w = add_array(@over , @d) # added over array with @d array
  @q = @w.inject{ |sum, el| sum + el }.to_f / @w.size # overall impression
- 
+ #raise @w.inspect
 end
 
 def add_array(a,b)

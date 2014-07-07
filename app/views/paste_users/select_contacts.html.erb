@@ -1,6 +1,8 @@
+
 <% unless !@contacts.empty? %>
 <h4>To Select Contacts you need to Import Contacts.</h4>
 <%end%>
+
 <% if !@contacts.empty? %>
 
   <%= form_tag complete_paste_users_path, :method => :post do %>

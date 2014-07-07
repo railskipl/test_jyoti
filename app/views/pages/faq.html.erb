@@ -1,118 +1,26 @@
-<div id="banner-wrapper">
-                         
-    <div class="container">
-                <div class="row">
-     
-                        <div class="12u">
-                                <!-- slider -->
-
-                                        <div class="bg-slide-wrapper">
-            <% @page.each do |t|%>
-                      <ul class="slides" id="bgSlider" style="position: relative;">
-               
-                      <li style="display: block; position: absolute; top: 0px; left: 0px; z-index: 4; opacity: 1; width: 1349px; height: 581px;">
-                      <%= image_tag t.image.url(:square) %>
-                      </li>
-                     
-                      </ul>
-                     <% end%>
-                    </div>
-                  </div>
-
-              
-                </div>
-        </div>
-                                
-                                
-                                
-<div class="container">
-        <div class="row">
-                <div class="black_wraper">
-      <% @page.each do |t|%>
-                        <div class="12u">
-        
-                                        <ul class="breadcrumb">
-                    <li><a href="/">Home</a> <span class="divider">»</span></li>
-                    <li class="active">About Us</li>
-                    </ul>
-                        <h1 class="title1"><%= t.title rescue nil %></h1>
-                 
-      </div>
-
-                                         <%end%>
-                                        
-
-    
-    <div id="content" style="padding:0">
-
-        <div id="home-content" class="contentblock" style="font-size: 13px">
-        <p>Kunal Infotech Pvt. Ltd. (KIPL) is an IT company based at Nagpur, India. KIPL was incorporated in 2008 with the view of providing IT solutions to their esteem customers to help them maximize their earnings.</p>
-
+<br/><br/>
+<div class="row">
+<div class="col-xs-12">
+<table class="table table-bordered">
  
+ <tr>
+    <th>Title</th>
+     <th>Body</th>
+     <th>Image</th>
+      <!-- <th>Status</th> -->
+  </tr>
 
-       <p>We have been accredited ISO 9001-2008 certification for observing international standards in a wide scope of activities like sales and information technology enabled services (ITeS) in design & development of software and services.</p></br>
+<% @page.each do |page| %>
 
- 
+  <tr>
+    <td><%= page.title %></td>
+    <td><%= page.body.html_safe %></td>
+    <td><%= image_tag page.photo.url, :width => "165", :height=>"100" %></td>
+    <!-- <td><%#= link_to format_boolean(page.status?), {:controller => 'pages', :action => 'status', :id => page.id} %></td> -->
+    </td>
+  </tr>
+<% end %>
 
-      <p> Kunal Infotech Pvt Ltd. is a customized process-driven Web & Mobile solutions provider in Ruby on Rails, Rhomobile, Rubymotion, based in Nagpur, India. We develop and customize large-scale enterprise applications using Ruby on Rails and Cloud Computing Services for a varied set of businesses. Our primary business & products’ vertical markets, include professionals ERP Development, Health-Care, Education, Political portals, E-Commerce Application Development, Property management, Tracking Systems and Mobile Applications. Kunal Infotech Pvt. Ltd. (KIPL) is an IT company based at Nagpur, India. KIPL was incorporated in 2008 with the view of providing IT solutions to their esteem customers to help them maximize their earnings.</p></br>
-
- 
-
-     <p>We have been accredited ISO 9001-2008 certification for observing international standards in a wide scope of activities like sales and information technology enabled services (ITeS) in design & development of software and services.</p></br>
-
- 
-
-    <p>Kunal Infotech Pvt Ltd. is a customized process-driven Web & Mobile solutions provider in Ruby on Rails, Rhomobile, Rubymotion, based in Nagpur, India. We develop and customize large-scale enterprise applications using Ruby on Rails and Cloud Computing Services for a varied set of businesses. Our primary business & products’ vertical markets, include professionals ERP Development, Health-Care, Education, Political portals, E-Commerce Application Development, Property management, Tracking Systems and Mobile Applications. </p>
-          
-        </div>
-              <% @inner_page.each do |i|%>
-
-        <div id="about-content<%= i.id %>"  style="font-size: 13px" class="contentblock hidden" >
-          <%= i.body.html_safe %>
-          
-          
-          
-        </div>
-         <% end %>
-      
-    </div>
-  </div>
-
-
-
-
-     </div>
-
-         <%= render "layouts/sideboxes"%>                                                
-      </div>
-    </div>
-
-  </div>
+</table>
 </div>
-
-
-
-
-<script type="text/javascript">
-$(function(){
-  $('#sidemenu a').on('click', function(e){
-    e.preventDefault();
-
-    if($(this).hasClass('open')) {
-      // do nothing because the link is already open
-    } else {
-      var oldcontent = $('#sidemenu a.open').attr('href');
-      var newcontent = $(this).attr('href');
-      
-      $(oldcontent).fadeOut('fast', function(){
-        $(newcontent).fadeIn().removeClass('hidden');
-        $(oldcontent).addClass('hidden');
-      });
-      
-     
-      $('#sidemenu a').removeClass('open');
-      $(this).addClass('open');
-    }
-  });
-});
-</script>
+</div>

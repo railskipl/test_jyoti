@@ -24,22 +24,16 @@
 
  <% if user_signed_in? %>
     <% if current_user.is_admin == true%>
-     <!-- <li> <%#= link_to "Pages",  pages_path %> </li> -->
+      <li> <%= link_to "Pages",  pages_path %> </li> 
       <li> <%= link_to "Organizations",  organizations_path %>  </li>
-       <li> <%= link_to "Individuals",  individuals_path %>  </li>
+     <li> <%= link_to "Individuals",  individuals_path %>  </li>
      <li> <%= link_to "Feedbacks",  feedbacks_path %>  </li>
      <li> <%= link_to "Circle",  circles_path %>  </li>
      <li> <%= link_to "Factor",  factors_path %>  </li>
      <li> <%= link_to "Trial Days" , trial_days_path,'data-no-turbolink' => true %></li> 
      <li> <%= link_to "Contact_us" , home_contactus_path,'data-no-turbolink' => true %></li>
-     <li> <%= link_to "FAQ" , home_faq_path,'data-no-turbolink' => true %></li>
-     <li> <%= link_to "Terms & Conditions" , home_term_condition_path,'data-no-turbolink' => true %></li>
-
-     <li> <%= link_to "Privacy Policy" , home_privacypolicy_path,'data-no-turbolink' => true %></li>
-
-     <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li> 
-         
-      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+     <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li>         
+     <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
   <% end %>
 
   
@@ -80,7 +74,7 @@
           <li> <%= link_to 'Settings', home_setting_path %> </li>
          
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-
+        
     <% end %>
 
 

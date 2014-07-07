@@ -58,7 +58,7 @@ belongs_to  :friend, :class_name => 'User'
 		  @friendly_social = ((@e[0][0].friendly_social + @e[1][0].friendly_social).to_f / 2).to_f
 		  @w = ((@trustworthy + @kind_helpful + @potential + @perform_well + @presentable + @emotianally_mature + @friendly_social).to_f / 7).to_f
 		  @overall = [@w,@trustworthy, @kind_helpful, @potential, @perform_well, @presentable, @emotianally_mature, @friendly_social]
-		  #raise @overall.inspect
+		 
 		elsif @e.size == 3
           @trustworthy = ((@e[0][0].trustworthy + @e[1][0].trustworthy + @e[2][0].trustworthy).to_f / 3).to_f
 		  @kind_helpful = ((@e[0][0].kind_helpful + @e[1][0].kind_helpful + @e[2][0].kind_helpful).to_f / 3).to_f

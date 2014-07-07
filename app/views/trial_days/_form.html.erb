@@ -1,13 +1,10 @@
 <%= form_for(@trial_day) do |f| %>
   <% if @trial_day.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@trial_day.errors.count, "error") %> prohibited this trial_day from being saved:</h2>
-
-      <ul>
+      
       <% @trial_day.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 

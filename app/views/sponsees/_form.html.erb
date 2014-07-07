@@ -3,13 +3,10 @@
 <%= form_for(@sponsee) do |f| %>
   <% if @sponsee.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@sponsee.errors.count, "error") %> prohibited this sponsee from being saved:</h2>
-
-      <ul>
+      
       <% @sponsee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="alert-box"><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
 
