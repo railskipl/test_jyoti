@@ -1,4 +1,3 @@
-Rails.application.config.middleware.use OmniAuth::Builder do
   # #For Local machine keys
 # OmniAuth.config.logger = Rails.logger
 # 
@@ -9,7 +8,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 #   provider :google_oauth2, '152997489713-09adpmf43ojeitsgqbd76m3c29728ubo.apps.googleusercontent.com', 'VObs1FAwhn6U530K_1_XIQmU'
 # end
   
-  
+
 # For heroku server keys
 OmniAuth.config.logger = Rails.logger
 OmniAuth.config.full_host = "http://m360.herokuapp.com"
@@ -18,7 +17,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, '881639063021-cna2s7l4sqot6vh1kf2s735vhi6gbl7d.apps.googleusercontent.com','9CnwRY9v0a1q-xd7civFE9D5'
 end
 
-end
 
 
 
