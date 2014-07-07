@@ -1,9 +1,6 @@
 <%= javascript_include_tag "progress"%>
 
 
-
-
-
  <%= form_for(@ratingother) do |f| %>
   <% if @ratingother.errors.any? %>
     <div id="error_explanation">
@@ -14,16 +11,11 @@
     </div>
   <% end %>
 
-<!-- 
-
-   <%= f.label :email %><br>
-   <%if params[:email] %>
-     <%= f.text_field :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
-   <%else%>   
-   <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+   <%= f.hidden_field :email, :value => params[:email] %></br>
+  
+   <% unless user_signed_in?%>
+      <%= f.hidden_field :anonymous_user ,:value => true %>
    <%end%>
- -->
-
    <%= f.label :trustworthy %><br>
 
   <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>

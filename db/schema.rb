@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702095548) do
+ActiveRecord::Schema.define(version: 20140707101545) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 20140702095548) do
     t.integer  "rate_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "anonymous_user",     default: false
   end
 
   create_table "ratings", force: true do |t|

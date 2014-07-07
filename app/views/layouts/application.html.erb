@@ -7,10 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  
 <div class="container">
+  
  <%= render 'layouts/navigation' %>
+ <% flash.each do |name, msg| %>
+   <%= content_tag :div, msg, :class => "alert-box #{name}" %>
+ <% end %> 
  <%= yield %>
+
 </div>
 
 <%= render 'shared/footer' %>

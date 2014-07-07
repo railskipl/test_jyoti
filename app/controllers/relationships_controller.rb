@@ -62,8 +62,6 @@ class RelationshipsController < ApplicationController
    # end
 
 
-
-
     if @relationship.save        
         sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
         sponsee.save!
@@ -105,7 +103,7 @@ class RelationshipsController < ApplicationController
     relationship_ids = params["relationship_ids"]
     @relationships ||= []
      @a = PowerGroup.where('user_id = ?', current_user.id)
-
+ 
      if @a.size <= 8 
       relationship_ids.to_a.each do |r|
         @relationships << Relationship.find(r)
