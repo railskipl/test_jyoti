@@ -120,9 +120,11 @@ Rails.application.routes.draw do
   resources :pages do
     collection {
       get :faq
+
       get :contactus
       get :privacypolicy
       get :term_condition
+
     }
   end
 
@@ -158,7 +160,7 @@ Rails.application.routes.draw do
     get '/home/mspoint' => 'home#mspoint'
     get '/home/help' => 'home#help'
     get '/home/tip_rating' => 'home#tip_rating'
-    
+
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

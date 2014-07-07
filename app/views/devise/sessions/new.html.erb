@@ -21,7 +21,9 @@
  <%= f.hidden_field :invitation_token %>
 
   <div><%= f.label :email %><br />
+
   <%= f.text_field :email, autofocus: true ,:class=>"form-control", :maxlength => 500 %></div>
+
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off",:class=>"form-control"  %></div>

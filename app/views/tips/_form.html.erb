@@ -8,21 +8,21 @@
       <% end %>
     </div>
   <% end %>
-<!-- 
-  <% if params[:email]%>
-    <div class="field">
-       <%= f.label :email %><label for="male">The Person You're Commenting On</label><br>
-      <%= f.text_field :email,:value => params[:email],:class=>"form-control11", :maxlength => 500 %>
-      <%= f.hidden_field :rating, :value => "true"%>
-    </div>
-  <%else%>
-    <div class="field">
-      <%= f.label :email %><br>
-      <%#= f.collection_select :email, User.all, :email, :email%>
-      <%= f.text_field :email,:class=>"form-control11", :maxlength => 500  %><label for="male">The Person You're Commenting On</label>
-    </div>
-  <%end%>
- -->
+<!--
+<% if params[:email]%>
+<div class="field">
+<%= f.label :email %><label for="male">The Person You're Commenting On</label><br>
+<%= f.text_field :email,:value => params[:email],:class=>"form-control11", :maxlength => 500 %>
+<%= f.hidden_field :rating, :value => "true"%>
+</div>
+<%else%>
+<div class="field">
+<%= f.label :email %><br>
+<%#= f.collection_select :email, User.all, :email, :email%>
+<%= f.text_field :email,:class=>"form-control11", :maxlength => 500 %><label for="male">The Person You're Commenting On</label>
+</div>
+<%end%>
+-->
   <div class="field">
     <%= f.label :praise %><br>
     <%= f.text_field :praise,:class=>"form-control11" %>
@@ -41,18 +41,11 @@
   <% unless user_signed_in? %>
    <% else %>
     <%= f.hidden_field :user_id,:value => current_user.id %>
-   <% end  %>
+   <% end %>
 
   <div class="actions">
     <%= f.submit "Save" ,:class => "btn btn-primary"%></div>
     
-<% end %> 
+<% end %>
 
-
-
-
-
-
- 
- 
 

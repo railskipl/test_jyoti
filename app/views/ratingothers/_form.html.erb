@@ -14,15 +14,15 @@
     </div>
   <% end %>
 
-<!-- 
+<!--
 
-   <%= f.label :email %><br>
-   <%if params[:email] %>
-     <%= f.text_field :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
-   <%else%>   
-   <%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
-   <%end%>
- -->
+<%= f.label :email %><br>
+<%if params[:email] %>
+<%= f.text_field :email,:value => params[:email], :class=>"form-control",:style=>"width:300px;" %></br>
+<%else%>
+<%= f.text_field :email, :class=>"form-control",:style=>"width:300px;" %></br>
+<%end%>
+-->
 
    <%= f.label :trustworthy %><br>
 
@@ -60,7 +60,7 @@
    <% unless user_signed_in? %>
    <% else %>
     <%= f.hidden_field :user_id,:value => current_user.id %>
-   <% end  %>
+   <% end %>
 
     <%= f.submit "Submit",:class=>"btn btn-primary" %>
 
