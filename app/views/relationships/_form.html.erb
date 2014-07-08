@@ -8,7 +8,7 @@
     </div>
   <% end %>
   <%= f.hidden_field :user_id,:value => current_user.id %>
-
+  <%= f.hidden_field :relation_checked, :value => true %>
   <div class="field">
    <%= f.label :email %>
    <%#= f.collection_select :email, Contact.where("user_id = ?", current_user.id).all, :email, :email %></br>  
