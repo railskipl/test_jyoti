@@ -11,8 +11,8 @@
 
   <div class="field">
    <%= f.label :email %>
-   <%#= f.collection_select :email, UserInvitation.where("user_id = ?", current_user.id).all, :email, :email %></br>  
-    <%= f.text_field :email %>  
+   <%#= f.collection_select :email, Contact.where("user_id = ?", current_user.id).all, :email, :email %></br>  
+   <%= f.text_field :email %>   
   </div>
   <div class="field">
     <%= f.label :name,"Primary Circle" %>
