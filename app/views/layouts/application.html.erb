@@ -11,7 +11,14 @@
 <div class="container">
   
  <%= render 'layouts/navigation' %>
- 
+
+ <% flash.each do |name, msg| %>
+  <% if user_signed_in?%>
+	<%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:#0C3; text-align:center;" %>
+  <% else %>
+    <%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:red; text-align:center;" %>
+  <% end %>
+ <% end %> 
  <%= yield %>
 
 </div>
