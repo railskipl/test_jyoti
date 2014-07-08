@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
+  # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
+
   # before_create :check_user_date
 
   # def check_user_date
