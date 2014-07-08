@@ -1,4 +1,4 @@
-
+  <%#= javascript_include_tag "jquery-1.5.2.min","validation.js" %>
 <div class="container">
 
 <h4>Sign up</h4>
@@ -8,8 +8,12 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="col-xs-4">
   <%= f.hidden_field :invitation_token %>
+  
 
-    <%= devise_error_messages! %>
+   <%#= devise_error_messages! %>
+
+   <!-- <div><%= resource.errors.inspect %></div> -->
+
 
     <div><%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true,:class=>"form-control" %></div>

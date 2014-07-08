@@ -17,8 +17,17 @@
 
   <tbody>
   <% @relationships.each do |relationship| %>
+      <% @power_group = PowerGroup.where('user_id = ? and email = ?', current_user.id, relationship.email)%>
+
       <tr>
-        <td><%= check_box_tag "relationship_ids[]", relationship.id %></td>
+       <td> 
+         <%if @power_group.present? %>
+            <input type="checkbox" disabled="disabled" checked="checked">
+          <%else%>
+             <%= check_box_tag "relationship_ids[]", relationship.id %>
+            
+          <%end%>
+        </td>
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         <td><%= relationship.name %> &nbsp&nbsp&nbsp&nbsp</td>
         <td><%= relationship.how_long_you_know_each_other_avg %></td>

@@ -6,13 +6,20 @@
   <%= javascript_include_tag "application",'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
   
 <div class="container">
   
  <%= render 'layouts/navigation' %>
+
  <% flash.each do |name, msg| %>
-   <%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:#0C3" %>
+  <% if user_signed_in?%>
+	<%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:#0C3; text-align:center;" %>
+  <% else %>
+    <%= content_tag :div, msg, :class => "alert-box #{name}", :style=>"color:red; text-align:center;" %>
+  <% end %>
+
  <% end %> 
  <%= yield %>
 
@@ -21,4 +28,6 @@
 <%= render 'shared/footer' %>
 
 </body>
+
+
 </html>

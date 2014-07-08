@@ -1,22 +1,22 @@
  $(document).ready(function () {
     //validation for tasks form
-    $(".contact-form").click(function(e){
+    $(".new_user").click(function(e){
         $("[generated=true]").remove();
         $("#contactus").validate({
             rules: {
-                "contactus[email]": {
+                "user[email]": {
                     required: true
                 },
-                "contactus[name]": {
+                "user[password]": {
                     required: true
                 }
             },
             messages: {
-                "contactus[email]": {
+                "user[email]": {
                     required: "Email cannot be blank"
                 },
 
-                "contactus[name]": {
+                "user[password]": {
                     required: "Name is required"
                 }
             }
