@@ -642,6 +642,43 @@ fieldset[disabled] .btn-power.active {
   background-color: #d35400;
   border-color: #d35400;
 }
+.btn-free {
+    background-color: #808080;
+    color: #ffffff;
+}
+.btn-free:hover,
+.btn-free:focus,
+.btn-free:active,
+.btn-free.active,
+.open .dropdown-toggle.btn-free {
+  color: #ffffff;
+  background-color: #A9A9A9;
+  border-color: #A9A9A9;
+}
+.btn-free:active,
+.btn-free.active,
+.open .dropdown-toggle.btn-free {
+  background: #808080;
+  border-color: #808080;
+}
+.btn-free.disabled,
+.btn-free[disabled],
+fieldset[disabled] .btn-free,
+.btn-free.disabled:hover,
+.btn-free[disabled]:hover,
+fieldset[disabled] .btn-free:hover,
+.btn-free.disabled:focus,
+.btn-free[disabled]:focus,
+fieldset[disabled] .btn-free:focus,
+.btn-free.disabled:active,
+.btn-free[disabled]:active,
+fieldset[disabled] .btn-free:active,
+.btn-free.disabled.active,
+.btn-free[disabled].active,
+fieldset[disabled] .btn-free.active {
+  background-color:#696969;
+  border-color: #696969;
+}
 .btn-unheapful {
     background-color: #7f8c8d;
     color: #ffffff;
@@ -679,6 +716,43 @@ fieldset[disabled] .btn-unheapful.active {
   background-color: #7f8c8d;
   border-color: #7f8c8d;
 }
+.btn-recommend {
+    background-color: #f39c12;
+    color: #ffffff;
+}
+.btn-recommend:hover,
+.btn-recommend:focus,
+.btn-recommend:active,
+.btn-recommend.active,
+.open .dropdown-toggle.btn-recommend {
+  color: #ffffff;
+  background-color:#f1c40f;
+  border-color: #f1c40f;
+}
+.btn-recommend:active,
+.btn-recommend.active,
+.open .dropdown-toggle.btn-recommend {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-recommend.disabled,
+.btn-recommend[disabled],
+fieldset[disabled] .btn-recommend,
+.btn-recommend.disabled:hover,
+.btn-recommend[disabled]:hover,
+fieldset[disabled] .btn-recommend:hover,
+.btn-recommend.disabled:focus,
+.btn-recommend[disabled]:focus,
+fieldset[disabled] .btn-recommend:focus,
+.btn-recommend.disabled:active,
+.btn-recommend[disabled]:active,
+fieldset[disabled] .btn-recommend:active,
+.btn-recommend.disabled.active,
+.btn-recommend[disabled].active,
+fieldset[disabled] .btn-recommend.active {
+  background-color: #f39c12;
+  border-color: #f39c12;
+}
 .btn-rejected {
     background-color: #B49 ;
     color: #ffffff;
@@ -715,6 +789,43 @@ fieldset[disabled] .btn-rejected:active,
 fieldset[disabled] .btn-rejected.active {
   background-color: #B49 ;
   border-color: #B49;
+}
+.btn-pro {
+    background-color: #27ae60;
+    color: #ffffff;
+}
+.btn-pro:hover,
+.btn-pro:focus,
+.btn-pro:active,
+.btn-pro.active,
+.open .dropdown-toggle.btn-pro {
+  color: #ffffff;
+  background-color:#2ecc71;
+  border-color:#2ecc71;
+}
+.btn-pro:active,
+.btn-pro.active,
+.open .dropdown-toggle.btn-pro {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-pro.disabled,
+.btn-pro[disabled],
+fieldset[disabled] .btn-pro,
+.btn-pro.disabled:hover,
+.btn-pro[disabled]:hover,
+fieldset[disabled] .btn-pro:hover,
+.btn-pro.disabled:focus,
+.btn-pro[disabled]:focus,
+fieldset[disabled] .btn-pro:focus,
+.btn-pro.disabled:active,
+.btn-pro[disabled]:active,
+fieldset[disabled] .btn-pro:active,
+.btn-pro.disabled.active,
+.btn-pro[disabled].active,
+fieldset[disabled] .btn-pro.active {
+  background-color:#27ae60;
+  border-color: #27ae60;
 }
 .btn-invite {
     background-color: #27ae60;
@@ -1044,6 +1155,9 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-block {
   white-space: normal;
+}
+.btn-blok {
+    white-space:nowrap;
 }
 .btn-default .caret {
   border-top-color: #ffffff;

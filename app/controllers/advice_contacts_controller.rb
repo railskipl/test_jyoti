@@ -25,21 +25,29 @@ class AdviceContactsController < ApplicationController
   # POST /advice_contacts
   # POST /advice_contacts.json
   def create
-    @advice_contact = AdviceContact.new(advice_contact_params)
-    advice_contact = @advice_contact
-    contact = Contact.where("email like ?",@advice_contact.email).first_or_create
 
-    respond_to do |format|
-      if @advice_contact.save
-        @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
-        @tip.save!
-        Mailer.prelogin_tips(advice_contact).deliver
-        format.html { redirect_to new_ratingother_path(:email => @advice_contact.email), notice: 'Data send successfully.' }
-        format.json { render :show, status: :created, location: @advice_contact }
-      else
-        format.html { render :new }
-        format.json { render json: @advice_contact.errors, status: :unprocessable_entity }
+    @advice_contact = AdviceContact.new(advice_contact_params)
+    @user = User.where('email = ?', @advice_contact.email)
+    
+    unless @user.empty?
+      advice_contact = @advice_contact
+      contact = Contact.where("email like ?",@advice_contact.email).first_or_create
+
+      respond_to do |format|
+        if @advice_contact.save
+          @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
+          @tip.save!
+          Mailer.prelogin_tips(advice_contact).deliver
+          format.html { redirect_to new_ratingother_path(:email => @advice_contact.email), notice: 'Data send successfully.' }
+          format.json { render :show, status: :created, location: @advice_contact }
+        else
+          format.html { render :new }
+          format.json { render json: @advice_contact.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:notice] = "No such user is present."
+      redirect_to :back
     end
   end
 
