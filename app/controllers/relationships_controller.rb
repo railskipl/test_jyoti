@@ -5,7 +5,8 @@ class RelationshipsController < ApplicationController
   # GET /relationships
   # GET /relationships.json
   def index
-    @relationships = Relationship.all
+    @relationships = Relationship.where('user_id = ?' , current_user.id)
+
   end
 
   def feedback_relationship
@@ -36,41 +37,42 @@ class RelationshipsController < ApplicationController
   # POST /relationships
   # POST /relationships.json
   def create
+
    @relationship = Relationship.new(relationship_params)
 
-   @y = @relationship.know_how_for_long_year
-   @m = @relationship.know_how_for_long_month 
-   @month = @y*12
-   @total_month = (@month)+(@m)
-   @how_long_you_know_each_other_avg = (@total_month*20)/36  
-   @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
-   
-   @p = @relationship.how_well_you_know_the_person.to_i
-   @h = (@p)*20
-   @well_known_user_avg = @h/8
-   @relationship.well_known_user_avg = @well_known_user_avg
+     @y = @relationship.know_how_for_long_year
+     @m = @relationship.know_how_for_long_month 
+     @month = @y*12
+     @total_month = (@month)+(@m)
+     @how_long_you_know_each_other_avg = (@total_month*20)/36  
+     @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
+     
+     @p = @relationship.how_well_you_know_the_person.to_i
+     @h = (@p)*20
+     @well_known_user_avg = @h/8
+     @relationship.well_known_user_avg = @well_known_user_avg
 
-   @i = @relationship.your_influence.to_i
-   @influence = (@i)*60
-   @influence_avg = @influence/8
-   @relationship.influence_avg = @influence_avg
+     @i = @relationship.your_influence.to_i
+     @influence = (@i)*60
+     @influence_avg = @influence/8
+     @relationship.influence_avg = @influence_avg
    
-   # @a = Relationship.all
+     # @a = Relationship.all
    # if @b = @a.count >= 8 && @a.count <= 20
    #   @power_group = PowerGroup.new(:user_id => current_user.id,:email => @relationship.email)
    #   @power_group.save!
    # end
 
-
-    if @relationship.save        
-        sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
-        sponsee.save!
-        redirect_to relationships_path
-        # Mailer.power_group_invitation(@relationship, @signup_url).deliver
-        # FeedbackMailer.relationship_feedback(@relationship).deliver
-      else
-        redirect_to  new_relationship_path
-    end
+    
+        if @relationship.save        
+          sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
+          redirect_to relationships_path
+          # Mailer.power_group_invitation(@relationship, @signup_url).deliver
+          # FeedbackMailer.relationship_feedback(@relationship).deliver
+        else
+          redirect_to  new_relationship_path
+        end
+    
   end
 
   
@@ -102,21 +104,24 @@ class RelationshipsController < ApplicationController
   def add_power_group
     relationship_ids = params["relationship_ids"]
     @relationships ||= []
-     @a = PowerGroup.where('user_id = ?', current_user.id)
- 
-     if @a.size <= 8 
-      relationship_ids.to_a.each do |r|
-        @relationships << Relationship.find(r)
-      end 
+    relationship_ids.to_a.each do |r|
+      @relationships << Relationship.find(r)
+    end 
+    
+    @a = PowerGroup.where('user_id = ?', current_user.id)
+    @q =  @a.size.to_i + @relationships.size.to_i
+    @w = (8 - @q).abs
+
+    if (8 >= @q.to_i)
       @relationships.each do |r|
-        powergroup = PowerGroup.new( :user_id => current_user.id, :email => r.email )
-        powergroup.save
-        Mailer.power_group_invitation(powergroup,@signup_url).deliver
+          powergroup = PowerGroup.new( :user_id => current_user.id, :email => r.email )
+          powergroup.save
+          Mailer.power_group_invitation(powergroup,@signup_url).deliver
       end
-     else
-      flash[:notice] = "Already added 8 users to your group."
+    else
+      flash[:notice] = "You are allowed to add 8 users to your power group, you have selected more #{@w} users."
       redirect_to :back
-     end
+    end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
 
   end
@@ -137,7 +142,7 @@ class RelationshipsController < ApplicationController
   
 
   def power_group
-    @relationships = PowerGroup.all     
+    @relationships = PowerGroup.where('user_id = ?', current_user)
   end
 
 
