@@ -102,7 +102,7 @@
 
 <body>
 <h8>Only <%= @plan_expiry %> days left for your trial plan to expire. You can upgrade at any time.</h8></br>
-  <section class="layer plans">
+  <section class="layer">
 
   <section>
   <% @plans.each do |plan| %>
@@ -149,10 +149,13 @@
     <section class="third lift plan-tier" onclick="location.href='#';">
   
       <h4><%= plan.name %></h4>
-      <h5><sup class="superscript">$</sup><span class="plan-price"><%= plan.price %></span><sub> /mo</sub></h5>
+     
+        <div class="price">
+          $<%= plan.price %><span class="sup">/ month</span>
+        </div>
 
       <ul>
-      <li> <%= plan.description %></li>
+      <li> <%= plan.description.html_safe %></li>
      
       </ul>
       <% subscription = plan.subscriptions.build %>
