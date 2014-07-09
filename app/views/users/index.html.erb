@@ -25,20 +25,18 @@
     <tr>
       <th>Email</th>
       <th>Make Primary</th>
+      <th>Merge</th>
     </tr>
   
    <% @emails.each do |email| %>
       <tr>
         <td><%= email.email rescue nil%></td>
            <% if email.verified %>
-
          <td><p>make primary</p><%= link_to format_boolean(email.primary?), {:controller => 'emails', :action => 'primary', :id => email.id} %></td>
          <% else %>
-         <td><p>Email is not veriifed</p></td>
-       
+         <td><p>Email is not veriifed</p></td>       
         <% end %>
-
-        
+        <td><%= link_to format_boolean(email.merged?), {:controller => 'emails', :action => 'merge', :id => email.id} %></td>
       </tr>
    
  <%end%>

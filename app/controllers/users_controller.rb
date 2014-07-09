@@ -47,7 +47,7 @@ def toggled_status
     redirect_to :back 
  end
 
-
+ 
 
 
 
