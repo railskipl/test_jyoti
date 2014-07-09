@@ -55,7 +55,11 @@ def destroy
     @users = User.all
     @response_tip = ResponseTip.all
     @tips = Tip.all
-
+    #@tips = Tip.where('user_id != ?', current_user.id)
+    #@tipss = @tips.where('email != ?', current_user.email)
+    #raise @tipss.inspect
+    #@power = PowerGroup.where('email = ? and circle_group = ?', current_user.email, @tipss.name)
+    #raise @power.inspect 
     
   end
 

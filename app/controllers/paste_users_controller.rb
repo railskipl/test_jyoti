@@ -188,6 +188,7 @@ class PasteUsersController < ApplicationController
   end
 
   def my_mirror
+   
     @relationships = Relationship.all
   end
 
