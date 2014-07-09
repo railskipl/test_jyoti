@@ -168,7 +168,7 @@ you can use the generic selector below, but it's slower:
   content: "\e01f";
 }
 .fui-gear:before {
-  content: "\e024";
+    content: "\e01f";
 }
 .fui-radio-unchecked:before {
   content: "\e02b";

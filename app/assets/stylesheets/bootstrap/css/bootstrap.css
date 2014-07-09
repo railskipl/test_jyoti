@@ -2358,6 +2358,14 @@ input[type="button"].btn-blocking {
   padding-left: 0;
 }
 
+.btn-improve {
+  display: block;
+  width: 19%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
 .btn-block + .btn-block {
   margin-top: 5px;
 }
