@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 20140709092315) do
     t.string   "power_group_eamil"
     t.string   "custom_factor"
     t.integer  "relationship_id"
+    t.string   "circle_name"
   end
 
   create_table "ratingothers", force: true do |t|

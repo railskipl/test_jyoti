@@ -66,6 +66,7 @@ Rails.application.routes.draw do
       post :select_contact_invitation
       get :invitation
       get :my_mirror
+      get :mirror_me
     }
   end
 
