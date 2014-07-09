@@ -10,11 +10,11 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #2b4b90;
   *background-color: #133783;
-  background-image: -moz-linear-gradient(top, #3b5998, #133783);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b5998), to(#133783));
+  background-image: -moz-linear-gradient(top,  #4183D7, #4183D7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4183D7), to(#4183D7));
   background-image: -webkit-linear-gradient(top, #3b5998, #133783);
   background-image: -o-linear-gradient(top, #3b5998, #133783);
-  background-image: linear-gradient(to bottom, #3b5998, #133783);
+  background-image: linear-gradient(to bottom, #4183D7, #4183D7);
   background-repeat: repeat-x;
   border-color: #133783 #133783 #091b40;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -175,11 +175,11 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #d34332;
   *background-color: #c53727;
-  background-image: -moz-linear-gradient(top, #dd4b39, #c53727);
+  background-image: -moz-linear-gradient(top, #D91E18, #D91E18);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dd4b39), to(#c53727));
   background-image: -webkit-linear-gradient(top, #dd4b39, #c53727);
   background-image: -o-linear-gradient(top, #dd4b39, #c53727);
-  background-image: linear-gradient(to bottom, #dd4b39, #c53727);
+  background-image: linear-gradient(to bottom, #D91E18, #D91E18);
   background-repeat: repeat-x;
   border-color: #c53727 #c53727 #85251a;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
