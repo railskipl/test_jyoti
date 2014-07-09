@@ -1,12 +1,4 @@
 <%= form_for Feedback.new do |f| %>
-<% if @feedback.errors.any? %>
-  <div id="error_explanation">
-    
-      <% @feedback.errors.full_messages.each do |message| %>
-        <p class="alert-box"><%= message %></p>
-      <% end %>
-    </div>
-  <% end %>
 
              <div class="control-group">
                 <label for="inputName" class="control-label">Name</label>
@@ -17,7 +9,7 @@
               <div class="control-group">
                 <label for="inputEmail" class="control-label">Email</label>
                 <div class="controls">
-                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control", :email => true %>
+                  <%= f.text_field :email,:placeholder=>"Email", :id=>"inputEmail",:class=>"form-control", :email => true, :required => true %>
                 </div>
               </div>
 
@@ -25,7 +17,7 @@
 <div class="control-group">
   <label for="inputDescription" class="control-label">Feedback</label>
   <div class="controls" >
-    <%= f.text_area :description,:placeholder => "Description", :id=>"inputDescription",:class=>"form-control11", :required => true %>
+    <%= f.text_area :description,:placeholder => "Description", :id=>"inputDescription",:class=>"form-control11", :required => true, :maxlength => 2000  %>
   </div>
 </div>
 <div class="control-group">

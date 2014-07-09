@@ -168,7 +168,7 @@ you can use the generic selector below, but it's slower:
   content: "\e01f";
 }
 .fui-gear:before {
-  content: "\e024";
+    content: "\e01f";
 }
 .fui-radio-unchecked:before {
   content: "\e02b";
@@ -302,6 +302,7 @@ h4,
 .h4 {
   font-size: 29px;
 }
+
 h5,
 .h5 {
   font-size: 28px;
@@ -4044,7 +4045,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
 .tile {
   background-color: #eff0f2;
   border-radius: 6px;
-  padding: 9px;
+  padding: 17px;
   position: relative;
   text-align: center;
 }

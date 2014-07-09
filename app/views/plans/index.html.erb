@@ -26,74 +26,6 @@
 <%= link_to 'New Plan', new_plan_path %>
 <% end %>
 
-
-
-<!-- 
-
-<% if current_user.is_admin == false %>
-
-<table class="table table-bordered table-striped table-highlight">
-  <thead>
-  <tr>
-  <th>Plan Name</th>
-  <th>Price</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @plans.each do |plan| %>
-  <% if @subscription.nil? %>
-  <tr>
-  <td><%= plan.name %></td>
-  <td><%= plan.price %></td>
-  <td><%= plan.description %></td>
- <% @subscription = plan.subscriptions.build %>
-  <td><%= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: plan.id) %></td>
-  </tr>
- <% else %>
-  <tr>
-  <td><%= plan.name %></td>
-  <td><%= plan.price %></td>
-  <td><%= plan.description %></td>
- <% subscription = plan.subscriptions.build %>
- <% if @subscription.plan_id == plan.id%>
-  <td><span>Current Plan</span></td> 
-<% else %>
-  <td><%#= link_to image_tag("/assets/paypal.png"),paypal_checkout_path(plan_id: plan.id) %></td>
-  <% end %>
-  </tr>
-
- <% end %>
- <% end %>
- 
-</tbody>
-</table>
-<% end %>
-
-
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <% if current_user.is_admin == false %>
 
   <title>Plans - CodePen</title>
@@ -172,3 +104,6 @@
   </section>
 </section>
   <%end%>
+
+
+

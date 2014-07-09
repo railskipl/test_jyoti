@@ -22,8 +22,8 @@
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         <td><%= relationship.name %> &nbsp&nbsp&nbsp&nbsp</td>
         <td><%= relationship.how_long_you_know_each_other_avg %></td>
-        <td><%= relationship.well_known_user_avg %></td>
-        <td><%= relationship.influence_avg %></td>
+        <td><%= relationship.well_known_user_avg %>%</td>
+        <td><%= relationship.influence_avg %>%</td>
         <!-- <td><%#= submit_tag "Select Email",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></td> -->
         <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td>
 
