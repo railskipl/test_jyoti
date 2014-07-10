@@ -13,7 +13,6 @@ end
 
 def advice
   @tips = Tip.all
- 
 end
 
 def new
@@ -52,35 +51,52 @@ def destroy
   end
 
   def helpful_tips
-    @users = User.all
-    @response_tip = ResponseTip.all
-    #@tips = Tip.all
+
     @tips = Tip.where('user_id != ?', current_user.id)
     @tipss = @tips.where('email != ?', current_user.email)
-    @a = @tipss.order("RANDOM()").first
-    @power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @a.name)
-    if @power.empty?
-     @ww = @a
-    end
   
+    @second_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 1, 1, 0).order("RANDOM()").first rescue nil
+    @zero_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
+
+    if @second_priority.present?
+      @priority = @second_priority
+    else
+      @priority = @zero_priority
+    end
+   
+    @power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.name) rescue nil
+    if @power.blank?
+     @ww = @priority
+    end
   end
 
   def tips_response
+  
     @tip = Tip.find(params[:id])
     sum = 1
+    user_view = 1
+   #logic for decidind the tip is helpful or not
+    if @tip.tip_accept == 2
+      @tip.tip_prediction = 1 #for deciding helpful tip
+    elsif @tip.tip_reject == 2 
+      @tip.tip_prediction = 2 #for deciding unhelpful tip
+    else
+      @tip.tip_prediction = 0
+    end
+
     if params[:response] == "true"
       @sum = @tip.tip_accept + sum
       @tip.tip_accept = @sum
-      @tip.update_attributes(params[:tip])
-      flash[:notice] = "Thanks for particiption."
-      redirect_to :back
     else
       @sum = @tip.tip_reject + sum
       @tip.tip_reject = @sum
-      @tip.update_attributes(params[:tip])
-      flash[:notice] = "Thanks for particiption."
-      redirect_to :back
     end
+    @tip.suggestions = params[:suggestions]
+    @tip.quality_of_comments = params[:quality_of_comments]
+    @tip.tip_viewed = @tip.tip_viewed + user_view
+    @tip.update_attributes(params[:tip])
+    flash[:notice] = "Thanks for particiption."
+    redirect_to helpful_tips_tips_path
   end
 
  def unhelpful_tips
