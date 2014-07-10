@@ -63,11 +63,11 @@ def destroy
     else
       @priority = @zero_priority
     end
-   
     @power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.name) rescue nil
     if @power.blank?
      @ww = @priority
     end
+    
   end
 
   def tips_response
@@ -75,15 +75,15 @@ def destroy
     @tip = Tip.find(params[:id])
     sum = 1
     user_view = 1
-   #logic for decidind the tip is helpful or not
-    if @tip.tip_accept == 2
-      @tip.tip_prediction = 1 #for deciding helpful tip
-    elsif @tip.tip_reject == 2 
-      @tip.tip_prediction = 2 #for deciding unhelpful tip
-    else
-      @tip.tip_prediction = 0
+    #logic for decidind the tip is helpful or not
+    if @tip.tip_accept >= 2
+      @w = 1           #for deciding helpful tip
+    elsif @tip.tip_reject >= 2 
+      @w = 2          #for deciding unhelpful tip
+    else 
+      @w = 0
     end
-
+   
     if params[:response] == "true"
       @sum = @tip.tip_accept + sum
       @tip.tip_accept = @sum
@@ -91,6 +91,7 @@ def destroy
       @sum = @tip.tip_reject + sum
       @tip.tip_reject = @sum
     end
+    @tip.tip_prediction = @w
     @tip.suggestions = params[:suggestions]
     @tip.quality_of_comments = params[:quality_of_comments]
     @tip.tip_viewed = @tip.tip_viewed + user_view

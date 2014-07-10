@@ -1,5 +1,5 @@
 <h5>Helpful Tips</h5>
-<%if @ww.present?%>
+<%unless @ww.blank?%>
 	<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
 	    :onsubmit => "return validateForm()"  do |f| %>
 	   
