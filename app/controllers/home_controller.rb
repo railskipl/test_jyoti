@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
- before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus,:help,:faq,:term_condition,:privacypolicy,:tip_rating,:dashboard,:learn_more]
+ before_filter :authenticate_user!, except: [:index,:organization,:individual,:contactus,:help,:faq,:term_condition,:privacypolicy,:tip_rating,:dashboard,:learn_more,:how_it_works,:how_it_works_for_my_team,:how_it_works_for_me]
 
 def index
   
@@ -83,6 +83,18 @@ end
 
 def tip_rating
     
+end
+
+def how_it_works
+  
+end
+
+def how_it_works_for_me
+  
+end
+
+def how_it_works_for_my_team
+  
 end
 
 

@@ -149,7 +149,6 @@ border-color: #DEDEDE;
 	height: 2.8em;
 	border-radius: 4px;
 	margin: 1.5em 0 1.8em;
-
 }
 
 .planContainer .button a.bestPlanButton {
@@ -165,14 +164,9 @@ border-color: #DEDEDE;
 	color: #777;
 }
 
-.plan-tier h4 {
- border-radius: 6px 6px 0 0;
-    color: #FFFFFF;
-    font-size: 1.1em;
-margin: 0;
-    padding: 14px 0;
-background: #00a1ff;
-
+#credits a {
+	color: #333;
+}
 
 #credits a:hover {
 	text-decoration: none;
@@ -185,6 +179,11 @@ background: #00a1ff;
 	margin: 0 2% 20px 0;
 }
 
+#pricePlans #plans > li:nth-child(2n) {
+	margin-right: 0;
+}
+
+}
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 
@@ -246,19 +245,4 @@ background: #00a1ff;
 	border: 2px solid #ff9c70;
 }
 
-.plan-tier.callout h4 {
-background-color: #78b336;
 }
-
-.plan-tier ul {
-    line-height: 1.75em;
-    margin: 0 0 20px;
-}
-.plan-tier ol, ul {
-    list-style: none outside none;
-}
-ol, ul {
-    list-style: none outside none;
-}
-
-

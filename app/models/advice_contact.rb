@@ -4,5 +4,5 @@ class AdviceContact < ActiveRecord::Base
 	has_many :tips
 	belongs_to :user
 	has_many :ratingothers
-	validates_presence_of :email,:email => true
+	# validates_presence_of :email,:email => true
 end

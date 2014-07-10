@@ -37,7 +37,6 @@
          <td><p>Email is not veriifed</p></td>       
         <% end %>
         <td><%= link_to format_boolean(email.merged?), {:controller => 'emails', :action => 'merge', :id => email.id} %></td>
-      </tr>
-   
+      </tr>   
  <%end%>
 </table>

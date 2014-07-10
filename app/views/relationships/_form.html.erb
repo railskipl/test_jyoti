@@ -14,14 +14,7 @@
    <%#= f.collection_select :email, Contact.where("user_id = ?", current_user.id).all, :email, :email %>  
    <%= f.text_field :email %>   
   </div>
-  <div class="field">
-    <%= f.label :name,"Primary Circle" %>
-    <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"}%>
-  </div>
 
- <!-- <p align="center">
-  <div align="center"> -->
- 
   <div class="field">
     <%= f.label :know_how_for_long_year, "You've known this person for about:" %>
   <%= f.select :know_how_for_long_year, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8']]) %>years
@@ -32,8 +25,19 @@
 
 
   <div class="field">
+    <%= f.label :name,"Primary Circle" %>
+    <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:13%";%>
+  </div>
+
+ <!-- <p align="center">
+  <div align="center"> -->
+ 
+  
+
+
+  <div class="field">
     <%= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
-      <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]) %>
+      <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:15%"; %>
   
   </div>
 

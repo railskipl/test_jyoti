@@ -48,6 +48,15 @@ def primary
  @email.email = @secondary_email
  @email.primary = !@email.primary?
  @email.save!
+ # raise @email.primary.inspect
+ unless @email.primary == true 
+  if @email.merged == true
+    
+    # raise @email.email.inspect
+    @tip = Tip.where("user_id = ?",current_user.id)
+     # raise @tip.inspect
+  end
+ end
  redirect_to :back
 end
 
