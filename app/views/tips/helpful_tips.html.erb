@@ -1,13 +1,41 @@
- <h5>Helpful Tips</h5>
+<h5>Helpful Tips</h5>
+<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post' do |f| %>
+
+<b>Praise</b> :
+<%= @ww.praise rescue nil%><br>
+<b>Criticism</b> :
+<%= @ww.criticism rescue nil%><br>
+<b>General</b> :
+<%= @ww.helpful rescue nil%><br>
+<%= hidden_field_tag :id, @ww.id%>
+Accept &nbsp;<%= radio_button_tag :response, 'true', :onclick => "Checkpop(this.form)" %> &nbsp;&nbsp;&nbsp;
+Reject &nbsp;<%= radio_button_tag :response, 'false', :onclick => "Checkpop(this.form)" %><br>
+  
+<%= submit_tag :submit %>
+<%end%><br>
 
 	<% advice.each do |tip| %>
-		<% if tip.email == current_user.email && tip.user_id != current_user.id %>
-			<%= tip.helpful rescue nil%>
-			<%= link_to 'Respond', new_response_tip_path(:id => tip.id)  %></br>
-			<% response.each do |response| %>
-				<% if tip.id == response.tip_id %>
-				Response -  <%= response.response_for_tip %></br></br>
-				<% end %>
-			<% end %>
-		<% end %>
+	<% if tip.email == current_user.email && tip.user_id != current_user.id %>
+	<%= tip.helpful rescue nil%>
+	<%= link_to 'Respond', new_response_tip_path(:id => tip.id)  %></br>
+	<% response.each do |response| %>
+	<% if tip.id == response.tip_id %>
+	Response -  <%= response.response_for_tip %></br></br>
 	<% end %>
+	<% end %>
+	<% end %>
+	<% end %>
+
+<script type="text/javascript">
+  function Checkpop()
+  {
+  	var a = document.getElementById("response_true").checked
+  	var b = document.getElementById("response_false").checked
+
+  	if(a == true && b == true)
+  	{
+  		alert("Please check atleast one option.");
+  		return false
+  	}
+  };
+</script>

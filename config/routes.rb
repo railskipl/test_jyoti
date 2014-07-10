@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get :responses_to_your_tips
       get :tips_and_rating
       get :rejected_tips
+      post :tips_response
     }
   end
 
@@ -106,7 +107,7 @@ Rails.application.routes.draw do
    get '/users/:id/toggled_status', :to => 'users#toggled_status'
 
    get "/pages/:id/status", :to => "pages#status"
-
+   
   #get 'users/sign_out' => "devise/sessions#destroy"
   #get  '/sign_out' :to 'sessions#destroy', :via [:delete]
   # The priority is based upon order of creation: first created -> highest priority.

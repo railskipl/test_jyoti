@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140709105830) do
 
+
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
     t.text     "praise"
@@ -320,6 +321,8 @@ ActiveRecord::Schema.define(version: 20140709105830) do
     t.string   "name"
     t.string   "respond_for_tip"
     t.string   "response_for_tip"
+    t.integer  "tip_accept",       default: 0
+    t.integer  "tip_reject",       default: 0
   end
 
   create_table "trial_days", force: true do |t|

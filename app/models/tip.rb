@@ -1,6 +1,6 @@
 class Tip < ActiveRecord::Base
 
-	 attr_accessible :email, :user_id,:response_for_tip, :praise,:criticism,:helpful,:circle_id, :name,:respond_for_tip
+	 attr_accessible :email, :user_id,:response_for_tip, :praise,:criticism,:helpful,:circle_id, :name,:respond_for_tip,:tip_accept,:tip_reject
 	 belongs_to :user
 
 	has_many :power_groups

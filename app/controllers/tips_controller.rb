@@ -54,13 +54,33 @@ def destroy
   def helpful_tips
     @users = User.all
     @response_tip = ResponseTip.all
-    @tips = Tip.all
-    #@tips = Tip.where('user_id != ?', current_user.id)
-    #@tipss = @tips.where('email != ?', current_user.email)
-    #raise @tipss.inspect
-    #@power = PowerGroup.where('email = ? and circle_group = ?', current_user.email, @tipss.name)
-    #raise @power.inspect 
-    
+    #@tips = Tip.all
+    @tips = Tip.where('user_id != ?', current_user.id)
+    @tipss = @tips.where('email != ?', current_user.email)
+    @a = @tipss.order("RANDOM()").first
+    @power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @a.name)
+    if @power.empty?
+     @ww = @a
+    end
+  
+  end
+
+  def tips_response
+    @tip = Tip.find(params[:id])
+    sum = 1
+    if params[:response] == "true"
+      @sum = @tip.tip_accept + sum
+      @tip.tip_accept = @sum
+      @tip.update_attributes(params[:tip])
+      flash[:notice] = "Thanks for particiption."
+      redirect_to :back
+    else
+      @sum = @tip.tip_reject + sum
+      @tip.tip_reject = @sum
+      @tip.update_attributes(params[:tip])
+      flash[:notice] = "Thanks for particiption."
+      redirect_to :back
+    end
   end
 
  def unhelpful_tips
