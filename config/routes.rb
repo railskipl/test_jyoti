@@ -99,6 +99,7 @@ Rails.application.routes.draw do
     collection { 
       post :import 
       get :merge
+      get  :primary
     }
   end
 
@@ -162,7 +163,11 @@ Rails.application.routes.draw do
     get '/home/mspoint' => 'home#mspoint'
     get '/home/help' => 'home#help'
     get '/home/tip_rating' => 'home#tip_rating'
-
+    get '/home/how_it_works' => 'home#how_it_works'
+    get '/home/how_it_works_for_me' => 'home#how_it_works_for_me'
+    get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
+    
+ 
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

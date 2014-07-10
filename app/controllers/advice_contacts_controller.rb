@@ -27,6 +27,7 @@ class AdviceContactsController < ApplicationController
   def create
 
     @advice_contact = AdviceContact.new(advice_contact_params)
+    
     @user = User.where('email = ?', @advice_contact.email)
     
     unless @user.empty?

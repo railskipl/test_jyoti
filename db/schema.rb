@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709092315) do
+ActiveRecord::Schema.define(version: 20140709105830) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -381,6 +381,8 @@ ActiveRecord::Schema.define(version: 20140709092315) do
     t.boolean  "guest"
     t.string   "security_question"
     t.boolean  "toggled_status",            default: false
+    t.boolean  "merge"
+    t.boolean  "primary"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
