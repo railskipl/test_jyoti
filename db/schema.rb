@@ -388,7 +388,6 @@ ActiveRecord::Schema.define(version: 20140710120101) do
     t.boolean  "guest"
     t.string   "security_question"
     t.boolean  "toggled_status",            default: false
-    t.boolean  "merge"
     t.boolean  "primary"
   end
 
