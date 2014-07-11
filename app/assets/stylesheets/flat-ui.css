@@ -4770,16 +4770,11 @@ body.vjs-full-window {
   }
 }
 footer {
-  background: #fafafa;
-  text-shadow: 1px 1px 0 #fff;
-  font-size: 12px;
-  text-align: center;
-  border-top: 1px solid #dddddd;
-  position:fixed;
-  z-index: 1;
-  height: 50px;
-  bottom: 0;
-  width: 100%;
+  background-color: #edeff1;
+  color: #bac1c8;
+  font-size: 15px;
+  padding: 0;
+  margin-top: 225px;
 }
 footer a {
   color: #9aa4af;
