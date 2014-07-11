@@ -54,11 +54,12 @@ def destroy
 
     @tips = Tip.where('user_id != ?', current_user.id)
     @tipss = @tips.where('email != ?', current_user.email)
-  
+     
+    
     @second_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 1, 1, 0).order("RANDOM()").first rescue nil
     @zero_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
-
-    if @second_priority.present?
+   
+   if @second_priority.present?
       @priority = @second_priority
     else
       @priority = @zero_priority
@@ -69,6 +70,22 @@ def destroy
      @ww = @priority
     end
   end
+
+  def admin_approve_tip
+     @tips = Tip.where('user_id != ?', current_user.id )
+     @tipss = @tips.where('email != ?', current_user.email)
+     
+     @second_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 2, 0, 0).order("RANDOM()").first rescue nil
+     if @second_priority.present?
+      @priority = @second_priority
+      @ww = @priority
+      @created_at = @ww.created_at.to_date
+      # @b =  @created_at.to_date
+      @a = DateTime.now.to_date - 1.day
+     end
+
+  end
+
 
   def tips_response
   
