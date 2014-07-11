@@ -183,7 +183,12 @@ class PasteUsersController < ApplicationController
     @invitations = PasteUser.where("user_id = ?",current_user.id)
   end
 
+  def mirror_me
+    
+  end
+
   def my_mirror
+   
     @relationships = Relationship.all
   end
 

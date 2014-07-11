@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708071624) do
+ActiveRecord::Schema.define(version: 20140710120101) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 20140708071624) do
     t.string   "power_group_eamil"
     t.string   "custom_factor"
     t.integer  "relationship_id"
+    t.string   "circle_name"
   end
 
   create_table "ratingothers", force: true do |t|
@@ -320,6 +321,12 @@ ActiveRecord::Schema.define(version: 20140708071624) do
     t.string   "name"
     t.string   "respond_for_tip"
     t.string   "response_for_tip"
+    t.integer  "tip_accept",          default: 0
+    t.integer  "tip_reject",          default: 0
+    t.integer  "tip_viewed",          default: 0
+    t.integer  "tip_prediction",      default: 0
+    t.text     "suggestions"
+    t.integer  "quality_of_comments"
   end
 
   create_table "trial_days", force: true do |t|
@@ -381,6 +388,8 @@ ActiveRecord::Schema.define(version: 20140708071624) do
     t.boolean  "guest"
     t.string   "security_question"
     t.boolean  "toggled_status",            default: false
+    t.boolean  "merge"
+    t.boolean  "primary"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,3 +1,5 @@
+<h5>Give tips even without joining.</h5>
+
 <%= form_for(@advice_contact) do |f| %>
   <% if @advice_contact.errors.any? %>
   <div id="error_explanation">
@@ -15,10 +17,14 @@
    <% end  %>
 
     <div class="field">
-    <%= f.label :email %><br>
+   <%= f.label :email,"Email of a person who would benefit from your tips:"%>
     <%= f.text_area :email ,:placeholder => "Type an email address", :class=>"form-control", :maxlength => 500 %>
-    </div>
-  <div class="field">
+    </div></br>
+
+    <strong>Please give this person at least 2 tips below.</strong>
+
+          Please try to make sure they are appropriate and helpful. 
+  </br></br><div class="field">
     <%= f.label :praise %><br>
     <%= f.text_area :praise ,:placeholder => "Type in your praise here",:class=>"form-control" , :style => "height:80px !important;" %>
   </div>
@@ -31,7 +37,7 @@
     <%= f.text_area :helpful_tips ,:placeholder => "Type in your helpful tips here",:class=>"form-control" , :style => "height:80px !important;" %>
   </div>
   <div class="actions">
-    <%= f.submit "Submit Comments",:class => "btn btn-primary" %>
+    <%= f.submit "Continue",:class => "btn btn-primary" %>
     
   </div>
    </div>

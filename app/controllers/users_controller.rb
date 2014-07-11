@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
 
   def index
-
      @users = User.all
       @emails= Email.where("user_id = ?" ,current_user.id).all
 
@@ -21,36 +20,42 @@ class UsersController < ApplicationController
   end
 
 
-  # Method for Invite new User
-  def new
+# Method for Invite new User
+def new
   @user = User.new(:invitation_token => params[:invitation_token])
   @user.email = @user.invitation.recipient_email if @user.invitation
   @user.email = @user.paste_user.email if @user.invitation
-  @userinvite = UserInvitation.all
-    
-  end
+  @userinvite = UserInvitation.all    
+end
 
 
-  def import
+def import
     if params[:file].nil?
       redirect_to :back, notice: "Please Attach file" 
     else
       User.import(params[:file],current_user)
       redirect_to invite_paste_users_path, notice: "Users imported."
     end
-  end
+end
 
 def toggled_status
    @user = User.find(params[:id])
    @user.status = !@user.status?
     @user.save!
     redirect_to :back 
+end
+
+def primary
+ @user = User.find(params[:id])
+ @secondary_email = current_user.email
+ current_user.update_column("email",@user.email)
+ @user.email = @secondary_email
+ @user.primary = !@email.primary?
+ @user.save!
+ # raise @email.primary.inspect
+ if @user.primary == true 
  end
-
-
-
-
-
-
+ redirect_to :back
+end
 
 end

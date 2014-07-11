@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get :responses_to_your_tips
       get :tips_and_rating
       get :rejected_tips
+      post :tips_response
     }
   end
 
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
       post :select_contact_invitation
       get :invitation
       get :my_mirror
+      get :mirror_me
     }
   end
 
@@ -97,13 +99,15 @@ Rails.application.routes.draw do
   resources :users do
     collection { 
       post :import 
+      get :merge
+      get  :primary
     }
   end
 
    get '/users/:id/toggled_status', :to => 'users#toggled_status'
 
    get "/pages/:id/status", :to => "pages#status"
-
+   
   #get 'users/sign_out' => "devise/sessions#destroy"
   #get  '/sign_out' :to 'sessions#destroy', :via [:delete]
   # The priority is based upon order of creation: first created -> highest priority.
@@ -160,7 +164,11 @@ Rails.application.routes.draw do
     get '/home/mspoint' => 'home#mspoint'
     get '/home/help' => 'home#help'
     get '/home/tip_rating' => 'home#tip_rating'
-
+    get '/home/how_it_works' => 'home#how_it_works'
+    get '/home/how_it_works_for_me' => 'home#how_it_works_for_me'
+    get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
+    
+ 
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 
