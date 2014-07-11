@@ -73,7 +73,13 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :feedbacks
+  resources :feedbacks do 
+     collection {
+      get  :thanks_msg
+     }
+   end
+
+
   resources :invitations
   resources :organizations
   resources :individuals
