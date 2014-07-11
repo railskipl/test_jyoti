@@ -941,6 +941,43 @@ fieldset[disabled] .btn-info.active {
   background-color: #3498db;
   border-color: #3498db;
 }
+.btn-help {
+  color: #ffffff;
+  background-color: #3498db;
+}
+.btn-help:hover,
+.btn-help:focus,
+.btn-help:active,
+.btn-help.active,
+.open .dropdown-toggle.btn-help {
+  color: #ffffff;
+  background-color: #5dade2;
+  border-color: #5dade2;
+}
+.btn-help:active,
+.btn-help.active,
+.open .dropdown-toggle.btn-help {
+  background: #2c81ba;
+  border-color: #2c81ba;
+}
+.btn-help.disabled,
+.btn-help[disabled],
+fieldset[disabled] .btn-help,
+.btn-help.disabled:hover,
+.btn-help[disabled]:hover,
+fieldset[disabled] .btn-help:hover,
+.btn-help.disabled:focus,
+.btn-help[disabled]:focus,
+fieldset[disabled] .btn-help:focus,
+.btn-help.disabled:active,
+.btn-help[disabled]:active,
+fieldset[disabled] .btn-help:active,
+.btn-help.disabled.active,
+.btn-help[disabled].active,
+fieldset[disabled] .btn-help.active {
+  background-color: #3498db;
+  border-color: #3498db;
+}
 .btn-danger {
   color: #ffffff;
   background-color: #e74c3c;
