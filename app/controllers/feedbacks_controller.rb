@@ -32,7 +32,7 @@ class FeedbacksController < ApplicationController
       respond_to do |format|
         if @feedback.save
           FeedbackMailer.feedback_mailer(@feedback).deliver
-          format.html { redirect_to  thanks_msg_feedbacks_path, notice: 'Thanking for your Valuable Feeedback.' }
+          format.html { redirect_to  thanks_msg_feedbacks_path}
           format.json { render :show, status: :created, location: @feedback }
         else
           format.html { render :new }
