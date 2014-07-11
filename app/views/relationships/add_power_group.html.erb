@@ -10,13 +10,13 @@ Your Power Group
     <tr>
        <td><%= relationship.email %> </td>
        
-       <!-- <td><%#= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td> -->
+        <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email, :relationship_id => relationship.id )  ,:class => "btn btn-primary"%></td>
     </tr>
   <% end %>
     
   </table>
 
-<%= link_to "submit", my_mirror_paste_users_path,:class => "btn btn-primary" %>
+<%#= link_to "submit", my_mirror_paste_users_path,:class => "btn btn-primary" %>
  <%#= submit_tag "submit" ,:class => "btn btn-primary"%>
  
 <% end %>

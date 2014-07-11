@@ -39,7 +39,7 @@ end
 def destroy
     @tip = Tip.find(params[:id])
     @tip.destroy
-    redirect_to tips_path
+    redirect_to power_tips_tips_path
   end
 
 
@@ -83,7 +83,6 @@ def destroy
       # @b =  @created_at.to_date
       @a = DateTime.now.to_date - 1.day
      end
-
   end
 
 
@@ -116,6 +115,10 @@ def destroy
     redirect_to helpful_tips_tips_path
   end
 
+  def power_tips
+    @tips = Tip.all
+  end
+  
  def unhelpful_tips
    
  end

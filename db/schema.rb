@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710120101) do
+ActiveRecord::Schema.define(version: 20140711105539) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -326,6 +326,7 @@ ActiveRecord::Schema.define(version: 20140710120101) do
     t.integer  "tip_prediction",      default: 0
     t.text     "suggestions"
     t.integer  "quality_of_comments"
+    t.integer  "relationship_id"
   end
 
   create_table "trial_days", force: true do |t|
@@ -387,6 +388,7 @@ ActiveRecord::Schema.define(version: 20140710120101) do
     t.boolean  "guest"
     t.string   "security_question"
     t.boolean  "toggled_status",            default: false
+    t.boolean  "merge"
     t.boolean  "primary"
   end
 

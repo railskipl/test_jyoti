@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       get :rejected_tips
       post :tips_response
       get :admin_approve_tip
+      get :power_tips
     }
   end
 
