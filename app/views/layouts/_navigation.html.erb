@@ -31,8 +31,8 @@
 
  <% if user_signed_in? %>
     <% if current_user.is_admin == true%>
-      <li> <%= link_to "Pages",  pages_path %> </li> 
-      <li> <%= link_to "Organizations",  organizations_path %>  </li>
+     <li> <%= link_to "Pages",  pages_path %> </li> 
+     <li> <%= link_to "Organizations",  organizations_path %>  </li>
      <li> <%= link_to "Individuals",  individuals_path %>  </li>
      <li> <%= link_to "Feedbacks",  feedbacks_path %>  </li>
      <li> <%= link_to "Circle",  circles_path %>  </li>
@@ -52,35 +52,17 @@
         <li> <%= link_to "Invite" , invite_paste_users_path %></li> 
         <!-- <li> <%#= link_to "Power Tips" ,  power_tips_tips_path,'data-no-turbolink' => true %></li> -->
         <li> <%= link_to "FAQ" ,  faq_pages_path,'data-no-turbolink' => true %></li>
-        <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li>  
-      
-
-        <!-- <li> <%#= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li> -->
-
-      
-
-
-
-          
-          
-      
-          
-         
-        
-    <% end %>
-
-
+        <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li>
+        <!-- <li> <%#= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li> -->        
+    <% end %>    
   <% end %>
 
-<% unless user_signed_in? %>
-
-  
+<% unless user_signed_in? %>  
   <li> <%= link_to "How It Works",  home_how_it_works_path %></li>
   <li><%= link_to "Plan", home_learn_more_path  %> </li>
-  <li><%= link_to "Sign Up", new_user_session_path  %> </li>
+  <li><%= link_to "Sign Up", new_user_registration_path  %> </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
-
-  <% end %>
+ <% end %>
 
 
  </ul>
