@@ -1,9 +1,8 @@
 <h5>Helpful Tips</h5>
-
-
-<%  if @ww.present?%>
-
-	<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
+<% if current_user.is_admin == true %>
+ <!-- <%# if @ww.present? && @a.present? %> -->
+<% if @ww.present? && @created_at == @a %>
+<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
 	    :onsubmit => "return validateForm()"  do |f| %>
 	   
 		<b>Praise</b> :
@@ -27,8 +26,8 @@
 		<%= submit_tag :submit %>
 		<br><br>
 	<%end%>
-<%end%>
-
+<% end %>
+<% end %>
 	
 <script type="text/javascript">
   function validateForm()

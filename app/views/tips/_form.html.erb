@@ -11,6 +11,7 @@
 
   <% if params[:email]%>
     <%= f.hidden_field :email,:value => params[:email] %>
+    <%= f.hidden_field :relationship_id,:value => params[:relationship_id] %>
     <%= f.hidden_field :rating, :value => "true"%>
   <%end%>
 

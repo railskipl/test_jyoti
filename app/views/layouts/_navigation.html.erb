@@ -12,7 +12,14 @@
     </div>
         
   </div>
-  
+  <% if user_signed_in? %>
+     <% unless current_user.is_admin == true%>
+      <!-- Logged in as <%= current_user.email %>. -->
+     <%= link_to 'Sign out',destroy_user_session_path,method: :delete,:class=>"btn btn-primary navbar-btn btn-xs", :style=>"float:right; margin-top:-61px"%>
+    <ul style="text-align: right; width:90%"><%=link_to( image_tag("/assets/1404909434_settings-24.png"), home_setting_path, :style=>"float:right; margin-top:-54px; size:1x1") %></ul>
+    
+   <%end%>
+   <%end%>
         <nav role="navigation" class="navbar navbar-inverse ">
             <div class="navbar-header">
               <button data-target="#navbar-collapse-01" data-toggle="collapse" class="navbar-toggle" type="button">
@@ -30,27 +37,23 @@
      <li> <%= link_to "Feedbacks",  feedbacks_path %>  </li>
      <li> <%= link_to "Circle",  circles_path %>  </li>
      <li> <%= link_to "Factor",  factors_path %>  </li>
+     <li> <%= link_to "Approve Tips",  admin_approve_tip_tips_path %>  </li>
      <li> <%= link_to "Trial Days" , trial_days_path,'data-no-turbolink' => true %></li> 
      <li> <%= link_to "Contact_us" , home_contactus_path,'data-no-turbolink' => true %></li>
      <li> <%= link_to "Plans" , plans_path,'data-no-turbolink' => true %></li>         
      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
   <% end %>
 
-  
+
 
      <% unless current_user.is_admin == true%>
-        
-         <ul style="text-align: right"><%=link_to( image_tag("/assets/1404909434_settings-24.png"), home_setting_path, :style=>"float: right-top; size:1x1") %></ul>
-
-        
-         
-        <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
+         <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
         <li> <%= link_to "Give Feedbacks",  tip_tips_path %>  </li>
         <li> <%= link_to "Invite" , invite_paste_users_path %></li> 
+        <!-- <li> <%#= link_to "Power Tips" ,  power_tips_tips_path,'data-no-turbolink' => true %></li> -->
         <li> <%= link_to "FAQ" ,  faq_pages_path,'data-no-turbolink' => true %></li>
         <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li>  
       
-       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 
         <!-- <li> <%#= link_to "Advice" ,  advice_tips_path,'data-no-turbolink' => true %></li> -->
 
@@ -72,7 +75,7 @@
 <% unless user_signed_in? %>
 
   
-  <li> <%= link_to "How it Works",  home_how_it_works_path %></li>
+  <li> <%= link_to "How It Works",  home_how_it_works_path %></li>
   <li><%= link_to "Plan", home_learn_more_path  %> </li>
   <li><%= link_to "Sign Up", new_user_session_path  %> </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 

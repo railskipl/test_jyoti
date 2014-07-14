@@ -1,0 +1,30 @@
+ <h5>Power Tips</h5>
+
+<strong> All the tips below were received from users who were in your Power Group at that time. Please <br>be aware that these tips include both approved tips as well as sensitive tips.</strong></br></br></br>
+
+CAUTION: While you should be open to feedback, do not take criticisms to heart. We hope that they satisfy your curiosity about what people think, and help you in some way. These comments are subjective comments by others who may or may not have the facts. </br></br></br>
+
+
+    <tr>
+      <th></th>
+       <!-- <th>Criticism</th> -->
+        <!-- <th>Helpful</th> -->
+        <!-- <th colspan="1"></th> -->
+    </tr>
+  
+   <% @tips.each do |tip| %>
+        <%#if email.primary %>
+    <% if tip.relationship_id.present? %>
+      <tr>
+        <td><%= tip.praise rescue nil%></td>
+         <!-- <td><%#= tip.criticism rescue nil%></td> -->
+          <!-- <td><%#= tip.helpful rescue nil %></td> -->
+          <!-- <td><%#= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+
+      </tr>
+      <% end %>
+    <% end %>
+    <%# end %>
+ 
+
+

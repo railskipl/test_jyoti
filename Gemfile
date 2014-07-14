@@ -5,7 +5,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 
+<<<<<<< HEAD
 #gem 'pg'
+=======
+gem 'pg'
+>>>>>>> 989b0620aa73d61771a6b609d181e7c6b60bb393
 gem 'sqlite3'
 
 # gem 'mysql'

@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       get :tips_and_rating
       get :rejected_tips
       post :tips_response
+      get :admin_approve_tip
+      get :power_tips
     }
   end
 
@@ -71,7 +73,13 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :feedbacks
+  resources :feedbacks do 
+     collection {
+      get  :thanks_msg
+     }
+   end
+
+
   resources :invitations
   resources :organizations
   resources :individuals

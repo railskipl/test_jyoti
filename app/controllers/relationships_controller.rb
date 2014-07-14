@@ -114,7 +114,7 @@ class RelationshipsController < ApplicationController
 
     if (8 >= @q.to_i)
       @relationships.each do |r|
-          powergroup = PowerGroup.new( :user_id => current_user.id, :email => r.email, :circle_name => r.name )
+          powergroup = PowerGroup.new( :user_id => current_user.id, :relationship_id => r.id,:email => r.email, :circle_name => r.name )
           powergroup.save
           Mailer.power_group_invitation(powergroup,@signup_url).deliver
       end

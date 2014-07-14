@@ -941,6 +941,43 @@ fieldset[disabled] .btn-info.active {
   background-color: #3498db;
   border-color: #3498db;
 }
+.btn-help {
+  color: #ffffff;
+  background-color: #3498db;
+}
+.btn-help:hover,
+.btn-help:focus,
+.btn-help:active,
+.btn-help.active,
+.open .dropdown-toggle.btn-help {
+  color: #ffffff;
+  background-color: #5dade2;
+  border-color: #5dade2;
+}
+.btn-help:active,
+.btn-help.active,
+.open .dropdown-toggle.btn-help {
+  background: #2c81ba;
+  border-color: #2c81ba;
+}
+.btn-help.disabled,
+.btn-help[disabled],
+fieldset[disabled] .btn-help,
+.btn-help.disabled:hover,
+.btn-help[disabled]:hover,
+fieldset[disabled] .btn-help:hover,
+.btn-help.disabled:focus,
+.btn-help[disabled]:focus,
+fieldset[disabled] .btn-help:focus,
+.btn-help.disabled:active,
+.btn-help[disabled]:active,
+fieldset[disabled] .btn-help:active,
+.btn-help.disabled.active,
+.btn-help[disabled].active,
+fieldset[disabled] .btn-help.active {
+  background-color: #3498db;
+  border-color: #3498db;
+}
 .btn-danger {
   color: #ffffff;
   background-color: #e74c3c;
@@ -4733,11 +4770,16 @@ body.vjs-full-window {
   }
 }
 footer {
-  background-color: #edeff1;
-  color: #bac1c8;
-  font-size: 15px;
-  padding: 0;
-  margin-top: 40px;
+  background: #fafafa;
+  text-shadow: 1px 1px 0 #fff;
+  font-size: 12px;
+  text-align: center;
+  border-top: 1px solid #dddddd;
+  position:fixed;
+  z-index: 1;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
 }
 footer a {
   color: #9aa4af;
