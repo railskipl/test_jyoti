@@ -4770,11 +4770,11 @@ body.vjs-full-window {
   }
 }
 footer {
-  background-color: #edeff1;
-  color: #bac1c8;
-  font-size: 15px;
-  padding: 0;
-  margin-top: 418px;
+margin-top: 100px ;
+text-align: center ;
+font-size: 16px ;
+height: 64px ;
+background-color: #edeff1; 
 }
 footer a {
   color: #9aa4af;
