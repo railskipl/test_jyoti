@@ -9,7 +9,7 @@
 
 <body>
   
-<div class="container" style="height: 580px;">
+<div class="container" style="height: 580px;width: 130%;">
   
  <%= render 'layouts/navigation' %>
 
@@ -23,11 +23,9 @@
 
  <% end %> 
  <%= yield %>
+ <%= render 'shared/footer' %>
 
-</div>
-
-<%= render 'shared/footer' %>
-
+ </div>
 </body>
 
 
