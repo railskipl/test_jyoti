@@ -17,10 +17,10 @@
       <%= f.hidden_field :anonymous_user ,:value => true %>      
    <%end%>
 
-   
+
     <% if params[:email]%>
-      <%= f.text_field :email,:value => params[:email] %>
-     <%end%><br>
+      <%= f.hidden_field :email,:value => params[:email] %>
+     <br>
 
 
    <%= f.label :trustworthy %><br>
@@ -56,6 +56,7 @@
 
 
  <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
+ <%end%>
    <% unless user_signed_in? %>
    <% else %>
     <%= f.hidden_field :user_id,:value => current_user.id %>
