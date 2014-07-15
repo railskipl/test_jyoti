@@ -20,7 +20,7 @@
   <% if params[:email]%>
      <div class="field">
      <%= f.label :email %>
-     <%= f.text_field :email,:value => params[:email] %>
+     <%= f.text_field :email,:value => params[:email],:disabled => [true] %>
      </div>
 
      <div class="field">
