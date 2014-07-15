@@ -34,11 +34,11 @@
         <td><%= relationship.well_known_user_avg %></td>
         <td><%= relationship.influence_avg %></td>
         
-        <!-- <td><%#= link_to 'Show', relationship %></td> -->
+        <td><%= link_to 'Show', relationship %></td> 
         <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
         <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
 
-        <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email)  ,:class => "btn btn-primary"%></td> 
+        <!-- <td><%#= link_to "Give Tip",new_tip_path(:email => relationship.email)  ,:class => "btn btn-primary"%></td>  -->
         
        
       </tr>

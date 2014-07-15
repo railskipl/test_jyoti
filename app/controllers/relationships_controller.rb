@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
 
   def feedback_relationship
     @relationships = Relationship.all
+    @contacts = Contact.all
   end
 
 
@@ -40,12 +41,12 @@ class RelationshipsController < ApplicationController
 
    @relationship = Relationship.new(relationship_params)
 
-     @y = @relationship.know_how_for_long_year
-     @m = @relationship.know_how_for_long_month 
-     @month = @y*12
-     @total_month = (@month)+(@m)
-     @how_long_you_know_each_other_avg = (@total_month*20)/36  
-     @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
+     # @y = @relationship.know_how_for_long_year
+     # @m = @relationship.know_how_for_long_month 
+     # @month = @y*12
+     # @total_month = (@month)+(@m)
+     # @how_long_you_know_each_other_avg = (@total_month*20)/36  
+     # @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
      
      @p = @relationship.how_well_you_know_the_person.to_i
      @h = (@p)*20

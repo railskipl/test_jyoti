@@ -6,28 +6,19 @@
   <thead>
     <tr>
     <th> </th>
-      <th>Email</th>
-      <th>Circle</th>
-      <th>How Long You Know Each Other</th>
-      <th>How well they know the person</th>
-      <th>Influence</th>
-      <th colspan="3"></th>
+      <th>Email</th>      
+      <th colspan="1"></th> 
     </tr>
   </thead>
 
   <tbody>
-  <% @relationships.each do |relationship| %>
+  <!-- <%# @relationships.each do |relationship| %> -->
+  <% @contacts.each do |relationship| %>
       <tr>
         <td><%= check_box_tag "relationship_ids[]", relationship.id %></td>
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= relationship.name %> &nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= relationship.how_long_you_know_each_other_avg %></td>
-        <td><%= relationship.well_known_user_avg %>%</td>
-        <td><%= relationship.influence_avg %>%</td>
-        <!-- <td><%#= submit_tag "Select Email",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></td> -->
-        <td><%= link_to "Give Tip",new_tip_path(:email => relationship.email )  ,:class => "btn btn-primary"%></td>
-
-
+        
+       <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email)  , :class => 'btn btn-primary'  %></td>
         
        
       </tr>      
@@ -40,7 +31,7 @@
   </tbody>
 </table>
 <% end %>
-  <%= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
+  <%#= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
 
 
 
