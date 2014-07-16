@@ -4770,11 +4770,12 @@ body.vjs-full-window {
   }
 }
 footer {
-margin-top: 100px ;
-text-align: center ;
-font-size: 16px ;
-height: 64px ;
-background-color: #edeff1; 
+  position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#edeff1;
+
 }
 footer a {
   color: #9aa4af;
