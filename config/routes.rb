@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get :power_group
       get :feedback_relationship
       post :add_feedback
+      get :power_feedback
+      post :power_feedback
     }
   end
 

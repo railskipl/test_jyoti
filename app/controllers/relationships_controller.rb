@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
 
   def feedback_relationship
     @relationships = Relationship.all
+    @contacts = Contact.all
   end
 
 
@@ -40,12 +41,12 @@ class RelationshipsController < ApplicationController
 
    @relationship = Relationship.new(relationship_params)
 
-     @y = @relationship.know_how_for_long_year
-     @m = @relationship.know_how_for_long_month 
-     @month = @y*12
-     @total_month = (@month)+(@m)
-     @how_long_you_know_each_other_avg = (@total_month*20)/36  
-     @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
+     # @y = @relationship.know_how_for_long_year
+     # @m = @relationship.know_how_for_long_month 
+     # @month = @y*12
+     # @total_month = (@month)+(@m)
+     # @how_long_you_know_each_other_avg = (@total_month*20)/36  
+     # @relationship.how_long_you_know_each_other_avg =  @how_long_you_know_each_other_avg
      
      @p = @relationship.how_well_you_know_the_person.to_i
      @h = (@p)*20
@@ -105,12 +106,13 @@ class RelationshipsController < ApplicationController
     relationship_ids = params["relationship_ids"]
     @relationships ||= []
     relationship_ids.to_a.each do |r|
-      @relationships << Relationship.find(r)
-    end 
+    @relationships << Relationship.find(r)
+  end 
     
     @a = PowerGroup.where('user_id = ?', current_user.id)
     @q =  @a.size.to_i + @relationships.size.to_i
     @w = (8 - @q).abs
+
 
     if (8 >= @q.to_i)
       @relationships.each do |r|
@@ -143,6 +145,31 @@ class RelationshipsController < ApplicationController
 
   def power_group
     @relationships = PowerGroup.where('user_id = ?', current_user)
+
+    @relationship = Relationship.new     
+     
+     @p = @relationship.how_well_you_know_the_person.to_i
+     @h = (@p)*20
+     @well_known_user_avg = @h/8
+     @relationship.well_known_user_avg = @well_known_user_avg
+
+     @i = @relationship.your_influence.to_i
+     @influence = (@i)*60
+     @influence_avg = @influence/8
+     @relationship.influence_avg = @influence_avg
+   
+  end
+
+  def power_feedback
+   @relationships = PowerGroup.where('user_id = ?', current_user)
+   if request.post?
+      invite = params[:invite].nil? ? 0 : params[:invite]
+      @relationships.each do |r|
+          powergroup = PowerGroup.new( :user_id => current_user.id, :email => r.email )
+         Mailer.power_user(powergroup,@signup_url).deliver
+      end
+      redirect_to invite_paste_users_path, :notice => "Invitation send successfully"
+    end
   end
 
 

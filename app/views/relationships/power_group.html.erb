@@ -1,24 +1,78 @@
 
 <%= link_to 'New Relationship', new_relationship_path %>
-  <h6> List of Power Group Users</h6>
+  <h4> Power Group </h4>
+
+  <strong>"Power Group" is a subset of your Mirrors whose opinions you should take more seriously.</strong> These <br>are people who have wisdom or influence over your happiness and future success.  They could be <br>your supervisors at work, mentors, people you respect, people you love.  To protect their anonymity,<br> <strong>this group's exact size and composition is determined by us.</strong> We use your inputs as well as other<br> factors. <br><br> 
+
+
+  <strong>You have to define at least 15 relationships (when you give them feedback) to start the process.</strong> <br> The more of your contacts you define your relationship with, the sooner we may be able to present<br> you with your Power Group feedback (tips and ratings just from them).<br><br> 
+
+ 
+
+  When available, your <strong>Power Ratings </strong> are viewable on your Reputation Report, and <strong>your Power Tips<br> here.</strong><br><br> 
+
+ 
+
+  Whether or not the people important to you have joined Mirror 360 yet, <strong>you can update your<br> relationship below with anyone (after you have given them feedback):</strong> <br><br> 
+
+
 <div class="row">
 <div class="col-xs-4">
 <table class="table table-bordered">
  
  <tr>
     <th>Sr no.</th>
-    <th>Email</th>
+    <th>Email</th>    
+    <th>How Long You Know Each Other</th> 
+    <th>How well they know the person</th>
+    <th>Influence</th>
+    <th>Primary_Circle</th>
  </tr>
 
 <% @relationships.each_with_index do |relationship,index| %>
-
+  <%= form_for Relationship.new do |f| %>
+ 
   <tr>
     <td> <%= index+1 %> </td>
     <td> <%= relationship.email %></td>
+    <td><div class="field">
+            <%#= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
+            <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:15%"; %>
+        </div></td>
+
+
+    <td><div class="field">
+             <%# f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
+             <%= f.select :your_influence, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %>
+        </div></td>
+
+
+    <td><div class="field">
+             <%#= f.label :Their_influence_on_your_future,"Their Influence On Your Future:" %>
+             <%= f.select :influence_on_your, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
+        </div></td>
+
+      <td><div class="field">
+              <%#= f.label :name,"Primary Circle" %>
+              <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:100%";%>
+        </div></td>  
+
+        
   </tr>
+
+
+      
+<% end %>
+
 <% end %>
 
 </table>
 </div>
-</div>
+</div><br><br>
+
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+<%= link_to "Save",power_feedback_relationships_path,:class =>"btn btn-primary" %>
+
+
+
 
