@@ -18,7 +18,7 @@
         <td><%= check_box_tag "relationship_ids[]", relationship.id %></td>
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         
-       <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email)  , :class => 'btn btn-primary'  %></td>
+       <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
         
        
       </tr>      
