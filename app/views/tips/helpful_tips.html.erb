@@ -23,7 +23,8 @@
       <br>
       <%= radio_button_tag :quality_of_comments, '1' %>&nbsp;&nbsp;1&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '2' %>&nbsp;&nbsp;2&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '3' %>&nbsp;&nbsp;3&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '4' %>&nbsp;&nbsp;4&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '5' %>&nbsp;5
       <br><br>
-		<%= submit_tag :submit %>
+		<%= submit_tag :Submit, :class => 'btn btn-primary'%>
+		<%= link_to "History",check_history_tips_path, :class => 'btn btn-primary'%>
 		<br><br>
 	<%end%>
 <%end%>
@@ -44,3 +45,9 @@
 		  	}
     };
 </script>
+
+
+
+
+<%#= Tip.where(:tip_viewed=>1).count%>
+<%#= Tip.where(:quality_of_comments=>1).count%>

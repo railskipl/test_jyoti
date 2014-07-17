@@ -44,17 +44,22 @@ def destroy
 
 
   def merge_email
-  	@merge_email =User.find(params[:id])
+  	@merge_email = User.find(params[:id])
   end
 
   def demerge_email
+  end
+ 
+  def check_history
+     @tips = Tip.where('user_id = ?', current_user.id)
+    
   end
 
   def helpful_tips
 
     @tips = Tip.where('user_id != ?', current_user.id)
     @tipss = @tips.where('email != ?', current_user.email)
-     
+    
     
     @second_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 1, 1, 0).order("RANDOM()").first rescue nil
     @zero_priority = @tipss.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil

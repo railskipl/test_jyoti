@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       post :tips_response
       get :admin_approve_tip
       get :power_tips
+      get :check_history
     }
   end
 
