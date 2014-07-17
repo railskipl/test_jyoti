@@ -17,6 +17,57 @@
    <%#= f.text_field :email %>   
   <!-- </div> -->
 
+  <% if params[:email]%>
+
+
+    <div class="field">
+       <%= f.label :email %>
+       <%= f.text_field :email,:value => params[:email],:disabled => [true] %>
+    </div>
+
+   <div class="field">
+       <%= f.label :know_how_for_long_year, "You've known this person for about:" %>
+       <%= f.select :know_how_for_long_year, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8']]) %>years
+
+        <!-- <%#= f.label :know_how_for_long_month, "You've known this person for about:" %> -->
+        <%= f.select :know_how_for_long_month, options_for_select([['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], ['9', '9'], ['10', '10'], ['11', '11']]) %>months
+   </div>
+
+
+    <div class="field">
+        <%= f.label :name,"Primary Circle" %>
+        <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:13%";%>
+    </div>
+
+
+    <div class="field">
+        <%= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
+        <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:15%"; %>  
+    </div>
+
+
+    <div class="field">
+          <%= f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
+          <%= f.select :your_influence, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %>
+    </div>
+
+
+    <div class="field">
+            <%= f.label :Their_influence_on_your_future,"The person's influence on your  Future:" %>
+            <%= f.select :influence_on_your, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
+    </div>
+
+
+    <div class="field">  
+             <%= f.hidden_field :how_long_you_know_each_other_avg %>  
+    </div>
+     <%#= f.submit "Submit", :class=>"btn btn-primary" %>
+
+         <%= link_to "Give Tip",new_tip_path(:email => params[:email])  ,:class => "btn btn-primary"%>
+
+
+
+      <% else %>
 
      <div class="field">
           <%= f.label :email %>
@@ -59,6 +110,7 @@
             <%= f.submit "Submit", :class=>"btn btn-primary" %>
       </div>
       
+  <% end %>
         
 <% end %>
   
