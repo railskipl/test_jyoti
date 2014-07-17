@@ -19,5 +19,10 @@
   <% end %>
    	<%= hidden_field_tag "emails" , params[:emails] %>
   </table>
- <%= submit_tag "Send Invitaion(s)" ,:class => "btn btn-primary"%>
-<% end %>
+  <div  style="padding: 90px;"><%= submit_tag "Send Invitaion(s)" ,:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class => "btn btn-primary"%>
+<% end %></div>
+
+<%#= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %>
+<script>
+
+</script>

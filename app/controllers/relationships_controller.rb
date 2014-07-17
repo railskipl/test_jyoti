@@ -1,6 +1,8 @@
 class RelationshipsController < ApplicationController
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
-  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
+  before_filter :check_user, only: [:index,:destroy,:edit,:update,:new,:feedback_relationship,:power_group,:power_feedback]
+
+
   require 'will_paginate/array'
   # GET /relationships
   # GET /relationships.json
@@ -58,14 +60,7 @@ class RelationshipsController < ApplicationController
      @influence_avg = @influence/8
      @relationship.influence_avg = @influence_avg
    
-     # @a = Relationship.all
-   # if @b = @a.count >= 8 && @a.count <= 20
-   #   @power_group = PowerGroup.new(:user_id => current_user.id,:email => @relationship.email)
-   #   @power_group.save!
-   # end
-
-    
-        if @relationship.save        
+       if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
           redirect_to relationships_path
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
@@ -125,8 +120,9 @@ class RelationshipsController < ApplicationController
       redirect_to :back
     end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-
   end
+
+
 
   def add_feedback
     
@@ -145,9 +141,9 @@ class RelationshipsController < ApplicationController
 
   def power_group
     @relationships = PowerGroup.where('user_id = ?', current_user)
+    
+    @relationship = Relationship.new  
 
-    @relationship = Relationship.new     
-     
      @p = @relationship.how_well_you_know_the_person.to_i
      @h = (@p)*20
      @well_known_user_avg = @h/8
@@ -156,9 +152,10 @@ class RelationshipsController < ApplicationController
      @i = @relationship.your_influence.to_i
      @influence = (@i)*60
      @influence_avg = @influence/8
-     @relationship.influence_avg = @influence_avg
-   
+     @relationship.influence_avg = @influence_avg   
   end
+
+
 
   def power_feedback
    @relationships = PowerGroup.where('user_id = ?', current_user)

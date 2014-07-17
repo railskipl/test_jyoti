@@ -17,16 +17,16 @@
 
 
 <div class="row">
-<div class="col-xs-4">
+ <!-- <div class="col-xs-12"> -->
 <table class="table table-bordered">
  
  <tr>
     <th>Sr no.</th>
-    <th>Email</th>    
-    <th>How Long You Know Each Other</th> 
-    <th>How well they know the person</th>
-    <th>Influence</th>
-    <th>Primary_Circle</th>
+    <th>Email</th>
+    <th>How well they know the person</th>        
+    <th>The person's influence on your future</th> 
+    <th>Your influence on the person's future</th>
+    <th>Circle</th>
  </tr>
 
 <% @relationships.each_with_index do |relationship,index| %>
@@ -35,27 +35,36 @@
   <tr>
     <td> <%= index+1 %> </td>
     <td> <%= relationship.email %></td>
-    <td><div class="field">
+
+    <td>
+       <div class="field">
             <%#= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
-            <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:15%"; %>
-        </div></td>
+          <%= f.select :how_well_you_know_the_person, options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:15%"; %>
+        </div>
+    </td>
 
 
-    <td><div class="field">
+    <td>
+        <div class="field">
              <%# f.label :your_influence_on_the_persons_future,"Your Influence On The Person's Future:" %>
-             <%= f.select :your_influence, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %>
-        </div></td>
+          <%= f.select :your_influence, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %>
+        </div>
+    </td>
 
 
-    <td><div class="field">
+    <td>
+        <div class="field">
              <%#= f.label :Their_influence_on_your_future,"Their Influence On Your Future:" %>
-             <%= f.select :influence_on_your, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
-        </div></td>
+          <%= f.select :influence_on_your, options_for_select([['Choose One', ''], ['Extremely High', '8'], ['Very High', '7'], ['Very High', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Low', '3'], ['Very Low', '2'], ['None', '1']]) %> 
+        </div>
+    </td>
 
-      <td><div class="field">
+    <td>
+        <div class="field">
               <%#= f.label :name,"Primary Circle" %>
-              <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:100%";%>
-        </div></td>  
+          <%= f.collection_select :name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:80%";%>
+        </div>
+    </td>  
 
         
   </tr>
@@ -67,11 +76,11 @@
 <% end %>
 
 </table>
+ <!-- </div> -->
 </div>
-</div><br><br>
 
-&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-<%= link_to "Save",power_feedback_relationships_path,:class =>"btn btn-primary" %>
+
+<div  style="float:right;padding: 80px; "><%= link_to "Save",power_feedback_relationships_path,:class =>"btn btn-primary" %></div>
 
 
 

@@ -3,7 +3,7 @@ class Ratingother < ActiveRecord::Base
  belongs_to  :user
  belongs_to :advice_contact
  validates_presence_of :email
-
+ validates_uniqueness_of :email
 
 
 def category_name
