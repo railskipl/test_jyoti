@@ -61,6 +61,7 @@
     <div class="field">  
              <%= f.hidden_field :how_long_you_know_each_other_avg %>  
     </div>
+     <%= f.submit "Submit", :class=>"btn btn-primary" %>
 
          <%= link_to "Give Tip",new_tip_path(:email => params[:email])  ,:class => "btn btn-primary"%>
 
