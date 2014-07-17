@@ -75,7 +75,6 @@ class RelationshipsController < ApplicationController
 
   def feddback_form
     @relationships = Relationship.new(relationships_params)
-    raise @relationships.inspect
     if @relationships.save 
     if params[:relationships_params][:email] == "true" 
       redirect_to new_tip_path(:email => relationships.email)
