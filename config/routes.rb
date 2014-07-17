@@ -105,6 +105,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
+  
 
   resources :users do
     collection { 
