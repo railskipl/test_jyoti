@@ -17,7 +17,7 @@ def create
   unless @ratingother.anonymous_user 
     if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
        # flash[:notice] = "No user found."
-       redirect_to new_ratingother_path
+       redirect_to my_mirror_paste_users_path
     else
       @user = User.where('email = ?', @ratingother.email)
       @ratingother.friend_id = @user[0].id
@@ -25,26 +25,26 @@ def create
 
       if @rating_exist.empty?
         if @ratingother.save
-          redirect_to :back, notice: "Rating has been done."
+          redirect_to my_mirror_paste_users_path, notice: "Rating has been done."
         else
-          render 'new'
+          render 'my_mirror_paste_users_path'
         end
       else
         flash[:notice] = "You have already rated this user."
-        redirect_to new_ratingother_path
+        redirect_to my_mirror_paste_users_path
       end
     end
   else
     @user = User.where('email = ?', @ratingother.email)
     unless @user
       flash[:notice] = "No user found."
-      redirect_to new_ratingother_path
+      redirect_to my_mirror_paste_users_path
     else
       if @ratingother.save
         flash[:notice] = "Rating has been done."
-        redirect_to :root
+        redirect_to my_mirror_paste_users_path
       else
-        render 'new'
+        render 'my_mirror_paste_users_path'
       end
     end
   end
