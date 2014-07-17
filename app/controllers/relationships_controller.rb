@@ -64,7 +64,7 @@ class RelationshipsController < ApplicationController
    # end
 
     
-        if @relationship.save        
+        if @relationship.save!        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
           redirect_to relationships_path
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver

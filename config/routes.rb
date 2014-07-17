@@ -83,7 +83,11 @@ Rails.application.routes.draw do
   resources :invitations
   resources :organizations
   resources :individuals
-  resources :ratings
+  resources :ratings do
+    collection {
+      get :report
+    }
+  end
   resources :ratingothers
 
   resources :emails do 

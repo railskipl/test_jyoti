@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711105539) do
+ActiveRecord::Schema.define(version: 20140717100843) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -245,6 +245,13 @@ ActiveRecord::Schema.define(version: 20140711105539) do
     t.boolean  "approve_custom_factor"
     t.string   "your_choise_custom_factor"
     t.boolean  "relation_checked",                 default: false
+  end
+
+  create_table "reputation_scores", force: true do |t|
+    t.integer  "user_id"
+    t.float    "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "response_tips", force: true do |t|
