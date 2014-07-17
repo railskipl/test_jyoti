@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       post :add_feedback
       get :power_feedback
       post :power_feedback
+      get :feedback_form
     }
   end
 
