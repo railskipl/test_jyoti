@@ -1,7 +1,7 @@
 class RelationshipsController < ApplicationController
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+  require 'will_paginate/array'
   # GET /relationships
   # GET /relationships.json
   def index
@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
   end
 
   def feedback_relationship
-    @relationships = Relationship.all
+    @relationships = Relationship.paginate(:page => params[:page],:per_page => 5)
     @contacts = Contact.all
   end
 

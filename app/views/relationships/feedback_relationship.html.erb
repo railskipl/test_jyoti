@@ -21,7 +21,8 @@
        <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
         
        
-      </tr>      
+      </tr> 
+
     <% end %>
      
 
@@ -30,7 +31,9 @@
 
   </tbody>
 </table>
+<li><%= will_paginate @relationships %></li> 
 <% end %>
+
   <%#= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
 
 
