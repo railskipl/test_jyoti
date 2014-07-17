@@ -4770,14 +4770,14 @@ body.vjs-full-window {
   }
 }
 footer {
- position: fixed;
+ /*position: fixed; */
     left: 0;
     bottom: 0;
     /*height: 100px;*/
     width: 100%;
    background:#edeff1;
    z-index: 10;
-   
+
 
 }
 footer a {
