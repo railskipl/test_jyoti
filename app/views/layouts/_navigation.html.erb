@@ -14,9 +14,10 @@
   </div>
   <% if user_signed_in? %>
      <% unless current_user.is_admin == true%>
-      <!-- Logged in as <%= current_user.email %>. -->
+      
      <%= link_to 'Sign out',destroy_user_session_path,method: :delete,:class=>"btn btn-primary navbar-btn btn-xs", :style=>"float:right; margin-top:-61px"%>
-    <ul style="text-align: right; width:90%"><%=link_to( image_tag("/assets/1404909434_settings-24.png"), home_setting_path, :style=>"float:right; margin-top:-54px; size:1x1") %></ul>
+     <ul style="text-align: right; width:90%">Welcome,<%= current_user.first_name%></ul>
+    <ul style="text-align: right; width:90%"><%=link_to( image_tag("/assets/1404909434_settings-24.png"), home_setting_path, :style=>"float:right; margin-top:-91px; size:1x1") %></ul>
     
    <%end%>
    <%end%>
