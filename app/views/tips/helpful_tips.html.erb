@@ -1,4 +1,5 @@
-<h5>Helpful Tips</h5>
+<h5>Check tip quality</h5>
+<strong>(suggestions, rating optional)</strong><br><br>
 
 <%  if @ww.present?%>
 
@@ -24,7 +25,7 @@
       <%= radio_button_tag :quality_of_comments, '1' %>&nbsp;&nbsp;1&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '2' %>&nbsp;&nbsp;2&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '3' %>&nbsp;&nbsp;3&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '4' %>&nbsp;&nbsp;4&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '5' %>&nbsp;5
       <br><br>
 		<%= submit_tag :Submit, :class => 'btn btn-primary'%>
-		<%= link_to "History",check_history_tips_path, :class => 'btn btn-primary'%>
+		<%= link_to "Submit and show me another Review to Check",check_history_tips_path, :class => 'btn btn-primary'%>
 		<br><br>
 	<%end%>
 <%end%>
