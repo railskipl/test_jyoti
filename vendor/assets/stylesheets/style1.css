@@ -34,7 +34,7 @@ background: #e2e2e2;
 
 #pricePlans {
 	max-width: 69em;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 }
 
 #pricePlans #plans .plan {
