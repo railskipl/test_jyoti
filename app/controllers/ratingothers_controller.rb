@@ -2,7 +2,7 @@ class RatingothersController < ApplicationController
   # before_filter :check_user, only: [:new]
 
  def index
-	
+  
  end
 
  def new
@@ -16,8 +16,8 @@ def create
  @user = User.where('email = ?', @ratingother.email)
   unless @ratingother.anonymous_user 
     if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
-       # flash[:notice] = "No user found."
-       redirect_to my_mirror_paste_users_path
+       flash[:notice] = "No user found."
+       redirect_to new_ratingother_path
     else
       @user = User.where('email = ?', @ratingother.email)
       @ratingother.friend_id = @user[0].id
@@ -25,26 +25,26 @@ def create
 
       if @rating_exist.empty?
         if @ratingother.save
-          redirect_to my_mirror_paste_users_path, notice: "Rating has been done."
+          redirect_to :back, notice: "Rating has been done."
         else
-          render 'my_mirror_paste_users_path'
+          render 'new'
         end
       else
         flash[:notice] = "You have already rated this user."
-        redirect_to my_mirror_paste_users_path
+        redirect_to new_ratingother_path
       end
     end
   else
     @user = User.where('email = ?', @ratingother.email)
     unless @user
       flash[:notice] = "No user found."
-      redirect_to my_mirror_paste_users_path
+      redirect_to new_ratingother_path
     else
       if @ratingother.save
         flash[:notice] = "Rating has been done."
-        redirect_to my_mirror_paste_users_path
+        redirect_to :root
       else
-        render 'my_mirror_paste_users_path'
+        render 'new'
       end
     end
   end
