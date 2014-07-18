@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get :power_group
       get :feedback_relationship
       post :add_feedback
+      get :power_feedback
+      post :power_feedback
     }
   end
 
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
       post :tips_response
       get :admin_approve_tip
       get :power_tips
+      get :check_history
     }
   end
 
@@ -107,6 +110,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
+  
 
   resources :users do
     collection { 
