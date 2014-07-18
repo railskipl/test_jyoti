@@ -1,137 +1,171 @@
 
  <h4>Plans</h4>
 
- <div class="row row_margin">
- <div class="col-xs-3" style="width: 20%;">
-       <a  style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#C0C0C0  ;padding: 48px;">           
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--[if lt IE 9]>
+  <script src="dist/html5shiv.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Price Plan</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <section id="pricePlans">
+    <ul id="plans">
+      <li class="plan">
+        <ul class="planContainer">
+          <li class="title"><h2>Personal</h2></li>
+                   
+          <li class="price"><p>Free Forever<span></span></p></li>
+          <li>
+            <ul class="options">
+              <li> <span>For the Mildly Curious</span></li>
+                            <li>5 tips/year<span> </span></li>
+                            <li> <span>ALL other Pro features included!</span></li>
+              <li> NOTE: For each referral in any plan, both get a free tip. 60-day FREE trial if sponsoring 5 others. Details below.<span>   </span></li>
+              <li> <span></span></li>
+              <li> <span></span></li>
+              <li> <span></span></li>
+            </ul>
+          </li>
+          <li class="button"><a href="#">Sign Up</a></li>
+        </ul>
+      </li>
 
-     <strong>Free Forever</strong>
+      <li class="plan">
+        <ul class="planContainer">
+          <li class="title"><h2 class="bestPlanTitle">Pro</h2></li>
+          <li class="price"><p class="bestPlanPrice">$3/month</p></li>
+          <li>
+            <ul class="options">
+                        <li> <span>For the Definitely Intrigued</span></li>
+              <li>24 tips/year <span></span></li>
+                            <li> <span>Key Features:</span></li>
+              
+                            <li>Approved and Sensitive Tips <span></span></li>
+                            <li>Ratings on Standard Factors<span></span></li>
+              <li>Reputation Report, Score <span></span></li>
+              <li>Power Group Feedback <span></span></li>
+              
+            </ul>
+          </li>
+          <li class="button"><a class="bestPlanButton" href="#">Sign Up</a></li>
+        </ul>
+      </li>
+
+      <li class="plan">
+        <ul class="planContainer">
+          <li class="title"><h2>Unlimited</h2></li>
+          <li class="price"><p>$5/<span>month</span></p></li>
+          <li>
+            <ul class="options">
+              <li> <span>True Believers, Business Users</span></li>
+                            <li>Unlimited Tips <span></span></li>
+                            <li> <span>ALL Pro features, PLUS:</span></li>
+              
+                            <li>Competency Library <span></span></li>
+                            <li>Ratings on Custom Factors <span></span></li>
+                            <li>Circle Report, Score<span></span></li>
+                            
+              
+              <li>Prorated Billing <span></span></li>
+              
+            </ul>
+          </li>
+          <li class="button"><a href="#">Sign Up</a></li>
+        </ul>
+      </li>
+
       
-        </div>
-      </a>          
- </div>
-  
-   
-  <div class="col-xs-3" style="width: 20%;">
-        <a style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#5B7;padding: 48px;">           
-
-     <strong>Recommended</strong>
-
-        </div>
-      </a>
-  </div>
-
-  <div class="col-xs-3" style="width: 20%;">
-    <a style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#C0C0C0;padding: 34px;">           
-
-    <strong>Heavy Users or Business Users</strong>
-
-    </div>
-
-    </a>
-  </div>  
-
-   
-
-
- </div>
- <div class="row row_margin">
- <div class="col-xs-3" style="width: 20%;">
-         <a style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#C0C0C0;padding: 19px;">           
-
-     <h5>Personal</h5>
-     <h4>Free</h4>
-     9 tips/year<br>
-     Reputation Report<br>
-     Reputation Score<br>
-     Power Group<br>
-     7 Standard Factors</br></br></br></br></br></br>
-        <div class="tile" style="background:##FFFFFF;padding: 10px;"> 
-        <div style="color:#000000; font-size:12px; font-style: normal; text-align:left"class="just_reload">Plus, for each referral* you both get a free tip!
-        </div>
-        </div></br>
-
-        <div class="btn btn-block btn-lg btn-primary" style="background:#D2691E;padding: 7px;"><%= link_to "Sign up", new_registration_path(resource_name) %></div>
-
-       </div>
-      </a> 
-   </div>
-  <div class="col-xs-3" style="width: 20%;">
-        <a style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#C0C0C0;padding: 21px;">           
-
-     <h5>Pro</h5>
-
-     <h4>$1.99/mo<br></h4>
-      (billed annually, or $4/mo)<br>
-        
-      24 tips/year<br>
-      Reputation Report<br>
-      Reputation Score<br>
-      Power Group<br>
-      7 Standard Factors<br>
-      Sensitive access*<br>
-      Circle Report, Score<br>
-
-      </br><div class="tile" style="background:##FFFFFF;padding: 10px;"> 
-        <div style="color:#000000; font-size:12px; font-style: normal; text-align:left"class="just_reload">Plus, for each referral* you both get a free tip!
-        </div>
-        </div></br>
-
-       <div class="tile" style="background:#D2691E;padding: 7px;"><%= link_to "Sign up", new_registration_path(resource_name) %></div>
-        </div>
-      </a>   
-        </div>
-
- <div class="col-xs-3" style="width: 20%;">
-       <a style="color:#000000;font-size:17px;">
-        <div class="tile" style="background:#C0C0C0;padding: 17.5px;">           
-
-     <h5>Unlimited</h5>
-     <h4>$3.33/mo<br></h4>
-      (billed annually, or $5/mo)
-        
-      Unlimited tips<br>
-      Reputation Report<br>
-      Reputation Score<br>
-      Power Group<br>
-      7 Standard Factors<br>
-      10 Custom Factors**<br>
-      Competency Library<br>
-      Prorated Sponsoring<br>
-      Circle Report, Score<br>
-
-      <div class="tile" style="background:##FFFFFF;padding: 10px;"> 
-        <div style="color:#000000; font-size:12px; font-style: normal; text-align:left"class="just_reload">Sponsor 5+ users to a 60-day free trial
-        </div>
-        </div></br>        
-
-
-       <div class="tile" style="background:#D2691E;padding: 7px;"><%= link_to "Sign up", new_registration_path(resource_name) %></div>
-        </div>
-
-      </a>          
- </div>
+    </ul> <!-- End ul#plans -->
+    
+  </section>
+</body>
+</html>
 
  
+<table width="100%" cellpadding="0" cellspacing="10" border="0">
+    <tr>
+        <td width="50%" valign="top">
+        <strong>What's a Referral?</strong><br><br>
+            A successful referral happens when someone views <br>their Reputation Report after joining Mirror 360<br> because of your general invite<br> or feedback invite. Sponsored invites do not count. For each referral,<br> you get a free tip, as does the person your referred.<br><br>
+          </p>
+        </td>
 
-</div> <br>
+        
 
 
- </div> 
-</div>
+        <td width="50%" valign="top">
+        <strong>How is my Power Group chosen?</strong><br><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.<br> Proin sodales pulvinar tempor. Cum sociis natoque<br> penatibus et magnis dis parturient montes,
+        </td><br><br>
+    </tr>
 
- <div align="center" style="width: 74%;">
-   
-   *A referral happens when someone who views their Reputation Report after joining Mirror <br>360 because of your general invite or feedback invite.Sponsored invites do not count.<br>
-  *"Power Group" is your feedback just from those whose views matter the most to you.Circle </br>Score & Report is based on feedback from just one coworkers.<br>
-   **"Sensitive access" is access to tips that were voted unhelpful so may require advanced </br>emotional skills to handle.<br>
- Ratings on 7 Standard Factors: Trustworthy, Kind/Helpful, Has Ability/Potential,Performs </br>
- Well, Persuasive/Presentable, Emotionally Mature,Friendly/Social.<br>
-   Add up to 10 custom ratings, such as the eight factors of Google's Project Oxygen. 
-   </div>
+    <tr>
+      <td width="50%" valign="top">
+        <strong>What's Power Group Feedback?</strong><br><br>
+            "Power Group Feedback" is your feedback (tips and <br>ratings) just from those whose views matter the<br> most to you.
+          </p>
+        </td>
 
+        <td width="50%" valign="top">
+        <strong>Question 2?</strong><br><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.<br> Proin sodales pulvinar tempor. Cum sociis natoque<br> penatibus et magnis dis parturient montes,
+        </td><br><br>
+    </tr>
+
+    <tr>
+      <td width="50%" valign="top">
+        <strong>What's my Circle Report?</strong><br><br>
+            Circle Report is the same as a Reputation Report,<br> but is based only on the feedback from just one<br> circle (typically coworkers)
+          </p>
+        </td>
+
+        <td width="50%" valign="top">
+        <strong>Question 3?</strong><br><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.<br> Proin sodales pulvinar tempor. Cum sociis natoque<br> penatibus et magnis dis parturient montes,
+        </td>
+    </tr>
+
+
+
+    <tr>
+      <td width="50%" valign="top">
+        <strong>What are Approved vs Sensitive Tips?</strong><br><br>
+            Each tip in Mirror 360 is voted on whether it is<br> helpful and appropriate by a majority of 3 randomly<br> chosen users. Those that have 2 or 3 Yes votes are<br> called Approved,<br> and those that do not meet that<br> level are called Sensitive, since they may require<br> advanced emotional skills to handle.
+          </p>
+        </td>
+
+        <td width="50%" valign="top">
+        <strong>Question 4?</strong><br><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.<br> Proin sodales pulvinar tempor. Cum sociis natoque<br> penatibus et magnis dis parturient montes,
+        </td>
+    </tr>
+
+
+
+    <tr>
+      <td width="50%" valign="top">
+        <strong>What are Standard Factors?</strong><br><br>
+            Ratings on 7 Standard Factors: Trustworthy,<br> Kind/Helpful, Has Ability/Potential, Performs Well,<br> Persuasive/Presentable, Emotionally Mature,<br> Friendly/Social.
+          </p>
+        </td>
+
+        <td width="50%" valign="top">
+        <strong>I have more questions. Who do I ask?</strong><br><br>
+            Check out our support page, or you can email us at<br> contact@mirror360.com.
+        </td>
+    </tr>
+
+
+    <tr>
+      <td width="50%" valign="top">
+        <strong>What are Custom Factors?</strong><br><br>
+            Add up to 10 custom ratings, such as the eight<br> factors of Google's Project Oxygen. 
+          </p>
+        </td>        
+    </tr>
+</table>
