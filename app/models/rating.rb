@@ -124,4 +124,8 @@ belongs_to  :friend, :class_name => 'User'
         end
         
 	end
+
+	def all_mirrors_report
+		raise "hi"
+	end
 end

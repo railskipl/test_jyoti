@@ -37,7 +37,7 @@ body {
 
 #pricePlans {
 	max-width: 69em;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 }
 
 #pricePlans #plans .plan {
