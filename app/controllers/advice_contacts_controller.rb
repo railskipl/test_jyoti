@@ -24,26 +24,41 @@ class AdviceContactsController < ApplicationController
 
   # POST /advice_contacts
   # POST /advice_contacts.json
+  
+
+
+
+
   def create
 
     @advice_contact = AdviceContact.new(advice_contact_params)
     
     @user = User.where('email = ?', @advice_contact.email)
     
-      advice_contact = @advice_contact
+    advice_contact = @advice_contact
 
+    @praise = @advice_contact.praise
+    @criticism = @advice_contact.criticism
+    @helpful_tips = @advice_contact.helpful_tips
+
+   
+       
       respond_to do |format|
-        if @advice_contact.save
-          @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
-          @tip.save!
-          Mailer.prelogin_tips(advice_contact).deliver
-          format.html { redirect_to new_ratingother_path(:email => @advice_contact.email) }
-          format.json { render :show, status: :created, location: @advice_contact }
-        else
-          format.html { render :new }
-          format.json { render json: @advice_contact.errors, status: :unprocessable_entity }
+        if @praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true
+          if @advice_contact.save
+            @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
+            @tip.save!
+            Mailer.prelogin_tips(advice_contact).deliver
+            format.html { redirect_to new_ratingother_path(:email => @advice_contact.email) }
+            format.json { render :show, status: :created, location: @advice_contact }
+            end
+        else  
+
+            format.html { redirect_to new_advice_contact_path, notice: 'Please Give atleast Two tips' }
         end
-      end
+      
+
+    end
     
   end
 
