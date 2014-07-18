@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
  before_filter :check_user, only: [:new]
-  
+  before_filter :authenticate_user!
 def index
 	
 end

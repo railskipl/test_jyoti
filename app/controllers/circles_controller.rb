@@ -2,7 +2,7 @@
 class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+ before_filter :authenticate_user!
   # GET /circles
   # GET /circles.json
   def index

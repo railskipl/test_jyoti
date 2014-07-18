@@ -59,7 +59,7 @@
 
 <% unless user_signed_in? %>  
   <li> <%= link_to "How It Works",  home_how_it_works_path %></li>
-  <li><%= link_to "Plan", home_learn_more_path  %> </li>
+  <li><%= link_to "Plans", home_learn_more_path  %> </li>
   <li><%= link_to "Sign Up", new_user_registration_path  %> </li>
   <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li> 
  <% end %>

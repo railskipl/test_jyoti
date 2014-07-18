@@ -1,6 +1,6 @@
 class ResponseTipsController < ApplicationController
   before_action :set_response_tip, only: [:show, :edit, :update, :destroy]
-
+ before_filter :authenticate_user!
   # GET /response_tips
   # GET /response_tips.json
   def index

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   require 'csv'
- before_filter :authenticate_user!
- helper_method :resource, :resource_name, :devise_mapping
+ before_filter :authenticate_user!,:except => :sign_out
+ helper_method :resource, :resource_name, :devise_mapping,:resource_or_scope
 
  respond_to :html, :js
 
@@ -37,7 +37,9 @@ def import
       redirect_to invite_paste_users_path, notice: "Users imported."
     end
 end
-
+# def sign_out
+  
+# end
 def toggled_status
    @user = User.find(params[:id])
    @user.status = !@user.status?
