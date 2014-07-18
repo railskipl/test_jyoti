@@ -8,13 +8,7 @@ body {
 	background: #fff;
 
 }
-.layer {
-padding-top: 96px;
-padding-bottom: 96px;
-}
-.plans {
-background: #fff;
-}
+
 
 #plans,#plans ul,#plans ul li {
 	margin: 0;
