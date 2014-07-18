@@ -5,19 +5,32 @@ html,html a {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	background: #e2e2e2;
+	background: #fff;
 }
 
 #plans,#plans ul,#plans ul li {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+}
+.plan-highlight {
+    border: 5px solid #e2e2e2;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 170px;
 }
 
 #pricePlans:after {
 	content: '';
 	display: table;
 	clear: both;
+		border-width: 1px; 
+    border-style: solid; 
+    border-color: #CCCCCC; 
+    border-radius: 4px; 
 }
 
 #pricePlans {

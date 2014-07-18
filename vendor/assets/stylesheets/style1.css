@@ -5,7 +5,7 @@ html,html a {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	/*background: #fff;*/
+	background: #fff;
 
 }
 
@@ -15,6 +15,15 @@ body {
 	padding: 0;
 	list-style: none;
 }
+
+.plan-highlight {
+    border: 5px solid #e2e2e2;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 170px;
+
 
 #pricePlans:after {
 	content: '';
