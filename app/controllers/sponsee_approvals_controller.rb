@@ -1,6 +1,6 @@
 class SponseeApprovalsController < ApplicationController
   before_action :set_sponsee_approval, only: [:show, :edit, :update, :destroy]
-
+ before_filter :authenticate_user!
   # GET /sponsee_approvals
   # GET /sponsee_approvals.json
   def index

@@ -1,6 +1,6 @@
 class TrialDaysController < ApplicationController
   before_action :set_trial_day, only: [:show, :edit, :update, :destroy]
-
+ before_filter :authenticate_user!
   # GET /trial_days
   # GET /trial_days.json
   def index
