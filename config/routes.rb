@@ -88,8 +88,12 @@ Rails.application.routes.draw do
   resources :organizations
   resources :individuals
   resources :ratings
-  resources :ratingothers
-
+  
+  resources :ratingothers do
+  collection {
+    get :encourage_signing_up
+  }
+end
   resources :emails do 
      collection {
       get  :verify
@@ -104,7 +108,7 @@ Rails.application.routes.draw do
       post :demerge_email
     }
   end
-
+    
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
   
@@ -114,6 +118,7 @@ Rails.application.routes.draw do
       post :import 
       get :merge
       get  :primary
+      get :sign_out
     }
   end
 

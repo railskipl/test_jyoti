@@ -42,7 +42,7 @@ def create
     else
       if @ratingother.save
         flash[:notice] = "Rating has been done."
-        redirect_to :root
+        redirect_to encourage_signing_up_ratingothers_path
       else
         render 'new'
       end
