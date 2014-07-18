@@ -4770,25 +4770,24 @@ body.vjs-full-window {
   }
 }
 footer {
-  background: #fafafa;
-  text-shadow: 1px 1px 0 #fff;
-  font-size: 12px;
-  text-align: center;
-  border-top: 1px solid #dddddd;
-  position:fixed;
-  z-index: 1;
-  height: 50px;
-  bottom: 0;
-  width: 100%;
+ /*position: fixed; */
+    left: 0;
+    bottom: 0;
+    /*height: 100px;*/
+    width: 100%;
+   background:#edeff1;
+   z-index: 10;
+
+
 }
 footer a {
   color: #9aa4af;
   font-weight: 700;
 }
 footer p {
-  font-size: 15px;
+ /* font-size: 15px;
   line-height: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 10px;*/
 }
 .footer-title {
   margin: 0 0 22px;

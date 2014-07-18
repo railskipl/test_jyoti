@@ -8,7 +8,7 @@
     <th> </th>
       <th>Email</th>
       <th>Circle</th>
-      <th>How Long You Know Each Other</th>
+      <!-- <th>How Long You Know Each Other</th> -->
       <th>How well they know the person</th>
       <th>Influence</th>
       <th colspan="3"></th>
@@ -30,23 +30,27 @@
         </td>
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         <td><%= relationship.name %> &nbsp&nbsp&nbsp&nbsp</td>
-        <td><%= relationship.how_long_you_know_each_other_avg %></td>
+        <!-- <td><%#= relationship.how_long_you_know_each_other_avg %></td> -->
         <td><%= relationship.well_known_user_avg %></td>
         <td><%= relationship.influence_avg %></td>
         
-        <td><%= link_to 'Show', relationship %></td>
+        <td><%= link_to 'Show', relationship %></td> 
         <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
         <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
 
-
+        <!-- <td><%#= link_to "Give Tip",new_tip_path(:email => relationship.email)  ,:class => "btn btn-primary"%></td>  -->
         
        
-      </tr>      
+      </tr>
+
     <% end %>   
 
   </tbody>
 </table>
-<%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></p>
+<div  style="padding: 90px;"><%= submit_tag "Add To Power Group",:onclick =>"if(!this.form.checkbox.checked){alert('Please agree to the terms and services.');return false}",:class =>"btn btn-primary" %></div>
+
+<%#= link_to "Give Feedback",feedback_relationship_relationships_path,:class =>"btn btn-primary" %>
+
 <% end %>
   
 

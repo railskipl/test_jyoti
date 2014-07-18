@@ -1,7 +1,7 @@
 
-<h4>Sign Up</h4>
+ <!-- <h4>Sign Up</h4> -->
 
-<h8>Use one of your social accounts or email to sign in to Mirror 360 to view the</br> anonymous tips already in your Reputation Report. </h8></br></br>
+<h8>Already have an account? Login.</h8></br></br>
 
 
 <%= link_to user_omniauth_authorize_path(:facebook),:class => "btn btn-facebook" do %>
@@ -39,12 +39,12 @@
 
   <div><%= f.submit "Sign in",:class=>"btn btn-primary"  %><br/>
 
-  	<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  	<% if devise_mapping.registerable? && controller_name != 'registrations' %>
 
 
   <%= link_to "New Customer? Start Here.", new_registration_path(resource_name) %><br />
 
-<% end -%>
+<% end %>
   </div>
 
 <% end %>
