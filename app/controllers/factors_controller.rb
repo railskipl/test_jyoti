@@ -1,7 +1,7 @@
 class FactorsController < ApplicationController
   before_action :set_factor, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+ before_filter :authenticate_user!
 
   # GET /factors
   # GET /factors.json

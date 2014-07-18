@@ -37,9 +37,9 @@ def import
       redirect_to invite_paste_users_path, notice: "Users imported."
     end
 end
-def sign_out
+# def sign_out
   
-end
+# end
 def toggled_status
    @user = User.find(params[:id])
    @user.status = !@user.status?

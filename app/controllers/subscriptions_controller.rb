@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action  only: [:show, :edit, :update, :destroy]
-
+ before_filter :authenticate_user!
   # GET /subscriptions
   # GET /subscriptions.json
   def index
