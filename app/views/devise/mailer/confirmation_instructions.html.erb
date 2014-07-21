@@ -1,5 +1,12 @@
-<p>Welcome <%= @email %>!</p>
+Dear Mirror 360 user:<br><br>
 
-<p>You can confirm your account email through the link below:</p>
+We have received a request to add  <%= @email %> to your Mirror 360 Account.<br>Please click on the link below to verify this request.<br><br>
+<%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %><br><br>
+If clicking the link above does not work, copy and paste the URL in a new browser window instead.<br><br>
+If you did not send this request, you do not have to take any action. But we encourage you to visit <br>www.mirror360.com to check us out.<br><br>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+Sincerely,<br>
+
+The Mirror 360 Team<br><br>
+
+ Note: This email address cannot accept replies. For support, contact support@mirror360.com.
