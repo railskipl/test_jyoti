@@ -12,8 +12,8 @@ class RelationshipsController < ApplicationController
   end
 
   def feedback_relationship
-    @relationships = Relationship.paginate(:page => params[:page],:per_page => 5)
-    @contacts = Contact.all
+    @relationships = Relationship.where('user_id = ?' , current_user.id).paginate(:page => params[:page],:per_page => 5)
+    @contacts = current_user.contacts
   end
 
 
@@ -61,7 +61,7 @@ class RelationshipsController < ApplicationController
      @influence_avg = @influence/8
      @relationship.influence_avg = @influence_avg
 
-       if @relationship.save!        
+       if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
           redirect_to new_tip_path(:email => @relationship.email)
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
