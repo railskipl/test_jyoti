@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
 	attr_accessible :email,:user_id
-    validates_uniqueness_of :email
+   	validates :email, :uniqueness => {:scope => :user_id}
     belongs_to :paste_user
 end

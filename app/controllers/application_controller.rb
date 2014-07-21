@@ -21,6 +21,7 @@ private
  		dashboard_index_path
  	else
     if current_user.sign_in_count == 1
+      ReputationScore.create(:user_id => current_user.id, :score => 300)
       edit_user_registration_path(current_user)
     else
      # home_dashboard_path

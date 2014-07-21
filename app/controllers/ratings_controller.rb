@@ -52,6 +52,8 @@ def reputation_report
   end
    @aa = @all_mirror.inject{ |sum, el| sum + el }.to_f / @w.size 
    @q = @aa/3 # overall impression
+
+   report
 end
 
 def create

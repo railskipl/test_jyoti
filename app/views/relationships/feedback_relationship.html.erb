@@ -14,7 +14,7 @@
   <tbody>
   <!-- <%# @relationships.each do |relationship| %> -->
   <% @contacts.each do |relationship| %>
-  <% @relationship = Relationship.where('user_id = ? and email = ?', current_user.id, relationship.email)%>
+  <% @relationship = Relationship.find_by_user_id_and_email(current_user.id, relationship.email)%>
 
       <tr>
       <% if relationship.user_id == current_user.id %>
@@ -29,9 +29,11 @@
         <!-- <td><%#= check_box_tag "relationship_ids[]", relationship.id %></td> -->
         
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
-        
+        <% if @relationship.nil? %>
        <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
-        
+       <% else %>
+       <td><%= link_to 'Edit Relationship', edit_relationship_path(@relationship),:class => 'btn btn-primary'  %></td>
+        <% end %>
        <% end %>
       </tr> 
 
