@@ -60,7 +60,7 @@ class RelationshipsController < ApplicationController
      @influence = (@i)*60
      @influence_avg = @influence/8
      @relationship.influence_avg = @influence_avg
-   
+
        if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
           redirect_to relationships_path

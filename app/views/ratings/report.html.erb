@@ -1,0 +1,43 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+jQuery(document).ready(function(){
+	jQuery(".test").hide();
+	jQuery("#hide").hide();
+  jQuery("#hide").click(function(){
+    jQuery(".test").hide();
+    jQuery("#hide").hide();
+    jQuery("#show").show();
+  });
+  jQuery("#show").click(function(){
+    jQuery(".test").show();
+    jQuery("#hide").show();
+    jQuery("#show").hide();
+  });
+});
+</script>
+<% if @total_ratings > 0 && @total_relations > 0 %>
+<h2>Reputation Score Algorithm</h2>
+<h4>Reputation Score: </h4>
+Total Score: <%= @total_score %><br/>
+<button id="hide" class="btn btn-primary">Hide</button>
+<button id="show" class="btn btn-primary">Display Bifurcation</button>
+<div class="test">
+<h4>Recency </h4>
+Total users rated: <%= @total_ratings%><br/>
+Users rated in 6 months: <%= @recent_ratings %></br>
+Points: <%= @percent %>
+
+<h4>History</h4>
+Total Relationship: <%= @total_relations%><br/>
+2 years relationship: <%= @long_relations %></br>
+Points: <%= @percent_history %>
+
+<h4>Rating Quality</h4>
+<%= @weighted_rating.sum/@total_ratings%>
+
+<h4>Diversity</h4>
+Total Raters: <%= @total_ratings %><br/>
+Points: <%= @diversity_points %>
+<br/>
+</div>
+<% end %>
