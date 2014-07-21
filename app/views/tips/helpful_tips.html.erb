@@ -2,8 +2,6 @@
 <strong>(suggestions, rating optional)</strong><br><br>
 
 
-<%  if @ww.present?%>
-
 	<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
 	    :onsubmit => "return validateForm()"  do |f| %>
 	   
@@ -29,7 +27,6 @@
 		<%= link_to "Submit and show me another Review to Check",check_history_tips_path, :class => 'btn btn-primary'%>
 		<br><br>
 	<%end%>
-<%end%>
 
 	
 <script type="text/javascript">
