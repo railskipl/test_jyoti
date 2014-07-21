@@ -33,8 +33,10 @@ margin-bottom: 10px;
 //   });
 // });
 </script>
+
+
 <h4>Reputation Score: </h4>
-<% if @total_ratings > 0 && @total_relations > 0 %>
+<% if @total_ratings > 5 %>
  <% scores = ReputationScore.pluck(:score) %>
  <% count = 0 %>
  <% scores.each do |i|%>
@@ -68,4 +70,6 @@ Total Raters: <%#= @total_ratings %><br/>
 Points: <%#= @diversity_points %>
 <br/>
 </div> -->
+<% else %>
+<p>Give Feedback and get feedback to atleast 5 person to see your reputation score</p>
 <% end %>
