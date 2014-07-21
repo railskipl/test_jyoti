@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+ before_filter :authenticate_user!
   # GET /friends
   # GET /friends.json
   def index

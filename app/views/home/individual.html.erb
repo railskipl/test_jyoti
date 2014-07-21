@@ -9,24 +9,19 @@
 
  </div>
  
- 
  <div class="row row_margin">
- <div class="col-xs-6">
-          <div class="tile" style="background:#d35400">
-           
-        <h9><div href="#" style="color:#FFFFFF"><%= link_to "See tips in your FREE Reputation Report and Score", new_user_registration_path,:style=>"color:#FFFFFF;" %></div></h9>
-       </div>
-        </div>
-    
- <div class="col-xs-6">
-          <div class="tile" style="background:#2980b9">
-           
-        <h9><div href="#" style="color:#FFFFFF"><%= link_to "I want to anonymously give constructive tips to someone now", new_advice_contact_path,:style=>"color:#FFFFFF;" %></div></h9>
-       </div>
-        </div>
+
+  <div class="col-xs-6">
+    <%= link_to "Sign up now to see tips in your FREE Reputation Report and Score", new_user_registration_path,:class=>"btn btn-block btn-lg btn-power"%>
+          <!-- <a data-no-turbolink='true' class="btn btn-block btn-lg btn-primary" href="<%=home_how_it_works_for_me_path %>">How It Works for me</a> -->
+  </div>
+   <div class="col-xs-6">
+    <%= link_to "Anonymously give helpful tips to someone now without signing up", new_advice_contact_path,:class=>"btn btn-block btn-lg btn-info" %>
+          <!-- <a data-no-turbolink='true' class="btn btn-block btn-lg btn-primary" href="<%=home_how_it_works_for_me_path %>">How It Works for me</a> -->
+  </div>
 </div>
- 
-  <div class="col-xs-12"> <h4>What does Mirror 360 do? It saves feedback <br>from those you know in various circles. Only <br>you can see it. </h4></div>
+<!--  -->
+  <div class="col-xs-12"> <h4>What does Mirror 360 do? It saves feedback from those you know in various circles. Only you can see it. </h4></div>
   <div class="row row_margin">
  <div class="col-xs-3">
 

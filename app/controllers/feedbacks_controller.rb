@@ -1,7 +1,7 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy]
-
+ # before_filter :authenticate_user!
   # GET /feedbacks
   # GET /feedbacks.json
   def index

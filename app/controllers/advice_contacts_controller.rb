@@ -1,6 +1,6 @@
 class AdviceContactsController < ApplicationController
   before_action :set_advice_contact, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /advice_contacts
   # GET /advice_contacts.json
   def index
@@ -25,15 +25,9 @@ class AdviceContactsController < ApplicationController
   # POST /advice_contacts
   # POST /advice_contacts.json
   
-
-
-
-
   def create
 
     @advice_contact = AdviceContact.new(advice_contact_params)
-    
-    @user = User.where('email = ?', @advice_contact.email)
     
     advice_contact = @advice_contact
 
@@ -41,26 +35,25 @@ class AdviceContactsController < ApplicationController
     @criticism = @advice_contact.criticism
     @helpful_tips = @advice_contact.helpful_tips
 
-   
-       
-      respond_to do |format|
-        if @praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true
-          if @advice_contact.save
-            @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
-            @tip.save!
-            Mailer.prelogin_tips(advice_contact).deliver
-            format.html { redirect_to new_ratingother_path(:email => @advice_contact.email) }
-            format.json { render :show, status: :created, location: @advice_contact }
-            end
-        else  
-
-            format.html { redirect_to new_advice_contact_path, notice: 'Please Give atleast Two tips' }
+  
+      if @praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true
+        if @advice_contact.save
+          @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
+          @tip.save
+          Mailer.prelogin_tips(advice_contact).deliver
+          redirect_to new_ratingother_path(:email => @advice_contact.email) 
+        else
+          redirect_to new_advice_contact_path
+         flash[:notice] = "Please enter valid email."
         end
-      
-
-    end
-    
+      else  
+          redirect_to new_advice_contact_path
+          flash[:notice] = 'Please Give atleast Two tips' 
+      end
+   
   end
+
+
 
   def post_login
     @contacts = Contact.where("user_id = ?",current_user.id)

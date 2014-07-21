@@ -1,7 +1,7 @@
 class SponsersController < ApplicationController
   before_action :set_sponser, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+ before_filter :authenticate_user!
   # GET /sponsers
   # GET /sponsers.json
   def index

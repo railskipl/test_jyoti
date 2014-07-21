@@ -191,7 +191,7 @@ end
     get '/home/how_it_works' => 'home#how_it_works'
     get '/home/how_it_works_for_me' => 'home#how_it_works_for_me'
     get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
-    
+    get '/reputation_report' => 'ratings#reputation_report'
  
     resource :contactus
    get '/home/contactus' => 'home#contactus'

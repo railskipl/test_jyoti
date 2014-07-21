@@ -1,7 +1,7 @@
 class SponsercfsController < ApplicationController
   before_action :set_sponsercf, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
-
+ before_filter :authenticate_user!
   # GET /sponsercfs
   # GET /sponsercfs.json
   def index
