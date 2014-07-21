@@ -1,3 +1,21 @@
+<style type="text/css">
+.bar{
+
+background: rgb(164,78,70); /* Old browsers */
+background: -moz-linear-gradient(left, rgb(164,78,70) 0%, rgb(151,117,74) 48%, rgb(136,156,78) 58%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(164,78,70)), color-stop(48%,rgb(151,117,74)), color-stop(58%,rgb(136,156,78))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgb(164,78,70) 0%,rgb(151,117,74) 48%,rgb(136,156,78) 58%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgb(164,78,70) 0%,rgb(151,117,74) 48%,rgb(136,156,78) 58%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgb(164,78,70) 0%,rgb(151,117,74) 48%,rgb(136,156,78) 58%); /* IE10+ */
+background: linear-gradient(to right, rgb(164,78,70) 0%,rgb(151,117,74) 48%,rgb(136,156,78) 58%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a44e46', endColorstr='#889c4e',GradientType=1 ); /* IE6-9 */
+border-radius: 10px;
+color: #fff;
+font-size: 48px;
+margin-bottom: 10px;
+}
+
+</style>
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <script>
 // jQuery(document).ready(function(){
@@ -17,8 +35,18 @@
 </script>
 <h4>Reputation Score: </h4>
 <% if @total_ratings > 0 && @total_relations > 0 %>
+ <% scores = ReputationScore.pluck(:score) %>
+ <% count = 0 %>
+ <% scores.each do |i|%>
+  <% if i < @total_score %>
+   <% count += 1 %>
+  <% end %>
+ <% end %>
+<%= @total_score %> (better than <%= val =  ((count.to_f/scores.count)*100).round(2) %>%)
+<div class="bar">
+<span style="position:relative;left:<%= val %>%;"><%= @total_score %></span>
+</div>
 
-Total Score: <%= @total_score %><br/>
 <!-- <button id="hide" class="btn btn-primary">Hide</button>
 <button id="show" class="btn btn-primary">Display Bifurcation</button> -->
 <!-- <div class="test">
