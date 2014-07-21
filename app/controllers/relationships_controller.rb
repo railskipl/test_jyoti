@@ -26,6 +26,7 @@ class RelationshipsController < ApplicationController
   # GET /relationships/new
   def new
     @relationship = Relationship.new
+    @relationships = Relationship.new
   end
 
   def cal
@@ -69,6 +70,16 @@ class RelationshipsController < ApplicationController
           redirect_to  new_relationship_path
         end
     
+  end
+
+
+  def feddback_form
+    @relationships = Relationship.new(relationships_params)
+    if @relationships.save 
+    if params[:relationships_params][:email] == "true" 
+      redirect_to new_tip_path(:email => relationships.email)
+    end
+    end
   end
 
   

@@ -525,6 +525,13 @@ a.thumbnail.active {
   padding: 9px;
   color: #34495e;
 }
+.u21_img {
+    height: 41px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 300px;
+}
 .btn {
   border: none;
   font-size: 15px;
@@ -642,6 +649,44 @@ fieldset[disabled] .btn-power:active,
 fieldset[disabled] .btn-power.active {
   background-color: #d35400;
   border-color: #d35400;
+}
+.btn-sign {
+    background-color: #ffffff;
+    color: #000;
+    border:1px solid
+}
+.btn-sign:hover,
+.btn-sign:focus,
+.btn-sign:active,
+.btn-sign.active,
+.open .dropdown-toggle.btn-sign {
+  color: #000;
+  background-color: #ffffff;
+  border-color: #000;
+}
+.btn-sign:active,
+.btn-sign.active,
+.open .dropdown-toggle.btn-sign {
+  background: #ffffff;
+  border-color: #000;
+}
+.btn-sign.disabled,
+.btn-sign[disabled],
+fieldset[disabled] .btn-sign,
+.btn-sign.disabled:hover,
+.btn-sign[disabled]:hover,
+fieldset[disabled] .btn-sign:hover,
+.btn-sign.disabled:focus,
+.btn-sign[disabled]:focus,
+fieldset[disabled] .btn-sign:focus,
+.btn-sign.disabled:active,
+.btn-sign[disabled]:active,
+fieldset[disabled] .btn-sign:active,
+.btn-sign.disabled.active,
+.btn-sign[disabled].active,
+fieldset[disabled] .btn-sign.active {
+  background-color: #d35400;
+  border-color: #000;
 }
 .btn-free {
     background-color: #808080;
@@ -4770,14 +4815,14 @@ body.vjs-full-window {
   }
 }
 footer {
- position: fixed;
+ /*position: fixed; */
     left: 0;
     bottom: 0;
     /*height: 100px;*/
     width: 100%;
    background:#edeff1;
    z-index: 10;
-   
+
 
 }
 footer a {

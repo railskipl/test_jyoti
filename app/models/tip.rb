@@ -10,6 +10,7 @@ class Tip < ActiveRecord::Base
 	belongs_to :response_tip
 	belongs_to :advice_contact
 
-    validates_presence_of  :praise, :criticism, :helpful
+    # validates_presence_of  :praise, :criticism, :helpful
+    validates_uniqueness_of :email
     
 end

@@ -1,4 +1,13 @@
   <%#= javascript_include_tag "jquery-1.5.2.min","validation.js" %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      
+      <% @user.errors.full_messages.each do |message| %>
+        <p class="alert-box"><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
 <div class="container">
 
 
@@ -42,7 +51,7 @@
  -->
 
   <div class="control-group">
-    <div class="controls"><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
+    <div class="controls" ><%= f.submit "Sign up",:class=>"btn btn-primary"  %>
       <%#- if controller_name != 'sessions' %>
   <%#= link_to "Sign in", new_session_path(resource_name),:class=>"btn btn-primary" %><br />
 <%# end -%></div></div>
@@ -62,7 +71,4 @@
    
    <!-- Code of Popup window For Help us -->
    
-      <!-- Button to trigger modal -->
-    
-     
-     
+      <!-- Button to trigger modal -->   

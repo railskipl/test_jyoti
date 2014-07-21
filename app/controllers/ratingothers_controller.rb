@@ -2,7 +2,7 @@ class RatingothersController < ApplicationController
   # before_filter :check_user, only: [:new]
 
  def index
-	
+  
  end
 
  def new
@@ -16,7 +16,7 @@ def create
  @user = User.where('email = ?', @ratingother.email)
   unless @ratingother.anonymous_user 
     if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
-       # flash[:notice] = "No user found."
+       flash[:notice] = "No user found."
        redirect_to new_ratingother_path
     else
       @user = User.where('email = ?', @ratingother.email)
@@ -42,7 +42,7 @@ def create
     else
       if @ratingother.save
         flash[:notice] = "Rating has been done."
-        redirect_to :root
+        redirect_to encourage_signing_up_ratingothers_path
       else
         render 'new'
       end

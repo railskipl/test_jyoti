@@ -14,13 +14,25 @@
   <tbody>
   <!-- <%# @relationships.each do |relationship| %> -->
   <% @contacts.each do |relationship| %>
+  <% @relationship = Relationship.where('user_id = ? and email = ?', current_user.id, relationship.email)%>
+
       <tr>
-        <td><%= check_box_tag "relationship_ids[]", relationship.id %></td>
+      <% if relationship.user_id == current_user.id %>
+      <td> 
+         <%if @relationship.present? %>
+            <input type="checkbox" disabled="disabled" checked="checked">
+          <%else%>
+             <%= check_box_tag "relationship_ids[]", relationship.id %>
+            
+          <%end%>
+        </td>
+        <!-- <td><%#= check_box_tag "relationship_ids[]", relationship.id %></td> -->
+        
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         
        <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
         
-       
+       <% end %>
       </tr> 
 
     <% end %>
@@ -31,7 +43,7 @@
 
   </tbody>
 </table>
-<li><%= will_paginate @relationships %></li> 
+<%= will_paginate @relationships %>
 <% end %>
 
   <%#= link_to 'New Relationship', new_relationship_path, :class => 'btn btn-primary'  %>
