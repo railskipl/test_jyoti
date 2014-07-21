@@ -12,6 +12,7 @@ class RatingothersController < ApplicationController
 def create
  
  @ratingother = Ratingother.new(params[:ratingother])
+
   
   unless @ratingother.email.empty?
 

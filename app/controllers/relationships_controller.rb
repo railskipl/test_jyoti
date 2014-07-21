@@ -12,8 +12,8 @@ class RelationshipsController < ApplicationController
   end
 
   def feedback_relationship
-    @relationships = Relationship.paginate(:page => params[:page],:per_page => 5)
-    @contacts = Contact.all
+    @relationships = Relationship.where('user_id = ?' , current_user.id).paginate(:page => params[:page],:per_page => 5)
+    @contacts = current_user.contacts
   end
 
 
@@ -63,7 +63,7 @@ class RelationshipsController < ApplicationController
 
        if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
-          redirect_to relationships_path
+          redirect_to new_tip_path(:email => @relationship.email)
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
           # FeedbackMailer.relationship_feedback(@relationship).deliver
         else
@@ -89,7 +89,7 @@ class RelationshipsController < ApplicationController
   def update
     respond_to do |format|
       if @relationship.update(relationship_params)
-        format.html { redirect_to @relationship, notice: 'Relationship was successfully updated.' }
+        format.html { redirect_to new_tip_path(:email => @relationship.email), notice: 'Relationship was successfully updated.' }
         format.json { render :show, status: :ok, location: @relationship }
       else
         format.html { render :edit }

@@ -3,7 +3,53 @@
 <%= javascript_include_tag "highcharts.js", "exporting.js" %>
 <h5>Reputation Report</h5>
 <span style="float: right; font-size: 14px; padding: 65px; margin-top: 418px;"><%= link_to "Edit self-image",new_rating_path%></span>
-
+<!-- <table border cellspacing=5>
+<tr>
+    <td>&nbsp;</td>
+    <td>Average</td>
+    <td>Better Than</td>
+</tr>
+<tr>
+    <td>Overall</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Trustworthy</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Helpful/Kind</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Ability/Potential</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Delivers/reliable</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Articulate</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Emotionally Mature</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Sociable</td>
+    <td></td>
+    <td></td>
+</tr>
+</table> -->
 
 <div id="container1" style="min-width: 310px; max-width: 800px; height: 460px; margin: 0 auto"></div>
 
@@ -155,3 +201,5 @@ jQuery(function () {
 
 </script>
 
+
+<%= render 'report' %>

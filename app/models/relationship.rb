@@ -9,7 +9,7 @@ class Relationship < ActiveRecord::Base
 	has_many :sponsees
 
 	validates_presence_of  :email
-	validates_uniqueness_of :email
+	validates :email, :uniqueness => {:scope => :user_id}
 	
 	validates_presence_of :name, :your_influence, :influence_on_your
 end

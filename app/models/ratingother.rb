@@ -5,6 +5,7 @@ class Ratingother < ActiveRecord::Base
  validates_presence_of :email
 
 
+
 def category_name
   user.email if user
 end

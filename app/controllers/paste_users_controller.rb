@@ -70,6 +70,12 @@ class PasteUsersController < ApplicationController
      respond_to do |format|
       if @paste_user.save
         @paste_user.user_invitations.each do |ui|
+           c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
+           if c.email.nil?
+            c.email = ui.email
+            c.user_id = current_user.id
+            c.save
+           end
            Mailer.paste_user(ui,@signup_url).deliver
         end
         # 
