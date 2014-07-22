@@ -5,6 +5,7 @@
                        $("#datepicker").datepicker({dateFormat: 'dd-mm-yy',yearRange: '1800:2025',changeMonth: false,changeYear: true, maxDate: '+D' })
                         });
 </script>
+
 <div class="col-xs-4">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
@@ -14,7 +15,7 @@
 
   <h4>Complete profile</h4>
 
-  <div class="col-xs-16">Thank you for confirming your email!  You need to complete your profile<br> and then finish setup to view the anonymous tips about you in your<br> private FREE Reputation Report. ALL fields are required.</div><br>
+  Thank you for confirming your email!  You need to complete your profile <br> and then finish setup to view the anonymous tips about you in your<br> private FREE Reputation Report. ALL fields are required.<br>
 
 
 
@@ -60,6 +61,7 @@
      <div><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
    <% end %>
   <% end %>
+ 
 
 
 
@@ -132,22 +134,24 @@
 <h5>Add secondary email</h5>
   <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
 
-<div>
-    <%= f.label :email %></br>
+<div><%= f.label :email %></br>
     <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
 </div>
+    
     
  <%= f.submit 'AddEmail',:class=>"btn btn-primary", :id=> "email_user" %>
     
 <% end %>
 
-<h3>Cancel my account</h3>
+<!-- <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,:class=>"btn btn-primary" %></p>
+<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,:class=>"btn btn-primary" %></p>
+ -->
+<br><br><%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
 
-<%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
+
 <% end %>
+
 <% end %>
 </div>
-
 
