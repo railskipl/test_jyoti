@@ -38,11 +38,15 @@ class AdviceContactsController < ApplicationController
   
       if @praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true
         if @advice_contact.save
-          @tip = Tip.new(:email => @advice_contact.email, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful => @advice_contact.helpful_tips)
-          @tip.save
-          @praise = Praise.create(:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
-          @criticism = Criticism.create(:email => @advice_contact.email, :criticism_comment => @advice_contact.criticism, :typee => "criticism")
-          @general = General.create(:email => @advice_contact.email, :general_comment => @advice_contact.helpful_tips, :typee => "general")
+          unless @advice_contact.praise.empty?
+            @praise = Praise.create(:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
+          end
+          unless @advice_contact.criticism.empty?
+            @criticism = Criticism.create(:email => @advice_contact.email, :criticism_comment => @advice_contact.criticism, :typee => "criticism")
+          end
+          unless @advice_contact.helpful_tips.empty?
+            @general = General.create(:email => @advice_contact.email, :general_comment => @advice_contact.helpful_tips, :typee => "general")
+          end
           #raise @advice_contact.inspect
           Mailer.prelogin_tips(advice_contact).deliver
           redirect_to new_ratingother_path(:email => @advice_contact.email) 

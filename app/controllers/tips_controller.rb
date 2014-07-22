@@ -108,10 +108,19 @@ def destroy
 	def tips_response
 	   if params[:typee] == "praise"
          @tip = Praise.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :praise_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   elsif params[:typee] == "criticism"
          @tip = Criticism.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :criticism_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   else  params[:typee] == "general"
 	   	 @tip = General.find(params[:id])
+	   	 Suggestion.create(:feedback_comment => params[:suggestions], :general_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   end
 	   	
 		sum = 1
@@ -133,8 +142,6 @@ def destroy
 			@tip.tip_reject = @sum
 		end
 		@tip.tip_prediction = @w
-		@tip.feedback = params[:suggestions]
-		@tip.comment_quality = params[:quality_of_comments]
 		@tip.tip_viewed = @tip.tip_viewed + user_view
 		if params[:typee] == "praise"
          @tip.update_attributes(params[:praise])
@@ -169,7 +176,7 @@ def destroy
 
  
  def responses_to_your_tips
-	 
+	
  end
 
  def tips_and_rating
