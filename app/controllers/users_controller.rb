@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
  respond_to :html, :js
 
+  
 
   def index
      @users = User.all
@@ -60,8 +61,9 @@ def primary
  redirect_to :back
 end
 
-def complete_profile
-  
-end
+# def complete_profile
+#   @user = User.new
+#    # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :first_name,:last_name,:sex,:location,:city,:secondary_email,:birthday)}
+# end
 
 end
