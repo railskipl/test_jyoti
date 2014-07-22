@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722062937) do
+ActiveRecord::Schema.define(version: 20140722105452) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",        default: 0
     t.integer  "tip_prediction",    default: 0
     t.string   "typee"
-    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,7 +103,6 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
-    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -229,7 +227,6 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
-    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
