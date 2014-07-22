@@ -119,12 +119,14 @@ end
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
   
 
+  
   resources :users do
     collection { 
       post :import 
       get :merge
       get  :primary
       get :sign_out
+      get :edit
     }
   end
 
@@ -191,7 +193,9 @@ end
     get '/home/how_it_works' => 'home#how_it_works'
     get '/home/how_it_works_for_me' => 'home#how_it_works_for_me'
     get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
+    get 'home/fork_users' => 'home#fork_users'
     get '/reputation_report' => 'ratings#reputation_report'
+
  
     resource :contactus
    get '/home/contactus' => 'home#contactus'

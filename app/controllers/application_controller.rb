@@ -38,4 +38,8 @@ private
   #   redirect_to root_path 
   # end
 end
+
+def after_update_path_for(resource)
+   home_fork_users_path
+end
 end

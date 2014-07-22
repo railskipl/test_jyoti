@@ -18,6 +18,10 @@ def learn_more
     
 end
 
+def fork_users
+  
+end
+
 #def dashboard
    #  @contacts = request.env['omnicontacts.contacts']
    #  @plans = Plan.all
