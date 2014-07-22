@@ -60,4 +60,8 @@ def primary
  redirect_to :back
 end
 
+def complete_profile
+  
+end
+
 end

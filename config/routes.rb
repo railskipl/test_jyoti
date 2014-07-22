@@ -119,12 +119,14 @@ end
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
   
 
+  
   resources :users do
     collection { 
       post :import 
       get :merge
       get  :primary
       get :sign_out
+      post :complete_profile
     }
   end
 
