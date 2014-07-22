@@ -2,34 +2,37 @@
 <strong>(suggestions, rating optional)</strong><br><br>
 
 
-<%  if @ww.present?%>
-
 	<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
 	    :onsubmit => "return validateForm()"  do |f| %>
-	   
-		<b>Praise</b> :
-		<%= @ww.praise rescue nil%><br>
-		<b>Criticism</b> :
-		<%= @ww.criticism rescue nil%><br>
-		<b>General</b> :
-		<%= @ww.helpful rescue nil%><br>
-		<%= hidden_field_tag :id, @ww.id rescue nil%>
-		Appropriate Comment? &nbsp;<%= radio_button_tag :response, 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag :response, 'false' %> &nbsp;No 
-		<br><br>
-      <b>Your Suggestions to this person on how to improve the review comments:</b>
-      <br>
-      <textarea maxlength="550" name="suggestions" id="suggestions" style="width: 750px;  height: 100px;"></textarea>
+	    <%unless @ww.nil?%>
+		    <%if @ww.typee == "praise"%>
+		      <%= @ww.praise_comment rescue nil%><br>
+		    <%elsif @ww.typee == "criticism"%>
+		      <%= @ww.criticism_comment rescue nil%><br>
+		    <%else @ww.typee == "general"%>.
+		      <%= @ww.general_comment rescue nil%><br>
+		    <%end%>
 
-      <br>
-      <b>Overall Quality of Comments:</b>
-      <br>
-      <%= radio_button_tag :quality_of_comments, '1' %>&nbsp;&nbsp;1&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '2' %>&nbsp;&nbsp;2&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '3' %>&nbsp;&nbsp;3&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '4' %>&nbsp;&nbsp;4&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '5' %>&nbsp;5
-      <br><br>
-		<%= submit_tag :Submit, :class => 'btn btn-primary'%>
-		<%= link_to "Submit and show me another Review to Check",check_history_tips_path, :class => 'btn btn-primary'%>
-		<br><br>
+			<%= hidden_field_tag :id, @ww.id rescue nil%>
+			<%= hidden_field_tag :typee, @ww.type rescue nil%>
+			Appropriate Comment? &nbsp;<%= radio_button_tag :response, 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag :response, 'false' %> &nbsp;No 
+			<br><br>
+	      <b>Your Suggestions to this person on how to improve the review comments:</b>
+	      <br>
+	      <textarea maxlength="550" name="suggestions" id="suggestions" style="width: 750px;  height: 100px;"></textarea>
+
+	      <br>
+	      <b>Overall Quality of Comments:</b>
+	      <br>
+	      <%= radio_button_tag :quality_of_comments, '1' %>&nbsp;&nbsp;1&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '2' %>&nbsp;&nbsp;2&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '3' %>&nbsp;&nbsp;3&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '4' %>&nbsp;&nbsp;4&nbsp;&nbsp;<%= radio_button_tag :quality_of_comments, '5' %>&nbsp;5
+	      <br><br>
+			<%= submit_tag :Submit, :class => 'btn btn-primary'%>
+			<%= link_to "Submit and show me another Review to Check",check_history_tips_path, :class => 'btn btn-primary'%>
+			<br><br>
+		<%else%>
+		  No Tips avaliable
+		<%end%>
 	<%end%>
-<%end%>
 
 	
 <script type="text/javascript">
