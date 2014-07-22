@@ -63,7 +63,7 @@ class RelationshipsController < ApplicationController
 
        if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
-          redirect_to new_tip_path(:email => @relationship.email)
+          redirect_to new_tip_path(:email => @relationship.email, :name => @relationship.name)
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
           # FeedbackMailer.relationship_feedback(@relationship).deliver
         else
@@ -74,7 +74,7 @@ class RelationshipsController < ApplicationController
 
 
   def feddback_form
-    @relationships = Relationship.new(relationships_params)
+    @relationships = RelationshipsControllership.new(relationships_params)
     if @relationships.save 
     if params[:relationships_params][:email] == "true" 
       redirect_to new_tip_path(:email => relationships.email)

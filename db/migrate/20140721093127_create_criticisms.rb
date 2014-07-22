@@ -11,6 +11,7 @@ class CreateCriticisms < ActiveRecord::Migration
       t.integer :tip_viewed, :default => 0
       t.integer :tip_prediction, :default => 0
       t.string :typee
+      t.string :circle_name
 
       t.timestamps
     end

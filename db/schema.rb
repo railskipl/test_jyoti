@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",        default: 0
     t.integer  "tip_prediction",    default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -227,6 +229,7 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
