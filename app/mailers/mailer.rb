@@ -12,7 +12,7 @@ class Mailer < ActionMailer::Base
   # mail(:subject => 'Invitation', :to => recipients)
   # end
 
-
+  
   def invitation(invitation, signup_url)
     @invitation = invitation
     # @random_password = random_password
@@ -38,7 +38,8 @@ class Mailer < ActionMailer::Base
 
   def prelogin_tips(advice_contact)
      @advice_contact = advice_contact
-     mail(:to => @advice_contact.email,:subject => "Tips has been submitted!!!")
+     mail to: @advice_contact.email,
+     subject: "Tips has been submitted!!!"
   end
 
   def sponsee_invitation(relationship, signup_url)
