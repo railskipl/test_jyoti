@@ -1,2 +1,16 @@
 <h4>Responses to your tips. And your reactions.</h4>
 
+<% @sugg_praise.flatten.each do |s|%>
+Tip: "<%= s.praise.praise_comment %>" (Praise)<br/>
+Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
+<% end %>
+
+<% @sugg_criticism.flatten.each do |s|%>
+Tip: "<%= s.criticism.criticism_comment %>" (Criticism)<br/>
+Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
+<% end %>
+
+<% @sugg_general.flatten.each do |s|%>
+Tip: "<%= s.general.general_comment %>" (General)<br/>
+Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
+<% end %>
