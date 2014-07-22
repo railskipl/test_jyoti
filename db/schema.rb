@@ -363,6 +363,18 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.datetime "updated_at"
   end
 
+  create_table "suggestions", force: true do |t|
+    t.text     "feedback_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "provider_user_id"
+    t.string   "recipient_email"
+    t.string   "comment_quality"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tips", force: true do |t|
     t.string   "email"
     t.string   "praise"
