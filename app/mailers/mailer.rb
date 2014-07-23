@@ -22,8 +22,19 @@ class Mailer < ActionMailer::Base
     invitation.update_attribute(:sent_at, Time.now) 
   end
 
-  def paste_user(ui,signup_url)
+  def paste_user(ui,user,user1)
     @ui = ui
+    @current_user = user
+    @current_user1 = user1
+    mail to:  ui.email,
+    subject: 'Invitation',
+    signup_url: 'signup_url'
+  end
+
+  def paste_user1(ui,user,user1)
+    @ui = ui
+    @current_user = user
+    @current_user1 = user1
     mail to:  ui.email,
     subject: 'Invitation',
     signup_url: 'signup_url'

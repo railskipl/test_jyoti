@@ -65,7 +65,9 @@ class RelationshipsController < ApplicationController
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
           redirect_to new_tip_path(:email => @relationship.email, :name => @relationship.name)
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
-          # FeedbackMailer.relationship_feedback(@relationship).deliver
+          @user = current_user.first_name
+          @user1 = current_user.last_name
+          FeedbackMailer.relationship_feedback(@relationship,@user,@user1).deliver
         else
           redirect_to  new_relationship_path
         end

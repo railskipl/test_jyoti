@@ -39,6 +39,11 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
+
+  # def congrats_email
+  #    mail(to: self.email, subject: "Welcome Message")
+  # end
+
   # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
 
   # before_create :check_user_date
