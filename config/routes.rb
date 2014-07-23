@@ -196,7 +196,11 @@ end
     get 'home/fork_users' => 'home#fork_users'
     get '/reputation_report' => 'ratings#reputation_report'
 
- 
+    get '/react_to_response' => 'tips#react_to_response'
+    post '/react_to_response' => 'tips#submit_response'
+
+    get '/reaction_for_response' => 'tips#reaction_for_response'
+    post '/reaction_for_response' => 'tips#submit_reaction'
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

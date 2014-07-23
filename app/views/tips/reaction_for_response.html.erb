@@ -1,0 +1,35 @@
+<h4>React to response. Optional, could reveal more about your identity, be careful.</h4>
+
+<%if @praise.present?%>
+   Comment: "<%= @praise.first.praise_comment rescue nil%>" (Praise) <br/><br/>
+
+   Response: "<%= @response.first.response_comment rescue nil%>"<br/><br/>
+<%end%>
+
+<%if @criticism.present?%>
+   Comment: "<%= @criticism.first.criticism_comment rescue nil%>" (Criticism)<br/><br/>
+
+   Response: "<%= @response.first.response_comment rescue nil%>"<br/><br/>
+<%end%>
+
+<%if @general.present?%>
+   Comment: "<%= @general.first.general_comment rescue nil%>" (General)<br/><br/>
+
+   Response: "<%= @response.first.response_comment rescue nil%>"<br/><br/>
+<%end%>
+
+
+<%= form_tag url_for(:controller => 'tips', :action => 'submit_reaction'), :method => 'post', 
+	    :onsubmit => "return validateForm()"  do |f| %>
+
+	<%= text_area_tag :reaction_comment %> <br/>
+    <% if @praise%>
+      <%= hidden_field_tag :praise_id, @praise.first.id%>
+    <%elsif @criticism%>
+      <%= hidden_field_tag :criticism_id, @criticism.first.id%>
+    <%else @general%>
+      <%= hidden_field_tag :general_id, @general.first.id%>
+    <%end%>
+    <%= hidden_field_tag :response_id, params[:response_id]%>
+	<%= submit_tag "Submit reaction", :class => 'btn btn-primary'%>
+<%end%>
