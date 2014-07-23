@@ -179,11 +179,14 @@ class PasteUsersController < ApplicationController
       users.each do |email|
         u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email, 
           :invite_for_feedback => feedback,:invite_for_curiosity => invite )
+         
+         @user = current_user.first_name
+         @user1 = current_user.last_name
 
         if u.invite_for_feedback == true && u.invite_for_curiosity == false
-         Mailer.paste_user1(u,@signup_url).deliver
+         Mailer.paste_user1(u,@user,@user1).deliver
        elsif u.invite_for_feedback == true &&  u.invite_for_curiosity == true 
-        Mailer.paste_user(u,@signup_url).deliver
+        Mailer.paste_user(u,@user,@user1).deliver
        end
       end
       redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
