@@ -76,9 +76,9 @@ class PasteUsersController < ApplicationController
             c.user_id = current_user.id
             c.save
            end
-          @user = current_user.first_name
-          @user1 = current_user.last_name
-           Mailer.paste_user(ui,@signup_url,@user).deliver
+          # @user = current_user.first_name
+          # @user1 = current_user.last_name
+           # Mailer.paste_user(ui,@signup_url,@user).deliver
            # FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
         end
         # 
