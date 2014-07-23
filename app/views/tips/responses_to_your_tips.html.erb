@@ -1,16 +1,44 @@
 <h4>Responses to your tips. And your reactions.</h4>
 
-<% @sugg_praise.flatten.each do |s|%>
-Tip: "<%= s.praise.praise_comment %>" (Praise)<br/>
-Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
-<% end %>
+<%unless @praise.nil?%>
+	<% @praise.flatten.each do |praise|%>
+	Tip: "<%= praise.praise_comment rescue nil%>" (Praise)<br/>
+	<% @suggestion = Suggestion.where(:praise_id => praise.id) rescue nil%>
+	    <%if @suggestion.present?%>
+		  <% @suggestion.each do |s_p|%>
+		      Checker Comment: "<%= s_p.feedback_comment  rescue nil%>"<br/><br/>
+		  <%end%>
+		<%else%>
+		  <p>Checker Comment: none</p>
+		<%end%>
+	<% end %>
+<%end%>
+<%unless @criticism.nil?%>
+	<% @criticism.flatten.each do |criticism|%>
+		Tip: "<%= criticism.criticism_comment rescue nil%>" (Criticism)<br/>
+		<% @suggestion_criticism = Suggestion.where(:criticism_id => criticism.id) rescue nil%>
+        <%if @suggestion_criticism.present?%>
+		  <% @suggestion_criticism.each do |s_c|%>
+		      Checker Comment: "<%= s_c.feedback_comment  rescue nil%>"<br/><br/>
+		  <%end%>
+		<%else%>
+		  <p>Checker Comment: none</p>
+		<%end%>
+	<% end %>
+<%end%>
+<%unless @general.nil?%>
+	<% @general.flatten.each do |general|%>
+		Tip: "<%= general.criticism_comment rescue nil%>" (General)<br/>
+		<% @suggestion_general = Suggestion.where(:general_id => general.id) rescue nil%>
+		<%if @suggestion_general.present?%>
+		  <% @suggestion_general.flatten.each do |s_g|%>
+		      Checker Comment: "<%= s.feedback_comment  rescue nil%>"<br/><br/>
+		  <%end%>  
+	    <%else%>
+	     <p>Checker Comment: none <br/><br/></p> 
+	    <%end%>
+	<% end %>
+<%end%>
 
-<% @sugg_criticism.flatten.each do |s|%>
-Tip: "<%= s.criticism.criticism_comment %>" (Criticism)<br/>
-Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
-<% end %>
 
-<% @sugg_general.flatten.each do |s|%>
-Tip: "<%= s.general.general_comment %>" (General)<br/>
-Checker Comment: "<%= s.feedback_comment %>"<br/><br/>
-<% end %>
+

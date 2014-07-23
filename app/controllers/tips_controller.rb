@@ -176,24 +176,9 @@ def destroy
 
  
  def responses_to_your_tips
-	@praise = Praise.where(:email => current_user.email)
-	@criticism = Criticism.where(:email => current_user.email)
-	@general = General.where(:email => current_user.email)
-	@sugg_praise ||= []
-	@sugg_criticism ||= []
-	@sugg_general ||= []
-	
-	@praise.each do |praise|
-		@sugg_praise << praise.suggestions  
-	end
-	
-	@criticism.each do |criticism|
-		@sugg_criticism << criticism.suggestions  
-	end
-	
-	@general.each do |general|
-		@sugg_general << general.suggestions  
-	end
+	@praise = Praise.where(:email => current_user.email) rescue nil
+	@criticism = Criticism.where(:email => current_user.email) rescue nil
+	@general = General.where(:email => current_user.email) rescue nil
  end
 
  def tips_and_rating
