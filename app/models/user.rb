@@ -24,11 +24,16 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :contacts
   has_many :advice_contacts
-
+  
   has_many   :emails
   has_many   :plans
   has_many   :subscriptions
   belongs_to :trial_day
+
+  has_many :suggestions
+  has_many :praises
+  has_many :criticisms
+  has_many :generals
 
   before_create :set_invitation_limit
 

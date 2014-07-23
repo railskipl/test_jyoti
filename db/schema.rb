@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721093359) do
+ActiveRecord::Schema.define(version: 20140722105452) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -361,6 +361,18 @@ ActiveRecord::Schema.define(version: 20140721093359) do
     t.datetime "updated_at"
   end
 
+  create_table "suggestions", force: true do |t|
+    t.text     "feedback_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "provider_user_id"
+    t.string   "recipient_email"
+    t.string   "comment_quality"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tips", force: true do |t|
     t.string   "email"
     t.string   "praise"
@@ -442,6 +454,7 @@ ActiveRecord::Schema.define(version: 20140721093359) do
     t.string   "security_question"
     t.boolean  "toggled_status",            default: false
     t.boolean  "primary"
+    t.string   "city"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

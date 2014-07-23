@@ -21,10 +21,10 @@ end
 
 def create
 	@tip = Tip.new(params[:tip])
-
-	@praise = Praise.create(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise")
-	@criticism = Criticism.create(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism")
-	@general = General.create(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general")
+   
+	@praise = Praise.create(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
+	@criticism = Criticism.create(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+	@general = General.create(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
 	if params[:tip][:rating] == "true"
 		redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
 	else
@@ -63,13 +63,13 @@ def destroy
 		@generals = General.where('email != ?', current_user.email)
 		
 		
-		@second_priority1 = @praises.where('tip_accept = ? or tip_reject = ?', 1, 1 ).order("RANDOM()").first rescue nil
+		@second_priority1 = @praises.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ?', 1, 1, 1 ).order("RANDOM()").first rescue nil
 		@zero_priority1 = @praises.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
 		
-		@second_priority2 = @criticisms.where('tip_accept = ? or tip_reject = ? ', 1, 1 ).order("RANDOM()").first rescue nil
+		@second_priority2 = @criticisms.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ? ', 1, 1, 1 ).order("RANDOM()").first rescue nil
 		@zero_priority2 = @criticisms.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
 		
-		@second_priority3 = @generals.where('tip_accept = ? or tip_reject = ? ', 1, 1 ).order("RANDOM()").first rescue nil
+		@second_priority3 = @generals.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ?', 1, 1, 1 ).order("RANDOM()").first rescue nil
 		@zero_priority3 = @generals.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
 		
 		h = [@second_priority1,@second_priority2,@second_priority3]
@@ -83,7 +83,7 @@ def destroy
 		else
 			@priority = @zero_priority
 		end
-		@power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.name) rescue nil
+		@power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.circle_name) rescue nil
 		if @power.blank?
 		 @ww = @priority
 		end
@@ -108,10 +108,19 @@ def destroy
 	def tips_response
 	   if params[:typee] == "praise"
          @tip = Praise.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :praise_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   elsif params[:typee] == "criticism"
          @tip = Criticism.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :criticism_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   else  params[:typee] == "general"
 	   	 @tip = General.find(params[:id])
+	   	 Suggestion.create(:feedback_comment => params[:suggestions], :general_id => @tip.id, 
+         	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+         	               :comment_quality => params[:quality_of_comments] )
 	   end
 	   	
 		sum = 1
@@ -133,8 +142,6 @@ def destroy
 			@tip.tip_reject = @sum
 		end
 		@tip.tip_prediction = @w
-		@tip.feedback = params[:suggestions]
-		@tip.comment_quality = params[:quality_of_comments]
 		@tip.tip_viewed = @tip.tip_viewed + user_view
 		if params[:typee] == "praise"
          @tip.update_attributes(params[:praise])
@@ -169,7 +176,9 @@ def destroy
 
  
  def responses_to_your_tips
-	 
+	@praise = Praise.where(:email => current_user.email) rescue nil
+	@criticism = Criticism.where(:email => current_user.email) rescue nil
+	@general = General.where(:email => current_user.email) rescue nil
  end
 
  def tips_and_rating
