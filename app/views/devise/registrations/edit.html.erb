@@ -15,7 +15,7 @@
 
   <h4>Complete profile</h4>
 
-  Thank you for confirming your email!  You need to complete your profile <br> and then finish setup to view the anonymous tips about you in your<br> private FREE Reputation Report. ALL fields are required.<br>
+  Thank you for confirming your email!  You need to complete your profile <br> and then finish setup to view the anonymous tips about you in your<br> private FREE Reputation Report. ALL fields are required.<br><br>
 
 
 
@@ -58,7 +58,8 @@
     <%= f.label :secondary_email %>
     <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
    </div><br>
-     <div><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
+   
+     <div style="padding:10.5px 1px 34px"><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
    <% end %>
   <% end %>
  
@@ -147,7 +148,7 @@
 
 <p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,:class=>"btn btn-primary" %></p>
  -->
-<br><br><%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
+<br><%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
 
 
 <% end %>

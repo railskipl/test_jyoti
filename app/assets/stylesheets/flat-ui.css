@@ -650,6 +650,46 @@ fieldset[disabled] .btn-power.active {
   background-color: #d35400;
   border-color: #d35400;
 }
+
+.btn-power1 {
+    background-color: #2f4154;
+    color: #ffffff;
+}
+.btn-power1:hover,
+.btn-power1:focus,
+.btn-power1:active,
+.btn-power1.active,
+.open .dropdown-toggle.btn-power1 {
+  color: #ffffff;
+  background-color: #455C80;
+  border-color: #455C80;
+}
+.btn-power1power1:active,
+.btn-power1.active,
+.open .dropdown-toggle.btn-power1power1 {
+  background: #16a085;
+  border-color: #16a085;
+}
+.btn-power1.disabled,
+.btn-power1[disabled],
+fieldset[disabled] .btn-power1,
+.btn-power1.disabled:hover,
+.btn-power1[disabled]:hover,
+fieldset[disabled] .btn-power1:hover,
+.btn-power1.disabled:focus,
+.btn-power1[disabled]:focus,
+fieldset[disabled] .btn-power1:focus,
+.btn-power1.disabled:active,
+.btn-power1[disabled]:active,
+fieldset[disabled] .btn-power1:active,
+.btn-power1.disabled.active,
+.btn-power1[disabled].active,
+fieldset[disabled] .btn-power1.active {
+  background-color: #2f4154;
+  border-color: #2f4154;
+}
+
+
 .btn-sign {
     background-color: #ffffff;
     color: #000;
