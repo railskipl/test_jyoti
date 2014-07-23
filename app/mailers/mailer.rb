@@ -29,6 +29,13 @@ class Mailer < ActionMailer::Base
     signup_url: 'signup_url'
   end
 
+  def paste_user1(ui,signup_url)
+    @ui = ui
+    mail to:  ui.email,
+    subject: 'Invitation',
+    signup_url: 'signup_url'
+  end
+
   def power_user(powergroup,signup_url)
     @powergroup = powergroup
     mail to:  powergroup.email,

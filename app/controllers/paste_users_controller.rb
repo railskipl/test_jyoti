@@ -78,8 +78,8 @@ class PasteUsersController < ApplicationController
            end
           @user = current_user.first_name
           @user1 = current_user.last_name
-          # Mailer.paste_user(ui,@signup_url,@user).deliver
-           FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
+           Mailer.paste_user(ui,@signup_url,@user).deliver
+           # FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
         end
         # 
         format.html { redirect_to  new_paste_user_path, notice: 'Invitation was successfully sent.' }
@@ -179,7 +179,12 @@ class PasteUsersController < ApplicationController
       users.each do |email|
         u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email, 
           :invite_for_feedback => feedback,:invite_for_curiosity => invite )
-         Mailer.paste_user(u,@signup_url).deliver
+
+        if u.invite_for_feedback == true && u.invite_for_curiosity == false
+         Mailer.paste_user1(u,@signup_url).deliver
+       elsif u.invite_for_feedback == true &&  u.invite_for_curiosity == true 
+        Mailer.paste_user(u,@signup_url).deliver
+       end
       end
       redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
     end
