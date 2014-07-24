@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trustworthy: 1.5
+  kind_helpful: 1.5
+  potential: 1.5
+  perform_well: 
+  emotianally_mature: 1.5
+  friendly_social: 1.5
+  overall: 1.5
+  user_id: 1
+
+two:
+  trustworthy: 1.5
+  kind_helpful: 1.5
+  potential: 1.5
+  perform_well: 
+  emotianally_mature: 1.5
+  friendly_social: 1.5
+  overall: 1.5
+  user_id: 1
