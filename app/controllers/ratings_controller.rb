@@ -53,16 +53,18 @@ def reputation_report
    @aa = @all_mirror.inject{ |sum, el| sum + el }.to_f / @w.size 
    @q = @aa/3 # overall impression
    @avg = AvgRating.where("user_id = ?",current_user.id).first_or_create
-   @avg.overall = @w[0]
-   @avg.trustworthy = @w[1]
-   @avg.kind_helpful = @w[2]
-   @avg.potential = @w[3]
-   @avg.presentable = @w[4]
-   @avg.perform_well = @w[5]
-   @avg.emotianally_mature = @w[6]
-   @avg.friendly_social = @w[7]
-   @avg.user_id = current_user.id
-   @avg.save
+   unless @w.empty?
+     @avg.overall = @w[0]
+     @avg.trustworthy = @w[1]
+     @avg.kind_helpful = @w[2]
+     @avg.potential = @w[3]
+     @avg.presentable = @w[4]
+     @avg.perform_well = @w[5]
+     @avg.emotianally_mature = @w[6]
+     @avg.friendly_social = @w[7]
+     @avg.user_id = current_user.id
+     @avg.save
+   end
    report
 end
 
