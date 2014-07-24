@@ -2,14 +2,35 @@
 
 <%unless @praise.nil?%>
 	<% @praise.flatten.each do |praise|%>
-	Tip: "<%= praise.praise_comment rescue nil%>" (Praise)<br/>
-	<% @suggestion = Suggestion.where(:praise_id => praise.id) rescue nil%>
+	    Tip: "<%= praise.praise_comment rescue nil%>" (Praise)<br/>
+	    <% @suggestion = Suggestion.where(:praise_id => praise.id) rescue nil%>
 	    <%if @suggestion.present?%>
 		  <% @suggestion.each do |s_p|%>
 		      Checker Comment: "<%= s_p.feedback_comment  rescue nil%>"<br/><br/>
 		  <%end%>
 		<%else%>
-		  <p>Checker Comment: none</p>
+		  <p>Checker Comment: None</p>
+		<%end%>
+		<% @response = Response.where(:praise_id => praise.id)%>
+		<%if @response.present?%>
+			<% @response.flatten.each do |res|%>
+			   <% @reaction = Reaction.where(:response_id => res.id)%>
+			   Response:"<%= res.response_comment rescue nil%>" <br/>
+               <%if @reaction.present?%>
+                  Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/><br/>
+               <%else%>
+                  Reaction: None <br/><br/>
+               <%end%>
+			<%end%>
+	    <%else%>
+		   Response: None <br/>
+		   Reaction: None <br/><br/>
+        <%end%>
+		<% @user = User.where(:email => praise.email).select(:id,:email)%>
+		<%if @user.first.email == current_user.email%>
+		  <%= link_to "Response", react_to_response_path(:praise_id => praise.id)%><br/><br/>
+		<%else%>
+		  <%= link_to "Reaction"%><br/><br/>
 		<%end%>
 	<% end %>
 <%end%>
@@ -22,7 +43,28 @@
 		      Checker Comment: "<%= s_c.feedback_comment  rescue nil%>"<br/><br/>
 		  <%end%>
 		<%else%>
-		  <p>Checker Comment: none</p>
+		  <p>Checker Comment: None</p>
+		<%end%>
+		<% @response = Response.where(:criticism_id => criticism.id)%>
+		<%if @response.present?%>
+			<% @response.flatten.each do |res|%>
+			   <% @reaction = Reaction.where(:response_id => res.id)%>
+			   Response:"<%= res.response_comment%>" <br/>
+			   <%if @reaction.present?%>
+                  Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/><br/>
+               <%else%>
+                  Reaction: None <br/><br/>
+               <%end%>
+			<%end%>
+	    <%else%>
+		   Response: None <br/>
+		   Reaction: None <br/><br/>
+        <%end%>
+		<% @user = User.where(:email => criticism.email).select(:id,:email)%>
+		<%if @user.first.email == current_user.email%>
+		  <%= link_to "Response", react_to_response_path(:criticism_id => criticism.id)%><br/><br/>
+		<%else%>
+		  <%= link_to "Reaction"%><br/><br/>
 		<%end%>
 	<% end %>
 <%end%>
@@ -35,10 +77,125 @@
 		      Checker Comment: "<%= s.feedback_comment  rescue nil%>"<br/><br/>
 		  <%end%>  
 	    <%else%>
-	     <p>Checker Comment: none <br/><br/></p> 
+	     <p>Checker Comment: None <br/><br/></p> 
 	    <%end%>
+	    <% @response = Response.where(:general_id => general.id)%>
+		<%if @response.present?%>
+			<% @response.flatten.each do |res|%>
+			   <% @reaction = Reaction.where(:response_id => res.id)%>
+			   Response:"<%= res.response_comment rescue nil%>" <br/>
+			   <%if @reaction.present?%>
+                  Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/><br/>
+               <%else%>
+                  Reaction: None <br/><br/>
+               <%end%>
+			<%end%>
+	    <%else%>
+		   Response: None <br/>
+		   Reaction: None <br/><br/>
+        <%end%>
+	    <% @user = User.where(:email => general.email).select(:id,:email)%>
+		<%if @user.first.email == current_user.email%>
+		  <%= link_to "Response", react_to_response_path(:general_id => general.id)%><br/><br/>
+		<%else%>
+		  <%= link_to "Reaction"%><br/><br/>
+		<%end%>
 	<% end %>
 <%end%>
 
+<%##############################################################################################%>
+<%unless @praise_owner_tip.nil?%>
+  <%@praise_owner_tip.flatten.each do |praise|%>
+    Tip: "<%= praise.praise_comment rescue nil %>" (Praise)<br/>
+    <% @suggestion = Suggestion.where(:praise_id => praise.id) rescue nil%>
+	<%if @suggestion.present?%>    
+	    <%@suggestion.each do |s_p|%>
+	      Checker Comment: "<%s_p.first.feedback_comment rescue nil%>"<br/>
+	    <%end%>
+	<%else%>
+	    Checker Comment: None<br/>
+	<%end%>
+	<% @response = Response.where(:praise_id => praise.id)%>
+	<%if @response.present?%>
+		<% @response.each do |response|%>
+		  <% @reaction = Reaction.where(:response_id => response.id)%>
+		   Response: "<%= response.response_comment rescue nil%>" <br/>
+		   <%if @reaction.present?%>
+		      Your Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/>
+		   <%else%>
+		      Your Reaction: None <br/>
+		   <%end%>
+		   <%= link_to "React", reaction_for_response_path(:response_id => response.id)%><br/><br/>
+		<%end%>
+
+	<%else%>
+	   <p>Response: None</p>
+	   <p>Reaction: None</p>
+	<%end%>
+  <%end%>
+<%end%>
+
+<% unless @criticism_owner_tip.nil?%>  
+   <%@criticism_owner_tip.flatten.each do |criticism|%>
+    Tip: "<%= criticism.criticism_comment rescue nil %>" (Criticism)<br/>
+    <% @suggestion = Suggestion.where(:criticism_id => criticism.id) rescue nil%>
+	<%if @suggestion.present?%>    
+	    <%@suggestion.each do |s_c|%>
+	      Checker Comment: "<%s_c.first.feedback_comment rescue nil%>"<br/>
+	    <%end%>
+	<%else%>
+	    Checker Comment: None<br/>
+	<%end%>
+	<% @response = Response.where(:criticism_id => criticism.id)%>
+	<%if @response.present?%>
+		<% @response.each do |response|%>
+		  <% @reaction = Reaction.where(:response_id => response.id)%>
+		  <%raise @reaction.inspect%>
+		   Response: "<%= response.response_comment rescue nil%>" <br/>
+		   <%if @reaction.present?%>
+		      Your Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/>
+		   <%else%>
+		      Your Reaction: None <br/>
+		   <%end%>
+		   <%= link_to "React", reaction_for_response_path(:response_id => response.id)%><br/><br/>
+		<%end%>
+
+	<%else%>
+	   <p>Response: None</p>
+	   <p>Reaction: None</p>
+	<%end%>
+  <%end%>
+<%end%>
+
+<%unless @general_owner_tip.nil?%>
+    <%@general_owner_tip.flatten.each do |general|%>
+    Tip: "<%= general.general_comment rescue nil %>" (General)<br/>
+    <% @suggestion = Suggestion.where(:general_id => general.id) rescue nil%>
+	<%if @suggestion.present?%>    
+	    <%@suggestion.each do |s_g|%>
+	      Checker Comment: "<%s_g.first.feedback_comment rescue nil%>"<br/>
+	    <%end%>
+	<%else%>
+	    Checker Comment: None<br/>
+	<%end%>
+	<% @response = Response.where(:general_id => general.id)%>
+	<%if @response.present?%>
+		<% @response.each do |response|%>
+		  <% @reaction = Reaction.where(:response_id => response.id)%>
+		   Response: "<%= response.response_comment rescue nil%>" <br/>
+		   <%if @reaction.present?%>
+		      Your Reaction: "<%= @reaction.first.reaction_comment rescue nil %>"<br/>
+		   <%else%>
+		      <p>Your Reaction: None</p> <br/>
+		   <%end%>
+		   <%= link_to "React", reaction_for_response_path(:response_id => response.id)%><br/><br/>
+		<%end%>
+
+	<%else%>
+	   <p>Response: None</p>
+	   <p>Reaction: None</p>
+	<%end%>
+  <%end%>
+<%end%>
 
 

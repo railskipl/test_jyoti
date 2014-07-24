@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   has_many :praises
   has_many :criticisms
   has_many :generals
+  has_many :responses
+  has_many :reactions
 
   before_create :set_invitation_limit
 

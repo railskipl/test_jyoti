@@ -3,36 +3,37 @@ class TipsController < ApplicationController
 	# before_filter :authenticate_user!
 	# before_filter :check_user, only: [:new,:index]
 
-def index
-	@users = User.all
- @response_tip = ResponseTip.all
-	@tips = Tip.all
-	@user_invitations = UserInvitation.all
-	
-end
-
-def advice
-  @tips = Tip.all  
-end
-
-def new
- @tip = Tip.new
-end
-
-def create
-	@tip = Tip.new(params[:tip])
-   
-	 @praise = Praise.create(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
-	 @criticism = Criticism.create(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
-	 @general = General.create(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
-	if params[:tip][:rating] == "true"
-		redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
-	else
-		redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
+	def index
+		@users = User.all
+	 @response_tip = ResponseTip.all
+		@tips = Tip.all
+		@user_invitations = UserInvitation.all
+		
 	end
-end
 
-def destroy
+	def advice
+	  @tips = Tip.all  
+	end
+
+	def new
+	 @tip = Tip.new
+	end
+
+
+    def create
+		@tip = Tip.new(params[:tip])
+	   
+		 @praise = Praise.create(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
+		 @criticism = Criticism.create(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+		 @general = General.create(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
+		if params[:tip][:rating] == "true"
+			redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
+		else
+			redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
+		end
+	end
+
+    def destroy
 		@tip = Tip.find(params[:id])
 		@tip.destroy
 		redirect_to power_tips_tips_path
@@ -157,6 +158,74 @@ def destroy
 	def power_tips
 		@tips = Tip.all
 	end
+
+	def react_to_response
+	   if params[:praise_id].present?
+	   	 @praise = Praise.where(:id => params[:praise_id])
+	   elsif params[:criticism_id].present?
+	   	 @criticism = Criticism.where(:id => params[:criticism_id])
+	   	 raise @criticism.inspect
+	   else params[:general_id].present?
+	   	 @general = General.where(:id => params[:general_id])
+	   end
+	end
+
+	def submit_response
+	   if params[:praise_id]
+	   	  @praise = Praise.where(:id => params[:praise_id])
+	   	  @response = Response.create(:response_comment => params[:response_comment], 
+	   	  	          :praise_id => params[:praise_id]  , :response_user_id => current_user.id, 
+	   	  	          :provider_user_id => @praise.first.provider_user_id)
+	   elsif params[:criticism_id]
+	   	  @criticism = Criticism.where(:id => params[:criticism_id])
+	   	  @response = Response.create(:response_comment => params[:response_comment], 
+	   	  	          :praise_id => params[:criticism_id]  , :response_user_id => current_user.id, 
+	   	  	          :provider_user_id => @criticism.first.provider_user_id)
+	   else params[:general_id]
+	   	  @criticism = Criticism.where(:id => params[:general_id])
+	   	  @response = Response.create(:response_comment => params[:response_comment], 
+	   	  	          :praise_id => params[:general_id]  , :response_user_id => current_user.id, 
+	   	  	          :provider_user_id => @general.first.provider_user_id)
+	   end
+
+       flash[:notice] = "Response successfully posted."
+	   redirect_to responses_to_your_tips_tips_path
+	end
+
+	def reaction_for_response
+	  @response = Response.where(:id => params[:response_id])
+
+	  if @response.first.praise_id.present?
+	  	 @praise = Praise.where(:id => @response.first.praise_id)
+	  elsif @response.first.criticism_id.present?
+	  	 @criticism = Criticism.where(:id => @response.first.criticism_id)
+	  else
+	  	 @general = General.where(:id => @response.first.general)
+	  end
+	end
+
+	def submit_reaction
+		@response = Response.where(:id => params[:response_id])
+		if params[:praise_id]
+	   	  @praise = Praise.where(:id => params[:praise_id])
+	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
+	   	  	          :praise_id => params[:praise_id]  , :reciver_user_id =>@response.first.response_user_id , 
+	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
+	   elsif params[:criticism_id]
+	   	  @criticism = Criticism.where(:id => params[:criticism_id])
+	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
+	   	  	          :criticism_id => params[:criticism_id]  , :reciver_user_id =>@response.first.response_user_id , 
+	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
+	   else params[:general_id]
+	   	  @criticism = Criticism.where(:id => params[:general_id])
+	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
+	   	  	          :general_id => params[:general_id]  , :reciver_user_id =>@response.first.response_user_id , 
+	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
+	   end
+
+       flash[:notice] = "Reaction successfully posted."
+	   redirect_to responses_to_your_tips_tips_path	
+	end
 	
  def unhelpful_tips
 	 
@@ -179,6 +248,10 @@ def destroy
 	@praise = Praise.where(:email => current_user.email) rescue nil
 	@criticism = Criticism.where(:email => current_user.email) rescue nil
 	@general = General.where(:email => current_user.email) rescue nil
+
+	@praise_owner_tip = Praise.where(:provider_user_id => current_user.id) rescue nil
+	@criticism_owner_tip = Criticism.where(:provider_user_id => current_user.id) rescue nil
+	@general_owner_tip = General.where(:provider_user_id => current_user.id) rescue nil
  end
 
  def tips_and_rating

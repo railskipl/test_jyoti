@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722105452) do
+ActiveRecord::Schema.define(version: 20140723061023) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140722105452) do
     t.integer  "tip_viewed",        default: 0
     t.integer  "tip_prediction",    default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140722105452) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -227,6 +229,7 @@ ActiveRecord::Schema.define(version: 20140722105452) do
     t.integer  "tip_viewed",       default: 0
     t.integer  "tip_prediction",   default: 0
     t.string   "typee"
+    t.string   "circle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -261,6 +264,18 @@ ActiveRecord::Schema.define(version: 20140722105452) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "count",              default: 0, null: false
+  end
+
+  create_table "reactions", force: true do |t|
+    t.text     "reaction_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "provider_user_id"
+    t.integer  "reciver_user_id"
+    t.integer  "response_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "relationships", force: true do |t|
@@ -304,6 +319,17 @@ ActiveRecord::Schema.define(version: 20140722105452) do
     t.string   "response_for_tip"
     t.string   "tag_tip"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "responses", force: true do |t|
+    t.text     "response_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "response_user_id"
+    t.integer  "provider_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
