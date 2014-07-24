@@ -146,6 +146,10 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
   end
 
 
+
+
+
+
 private
 
 def set_invitation_limit
