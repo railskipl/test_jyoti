@@ -65,7 +65,7 @@ def reputation_report
    #   @avg.user_id = current_user.id
    #   @avg.save
    # end
-   report
+   # report
 end
 
 def create
