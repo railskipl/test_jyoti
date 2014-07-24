@@ -122,6 +122,7 @@ class TipsController < ApplicationController
 
 
 	def tips_response
+
 	   if params[:typee] == "praise"
          @tip = Praise.find(params[:id])
          Suggestion.create(:feedback_comment => params[:suggestions], :praise_id => @tip.id, 
@@ -142,9 +143,9 @@ class TipsController < ApplicationController
 		sum = 1
 		user_view = 1
 		#logic for decidind the tip is helpful or not
-		if @tip.tip_accept >= 2
+		if @tip.tip_accept = 2
 			@w = 1           #for deciding helpful tip
-		elsif @tip.tip_reject >= 2 
+		elsif @tip.tip_reject = 2 
 			@w = 2          #for deciding unhelpful tip
 		else 
 			@w = 0
@@ -165,6 +166,13 @@ class TipsController < ApplicationController
          @tip.update_attributes(params[:criticism])
 	    else  params[:typee] == "general"
 	   	 @tip.update_attributes(params[:general])
+	    end
+	    #for onbording sequence quality check
+	    @quality_check = AccessReputationTip.where(:user_id => current_user.id)
+	    if @quality_check
+	    	a = 1
+	    	@quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
+	    	@aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
 	    end
 		flash[:notice] = "Thanks for particiption."
 		redirect_to helpful_tips_tips_path
