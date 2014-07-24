@@ -70,6 +70,8 @@ Total Raters: <%#= @total_ratings %><br/>
 Points: <%#= @diversity_points %>
 <br/>
 </div> -->
+What factors raise your Reputation Score
+<%= @h.sort{|a,b| a[1] <=> b[1]}.last(2) %>
 <% else %>
 <p>Give Feedback and get feedback to atleast 5 person to see your reputation score</p>
 <% end %>
