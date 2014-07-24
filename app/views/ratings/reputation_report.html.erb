@@ -3,7 +3,63 @@
 <%= javascript_include_tag "highcharts.js", "exporting.js" %>
 <h5>Reputation Report</h5>
 <span style="float: right; font-size: 14px; padding: 65px; margin-top: 418px;"><%= link_to "Edit self-image",new_rating_path%></span>
-
+<table border cellspacing=5>
+    <%# avg_result_percent(@avg,@avg_percent) %>
+<tr>
+    <td>&nbsp;</td>
+    <td>Average</td>
+    <td>Better Than</td>
+</tr>
+<% @h = {}%>
+<tr>
+    <td>Overall</td>
+    <td><%= @avg.overall.round(2) %></td>
+    <% @h.store(:overall , avg_result("overall",@avg.overall).to_f)%>
+    <td><%= avg_result("overall",@avg.overall) %></td>
+</tr>
+<tr>
+    <td>Trustworthy</td>
+    <td><%= @avg.trustworthy.round(2) %></td>
+    <% @h.store(:trustworthy, avg_result("trustworthy",@avg.trustworthy).to_f)%>
+    <td><%= avg_result("trustworthy",@avg.trustworthy) %></td>
+</tr>
+<tr>
+    <td>Helpful/Kind</td>
+    <td><%= @avg.kind_helpful.round(2) %></td>
+     <% @h.store(:kind_helpful, avg_result("kind_helpful",@avg.kind_helpful).to_f)%>
+    <td><%= avg_result("kind_helpful",@avg.kind_helpful) %></td>
+</tr>
+<tr>
+    <td>Ability/Potential</td>
+    <td><%= @avg.potential.round(2) %></td>
+     <% @h.store(:potential, avg_result("potential",@avg.potential).to_f)%>
+    <td><%= avg_result("potential",@avg.potential) %></td>
+</tr>
+<tr>
+    <td>Delivers/reliable</td>
+    <td><%= @avg.presentable.round(2) %></td>
+     <% @h.store(:presentable, avg_result("presentable",@avg.presentable).to_f)%>
+    <td><%= avg_result("presentable",@avg.presentable) %></td>
+</tr>
+<tr>
+    <td>Articulate</td>
+    <td><%= @avg.perform_well.round(2) %></td>
+     <% @h.store(:articulate, avg_result("perform_well",@avg.perform_well).to_f)%>
+    <td><%= avg_result("perform_well",@avg.perform_well) %></td>
+</tr>
+<tr>
+    <td>Emotionally Mature</td>
+    <td><%= @avg.emotianally_mature.round(2) %></td>
+     <% @h.store(:emotianally_mature, avg_result("emotianally_mature",@avg.emotianally_mature).to_f)%>
+    <td><%= avg_result("emotianally_mature",@avg.emotianally_mature) %></td>
+</tr>
+<tr>
+    <td>Sociable</td>
+    <td><%= @avg.friendly_social.round(2) %></td>
+     <% @h.store(:friendly_social, avg_result("friendly_social",@avg.friendly_social).to_f)%>
+    <td><%= avg_result("friendly_social",@avg.friendly_social) %></td>
+</tr>
+</table>
 
 <div id="container1" style="min-width: 310px; max-width: 800px; height: 460px; margin: 0 auto"></div>
 
