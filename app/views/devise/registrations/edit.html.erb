@@ -46,7 +46,7 @@
   <div><%= f.label :country%>
   <%#= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
   
-  <%= f.collection_select :country_id, Country.order(:name), :id, :name, {prompt: " --Select Country--"}, :class=>"alignleft"%><br />
+  <%= f.collection_select :country, Country.order(:name), :id, :name, {prompt: " --Select Country--"}, :class=>"alignleft"%><br />
   </div>
 
 
