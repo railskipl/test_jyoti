@@ -16,6 +16,7 @@ end
 
 def reputation_report
   @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
+   raise @powergroup.inspect
    @c = []
    @powergroup.each do |r|
      @c << User.where('email = ?', r.email).select('id')
