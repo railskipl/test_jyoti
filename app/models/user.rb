@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,:confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status
+  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status,:city
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   has_many :reactions
 
   before_create :set_invitation_limit
+
+ 
 
 
   # def congrats_email

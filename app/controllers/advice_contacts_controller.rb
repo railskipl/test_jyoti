@@ -36,7 +36,7 @@ class AdviceContactsController < ApplicationController
     @helpful_tips = @advice_contact.helpful_tips
 
   
-      if @praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true
+      if (@praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true) ||  @praise.present? == true && @criticism.present? == true && @helpful_tips.present? 
         if @advice_contact.save
           unless @advice_contact.praise.empty?
             @praise = Praise.create(:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")

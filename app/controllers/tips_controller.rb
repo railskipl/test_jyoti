@@ -22,7 +22,10 @@ class TipsController < ApplicationController
 
     def create
 	@tip = Tip.new(params[:tip])
-	    if @tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?
+
+         
+
+	    if (@tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?) ||  @tip.praise.present? && @tip.criticism.present? && @tip.helpful.present? 
          @praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
 		 @praise.save! 
 		
@@ -35,6 +38,7 @@ class TipsController < ApplicationController
 
 		if params[:tip][:rating] == "true"
 			redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
+		
 		else
 			redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
 		end
