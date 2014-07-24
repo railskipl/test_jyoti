@@ -36,7 +36,7 @@ margin-bottom: 10px;
 
 
 <h4>Reputation Score: </h4>
-<% if @total_ratings > 5 %>
+<% if @total_ratings > 5 && !@total_score.nil? %>
  <% scores = ReputationScore.pluck(:score) %>
  <% count = 0 %>
  <% scores.each do |i|%>

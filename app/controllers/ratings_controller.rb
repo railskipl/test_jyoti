@@ -89,11 +89,13 @@ def report
   @total_ratings = Ratingother.where("email like ?" ,@user.email).count
   @recent_ratings = Ratingother.where("email like ? and created_at >= ?" ,@user.email, 6.months.ago).count
   @total_relations = Relationship.where("email like ?" ,@user.email).count
-  if @total_ratings > 0 && @total_relations > 0
+  if @total_ratings > 0 
     @percent = @recent_ratings*100/@total_ratings
   
     @long_relations = Relationship.where("email like ? and know_how_for_long_year >= ?" ,@user.email,2).count
+    if @total_relations > 0
     @percent_history = @long_relations*150/@total_relations
+    end
     @tr = Ratingother.where("email like ?" ,@user.email)
     if @total_ratings > 100
       @diversity_points = 150
@@ -103,9 +105,10 @@ def report
     
     @weighted_rating ||= []
     @tr.each do |r| 
-     @weighted_rating << ((r.trustworthy*0.2 + r.kind_helpful*0.1 + r.potential*0.1 + r.perform_well*0.2 + r.presentable*0.1+ r.emotianally_mature*0.15 + r.friendly_social*0.15)*(ReputationScore.find_by_user_id(r.user_id).score*0.1)).to_i
+     reputation_score = ReputationScore.find_by_user_id(r.user_id).nil? ? 1:reputation_score = ReputationScore.find_by_user_id(r.user_id).score
+     @weighted_rating << ((r.trustworthy*0.2 + r.kind_helpful*0.1 + r.potential*0.1 + r.perform_well*0.2 + r.presentable*0.1+ r.emotianally_mature*0.15 + r.friendly_social*0.15)*(reputation_score*0.1)).to_i
     end 
-    @total_score = @percent + @percent_history + @diversity_points + @weighted_rating.sum/@total_ratings 
+    @total_score = @percent + @percent_history.to_f + @diversity_points + @weighted_rating.sum/@total_ratings 
     r = ReputationScore.where("user_id = ?", current_user).first_or_create
     r.user_id = current_user.id
     r.score = @total_score
