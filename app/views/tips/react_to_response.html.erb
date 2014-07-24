@@ -1,0 +1,28 @@
+<h4>React to response. Optional, could reveal more about your identity, be careful.</h4>
+
+<%if params[:praise_id].present?%>
+   Comment: "<%= @praise.first.praise_comment rescue nil%>" (Praise)
+<%end%>
+
+<%if params[:criticism_id].present?%>
+   Comment: "<%= @criticism.first.criticism_comment rescue nil%>" (Criticism)
+<%end%>
+
+<%if params[:general_id].present?%>
+   Comment: "<%= @general.first.general_comment rescue nil%>" (General)
+<%end%>
+
+
+<%= form_tag url_for(:controller => 'tips', :action => 'submit_response'), :method => 'post', 
+	    :onsubmit => "return validateForm()"  do |f| %>
+
+	<%= text_area_tag :response_comment %> <br/>
+    <% if params[:praise_id]%>
+      <%= hidden_field_tag :praise_id, params[:praise_id]%>
+    <%elsif params[:criticism_id]%>
+      <%= hidden_field_tag :criticism_id, params[:criticism_id]%>
+    <%else params[:general_id]%>
+      <%= hidden_field_tag :general_id, params[:general_id]%>
+    <%end%>
+	<%= submit_tag :Submit, :class => 'btn btn-primary'%>
+<%end%>

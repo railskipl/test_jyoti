@@ -34,8 +34,15 @@ class User < ActiveRecord::Base
   has_many :praises
   has_many :criticisms
   has_many :generals
+  has_many :responses
+  has_many :reactions
 
   before_create :set_invitation_limit
+
+
+  # def congrats_email
+  #    mail(to: self.email, subject: "Welcome Message")
+  # end
 
   # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
 
@@ -137,6 +144,10 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
       @current_date = (Time.zone.now)
       @remaining_days = (@admin_user_plan_expiry - @current_date).to_i / 1.day
   end
+
+
+
+
 
 
 private

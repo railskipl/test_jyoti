@@ -1,6 +1,46 @@
-Hello!!!
+<!-- Hello!!!
 You are invited to join our site!
-<% if @ui.invite_for_curiosity == true %>
+<%# if @ui.invite_for_curiosity == true %>
+  <a href="http://m360.herokuapp.com/users/sign_up">Invitation</a>
+  <a href="http://m360.herokuapp.com/users/sign_in">Feedback</a>
+<%# elsif  @ui.invite_for_curiosity.nil? %>
+  <a href="http://m360.herokuapp.com/users/sign_up">Invitation</a>
+<%# else %>
+  <a href="http://m360.herokuapp.com/users/sign_up">Feedback</a>
+<%# end %>
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hello from Mirror 360!<br><br>
+
+ 
+
+We are trying to make the world a better place through self-awareness. By helping you uncover what may make you more successful. And helping those you know reach their highest potential.<br><br>
+
+ General Invite
+
+<strong><%= @current_user%></strong> <strong><%= @current_user1 %></strong>  has requested you to give feedback:<br><br>
+
+ 
+
+Can you help me with some feedback? It will be truly anonymous and mixed in with feedback from others before I see it.  I would appreciate this very much. Here's a link.<br><br>
+
+ 
+
+Give Feedback: <% if @ui.invite_for_curiosity == true %>
   <a href="http://m360.herokuapp.com/users/sign_up">Invitation</a>
   <a href="http://m360.herokuapp.com/users/sign_in">Feedback</a>
 <% elsif  @ui.invite_for_curiosity.nil? %>
@@ -8,3 +48,24 @@ You are invited to join our site!
 <% else %>
   <a href="http://m360.herokuapp.com/users/sign_up">Feedback</a>
 <% end %>
+<br><br>
+
+ 
+
+If you use this link and also sign up at the end of giving feedback, BOTH of you will get an extra FREE anonymous tip!  You can also view your FREE Reputation Report and some of the anonymous tips (praise, criticism and general comments) that may be waiting for you. Or you can leave additional feedback for others, even without signing up.<br><br>
+
+ 
+
+Join us to make this world better!<br><br>
+
+ 
+
+Sincerely,<br>
+
+The Mirror 360 Team<br><br>
+
+ 
+
+Note: This email address cannot accept replies. For support, contact support@mirror360.com.<br>
+
+To unsubscribe: [Unsubscribe Link]<br><br>
