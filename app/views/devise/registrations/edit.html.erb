@@ -11,7 +11,7 @@
 
   <%= devise_error_messages! %>
 
-  <% if current_user.sign_in_count == 1 %>
+  <% if current_user.sign_in_count == 1 && current_user.first_name.present? == false%>
 
   <h4>Complete profile</h4>
 
@@ -44,8 +44,12 @@
 
 
   <div><%= f.label :country%>
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  <%#= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  
+  <%= f.collection_select :country_id, Country.order(:name), :id, :name, {prompt: " --Select Country--"}, :class=>"alignleft"%><br />
   </div>
+
+
 
   <div><%= f.label :city%>
   <%= f.text_field :city ,:class=>"form-control"%>
@@ -61,13 +65,13 @@
    
      <div style="padding:10.5px 1px 34px"><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
    <% end %>
-  <% end %>
+  <% end %> 
  
 
 
 
 
-  <% if current_user.sign_in_count > 1 %>
+  <% if current_user.sign_in_count >= 1 && current_user.first_name.present? == true  %>
   <h2>Update <%= resource_name.to_s.humanize %></h2>
 
 
