@@ -36,17 +36,17 @@ margin-bottom: 10px;
 
 
 <h4>Reputation Score: </h4>
-<% if @total_ratings > 50 %>
- <% scores = ReputationScore.pluck(:score) %>
- <% count = 0 %>
- <% scores.each do |i|%>
-  <% if i < @total_score %>
-   <% count += 1 %>
-  <% end %>
- <% end %>
-<%= @total_score %> (better than <%= val =  ((count.to_f/scores.count)*100).round(2) %>%)
+<%# if @total_ratings > 5 %>
+ <%# scores = ReputationScore.pluck(:score) %>
+ <%# count = 0 %>
+ <%# scores.each do |i|%>
+  <%# if i < @total_score %>
+   <%# count += 1 %>
+  <%# end %>
+ <%# end %>
+<%=# @total_score %> (better than <%#= val =  ((count.to_f/scores.count)*100).round(2) %>%)
 <div class="bar">
-<span style="position:relative;left:<%= val %>%;"><%= @total_score %></span>
+<span style="position:relative;left:<%#= val %>%;"><%#= @total_score %></span>
 </div>
 
 <!-- <button id="hide" class="btn btn-primary">Hide</button>
@@ -71,7 +71,7 @@ Points: <%#= @diversity_points %>
 <br/>
 </div> -->
 What factors raise your Reputation Score
-<%= @h.sort{|a,b| a[1] <=> b[1]}.last(2) %>
-<% else %>
+<%#= @h.sort{|a,b| a[1] <=> b[1]}.last(2) %>
+<%# else %>
 <p>Give Feedback and get feedback to atleast 5 person to see your reputation score</p>
-<% end %>
+<%# end %>
