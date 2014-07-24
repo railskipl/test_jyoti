@@ -1,4 +1,8 @@
-<%= javascript_include_tag "/assets/jquery.js" %>
+<%@access_response_tip = AccessReputationTip.where(:user_id => current_user) rescue nil%>
+
+<% if @access_response_tip.first.give_feedback == 1 && @access_response_tip.first.give_ratings == 1 && @access_response_tip.first.vote_on_tips == 5 && @access_response_tip.first.give_selfimage == 1 && @access_response_tip.first.got_feedback == 5 && @access_response_tip.first.invite_other == 5 %>
+
+    <%= javascript_include_tag "/assets/jquery.js" %>
 <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <%= javascript_include_tag "highcharts.js", "exporting.js" %>
 <h5>Reputation Report</h5>
@@ -213,3 +217,10 @@ jQuery(function () {
 
 
 <%= render 'report' %>
+
+<%else%>
+  <p>None. Your participation level meets the minimum. However, we need to anonymize the feedback on you.</p>
+
+<%end%>
+
+
