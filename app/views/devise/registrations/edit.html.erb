@@ -44,8 +44,12 @@
 
 
   <div><%= f.label :country%>
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  <%#= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  
+  <%= f.collection_select :country_id, Country.order(:name), :id, :name, {prompt: " --Select Country--"}, :class=>"alignleft"%><br />
   </div>
+
+
 
   <div><%= f.label :city%>
   <%= f.text_field :city ,:class=>"form-control"%>

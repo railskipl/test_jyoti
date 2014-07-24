@@ -16,8 +16,18 @@
 	#      admin.save
 
 
- User.where(:email => "admin@gmail.com",:password => "admin123",:is_admin => true,:confirmed_at => Date.today).first_or_create
+  User.where(:email => "admin@gmail.com",:password => "admin123",:is_admin => true,:confirmed_at => Date.today).first_or_create
 
+
+  require 'csv'
+
+        puts "Importing countries..."
+        CSV.foreach(Rails.root.join("countries.csv"), headers: true) do |row|
+          Country.create! do |country|
+            country.id = row[0]
+            country.name = row[1]
+          end
+        end
  # Plan.where(:price => 0.0).first_or_create
  # Plan.where(:price => 25).first_or_create
  # Plan.where(:price => 50).first_or_create
