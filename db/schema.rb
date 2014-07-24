@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723061023) do
+ActiveRecord::Schema.define(version: 20140723102930) do
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20140723061023) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "avg_ratings", force: true do |t|
+    t.float    "trustworthy"
+    t.float    "kind_helpful"
+    t.float    "potential"
+    t.float    "presentable"
+    t.float    "perform_well"
+    t.float    "emotianally_mature"
+    t.float    "friendly_social"
+    t.float    "overall"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "circles", force: true do |t|

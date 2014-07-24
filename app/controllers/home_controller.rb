@@ -42,6 +42,7 @@ end
 
 def dashboard
     @contacts = request.env['omnicontacts.contacts']
+    puts request.env['omniauth']
     @con ||= []
     if !@contacts.nil?
 	    @contacts.each do |contact|
