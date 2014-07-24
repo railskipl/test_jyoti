@@ -15,57 +15,57 @@ def add_array(a,b)
 end
 
 def reputation_report
-  # @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
-  #  @c = []
-  #  @powergroup.each do |r|
-  #    @c << User.where('email = ?', r.email).select('id')
-  #  end
+  @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
+   @c = []
+   @powergroup.each do |r|
+     @c << User.where('email = ?', r.email).select('id')
+   end
    
-  #  @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
-  #  if @d.empty?
-  #   @d = [0,0,0,0,0,0,0,0]
-  #  else
-  #   @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
-  #  end
+   @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
+   if @d.empty?
+    @d = [0,0,0,0,0,0,0,0]
+   else
+    @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
+   end
 
-  #  @ratingss = Rating.where('user_id = ?', current_user.id) rescue nil#self image
-  #  @ratingother = Ratingother.where('friend_id = ?', current_user.id) rescue nil#all mirrors
-  #  if @ratingother.empty? && @ratingss.empty?
-  #   @b = [0,0,0,0,0,0,0,0]#self image
-  #   @a = [0,0,0,0,0,0,0,0]#all mirrors
-  #  elsif @ratingother.empty? && @ratingss != nil
-  #   @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
-  #   @a = [0,0,0,0,0,0,0,0]#all mirrors
-  #  elsif @ratingss.empty? && @ratingother != nil
-  #   @b = [0,0,0,0,0,0,0,0]#self image
-  #   @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
-  #  else
-  #   @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
-  #   @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
-  #  end
+   @ratingss = Rating.where('user_id = ?', current_user.id) rescue nil#self image
+   @ratingother = Ratingother.where('friend_id = ?', current_user.id) rescue nil#all mirrors
+   if @ratingother.empty? && @ratingss.empty?
+    @b = [0,0,0,0,0,0,0,0]#self image
+    @a = [0,0,0,0,0,0,0,0]#all mirrors
+   elsif @ratingother.empty? && @ratingss != nil
+    @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
+    @a = [0,0,0,0,0,0,0,0]#all mirrors
+   elsif @ratingss.empty? && @ratingother != nil
+    @b = [0,0,0,0,0,0,0,0]#self image
+    @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
+   else
+    @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
+    @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
+   end
 
-  #  @over = add_array(@a, @b) #added to array
-  #  @all_mirror = add_array(@over , @d) # added over array with @d array
-  #  @w = []
-  #  @all_mirror.each do |r|
-  #   @w << (r.to_f / 3).to_f
-  # end
-  #  @aa = @all_mirror.inject{ |sum, el| sum + el }.to_f / @w.size 
-  #  @q = @aa/3 # overall impression
-  #  @avg = AvgRating.where("user_id = ?",current_user.id).first_or_create
-  #  unless @w.empty?
-  #    @avg.overall = @w[0]
-  #    @avg.trustworthy = @w[1]
-  #    @avg.kind_helpful = @w[2]
-  #    @avg.potential = @w[3]
-  #    @avg.presentable = @w[4]
-  #    @avg.perform_well = @w[5]
-  #    @avg.emotianally_mature = @w[6]
-  #    @avg.friendly_social = @w[7]
-  #    @avg.user_id = current_user.id
-  #    @avg.save
-  #  end
-  #  report
+   @over = add_array(@a, @b) #added to array
+   @all_mirror = add_array(@over , @d) # added over array with @d array
+   @w = []
+   @all_mirror.each do |r|
+    @w << (r.to_f / 3).to_f
+  end
+   @aa = @all_mirror.inject{ |sum, el| sum + el }.to_f / @w.size 
+   @q = @aa/3 # overall impression
+   # @avg = AvgRating.where("user_id = ?",current_user.id).first_or_create
+   # unless @w.empty?
+   #   @avg.overall = @w[0]
+   #   @avg.trustworthy = @w[1]
+   #   @avg.kind_helpful = @w[2]
+   #   @avg.potential = @w[3]
+   #   @avg.presentable = @w[4]
+   #   @avg.perform_well = @w[5]
+   #   @avg.emotianally_mature = @w[6]
+   #   @avg.friendly_social = @w[7]
+   #   @avg.user_id = current_user.id
+   #   @avg.save
+   # end
+   # report
 end
 
 def create
