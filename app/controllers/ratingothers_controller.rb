@@ -43,6 +43,15 @@ def create
       @rating_exist = Ratingother.where('user_id = ? and friend_id = ?', @ratingother.user_id, @ratingother.friend_id)
 
       if @rating_exist.empty?
+        #for onbording sequence ratings other
+
+        @reputation = AccessReputationTip.where(:user_id => current_user.id)
+        if @reputation
+          a = 1
+          @reputation.first.give_ratings = @reputation.first.give_ratings + 1
+          @reputation.first.update_attributes(params[:access_reputation_tip])
+        end
+        
         if @ratingother.save
           redirect_to :back, notice: "Rating has been done."
         else
