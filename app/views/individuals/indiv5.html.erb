@@ -1,0 +1,58 @@
+<h4>How do you see yourself?</h4><br><br>
+
+
+Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
+
+
+
+Now please <strong>rate yourself</strong> on the same factors you rated the other person.<br><br><br>
+
+
+
+ <%= form_for Rating.new do |f| %>
+  
+
+   
+   <%= f.label :trustworthy %><br>
+
+
+  <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id =>"slider" %></br>
+ 
+    <%= f.label :kind_helpful %><br>
+
+
+    <%= f.range_field :kind_helpful, :min=>1, :max=>10,:value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+
+    <%= f.label :potential %><br>
+
+    <%= f.range_field :potential, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+    <%= f.label :perform_well %><br>
+
+
+   <%= f.range_field :perform_well, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+ 
+      <%= f.label :presentable %><br>
+
+       <%= f.range_field :presentable, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+
+   <%= f.label :emotianally_mature %><br>
+
+
+   <%= f.range_field :emotianally_mature , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+
+   <%= f.label :friendly_social %><br>
+
+
+ <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+  
+    <!-- <div style="float:right;padding: 30px;"><%#= link_to "CONTINUE",indiv6_individuals_path,:class=>"btn btn-primary" %></div> -->
+
+    <div style="float:right;padding: 30px;"><%= link_to "CONTINUE",indiv6_individuals_path,:class=>"btn btn-primary" %></div>
+
+<% end %>
+

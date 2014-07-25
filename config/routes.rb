@@ -85,8 +85,23 @@ Rails.application.routes.draw do
 
 
   resources :invitations
-  resources :organizations
-  resources :individuals
+  resources :organizations do
+    collection{
+      get :org_path
+    }
+  end
+
+  resources :individuals do
+    collection {
+      get :indiv_path
+      get :indiv2
+      get :indiv3
+      get :indiv4
+      get :indiv5
+      get :indiv6
+      get :indiv7
+    }
+  end
 
   resources :ratings do
     collection {

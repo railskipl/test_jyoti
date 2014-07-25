@@ -44,9 +44,10 @@
 
 
   <div><%= f.label :country%>
-  <%#= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
   
-  <%= f.collection_select :country, Country.order(:name), :id, :name, {prompt: " --Select Country--"}, :class=>"alignleft"%><br />
+  
+
   </div>
 
 
@@ -58,15 +59,31 @@
 
     
   <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
-   <div>
-    <%= f.label :secondary_email %>
-    <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
-   </div><br>
+
+  <div><%= f.label :email %></br>
+      <%= f.text_area :secondary_email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
+  </div>
+  <%= f.submit 'CONTINUE SETUP',:class=>"btn btn-primary", :id=> "email_user" %>
+      
+  <% end %>
    
-     <div style="padding:10.5px 1px 34px"><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
+  <!-- <div style="padding:10.5px 1px 34px"><%#= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div> -->
    <% end %>
-  <% end %> 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -138,15 +155,14 @@
 
 <h5>Add secondary email</h5>
   <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
-
-<div><%= f.label :email %></br>
-    <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
-</div>
-    
-    
+   <div> <%= f.label :email %></br>
+   <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%></div>
  <%= f.submit 'AddEmail',:class=>"btn btn-primary", :id=> "email_user" %>
     
 <% end %>
+    
+    
+ 
 
 <!-- <h3>Cancel my account</h3>
 

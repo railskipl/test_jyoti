@@ -28,6 +28,7 @@ class AdviceContactsController < ApplicationController
   def create
 
     @advice_contact = AdviceContact.new(advice_contact_params)
+
     
     advice_contact = @advice_contact
 
@@ -35,12 +36,21 @@ class AdviceContactsController < ApplicationController
     @criticism = @advice_contact.criticism
     @helpful_tips = @advice_contact.helpful_tips
 
+    
+
   
       if (@praise.present? == true && @criticism.present? == true || @criticism.present? == true && @helpful_tips.present? == true || @praise.present? == true && @helpful_tips.present? == true) ||  @praise.present? == true && @criticism.present? == true && @helpful_tips.present? 
         if @advice_contact.save
-          unless @advice_contact.praise.empty?
+          
+          # unless (request.path=="/individuals/indiv2")
+          #   @advice_contacts = AdviceContact.create(:user_id => current_user.id, :praise => @advice_contact.praise)
+          #    render '/individuals/indiv3'
+          # end
+
+          unless @advice_contact.praise.empty? 
             @praise = Praise.create(:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
           end
+          
           unless @advice_contact.criticism.empty?
             @criticism = Criticism.create(:email => @advice_contact.email, :criticism_comment => @advice_contact.criticism, :typee => "criticism")
           end
