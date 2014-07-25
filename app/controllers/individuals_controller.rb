@@ -51,11 +51,19 @@ class IndividualsController < ApplicationController
   end
 
   def indiv2
-    # @advice_contact = AdviceContact.new
-    @advice_contact = AdviceContact.new(params[:praise])
-    # @advice_contacts = AdviceContact.create(:user_id => current_user.id, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful_tips => @advice_contact.helpful_tips)
+    
+  end
 
-      if user_signed_in?
+  def submit_indiv2
+    @user = User.where('email = ?', params[:email])
+    @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id) rescue nil
+    if @gotfeedback.first
+      a = 1
+      @gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
+      @gotfeedback.first.update_attributes(params[:access_reputation_tip])
+    end
+
+    if user_signed_in?
         #for onbording sequence give feedback to others
           @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
             
@@ -64,23 +72,15 @@ class IndividualsController < ApplicationController
             @givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
             @givefeedback.first.update_attributes(params[:access_reputation_tip])
           end
-      end
+    end
+    @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
 
-      if @advice_contact.save
-          unless @advice_contact.praise.present? 
-            @praise = Praise.create(:provider_user_id => current_user.id,:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
-          end
-          
-          unless @advice_contact.criticism.present?
-            @criticism = Criticism.create(:provider_user_id => current_user.id,:email => @advice_contact.email, :criticism_comment => @advice_contact.criticism, :typee => "criticism")
-          end
-          unless @advice_contact.helpful_tips.present?
-            @general = General.create(:provider_user_id => current_user.id,:email => @advice_contact.email, :general_comment => @advice_contact.helpful_tips, :typee => "general")
-          end
-        end
+    @criticism = Criticism.create(:email => params[:email], :criticism_comment => params[:criticism],:provider_user_id => params[:user_id], :typee => "criticism")
+
+    @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
+    
+    redirect_to indiv3_individuals_path
   end
-
-
 
 
   def indiv3
@@ -124,11 +124,11 @@ class IndividualsController < ApplicationController
 
 
   def indiv4
-    # @ratingother = Ratingother.new(params[:ratingother])
+     @ratingother = Ratingother.new
   end
 
   def indiv5
-   # @ratings = Rating.new    
+    @ratings = Rating.new    
   end
 
   def indiv6
