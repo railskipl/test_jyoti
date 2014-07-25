@@ -22,9 +22,9 @@ class TipsController < ApplicationController
 
     def create
 	    @tip = Tip.new(params[:tip])
-        #for onbording sequence got feedback to others
+        #for onbording sequence got feedback to others  
         @user = User.where('email = ?', @tip.email)
-        @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id)
+        @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id) rescue nil
 	    if @gotfeedback.first
 	    	a = 1
 	    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
