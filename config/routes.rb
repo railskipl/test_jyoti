@@ -95,17 +95,11 @@ Rails.application.routes.draw do
     collection {
       get :indiv_path
       get :indiv2
-      post :indiv2
       get :indiv3
-      post :indiv3
       get :indiv4
-      post :indiv4
       get :indiv5
-      post :indiv5
       get :indiv6
-      post :indiv6
       get :indiv7
-      post :indiv7
     }
   end
 
@@ -168,6 +162,9 @@ end
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
   post '/indiv2' => "individuals#submit_indiv2"
+  post '/indiv3' => "individuals#submit_indiv3"
+  post '/indiv4' => "individuals#submit_indiv4"
+  post '/indiv5' => "individuals#submit_indiv5"
 
   resources :pages do
     collection {

@@ -61,6 +61,22 @@ class IndividualsController < ApplicationController
   end
 
 
+  def submit_indiv3
+    # @tip = Tip.create(:response => params[:response]) 
+    redirect_to indiv4_individuals_path   
+  end
+
+  def submit_indiv4
+    @ratingother = Ratingother.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    redirect_to indiv5_individuals_path 
+  end
+
+  def submit_indiv5
+    @ratingother = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    redirect_to indiv6_individuals_path 
+  end
+
+
   def indiv3
     @praise = Praise.where('provider_user_id != ?', current_user.id)
     @praises = Praise.where('email != ?', current_user.email)
