@@ -34,15 +34,13 @@ def create
  
  @user = User.where('email = ?', @ratingother.email)
   unless @ratingother.anonymous_user 
-    if @ratingother.email.empty? || @user.empty? || @user[0].email == current_user.email
+    if @ratingother.email.empty? || @user[0].email == current_user.email
        flash[:notice] = "No user found."
        redirect_to new_ratingother_path
     else
       @user = User.where('email = ?', @ratingother.email)
       @ratingother.friend_id = @user[0].id
-      @rating_exist = Ratingother.where('user_id = ? and friend_id = ?', @ratingother.user_id, @ratingother.friend_id)
 
-      if @rating_exist.empty?
         #for onbording sequence ratings other
 
         @reputation = AccessReputationTip.where(:user_id => current_user.id)
@@ -57,24 +55,15 @@ def create
         else
           render 'new'
         end
-      else
-        flash[:notice] = "You have already rated this user."
-        redirect_to new_ratingother_path
-      end
     end
   else
-    @user = User.where('email = ?', @ratingother.email)
-    unless @user
-      flash[:notice] = "No user found."
-      redirect_to new_ratingother_path
+
+    if @ratingother.save
+      flash[:notice] = "Rating has been done."
+      redirect_to :root
     else
-      if @ratingother.save
-        flash[:notice] = "Rating has been done."
-        redirect_to :root
-      else
-        render 'new'
-      end
-    end
+      render 'new'
+    end 
   end
 end
 

@@ -11,18 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724094045) do
+ActiveRecord::Schema.define(version: 20140725065708) do
 
   create_table "access_reputation_tips", force: true do |t|
     t.integer  "user_id"
-    t.integer  "give_feedback",  default: 0
-    t.integer  "vote_on_tips",   default: 0
-    t.integer  "invite_other",   default: 0
-    t.integer  "give_ratings",   default: 0
-    t.integer  "give_selfimage", default: 0
-    t.integer  "got_feedback",   default: 0
+    t.integer  "give_feedback",          default: 0
+    t.integer  "vote_on_tips",           default: 0
+    t.integer  "invite_other",           default: 0
+    t.integer  "give_ratings",           default: 0
+    t.integer  "give_selfimage",         default: 0
+    t.integer  "got_feedback",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.boolean  "intial_reaction_view",   default: false
+    t.boolean  "intial_reputation_view", default: false
   end
 
   create_table "advice_contacts", force: true do |t|
