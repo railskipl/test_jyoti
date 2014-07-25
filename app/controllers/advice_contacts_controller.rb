@@ -48,6 +48,17 @@ class AdviceContactsController < ApplicationController
           #    render '/individuals/indiv3'
           # end
 
+          if user_signed_in?
+            #for onbording sequence give feedback to others
+              @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
+                
+              if @givefeedback.first
+                a = 1 
+                @givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
+                @givefeedback.first.update_attributes(params[:access_reputation_tip])
+              end
+          end
+
           unless @advice_contact.praise.empty? 
             @praise = Praise.create(:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
           end
@@ -68,8 +79,7 @@ class AdviceContactsController < ApplicationController
       else  
           redirect_to new_advice_contact_path
           flash[:notice] = 'Please Give atleast Two tips' 
-      end
-   
+      end 
   end
 
 
