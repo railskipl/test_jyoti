@@ -1,0 +1,44 @@
+  <h5>See how it works - give tips to one person</h5>
+
+  Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!
+
+<%= form_for @advice_contact do |f| %>
+  
+
+  <div class="col-xs-5"style="padding: 55px;">
+
+  <% unless user_signed_in? %>
+   <% else %>
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+   <% end  %>
+
+    <div class="field"<label for="male">Email of a person who would benefit from your tips:</label>
+    <%#= f.label :email%> 
+    <%= f.text_area :email ,:placeholder => "Please enter email address", :class=>"form-control", :maxlength => 500 %>
+    </div></br>
+
+    <strong>Please give this person at least 2 tips below.</strong><br>
+
+          Please try to make sure they are appropriate and helpful. 
+  </br></br><div class="field">
+    <%= f.label :praise %><br>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :praise ,:placeholder => "Type in your praise here",:class=>"form-control" , :style => "height:80px !important;" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :criticism %><br>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :criticism ,:placeholder => "Type in your criticism here",:class=>"form-control" , :style => "height:80px !important;" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :General %><br>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :helpful_tips ,:placeholder => "Type in your helpful tips here",:class=>"form-control" , :style => "height:80px !important;" %><br>
+  </div>
+
+  <div class="actions">
+    <div style="float:right;padding: 30px;"><%= link_to "Continue",indiv3_individuals_path,:class => "btn btn-primary" %></div>    
+  </div>
+
+  </div>
+<% end %>

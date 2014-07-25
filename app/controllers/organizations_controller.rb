@@ -45,4 +45,9 @@ class OrganizationsController < ApplicationController
     @organization.destroy
     redirect_to organizations_path
   end
+
+  def org_path
+    
+  end
+  
 end
