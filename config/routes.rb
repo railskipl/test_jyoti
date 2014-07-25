@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   resources :invitations
   resources :organizations do
     collection{
-      get :org_path
+      get :org2
     }
   end
 

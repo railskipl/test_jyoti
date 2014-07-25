@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(params[:organization])
     if @organization.save
-     redirect_to organizations_path
+     redirect_to org2_organizations_path
     else
       render 'new'
     end
@@ -46,8 +46,8 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path
   end
 
-  def org_path
+  def org2
     
   end
-  
+
 end
