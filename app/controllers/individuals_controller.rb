@@ -54,7 +54,19 @@ class IndividualsController < ApplicationController
     # @advice_contact = AdviceContact.new
     @advice_contact = AdviceContact.new(params[:praise])
     # @advice_contacts = AdviceContact.create(:user_id => current_user.id, :praise => @advice_contact.praise, :criticism => @advice_contact.criticism, :helpful_tips => @advice_contact.helpful_tips)
-     if @advice_contact.save
+
+      if user_signed_in?
+        #for onbording sequence give feedback to others
+          @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
+            
+          if @givefeedback.first
+            a = 1 
+            @givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
+            @givefeedback.first.update_attributes(params[:access_reputation_tip])
+          end
+      end
+
+      if @advice_contact.save
           unless @advice_contact.praise.present? 
             @praise = Praise.create(:provider_user_id => current_user.id,:email => @advice_contact.email, :praise_comment => @advice_contact.praise, :typee => "praise")
           end
