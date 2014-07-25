@@ -16,6 +16,7 @@ class AdviceContactsController < ApplicationController
   # GET /advice_contacts/new
   def new
     @advice_contact = AdviceContact.new
+    
   end
 
   # GET /advice_contacts/1/edit

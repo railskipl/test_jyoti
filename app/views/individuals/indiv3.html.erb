@@ -30,7 +30,7 @@ Before you view your Reputation Report and tips we will take you through a few<b
 	      
 	      <br><br>
 			<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
-			<div style="float:right;padding: 30px;"><%= link_to "CONTINUE",indiv4_individuals_path, :class => 'btn btn-primary'%></div>
+			<div style="float:right;padding: 30px;"><%= link_to "CONTINUE",indiv4_individuals_path,:method => "post", :class => 'btn btn-primary'%></div>
 			<br><br>
 		<%else%>
 		  No Tips avaliable

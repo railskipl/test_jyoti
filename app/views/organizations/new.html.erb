@@ -22,8 +22,17 @@
 
     <%#= f.file_field :img %>
 
+        <%= f.label :title %>
+        <%= f.select :title, Organization::HOW_HEARD_OPTIONS, 
+                     prompt: "Choose Industry" %><br><br>
 
-    <b>Invite at least 5 members of your team or organization. If they join and access their<br> Reputation Report, they qualify for a FREE trial for 60 days to Pro or Unlimited that<br> begins when they join Mirror 360. List their email addresses, one on each line.</b>
+        <%= f.label :title %>
+        <%= f.select :title, Organization::Organization_size, 
+                     prompt: "Choose" %><br><br>
+    
+
+
+    <b>Invite at least 5 members of your team or organization. If they join and access their<br> Reputation Report, they qualify for a FREE trial for 60 days to Pro or Unlimited that<br> begins when they join Mirror 360. List their email addresses, one on each line.</br>
         <br><br>
         <textarea maxlength="550" name="suggestions" id="suggestions" style="width: 750px;  height: 100px;"></textarea><br>
 
