@@ -55,24 +55,7 @@ class IndividualsController < ApplicationController
   end
 
   def submit_indiv2
-    @user = User.where('email = ?', params[:email])
-    @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id) rescue nil
-    if @gotfeedback.first
-      a = 1
-      @gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
-      @gotfeedback.first.update_attributes(params[:access_reputation_tip])
-    end
-
-    if user_signed_in?
-        #for onbording sequence give feedback to others
-          @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
-            
-          if @givefeedback.first
-            a = 1 
-            @givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
-            @givefeedback.first.update_attributes(params[:access_reputation_tip])
-          end
-    end
+   
     @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
 
     @criticism = Criticism.create(:email => params[:email], :criticism_comment => params[:criticism],:provider_user_id => params[:user_id], :typee => "criticism")
