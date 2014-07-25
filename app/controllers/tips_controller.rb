@@ -21,33 +21,51 @@ class TipsController < ApplicationController
 
 
     def create
-	@tip = Tip.new(params[:tip])
+	    @tip = Tip.new(params[:tip])
 
-         
-
-	    if (@tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?) ||  @tip.praise.present? && @tip.criticism.present? && @tip.helpful.present? 
-         @praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
-		 @praise.save! 
+	    if @gotfeedback
+	    	a = 1
+	    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
+	    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
+	    end
+	    if @tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?
+	     
+	        if user_signed_in?
+	        	#for onbording sequence give feedback to others
+	            @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
+                
+	            if @givefeedback.first
+	            	a = 1 
+	            	@givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
+	            	@givefeedback.first.update_attributes(params[:access_reputation_tip])
+	            end
+	        end
+	        if @tip.praise
+	         	@praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
+			 	@praise.save
+			end
 		
-		 @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
-		 @criticism.save!
+			if @tip.criticism
+			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+			  @criticism.save
+	        end
 
-		 @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
-		 @general.save!
+	        if @tip.helpful
+			  @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
+			  @general.save
+	        end
 
-
-		if params[:tip][:rating] == "true"
-			redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
-		
+			if params[:tip][:rating] == "true"
+				redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
+			else
+				redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
+			end
 		else
-			redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
-		end
-		else
-		  redirect_to new_tip_path
-          flash[:notice] = 'Please Give atleast Two tips'
+			redirect_to new_tip_path
+	        flash[:notice] = 'Please Give atleast Two tips'
 		end
 	end
-
+    
     def destroy
 		@tip = Tip.find(params[:id])
 		@tip.destroy
@@ -298,3 +316,4 @@ private
 
 
 end
+ 

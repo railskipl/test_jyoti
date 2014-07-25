@@ -23,7 +23,7 @@ private
     if current_user.sign_in_count == 1
       ReputationScore.create(:user_id => current_user.id, :score => 300)
       AccessReputationTip.create(:user_id => current_user.id)
-      edit_user_registration_path(current_user)
+      edit_user_registration_path
     else
      # home_dashboard_path
      my_mirror_paste_users_path
