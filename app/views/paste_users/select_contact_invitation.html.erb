@@ -5,13 +5,16 @@
   		<th>Send Feedback Invite</th>
   		<th>Send General Invite</th>
   	</tr>
-  <% @users.each do |user| %>
-    <tr>
-       <td> <%= user %>
-       <td><%= check_box_tag "feedback", 1, :checked %><br/>
-       <td><%= check_box_tag "invite" %><br/>
-    </tr>
-  <% end %>
+  <%unless @users.nil?%>
+    <% @users.each do |user| %>
+
+      <tr>
+         <td> <%= user rescue nil%>
+         <td><%= check_box_tag "feedback", 1, :checked %><br/>
+         <td><%= check_box_tag "invite" %><br/>
+      </tr>
+    <% end %>
+  <%end%>
    	<%= hidden_field_tag "emails" , params[:emails] %>
   </table>
  <%= submit_tag "Send" ,:class => "btn btn-primary"%>

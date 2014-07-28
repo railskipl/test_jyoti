@@ -169,12 +169,13 @@ class PasteUsersController < ApplicationController
 
 
   def select_contact_invitation
-    @users = params[:emails]
+    @users = (params[:emails].class == String) ? params[:emails].split : params[:emails]
     if request.post?
       paste_user = PasteUser.create(:user_id => current_user.id)
       feedback = params[:feedback].nil? ? 0 : params[:feedback]
       invite = params[:invite].nil? ? 0 : params[:invite]
-      users = @users.split
+      users = @users
+      puts users
       paste_user ||= []
       users.each do |email|
        
@@ -184,7 +185,7 @@ class PasteUsersController < ApplicationController
  
         else
           #for onbording sequence invite users 
-          @inviteuser = AccessReputationTip.where(:user_id => current_user.id)
+          @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id)
 
           if @inviteuser
              a = 1
@@ -197,19 +198,17 @@ class PasteUsersController < ApplicationController
 
           if u.invite_for_feedback == true && u.invite_for_curiosity == false
             Mailer.paste_user1(u,@user,@user1).deliver
+            redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
           elsif u.invite_for_feedback == true &&  u.invite_for_curiosity == true 
             Mailer.paste_user(u,@user,@user1).deliver
+            redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
           end
          
-          redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
+          #redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
         end
       end    
     end
   end
-
-
-
-
 
   def invitation
     @invitations = PasteUser.where("user_id = ?",current_user.id)

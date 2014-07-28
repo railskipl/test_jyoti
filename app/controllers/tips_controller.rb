@@ -23,20 +23,21 @@ class TipsController < ApplicationController
     def create
 	    @tip = Tip.new(params[:tip])
         #for onbording sequence got feedback to others  
-        @user = User.where('email = ?', @tip.email)
-        @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id) rescue nil
-	    if @gotfeedback.first
-	    	a = 1
-	    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
-	    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
-	    end
+        @user = User.where('email = ?', @tip.email) rescue nil
+        if @user.present?
+	        @gotfeedback = AccessReputationTip.where('user_id = ?', @user.first.id) rescue nil
+		    if @gotfeedback
+		    	a = 1
+		    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
+		    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
+		    end
+		end
 	    if @tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?
 	     
 	        if user_signed_in?
 	        	#for onbording sequence give feedback to others
-	            @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
-                
-	            if @givefeedback.first
+	            @givefeedback = AccessReputationTip.where('user_id = ?', current_user.id) 
+	            if @givefeedback
 	            	a = 1 
 	            	@givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
 	            	@givefeedback.first.update_attributes(params[:access_reputation_tip])
@@ -298,7 +299,7 @@ class TipsController < ApplicationController
 
  
  def responses_to_your_tips
- 	@reputation_and_tip = AccessReputationTip.where(:user_id => current_user.id)
+ 	@reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
     unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
 	 	if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
 		  #for intial report // setting of logic for onbording sequence
