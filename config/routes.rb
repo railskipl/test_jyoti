@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :score_factors
+
   resources :response_tips
 
   resources :trial_days
