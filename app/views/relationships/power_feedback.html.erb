@@ -11,13 +11,15 @@
   <%# @users.each do |user| %>
 
   <% @relationships.each_with_index do |relationship,index| %>
-  <% if relationship.user_id == current_user.id && relationship.relationship_id !=nil %>
+  <% @relationship.each do |relationships| %>
+  <% if relationship.user_id == current_user.id && relationship.relationship_id == relationships.id %>
     <tr>
     <td><%= index+1 %></td>
        <td> <%= relationship.email %>
        <!-- <td><%#= check_box_tag "feedback", 1, :checked %><br/> -->
        <td><%= check_box_tag "invite" %><br/>
     </tr>
+    <% end %>
   <% end %>
   <% end %>
    	<%= hidden_field_tag "emails" , params[:emails] %>

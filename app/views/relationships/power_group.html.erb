@@ -33,11 +33,12 @@
  <tbody>
 
 <% @relationships.each_with_index do |relationship,index| %>
+<% @relationship1.each do |relationships1| %>
   <%#= form_for Relationship.new do |f| %>
 <tr>
   <%= form_tag url_for(:controller => 'relationships', :action => 'power_group1'), :method => 'post' do  %>
  
- <% if relationship.user_id == current_user.id && relationship.relationship_id !=nil %>
+ <% if relationship.user_id == current_user.id && relationship.relationship_id == relationships1.id %>
   
     <td> <%= index+1 %> </td>
     <td> <%= relationship.email %></td>
@@ -76,13 +77,14 @@
       
 
        <!-- <td><%#= submit_tag "Save",:class =>"btn btn-primary" %></td>  -->
-      <!-- <td><%#= link_to 'Edit', edit_relationship_path(relationship),:class =>"btn btn-primary" %></td> -->
+       <!-- <td><%#= link_to 'Edit', edit_relationship_path(relationship),:class =>"btn btn-primary" %></td>  -->
         
   
   
 <% end %>
 <% end %>
 </tr>
+<% end %>
 <% end %>
 </tbody>
 
