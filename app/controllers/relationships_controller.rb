@@ -153,8 +153,7 @@ class RelationshipsController < ApplicationController
   
 
   def power_group
-    @relationships = PowerGroup.where('user_id = ?', current_user)
-    
+    @relationships = Tip.all
     @relationship = Relationship.new  
 
      @p = @relationship.how_well_you_know_the_person.to_i
@@ -177,7 +176,7 @@ class RelationshipsController < ApplicationController
 
 
   def power_feedback
-   @relationships = PowerGroup.where('user_id = ?', current_user)
+   @relationships = Tip.where('user_id = ?', current_user)
    if request.post?
       invite = params[:invite].nil? ? 0 : params[:invite]
       @relationships.each do |r|

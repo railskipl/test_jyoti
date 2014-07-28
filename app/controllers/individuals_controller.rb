@@ -73,9 +73,7 @@ class IndividualsController < ApplicationController
   end
 
   def submit_indiv4
-    # raise params.inspect
     @ratingother = Ratingother.create(:email => indiv3.email,:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    # @ratingother = Ratingother.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
     redirect_to indiv5_individuals_path 
   end
 

@@ -17,9 +17,9 @@
 
 
 <div class="row">
- <!-- <div class="col-xs-12"> -->
+ <div class="col-xs-12"> 
 <table class="table table-bordered">
- 
+ <thead>
  <tr>
     <th>Sr no.</th>
     <th>Email</th>
@@ -27,22 +27,25 @@
     <th>The person's influence on your future</th> 
     <th>Your influence on the person's future</th>
     <th>Circle</th>
-    <th colspan="1"></th>
+    <!-- <th></th> -->
  </tr>
+ </thead>
+ <tbody>
 
 <% @relationships.each_with_index do |relationship,index| %>
   <%#= form_for Relationship.new do |f| %>
-
+<tr>
   <%= form_tag url_for(:controller => 'relationships', :action => 'power_group1'), :method => 'post' do  %>
  
-  <tr>
+ <% if relationship.user_id == current_user.id && relationship.relationship_id !=nil %>
+  
     <td> <%= index+1 %> </td>
     <td> <%= relationship.email %></td>
 
     <td>
        <div class="field">
             <%#= f.label :how_well_you_know_the_person,"How Well You Know The Person:" %>
-          <%= select_tag 'how_well_you_know_the_person', options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]),:style=>"width:100%"; %>
+          <%= select_tag 'how_well_you_know_the_person', options_for_select([['Choose One', ''], ['Extremely well', '8'], ['Very well', '7'], ['well', '6'], ['Above Average', '5'], ['Below Average', '4'], ['Little', '3'], ['Very Little', '2'], ['Not at all', '1']]) %>
         </div>
     </td>
 
@@ -65,7 +68,7 @@
     <td>
         <div class="field">
               <%#= f.label :name,"Primary Circle" %>
-          <%= collection_select :name,:name, Circle.all, :name, :name, {prompt: "Choose One"},:style=>"width:120%";%>
+          <%= collection_select :name,:name, Circle.all, :name, :name, {prompt: "Choose One"}%>
 
           <%#= collection_select(:name, :name, Circle.all, :id, :name, {:prompt => 'Select'})%>
         </div>
@@ -73,20 +76,18 @@
       
 
        <!-- <td><%#= submit_tag "Save",:class =>"btn btn-primary" %></td>  -->
-      <td><%#= link_to 'Edit', edit_relationship_path(relationship),:class =>"btn btn-primary" %></td>
+      <!-- <td><%#= link_to 'Edit', edit_relationship_path(relationship),:class =>"btn btn-primary" %></td> -->
         
-  </tr>
-
-
-    
-
+  
   
 <% end %>
-
 <% end %>
+</tr>
+<% end %>
+</tbody>
 
 </table>
- <!-- </div> -->
+ </div> 
 </div>
 
  <div  style="float:right;padding: 80px; "><%= link_to "Save",power_feedback_relationships_path,:class =>"btn btn-primary" %></div>
