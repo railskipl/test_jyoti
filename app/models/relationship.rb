@@ -7,7 +7,8 @@ class Relationship < ActiveRecord::Base
 	belongs_to :user_invitation
 	belongs_to :influence
 	has_many :sponsees
-
+    has_many :tips
+    
 	validates_presence_of  :email
 	validates :email, :uniqueness => {:scope => :user_id}
 	

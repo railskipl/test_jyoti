@@ -67,7 +67,7 @@ class RelationshipsController < ApplicationController
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
           @user = current_user.first_name
           @user1 = current_user.last_name
-          # FeedbackMailer.relationship_feedback(@relationship,@user,@user1).deliver
+          FeedbackMailer.relationship_feedback(@relationship,@user,@user1).deliver
         else
           redirect_to  new_relationship_path
         end
@@ -166,6 +166,12 @@ class RelationshipsController < ApplicationController
      @influence = (@i)*60
      @influence_avg = @influence/8
      @relationship.influence_avg = @influence_avg   
+  end
+
+
+  def power_group1    
+    @relationship = Relationship.create(:how_well_you_know_the_person => params[:how_well_you_know_the_person], :your_influence => params[:your_influence], :influence_on_your => params[:influence_on_your])
+    redirect_to power_feedback_relationships_path
   end
 
 

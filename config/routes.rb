@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     }
   end
 
+   post '/power_group' => "relationships#power_group1"
+
+
   resources :tips do
     collection {
       get :helpful_tips
@@ -87,8 +90,23 @@ Rails.application.routes.draw do
 
 
   resources :invitations
-  resources :organizations
-  resources :individuals
+  resources :organizations do
+    collection{
+      get :org2
+    }
+  end
+
+  resources :individuals do
+    collection {
+      get :indiv_path
+      get :indiv2
+      get :indiv3
+      get :indiv4
+      get :indiv5
+      get :indiv6
+      get :indiv7
+    }
+  end
 
   resources :ratings do
     collection {
@@ -148,6 +166,10 @@ end
 
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
+  post '/indiv2' => "individuals#submit_indiv2"
+  post '/indiv3' => "individuals#submit_indiv3"
+  post '/indiv4' => "individuals#submit_indiv4"
+  post '/indiv5' => "individuals#submit_indiv5"
 
   resources :pages do
     collection {

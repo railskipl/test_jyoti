@@ -14,7 +14,7 @@ def add_array(a,b)
   a.zip(b).map{|pair| pair.reduce(&:+) }
 end
 
-def reputation_report
+def condition_check 
   @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
    @c = []
    @powergroup.each do |r|
@@ -66,6 +66,47 @@ def reputation_report
      @avg.save
    end
    report
+end
+
+def reputation_report
+  @reputation_and_tip = AccessReputationTip.where(:user_id => current_user.id)
+  unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
+    
+    if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
+      #for intial report // setting of logic for onbording sequence
+          @reputation_and_tip.first.intial_reputation_view = true
+          @reputation_and_tip.first.start_date = Date.today.to_s 
+          @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
+          @reputation_and_tip.first.update_attributes(params[:access_reputation_tip])
+        ###############################################################################  
+          condition_check
+          #After viewing the intial response and reaction on tips, we will update fields so that user 
+          #will go for case 2.
+      if @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
+         @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
+                        :got_feedback => 0, :invite_other => 0  )
+      end
+    else
+      flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+      redirect_to my_mirror_paste_users_path
+    end
+  else
+    @diffrence = (@reputation_and_tip.first.end_date).to_date - (@reputation_and_tip.first.start_date).to_date
+      @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
+      if @a.to_i <= 30
+        if @reputation_and_tip.first.give_feedback >= 10 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 25 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 3
+          condition_check
+        else
+           flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+           redirect_to my_mirror_paste_users_path
+        end
+      else
+        @reputation_and_tip.first.start_date = Date.today.to_s 
+        @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
+        @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
+                :got_feedback => 0, :invite_other => 0 ,:start_date => @reputation_and_tip.first.start_date, :end_date => @reputation_and_tip.first.end_date )
+      end
+  end
 end
 
 def create

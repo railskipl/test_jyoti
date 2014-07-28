@@ -21,29 +21,53 @@ class TipsController < ApplicationController
 
 
     def create
-	@tip = Tip.new(params[:tip])
+	    @tip = Tip.new(params[:tip])
+        #for onbording sequence got feedback to others  
+        @user = User.where('email = ?', @tip.email)
+        @gotfeedback = AccessReputationTip.where(:user_id => @user.first.id) rescue nil
+	    if @gotfeedback.first
+	    	a = 1
+	    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
+	    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
+	    end
 	    if @tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?
-         @praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
-		 @praise.save! 
+	     
+	        if user_signed_in?
+	        	#for onbording sequence give feedback to others
+	            @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
+                
+	            if @givefeedback.first
+	            	a = 1 
+	            	@givefeedback.first.give_feedback = @givefeedback.first.give_feedback + a
+	            	@givefeedback.first.update_attributes(params[:access_reputation_tip])
+	            end
+	        end
+	        if @tip.praise
+	         	@praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
+			 	@praise.save
+			end
 		
-		 @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
-		 @criticism.save!
+			if @tip.criticism
+			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+			  @criticism.save
+	        end
 
-		 @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
-		 @general.save!
+	        if @tip.helpful
+			  @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
+			  @general.save
+	        end
 
-
-		if params[:tip][:rating] == "true"
-			redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
+			if params[:tip][:rating] == "true"
+				redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
+			else
+				redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
+			end
 		else
-			redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
-		end
-		else
-		  redirect_to new_tip_path
-          flash[:notice] = 'Please Give atleast Two tips'
+			redirect_to new_tip_path
+	        flash[:notice] = 'Please Give atleast Two tips'
 		end
 	end
-
+    
     def destroy
 		@tip = Tip.find(params[:id])
 		@tip.destroy
@@ -262,15 +286,56 @@ class TipsController < ApplicationController
 	
  end
 
- 
- def responses_to_your_tips
-	@praise = Praise.where(:email => current_user.email) rescue nil
+ def condition_check
+ 	@praise = Praise.where(:email => current_user.email) rescue nil
 	@criticism = Criticism.where(:email => current_user.email) rescue nil
 	@general = General.where(:email => current_user.email) rescue nil
 
 	@praise_owner_tip = Praise.where(:provider_user_id => current_user.id) rescue nil
 	@criticism_owner_tip = Criticism.where(:provider_user_id => current_user.id) rescue nil
 	@general_owner_tip = General.where(:provider_user_id => current_user.id) rescue nil
+ end
+
+ 
+ def responses_to_your_tips
+ 	@reputation_and_tip = AccessReputationTip.where(:user_id => current_user.id)
+    unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
+	 	if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
+		  #for intial report // setting of logic for onbording sequence
+	        @reputation_and_tip.first.intial_reaction_view = true
+	        @reputation_and_tip.first.start_date = Date.today.to_s 
+	        @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
+	        @reputation_and_tip.first.update_attributes(params[:access_reputation_tip])
+	      ###############################################################################  
+		    condition_check
+          #After viewing the intial response and reaction on tips, we will update fields so that user 
+          #will go for case 2.
+		  
+		  if @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
+            @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
+                        :got_feedback => 0, :invite_other => 0  )
+          end
+		else
+		  flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+		  redirect_to my_mirror_paste_users_path
+		end
+	else
+		@diffrence = (@reputation_and_tip.first.end_date).to_date - (@reputation_and_tip.first.start_date).to_date
+	    @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
+	    if @a.to_i <= 30
+	    	if @reputation_and_tip.first.give_feedback >= 10 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 25 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 3 
+	    	   condition_check
+	    	else
+	    	   flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+		       redirect_to my_mirror_paste_users_path
+	    	end
+	    else
+	      @reputation_and_tip.first.start_date = Date.today.to_s 
+	      @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
+		  @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
+                :got_feedback => 0, :invite_other => 0 ,:start_date => @reputation_and_tip.first.start_date, :end_date => @reputation_and_tip.first.end_date )
+	    end
+	end
  end
 
  def tips_and_rating
@@ -294,3 +359,4 @@ private
 
 
 end
+ 
