@@ -43,5 +43,4 @@ class Organization < ActiveRecord::Base
     '10,000 or more'
   ]
   
-  validates :how_heard, inclusion: { in: HOW_HEARD_OPTIONS }
 end
