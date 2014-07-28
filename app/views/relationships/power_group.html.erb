@@ -21,7 +21,7 @@
 <table class="table table-bordered">
  <thead>
  <tr>
-    <th>Sr no.</th>
+    <!-- <th>Sr no.</th> -->
     <th>Email</th>
     <th>How well they know the person</th>        
     <th>The person's influence on your future</th> 
@@ -32,7 +32,7 @@
  </thead>
  <tbody>
 
-<% @relationships.each_with_index do |relationship,index| %>
+<% @relationships.each do |relationship| %>
 <% @relationship1.each do |relationships1| %>
   <%#= form_for Relationship.new do |f| %>
 <tr>
@@ -40,7 +40,7 @@
  
  <% if relationship.user_id == current_user.id && relationship.relationship_id == relationships1.id %>
   
-    <td> <%= index+1 %> </td>
+    <!-- <td> <%#= index+1 %> </td> -->
     <td> <%= relationship.email %></td>
 
     <td>
