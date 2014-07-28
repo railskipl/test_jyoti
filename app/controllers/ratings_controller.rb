@@ -69,7 +69,8 @@ def condition_check
 end
 
 def reputation_report
-  @reputation_and_tip = AccessReputationTip.where(:user_id => current_user.id)
+  @reputation_and_tip = AccessReputationTip.where('user_id = ?', current_user.id)
+  raise @reputation_and_tip.inspect
   unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
     
     if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
