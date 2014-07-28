@@ -7,8 +7,10 @@ Before you view your Reputation Report and tips we will take you through a few<b
 <i style="color: #666666;">Note: Tips are randomly chosen from outside your city and your circles. Each tip will be voted on<br> by up to 3 randomly chosen users, and a majority of the 3 will decide if the tip is going to be in<br> the "approved" category or "non-approved" category (both are viewable). Vote no only if you feel<br> that the tip is inappropriate or unhelpful. Try to be on the side of the majority opinion.</i><br><br><br>
 
 
-	<%= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post', 
-	    :onsubmit => "return validateForm()"  do |f| %>
+	<%#= form_tag url_for(:controller => 'tips', :action => 'tips_response'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
+
+	    <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post' do %>
+
 	    <%unless @ww.nil?%>
 		    <%if @ww.typee == "praise"%>
 		      <%= @ww.praise_comment rescue nil%><br>
@@ -30,7 +32,11 @@ Before you view your Reputation Report and tips we will take you through a few<b
 	      
 	      <br><br>
 			<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
-			<div style="float:right;padding: 30px;"><%= link_to "CONTINUE",indiv4_individuals_path,:method => "post", :class => 'btn btn-primary'%></div>
+			<div style="float:right;padding: 30px;"><%= submit_tag "CONTINUE", :class => 'btn btn-primary'%></div>
+
+			
+
+            
 			<br><br>
 		<%else%>
 		  No Tips avaliable
