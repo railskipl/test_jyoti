@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     }
   end
 
+   post '/power_group' => "relationships#power_group1"
+
+
   resources :tips do
     collection {
       get :helpful_tips

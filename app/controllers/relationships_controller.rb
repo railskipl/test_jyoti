@@ -169,6 +169,12 @@ class RelationshipsController < ApplicationController
   end
 
 
+  def power_group1    
+    @relationship = Relationship.create(:how_well_you_know_the_person => params[:how_well_you_know_the_person], :your_influence => params[:your_influence], :influence_on_your => params[:influence_on_your])
+    redirect_to power_feedback_relationships_path
+  end
+
+
 
   def power_feedback
    @relationships = PowerGroup.where('user_id = ?', current_user)
