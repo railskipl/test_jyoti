@@ -68,7 +68,26 @@ class IndividualsController < ApplicationController
 
 
   def submit_indiv3
-    # @tip = Tip.create(:response => params[:response]) 
+     # raise indiv3.email.inspect
+     if params[:typee] == "praise"
+         @tip = Praise.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :praise_id => @tip.id, 
+                         :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+                         :comment_quality => params[:quality_of_comments] )
+     elsif params[:typee] == "criticism"
+         @tip = Criticism.find(params[:id])
+         Suggestion.create(:feedback_comment => params[:suggestions], :criticism_id => @tip.id, 
+                         :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+                         :comment_quality => params[:quality_of_comments] )
+     else  params[:typee] == "general"
+       @tip = General.find(params[:id])
+       Suggestion.create(:feedback_comment => params[:suggestions], :general_id => @tip.id, 
+                         :provider_user_id => current_user.id, :recipient_email => @tip.email, 
+                         :comment_quality => params[:quality_of_comments] )
+     end
+      
+    
+     # @tip = Tip.create(:response => params[:response]) 
     redirect_to indiv4_individuals_path(:email => indiv3.email, :user_id => current_user.id)   
   end
 
