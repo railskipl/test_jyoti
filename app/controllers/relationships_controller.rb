@@ -36,6 +36,7 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships/1/edit
   def edit
+    @relationship = Relationship.find(params[:id])
   end
 
   # POST /relationships
@@ -89,6 +90,7 @@ class RelationshipsController < ApplicationController
   # PATCH/PUT /relationships/1
   # PATCH/PUT /relationships/1.json
   def update
+    @relationship = Relationship.find(params[:id])
     respond_to do |format|
       if @relationship.update(relationship_params)
         format.html { redirect_to new_tip_path(:email => @relationship.email), notice: 'Relationship was successfully updated.' }
@@ -154,6 +156,7 @@ class RelationshipsController < ApplicationController
 
   def power_group
     @relationships = Tip.all
+    @relationship1 = Relationship.all
     @relationship = Relationship.new  
 
      @p = @relationship.how_well_you_know_the_person.to_i
@@ -176,7 +179,8 @@ class RelationshipsController < ApplicationController
 
 
   def power_feedback
-   @relationships = Tip.where('user_id = ?', current_user)
+    @relationship = Relationship.all  
+    @relationships = Tip.where('user_id = ?', current_user)
    if request.post?
       invite = params[:invite].nil? ? 0 : params[:invite]
       @relationships.each do |r|
