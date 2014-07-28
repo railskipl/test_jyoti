@@ -32,26 +32,27 @@ def create
  
  @ratingother = Ratingother.new(params[:ratingother])
  
- @user = User.where('email = ?', @ratingother.email)
   unless @ratingother.anonymous_user 
-    if @ratingother.email.empty? || @user[0].email == current_user.email
+    if @ratingother.email.empty? 
        flash[:notice] = "No user found."
        redirect_to new_ratingother_path
     else
-      @user = User.where('email = ?', @ratingother.email)
-      @ratingother.friend_id = @user[0].id
-
+      @user = User.where('email = ?', @ratingother.email) rescue nil
+      if @user.present?
+        @ratingother.friend_id = @user[0].id
+      end
         #for onbording sequence ratings other
-
-        @reputation = AccessReputationTip.where(:user_id => current_user.id)
-        if @reputation
-          a = 1
-          @reputation.first.give_ratings = @reputation.first.give_ratings + 1
-          @reputation.first.update_attributes(params[:access_reputation_tip])
+        if user_signed_in?
+          @reputation = AccessReputationTip.where('user_id = ?', current_user.id)
+          if @reputation
+            a = 1
+            @reputation.first.give_ratings = @reputation.first.give_ratings + 1
+            @reputation.first.update_attributes(params[:access_reputation_tip])
+          end
         end
         
         if @ratingother.save
-          redirect_to :back, notice: "Rating has been done."
+          redirect_to :root, notice: "Rating has been done."
         else
           render 'new'
         end
