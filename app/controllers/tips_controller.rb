@@ -23,13 +23,15 @@ class TipsController < ApplicationController
     def create
 	    @tip = Tip.new(params[:tip])
         #for onbording sequence got feedback to others  
-        @user = User.where('email = ?', @tip.email)
-        @gotfeedback = AccessReputationTip.where('user_id = ?', @user.first.id) rescue nil
-	    if @gotfeedback
-	    	a = 1
-	    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
-	    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
-	    end
+        @user = User.where('email = ?', @tip.email) rescue nil
+        if @user.present?
+	        @gotfeedback = AccessReputationTip.where('user_id = ?', @user.first.id) rescue nil
+		    if @gotfeedback
+		    	a = 1
+		    	@gotfeedback.first.got_feedback = @gotfeedback.first.got_feedback + 1
+		    	@gotfeedback.first.update_attributes(params[:access_reputation_tip])
+		    end
+		end
 	    if @tip.praise.present? && @tip.criticism.present? || @tip.praise.present? && @tip.helpful.present? || @tip.criticism.present? && @tip.helpful.present?
 	     
 	        if user_signed_in?
