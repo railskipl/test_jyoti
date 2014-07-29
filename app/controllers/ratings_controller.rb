@@ -87,8 +87,8 @@ def reputation_report
                         :got_feedback => 0, :invite_other => 0  )
       end
     else
-      flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
-      redirect_to my_mirror_paste_users_path
+      #flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+      redirect_to reputation_report_failure_path(:case => '1', :id => current_user.id)
     end
   else
     @diffrence = (@reputation_and_tip.first.end_date).to_date - (@reputation_and_tip.first.start_date).to_date
@@ -97,8 +97,8 @@ def reputation_report
         if @reputation_and_tip.first.give_feedback >= 10 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 25 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 3
           condition_check
         else
-           flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
-           redirect_to my_mirror_paste_users_path
+           #flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+           redirect_to reputation_report_failure_path(:case => '2')
         end
       else
         @reputation_and_tip.first.start_date = Date.today.to_s 

@@ -161,9 +161,9 @@ end
   resources :omniauth_callbacks
 
   get "/import_contact" => "home#import_contact"
-
+ 
   get "import_social_contacts" => "paste_users#import_social_contacts"
-
+  get '/reputation_report/failure' => "ratingothers#failure"
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
   post '/indiv2' => "individuals#submit_indiv2"

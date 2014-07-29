@@ -55,33 +55,35 @@ class IndividualsController < ApplicationController
   end
 
   def submit_indiv2
-   
+
+
     @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
 
     @criticism = Criticism.create(:email => params[:email], :criticism_comment => params[:criticism],:provider_user_id => params[:user_id], :typee => "criticism")
 
     @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
     
-    redirect_to indiv3_individuals_path(:email => params[:email]) 
+    redirect_to indiv3_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
   end
 
 
   def submit_indiv3
-    # raise indiv3.email.inspect
-    # @tip = Tip.create(:response => params[:response]) 
+     # raise indiv3.email.inspect
+         
+     # @tip = Tip.create(:response => params[:response]) 
     redirect_to indiv4_individuals_path(:email => indiv3.email, :user_id => current_user.id)   
   end
 
+
+
   def submit_indiv4
-    # raise params.inspect
     @ratingother = Ratingother.create(:email => indiv3.email,:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    # @ratingother = Ratingother.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv5_individuals_path 
+    redirect_to indiv5_individuals_path, notice: "Rating has been done." 
   end
 
   def submit_indiv5
     @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv6_individuals_path 
+    redirect_to indiv6_individuals_path, notice: "Rating has been done." 
   end
 
 
