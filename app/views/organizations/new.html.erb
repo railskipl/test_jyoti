@@ -9,8 +9,8 @@
     </div>
   <% end %>
 
-    <br><%= f.label :title,"Team/Organization Name" %>
-    <%= f.text_field :title, :class=>"form-control",:style=>"width:300px;" %><br><br>
+    <br><%= f.label "Team/Organization Name" %>
+    <%= f.text_field :title, :class=>"form-control",:style=>"width:300px;", :required => true %><br><br>
 
 
     <%#= f.label :body %>
@@ -22,26 +22,32 @@
 
     <%#= f.file_field :img %>
 
-        <%= f.label :title %>
-        <%= f.select :title, Organization::HOW_HEARD_OPTIONS, 
-                     prompt: "Choose Industry" %><br><br>
 
-        <%= f.label :title %>
-        <%= f.select :title, Organization::Organization_size, 
-                     prompt: "Choose" %><br><br>
+        &nbsp;<%= f.label :Industry %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.select :title, Organization::HOW_HEARD_OPTIONS,prompt: "Choose Industry", :required => true %><br><br>
+
+        <%= f.label "Organization Size" %>
+        <%= f.select :title, Organization::Organization_size,prompt: "Choose", :required => true %><br><br>
     
 
 
     <b>Invite at least 5 members of your team or organization. If they join and access their<br> Reputation Report, they qualify for a FREE trial for 60 days to Pro or Unlimited that<br> begins when they join Mirror 360. List their email addresses, one on each line.</br>
         <br><br>
-        <textarea maxlength="550" name="suggestions" id="suggestions" style="width: 750px;  height: 100px;"></textarea><br>
+        <textarea maxlength="1550" name="suggestions" id="suggestions" style="width: 750px;  height: 160px;">
+          <% @contacts.each_with_index do |contact,index| %> 
+           <%= contact.email %>  
+          <% end %>
+        </textarea><br><br>
 
-   
+        
+
+     
   
-   <div class="actions">
-   <%= link_to "Upload List",'#',:class=>"btn btn-primary" %>
-    <%= f.submit "Submit",:class=>"btn btn-primary"  %>
-  </div>
-
-
+      <div class="actions">   
+       <div style="float:right"><%= f.submit "Submit",:class=>"btn btn-primary"  %></div>
+     </div>
+  <% end %>
+<%= form_tag import_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload CSV File",:class => "btn btn-primary" %>
 <% end %>

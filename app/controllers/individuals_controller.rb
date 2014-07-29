@@ -55,21 +55,24 @@ class IndividualsController < ApplicationController
   end
 
   def submit_indiv2
-
-
+    
     @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
 
     @criticism = Criticism.create(:email => params[:email], :criticism_comment => params[:criticism],:provider_user_id => params[:user_id], :typee => "criticism")
 
     @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
     
+    # if @praise.present? == true && @criticism.present? == true || @praise.present? == true && @general.present? == true || @criticism.present? == true && @praise.present? == true && @general.present? == true || @general.present? == true 
     redirect_to indiv3_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
+    # else
+    # redirect_to indiv2_individuals_path, notice: "Please Give Atleast Two tips."
+    # end
   end
 
 
   def submit_indiv3
      # raise indiv3.email.inspect
-         
+     
      # @tip = Tip.create(:response => params[:response]) 
     redirect_to indiv4_individuals_path(:email => indiv3.email, :user_id => current_user.id)   
   end
@@ -136,10 +139,14 @@ class IndividualsController < ApplicationController
   end
 
   def indiv6
-    
+    @tips = Tip.all
   end
 
   def indiv7
+    
+  end
+
+  def indiv8
     
   end
 
