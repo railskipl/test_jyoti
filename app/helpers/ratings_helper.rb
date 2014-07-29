@@ -28,6 +28,16 @@ module RatingsHelper
 	    return "#{val}%" 
 	end
 
+
+	def score_factor_name(column_attribute,value)
+		ScoreFactor.find_by_name_and_factor_type(column_attribute.to_s,value).name.camelize rescue nil
+	end
+
+
+	def score_factor_description(column_attribute,value)
+		ScoreFactor.find_by_name_and_factor_type(column_attribute.to_s,value).description rescue nil 
+	end
+
 	# def avg_result_percent(avg,avg_result1)
 	#  avg_result1.overall = avg_result("overall",avg.overall)
 	#  avg_result1.trustworthy = avg_result("trustworthy",avg.trustworthy)
