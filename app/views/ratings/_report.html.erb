@@ -36,7 +36,7 @@ margin-bottom: 10px;
 
 
 <h4>Reputation Score: </h4>
-<% if @total_ratings > 5 && !@total_score.nil? %>
+<% if @total_ratings >= 5 && !@total_score.nil? %>
  <% scores = ReputationScore.pluck(:score) %>
  <% count = 0 %>
  <% scores.each do |i|%>
@@ -53,25 +53,67 @@ margin-bottom: 10px;
 <button id="show" class="btn btn-primary">Display Bifurcation</button> -->
 <!-- <div class="test">
 <h4>Recency </h4>
-Total users rated: <%#= @total_ratings%><br/>
+Total users rated: <%= @total_ratings%><br/>
 Users rated in 6 months: <%= @recent_ratings %></br>
 Points: <%= @percent %>
 
 <h4>History</h4>
-Total Relationship: <%#= @total_relations%><br/>
-2 years relationship: <%#= @long_relations %></br>
+Total Relationship: <%= @total_relations%><br/>
+2 years relationship: <%= @long_relations %></br>
 Points: <%= @percent_history %>
 
 <h4>Rating Quality</h4>
-<%#= @weighted_rating.sum/@total_ratings%>
+<%= @weighted_rating.sum/@total_ratings%>
 
 <h4>Diversity</h4>
-Total Raters: <%#= @total_ratings %><br/>
-Points: <%#= @diversity_points %>
+Total Raters: <%= @total_ratings %><br/>
+Points: <%= @diversity_points %>
 <br/>
 </div> -->
-What factors raise your Reputation Score
-<%= @h.sort{|a,b| a[1] <=> b[1]}.last(2) %>
+<% columns ||= ["recency","history","diversity"]%>
+<% ry =  rhd_store_function("recency",current_user.rhd_store.recency) %>
+<% his = rhd_store_function("history",current_user.rhd_store.history) %>
+<% div = rhd_store_function("diversity",current_user.rhd_store.diversity) %>
+
+<b>What factors raise your Reputation Score?</b><br/>
+<% symbols = [] %>
+<% data =  @h.sort{|a,b| a[1] <=> b[1]}.last(2).flatten %>
+<% data_low =  @h.sort{|a,b| a[1] <=> b[1]}.first(2).flatten %>
+<% symbols_low = data_low.reject {|i| i.class == Float} %>
+<% symbols = data.reject {|i| i.class == Float} %>
+<%= score_factor_name(symbols[0].to_s,"raise") rescue nil %> <%= score_factor_description(symbols[0].to_s,"raise") rescue nil %><br/>
+<%= score_factor_name(symbols[1].to_s,"raise") rescue nil%> <%= score_factor_description(symbols[1].to_s,"raise") rescue nil %><br/>
+
+<% if ry.to_f > 60 %>
+<%= score_factor_name("recency","raise") %>
+<%= score_factor_description("recency","raise") %><br/>
+<% end %>
+<% if his.to_f > 60 %>
+<%= score_factor_name("history","raise") %>
+<%= score_factor_description("history","raise") %><br/>
+<% end %>
+<% if ry.to_f > 60 %>
+<%= score_factor_name("recency","raise") %>
+<%= score_factor_description("recency","raise") %><br/>
+<% end %>
+
+<b>What factors lowering your Reputation Score?</b><br/>
+<%= score_factor_name(symbols_low[0].to_s,"low") rescue nil %> <%= score_factor_description(symbols_low[0].to_s,"low") rescue nil %><br/>
+<%= score_factor_name(symbols_low[1].to_s,"low") rescue nil%> <%= score_factor_description(symbols_low[1].to_s,"low") rescue nil %><br/>
+<% if ry.to_f < 40 %>
+<%= score_factor_name("recency","low") %>
+<%= score_factor_description("recency","low") %><br/>
+<% end %>
+<% if his.to_f < 40 %>
+<%= score_factor_name("history","low") %>
+<%= score_factor_description("history","low") %><br/>
+<% end %>
+<% if ry.to_f < 40 %>
+<%= score_factor_name("diversity","low") %>
+<%= score_factor_description("diversity","low") %><br/>
+<% end %>
+
+
 <% else %>
 <p>Give Feedback and get feedback to atleast 5 person to see your reputation score</p>
 <% end %>

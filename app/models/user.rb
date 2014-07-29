@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
+  has_one :rhd_store
   has_many :tips
   has_many :influences
   has_many :relationships
