@@ -36,7 +36,7 @@ margin-bottom: 10px;
 
 
 <h4>Reputation Score: </h4>
-<% if @total_ratings > 5 && !@total_score.nil? %>
+<% if @total_ratings >= 5 && !@total_score.nil? %>
  <% scores = ReputationScore.pluck(:score) %>
  <% count = 0 %>
  <% scores.each do |i|%>
@@ -70,8 +70,17 @@ Total Raters: <%#= @total_ratings %><br/>
 Points: <%#= @diversity_points %>
 <br/>
 </div> -->
-What factors raise your Reputation Score
-<%= @h.sort{|a,b| a[1] <=> b[1]}.last(2) %>
+What factors raise your Reputation Score?<br/>
+<% symbols = [] %>
+<% data =  @h.sort{|a,b| a[1] <=> b[1]}.last(2).flatten %>
+<% data_low =  @h.sort{|a,b| a[1] <=> b[1]}.first(2).flatten %>
+<% symbols_low = data_low.reject {|i| i.class == Float} %>
+<% symbols = data.reject {|i| i.class == Float} %>
+<%= ScoreFactor.find_by_name_and_factor_type(symbols[0].to_s,"raise").name.camelize rescue nil %> <%= ScoreFactor.find_by_name_and_factor_type(symbols[0].to_s,"raise").description rescue nil %><br/>
+<%= ScoreFactor.find_by_name_and_factor_type(symbols[1].to_s,"raise").name.camelize rescue nil%> <%= ScoreFactor.find_by_name_and_factor_type(symbols[1].to_s,"raise").description rescue nil %><br/>
+What factors lowering your Reputation Score?<br/>
+<%= ScoreFactor.find_by_name_and_factor_type(symbols_low[0].to_s,"low").name.camelize rescue nil %> <%= ScoreFactor.find_by_name_and_factor_type(symbols_low[0].to_s,"low").description rescue nil %><br/>
+<%= ScoreFactor.find_by_name_and_factor_type(symbols_low[1].to_s,"low").name.camelize rescue nil%> <%= ScoreFactor.find_by_name_and_factor_type(symbols_low[1].to_s,"low").description rescue nil %><br/>
 <% else %>
 <p>Give Feedback and get feedback to atleast 5 person to see your reputation score</p>
 <% end %>

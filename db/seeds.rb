@@ -236,3 +236,19 @@
 # Yemen
 # Zambia
 # Zimbabwe
+
+
+ScoreFactor.create(:name => "trustworthy", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "trustworthy", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "kind_helpful", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "kind_helpful", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "potential", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "potential", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "presentable", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "presentable", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "perform_well", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "perform_well", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "emotianally_mature", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "emotianally_mature", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "friendly_social", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "friendly_social", :description => "Test", :factor_type => "raise")
