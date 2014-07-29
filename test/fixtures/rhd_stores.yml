@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recency: 1.5
+  history: 1.5
+  diversity: 1.5
+  user_id: 1
+
+two:
+  recency: 1.5
+  history: 1.5
+  diversity: 1.5
+  user_id: 1

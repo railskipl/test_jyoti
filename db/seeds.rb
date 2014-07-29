@@ -252,3 +252,10 @@ ScoreFactor.create(:name => "emotianally_mature", :description => "Test", :facto
 ScoreFactor.create(:name => "emotianally_mature", :description => "Test", :factor_type => "raise")
 ScoreFactor.create(:name => "friendly_social", :description => "Test", :factor_type => "low")
 ScoreFactor.create(:name => "friendly_social", :description => "Test", :factor_type => "raise")
+
+ScoreFactor.create(:name => "recency", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "recency", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "history", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "history", :description => "Test", :factor_type => "raise")
+ScoreFactor.create(:name => "diversity", :description => "Test", :factor_type => "low")
+ScoreFactor.create(:name => "diversity", :description => "Test", :factor_type => "raise")
