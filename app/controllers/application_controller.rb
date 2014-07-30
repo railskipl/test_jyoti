@@ -22,7 +22,10 @@ private
  	else
     if current_user.sign_in_count == 1
       ReputationScore.create(:user_id => current_user.id, :score => 300)
-      AccessReputationTip.create(:user_id => current_user.id)
+      @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id) rescue nil
+      unless @access_reputation_tip.present?
+        AccessReputationTip.create(:user_id => current_user.id)
+      end
       edit_user_registration_path
     else
      # home_dashboard_path

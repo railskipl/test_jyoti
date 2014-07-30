@@ -113,7 +113,7 @@ def create
  @q = Rating.where('user_id = ?', current_user.id)
  if @q.empty?
      #for onbording sequence selfimage
-     @selfimage = AccessReputationTip.where(:user_id => current_user.id)
+     @selfimage = AccessReputationTip.where('user_id = ?', current_user.id)
      a = 1
      if @selfimage
        @selfimage.first.give_selfimage = @selfimage.first.give_selfimage + a

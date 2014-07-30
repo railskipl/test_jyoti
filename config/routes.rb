@@ -221,6 +221,7 @@ end
     get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
     get 'home/fork_users' => 'home#fork_users'
     get '/reputation_report' => 'ratings#reputation_report'
+    get '/approved_tips' => 'tips#approved_tips'
 
     get '/react_to_response' => 'tips#react_to_response'
     post '/react_to_response' => 'tips#submit_response'

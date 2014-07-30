@@ -188,9 +188,9 @@ class PasteUsersController < ApplicationController
           @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id)
 
           if @inviteuser
-             a = 1
-             @inviteuser.first.invite_other = @inviteuser.first.invite_other + a 
-             @inviteuser.first.update_attributes(params[:access_reputation_tip])
+            a = 1
+            @inviteuser.first.invite_other = @inviteuser.first.invite_other + a 
+            @inviteuser.first.update_attributes(params[:access_reputation_tip])
           end
 
           @user = current_user.first_name
@@ -198,10 +198,11 @@ class PasteUsersController < ApplicationController
 
           if u.invite_for_feedback == true && u.invite_for_curiosity == false
             Mailer.paste_user1(u,@user,@user1).deliver
-            redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
+            flash[:notice] = "Invitation send successfully"
           elsif u.invite_for_feedback == true &&  u.invite_for_curiosity == true 
             Mailer.paste_user(u,@user,@user1).deliver
-            redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
+            flash[:notice] = "Invitation send successfully"
+            #redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
           end
          
           #redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
