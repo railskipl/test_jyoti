@@ -25,37 +25,37 @@ Now please rate the person you gave tips to already:
 
    <%= label_tag :trustworthy %><br>
 
-  <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
+  <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider", :required => true %></br>
  
-    <%= label_tag :kind_helpful %><br>
+    <%= label_tag 'Kind and Helpful' %><br>
 
 
-    <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider" %></br>
+    <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
 
 
-    <%= label_tag :potential %><br>
+    <%= label_tag 'Has ability/Potential' %><br>
 
-    <%= range_field_tag :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
+    <%= range_field_tag :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
 
-    <%= label_tag :perform_well %><br>
+    <%= label_tag :performs_well %><br>
 
 
-   <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
+   <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
  
-      <%= label_tag :presentable %><br>
+      <%= label_tag 'Persuasive and Presentable' %><br>
 
-       <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
-
-
-   <%= label_tag :emotianally_mature %><br>
+       <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
 
 
-   <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
-
-   <%= label_tag :friendly_social %><br>
+   <%= label_tag :emotionally_Mature %><br>
 
 
- <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
+   <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+
+   <%= label_tag :friendly_and_social %><br>
+
+
+ <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
   <% end %>
    <% unless user_signed_in? %>
    <% else %>

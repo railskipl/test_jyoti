@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728093326) do
+ActiveRecord::Schema.define(version: 20140729074440) do
 
   create_table "access_reputation_tips", force: true do |t|
     t.integer  "user_id"
@@ -360,6 +360,15 @@ ActiveRecord::Schema.define(version: 20140728093326) do
     t.integer  "general_id"
     t.integer  "response_user_id"
     t.integer  "provider_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rhd_stores", force: true do |t|
+    t.float    "recency"
+    t.float    "history"
+    t.float    "diversity"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

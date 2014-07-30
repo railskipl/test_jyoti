@@ -5,10 +5,37 @@ module RatingsHelper
    	  scores.each do |i| 
        if i < value
         count += 1 
+       elsif (i == value && scores.count == 1)
+        count += 1  	
        end 
   	  end 
 	 val =  ((count.to_f/scores.count)*100).round(2)
 	 return "#{val}%" 
+	end
+
+
+	def rhd_store_function(column_attribute,value)
+		scores = RhdStore.pluck(column_attribute.to_sym)
+		count = 0
+   	    scores.each do |i| 
+          if i < value 
+            count += 1 
+          elsif (i == value && scores.count == 1)
+            count += 1 
+          end 
+  	    end 
+	    val =  ((count.to_f/scores.count)*100).round(2)
+	    return "#{val}%" 
+	end
+
+
+	def score_factor_name(column_attribute,value)
+		ScoreFactor.find_by_name_and_factor_type(column_attribute.to_s,value).name.camelize rescue nil
+	end
+
+
+	def score_factor_description(column_attribute,value)
+		ScoreFactor.find_by_name_and_factor_type(column_attribute.to_s,value).description rescue nil 
 	end
 
 	# def avg_result_percent(avg,avg_result1)

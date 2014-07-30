@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
+
+
   attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status,:city
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
+  has_one :rhd_store
   has_many :tips
   has_many :influences
   has_many :relationships

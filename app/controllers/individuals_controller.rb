@@ -150,11 +150,12 @@ class IndividualsController < ApplicationController
       end
     flash[:notice] = "Vote on tips provided."
     redirect_to indiv4_individuals_path(:email => indiv3.email, :user_id => current_user.id)
-      
-    
+
      # @tip = Tip.create(:response => params[:response]) 
        
   end
+
+
 
   def submit_indiv4
     #for onbording sequence ratings other
@@ -246,10 +247,14 @@ class IndividualsController < ApplicationController
   end
 
   def indiv6
-    
+    @tips = Tip.all
   end
 
   def indiv7
+    
+  end
+
+  def indiv8
     
   end
 

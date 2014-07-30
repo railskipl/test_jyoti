@@ -27,10 +27,10 @@
     <%#= f.password_field :current_password, autocomplete: "off",:class=>"form-control"  %></div>
  -->
   <div><%= f.label :first_name %>
-     <%= f.text_field :first_name,:class=>"form-control" %></div>
+     <%= f.text_field :first_name,:class=>"form-control", :required => true %></div>
 
   <div><%= f.label :last_name%>
-     <%= f.text_field :last_name ,:class=>"form-control"%></div>
+     <%= f.text_field :last_name ,:class=>"form-control", :required => true%></div>
  
   <div>
       <%= f.label :birthday %>
@@ -44,7 +44,7 @@
 
 
   <div><%= f.label :country%>
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control", :required => true)%>
   
   
 
@@ -53,7 +53,7 @@
 
 
   <div><%= f.label :city%>
-  <%= f.text_field :city ,:class=>"form-control"%>
+  <%= f.text_field :city ,:class=>"form-control", :required => true%>
   </div>
  
 
@@ -109,10 +109,10 @@
     <%= f.password_field :current_password, autocomplete: "off",:class=>"form-control"  %></div>
 
 <div><%= f.label :first_name %><br />
-  <%= f.text_field :first_name,:class=>"form-control" %></div>
+  <%= f.text_field :first_name,:class=>"form-control", :required => true %></div>
 
   <div><%= f.label :last_name%><br />
-  <%= f.text_field :last_name ,:class=>"form-control"%></div>
+  <%= f.text_field :last_name ,:class=>"form-control", :required => true%></div>
  
   <div>
       <%= f.label :birthday %><br />

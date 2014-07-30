@@ -35,7 +35,7 @@ def import
       redirect_to :back, notice: "Please Attach file" 
     else
       User.import(params[:file],current_user)
-      redirect_to invite_paste_users_path, notice: "Users imported."
+      redirect_to :back, notice: "Users imported."
     end
 end
 # def sign_out

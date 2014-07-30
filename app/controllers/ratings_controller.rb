@@ -161,7 +161,13 @@ def report
     r.user_id = current_user.id
     r.score = @total_score
     r.save
+    rhd = RhdStore.where(:user_id => current_user.id).first_or_create
+    rhd.recency = @percent
+    rhd.history = @percent_history.to_f 
+    rhd.diversity = @diversity_points
+    rhd.save
     end
+
 end
 
 private

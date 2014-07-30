@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     }
   end
 
+
   resources :individuals do
     collection {
       get :indiv_path
@@ -105,6 +106,7 @@ Rails.application.routes.draw do
       get :indiv5
       get :indiv6
       get :indiv7
+      get :indiv8
     }
   end
 

@@ -1,7 +1,6 @@
 class Organization < ActiveRecord::Base
 	attr_accessible :title, :body, :img,:status
 
-
 	HOW_HEARD_OPTIONS = [ 
     'Advertising and Marketing',
     'Agriculture',
@@ -42,5 +41,7 @@ class Organization < ActiveRecord::Base
     '5,000-9,999',
     '10,000 or more'
   ]
+  
+
   
 end

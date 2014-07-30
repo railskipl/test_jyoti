@@ -13,7 +13,7 @@ gem 'sqlite3'
 
 # gem 'mysql'
 gem 'koala'
-
+gem 'csv_validator'
 
 gem 'devise'
 gem 'execjs'
