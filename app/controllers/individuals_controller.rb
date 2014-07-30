@@ -171,6 +171,7 @@ class IndividualsController < ApplicationController
     redirect_to indiv5_individuals_path, notice: "Rating has been done." 
   end
 
+
   def submit_indiv5
     #for onbording sequence selfimage
      @selfimage = AccessReputationTip.where('user_id = ?', current_user.id)
@@ -216,6 +217,7 @@ class IndividualsController < ApplicationController
         a << b
       end
     end
+  end
     @random = a
 
     h = [@second_priority1,@second_priority2,@second_priority3, @random.last, @random.first]
