@@ -120,9 +120,8 @@
      </div>
 
   <div><%= f.label :location%><br />
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
-
-</div>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,include_blank: true,:class=>"form-control")%>
+  </div>
 
     <div>
        <%= f.label :sex %></br>
