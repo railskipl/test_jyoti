@@ -201,7 +201,7 @@ class IndividualsController < ApplicationController
   end
 
   def indiv6
-    @tips = Tip.all
+    #@tips = Tip.all
   end
 
   def indiv7
@@ -211,8 +211,6 @@ class IndividualsController < ApplicationController
   def indiv8
     
   end
-
-
 end
 
 
