@@ -90,7 +90,7 @@ class TipsController < ApplicationController
 
 	def helpful_tips
 
-		@praise = Praise.where('provider_user_id != ?', current_user.id)
+		@praise = Praise.where('provider_user_id != ? ', current_user.id)
 		@praises = Praise.where('email != ?', current_user.email)
 
 		@criticism = Criticism.where('provider_user_id != ?', current_user.id)
@@ -122,7 +122,7 @@ class TipsController < ApplicationController
 		end
 		@power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.circle_name) rescue nil
 		if @power.blank?
-		 @ww = @priority
+		  @ww = @priority
 		end
 		
 	end
@@ -189,7 +189,7 @@ class TipsController < ApplicationController
 	   	 @tip.update_attributes(params[:general])
 	    end
 	    #for onbording sequence quality check
-	    @quality_check = AccessReputationTip.where(:user_id => current_user.id)
+	    @quality_check = AccessReputationTip.where('user_id = ?', current_user.id)
 	    if @quality_check
 	    	a = 1
 	    	@quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
@@ -205,28 +205,28 @@ class TipsController < ApplicationController
 
 	def react_to_response
 	   if params[:praise_id].present?
-	   	 @praise = Praise.where(:id => params[:praise_id])
+	   	 @praise = Praise.where('id = ?', params[:praise_id])
 	   elsif params[:criticism_id].present?
-	   	 @criticism = Criticism.where(:id => params[:criticism_id])
+	   	 @criticism = Criticism.where('id = ?', params[:criticism_id])
 	   	 raise @criticism.inspect
 	   else params[:general_id].present?
-	   	 @general = General.where(:id => params[:general_id])
+	   	 @general = General.where('id = ?', params[:general_id])
 	   end
 	end
 
 	def submit_response
 	   if params[:praise_id]
-	   	  @praise = Praise.where(:id => params[:praise_id])
+	   	  @praise = Praise.where('id = ?', params[:praise_id])
 	   	  @response = Response.create(:response_comment => params[:response_comment], 
 	   	  	          :praise_id => params[:praise_id]  , :response_user_id => current_user.id, 
 	   	  	          :provider_user_id => @praise.first.provider_user_id)
 	   elsif params[:criticism_id]
-	   	  @criticism = Criticism.where(:id => params[:criticism_id])
+	   	  @criticism = Criticism.where('id = ?', params[:criticism_id])
 	   	  @response = Response.create(:response_comment => params[:response_comment], 
 	   	  	          :praise_id => params[:criticism_id]  , :response_user_id => current_user.id, 
 	   	  	          :provider_user_id => @criticism.first.provider_user_id)
 	   else params[:general_id]
-	   	  @criticism = Criticism.where(:id => params[:general_id])
+	   	  @criticism = Criticism.where('id = ?', params[:general_id])
 	   	  @response = Response.create(:response_comment => params[:response_comment], 
 	   	  	          :praise_id => params[:general_id]  , :response_user_id => current_user.id, 
 	   	  	          :provider_user_id => @general.first.provider_user_id)
@@ -237,31 +237,31 @@ class TipsController < ApplicationController
 	end
 
 	def reaction_for_response
-	  @response = Response.where(:id => params[:response_id])
+	  @response = Response.where('id = ?',params[:response_id])
 
 	  if @response.first.praise_id.present?
-	  	 @praise = Praise.where(:id => @response.first.praise_id)
+	  	 @praise = Praise.where('id = ?', @response.first.praise_id)
 	  elsif @response.first.criticism_id.present?
-	  	 @criticism = Criticism.where(:id => @response.first.criticism_id)
+	  	 @criticism = Criticism.where('id = ?', @response.first.criticism_id)
 	  else
-	  	 @general = General.where(:id => @response.first.general)
+	  	 @general = General.where('id = ?', @response.first.general)
 	  end
 	end
 
 	def submit_reaction
-		@response = Response.where(:id => params[:response_id])
+		@response = Response.where('id = ?', params[:response_id])
 		if params[:praise_id]
-	   	  @praise = Praise.where(:id => params[:praise_id])
+	   	  @praise = Praise.where('id = ?', params[:praise_id])
 	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
 	   	  	          :praise_id => params[:praise_id]  , :reciver_user_id =>@response.first.response_user_id , 
 	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
 	   elsif params[:criticism_id]
-	   	  @criticism = Criticism.where(:id => params[:criticism_id])
+	   	  @criticism = Criticism.where('id = ?', params[:criticism_id])
 	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
 	   	  	          :criticism_id => params[:criticism_id]  , :reciver_user_id =>@response.first.response_user_id , 
 	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
 	   else params[:general_id]
-	   	  @criticism = Criticism.where(:id => params[:general_id])
+	   	  @criticism = Criticism.where('id = ?', params[:general_id])
 	   	  @reaction = Reaction.create(:reaction_comment => params[:reaction_comment], 
 	   	  	          :general_id => params[:general_id]  , :reciver_user_id =>@response.first.response_user_id , 
 	   	  	          :provider_user_id => current_user.id, :response_id => @response.first.id)
@@ -288,16 +288,15 @@ class TipsController < ApplicationController
  end
 
  def condition_check
- 	@praise = Praise.where(:email => current_user.email) rescue nil
-	@criticism = Criticism.where(:email => current_user.email) rescue nil
-	@general = General.where(:email => current_user.email) rescue nil
+ 	@praise = Praise.where('email = ?', current_user.email).order('created_at DESC') rescue nil
+	@criticism = Criticism.where('email = ?', current_user.email).order('created_at DESC') rescue nil
+	@general = General.where('email = ?', current_user.email).order('created_at DESC') rescue nil
 
-	@praise_owner_tip = Praise.where(:provider_user_id => current_user.id) rescue nil
-	@criticism_owner_tip = Criticism.where(:provider_user_id => current_user.id) rescue nil
-	@general_owner_tip = General.where(:provider_user_id => current_user.id) rescue nil
+	@praise_owner_tip = Praise.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
+	@criticism_owner_tip = Criticism.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
+	@general_owner_tip = General.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
  end
 
- 
  def responses_to_your_tips
  	@reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
     unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
