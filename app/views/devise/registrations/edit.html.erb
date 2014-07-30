@@ -6,7 +6,7 @@
                         });
 </script>
 
-<div class="col-xs-4">
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
   <%= devise_error_messages! %>
@@ -17,7 +17,7 @@
 
   Thank you for confirming your email!  You need to complete your profile <br> and then finish setup to view the anonymous tips about you in your<br> private FREE Reputation Report. ALL fields are required.<br><br>
 
-
+<div class="col-xs-4">
 
   <div><%= f.label :email %>
       <%= f.email_field :email, autofocus: true,:class=>"form-control"  %>
@@ -27,6 +27,7 @@
     <%#= f.password_field :current_password, autocomplete: "off",:class=>"form-control"  %></div>
  -->
   <div><%= f.label :first_name %>
+  <i style="color: #B8B8B8;"><label for="male">(Real Name Only)</label></i><br>
      <%= f.text_field :first_name,:class=>"form-control", :required => true %></div>
 
   <div><%= f.label :last_name%>
@@ -45,9 +46,6 @@
 
   <div><%= f.label :country%>
   <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control", :required => true)%>
-  
-  
-
   </div>
 
 
@@ -60,13 +58,13 @@
     
   <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
 
-  <div><%= f.label :email %></br>
+  <div><%= f.label :secondary_email %></br>
       <%= f.text_area :secondary_email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
   </div>
   <%= f.submit 'CONTINUE SETUP',:class=>"btn btn-primary", :id=> "email_user" %>
       
   <% end %>
-   
+   </div>
   <!-- <div style="padding:10.5px 1px 34px"><%#= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div> -->
    <% end %>
  
@@ -91,7 +89,7 @@
   <% if current_user.sign_in_count >= 1 && current_user.first_name.present? == true  %>
   <h2>Update <%= resource_name.to_s.humanize %></h2>
 
-
+<div class="col-xs-4">
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true,:class=>"form-control"  %></div>
 
@@ -120,9 +118,8 @@
      </div>
 
   <div><%= f.label :location%><br />
-  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
-
-</div>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,include_blank: true,:class=>"form-control")%>
+  </div>
 
     <div>
        <%= f.label :sex %></br>
@@ -172,7 +169,7 @@
 
 
 <% end %>
-
+</div>
 <% end %>
 </div>
 

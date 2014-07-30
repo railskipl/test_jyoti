@@ -134,6 +134,7 @@ class IndividualsController < ApplicationController
     redirect_to indiv5_individuals_path, notice: "Rating has been done." 
   end
 
+
   def submit_indiv5
     #for onbording sequence selfimage
      @selfimage = AccessReputationTip.where('user_id = ?', current_user.id)

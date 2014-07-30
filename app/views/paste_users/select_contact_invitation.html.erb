@@ -10,8 +10,26 @@
 
       <tr>
          <td> <%= user rescue nil%>
-         <td><%= check_box_tag "feedback", 1, :checked %><br/>
-         <td><%= check_box_tag "invite" %><br/>
+         <!-- <td><%#= check_box_tag "feedback", 1, :checked %><br/> -->
+         <!-- <td><%#= check_box_tag "invite" %><br/> -->
+
+         
+         <!-- <td><%#= radio_button_tag 'feedback', "1", false %></td>  -->
+         <!-- <td><%#= radio_button_tag 'invite', "0", false %></td>  -->
+
+
+        <!--  <td><%#= radio_button :sex , "feedback",:class=>"first-icon fui-radio-unchecked" %></td>
+         <td><%#= radio_button :sex , "invite",:class=>"second-icon fui-radio-checked" %></td> -->
+
+
+
+
+         <div class="toggle">
+              <td><label><input type="radio" name="toggle",'feedback'></label></td>    
+         </div>
+         <div class="toggle">
+              <td><label><input type="radio" name="toggle",'invite'></label></td>
+         </div>
       </tr>
     <% end %>
   <%end%>
@@ -19,3 +37,10 @@
   </table>
  <%= submit_tag "Send" ,:class => "btn btn-primary"%>
 <% end %>
+
+<script>
+$('label').click(function(){
+    $(this).children('span').addClass('input-checked');
+    $(this).parent('.toggle').siblings('.toggle').children('label').children('span').removeClass('input-checked');
+});
+</script>
