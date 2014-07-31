@@ -62,11 +62,11 @@ def create
     if @ratingother.save
       flash[:notice] = "Rating has been done."
       redirect_to :root
-    else
+     else
       render 'new'
-    end 
+     end 
+    end
   end
-end
 
 def failure
   
