@@ -62,8 +62,6 @@
 </tr>
 </table>
 
-<div id="container1" style="min-width: 310px; max-width: 800px; height: 460px; margin: 0 auto"></div>
-
 <div id="container" style="min-width: 310px; max-width: 800px; height: 550px; margin: 0 auto"></div>
  
 <script type='text/javascript'>//<![CDATA[ 
@@ -137,72 +135,6 @@ jQuery(function () {
             }, {
                 name: 'Power Mirrors',
                 data: [<%= raw number_with_precision(@d[0] , :precision => 1) %>, <%= raw number_with_precision(@d[1] , :precision => 1) %>, <%= raw number_with_precision(@d[2] , :precision => 1) %>, <%= raw number_with_precision(@d[3] , :precision => 1) %>,<%= raw number_with_precision(@d[4] , :precision => 1) %>, <%= raw number_with_precision(@d[5] , :precision => 1) %>, <%= raw number_with_precision(@d[6] , :precision => 1) %>, <%= raw number_with_precision(@d[7] , :precision => 1) %>]
-            }]
-        });
-
-        
-        jQuery('#container1').highcharts({
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Your Ratings from all Mirrors'
-            },
-
-            exporting: {
-                buttons: {
-                    contextButtons: {
-                        enabled: false,
-                        menuItems: null
-                    }
-                },
-                enabled: false
-            },
-            
-            xAxis: {
-                categories: ['Overall Impression', 'Trustworthy', 'Kind and Helpful', 'Has Ability/Potential', 'Performs Well','Persuasive and Presentable', 'Emotionally Mature','Friendly and Social'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                max: 10,
-                title: {
-                    text: 'Ratings',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' Ratings'
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: 2,
-                y: -10,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'),
-                shadow: true
-            },  
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'All Mirrors',
-                data: [<%= raw number_with_precision(@q , :precision => 1) %>, <%= raw number_with_precision(@w[1] , :precision => 1) %>, <%= raw number_with_precision(@w[2] , :precision => 1) %>, <%= raw number_with_precision(@w[3] , :precision => 1) %>,<%= raw number_with_precision(@w[4] , :precision => 1) %>, <%= raw number_with_precision(@w[5] , :precision => 1) %>, <%= raw number_with_precision(@w[6] , :precision => 1) %>, <%= raw number_with_precision(@w[7] , :precision => 1) %>]
             }]
         });
     });
