@@ -83,7 +83,7 @@ class IndividualsController < ApplicationController
           @givefeedback.first.update_attributes(params[:access_reputation_tip])
         end
       end
-
+      @status_check.update_attributes(:give_feedback => true)
       if params[:praise]
         @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
       end
@@ -96,7 +96,7 @@ class IndividualsController < ApplicationController
         @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
       end
 
-      redirect_to indiv3_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
+      redirect_to indiv4_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
     else
       redirect_to :back
       flash[:notice] = 'Please Give atleast Two tips'
@@ -105,8 +105,8 @@ class IndividualsController < ApplicationController
 
 
   def submit_indiv3
-    #raise params.inspect
     rating_individuals
+      @status_check.update_attributes(:vote_on_tips => true)
       #for onbording sequence quality check
       @quality_check = AccessReputationTip.where('user_id = ?', current_user.id)
       if @quality_check
@@ -114,7 +114,7 @@ class IndividualsController < ApplicationController
         @quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
         @aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
       end
-    redirect_to indiv4_individuals_path(:email => params[:email], :user_id => current_user.id)
+    redirect_to indiv6_individuals_path
        
   end
 
@@ -130,6 +130,7 @@ class IndividualsController < ApplicationController
             @reputation.first.update_attributes(params[:access_reputation_tip])
           end
         end
+    @status_check.update_attributes(:give_rating => true)
     @ratingother = Ratingother.create(:email => params[:email],:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
     redirect_to indiv5_individuals_path, notice: "Rating has been done." 
   end
@@ -143,8 +144,9 @@ class IndividualsController < ApplicationController
        @selfimage.first.give_selfimage = @selfimage.first.give_selfimage + a
        @selfimage.first.update_attributes(params[:access_reputation_tip])
      end 
+    @status_check.update_attributes(:self_image => true)
     @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv6_individuals_path, notice: "Rating has been done." 
+    redirect_to indiv3_individuals_path, notice: "Rating has been done." 
   end
 
 

@@ -10,7 +10,7 @@ Before you view your Reputation Report and tips we will take you through a few<b
 	<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
 
 	    <%unless @vote_on_tips.nil?%>
-
+            
 	      	<% @vote_on_tips.each_with_index do |vote_on_tip,index|%>
 	      	  <% i = 0%>
 	      	  <span style="color: #999999; font-size: 48px; white-space: nowrap;"><%= i = index + 1 %></span>
@@ -36,7 +36,9 @@ Before you view your Reputation Report and tips we will take you through a few<b
 	      
 	      <br><br>
 			<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
-			<div style="float:right;padding: 30px;"><%= submit_tag "CONTINUE", :class => 'btn btn-primary'%></div>
+			<div style="float:right;padding: 30px;"><%= submit_tag "CONTINUE", :class => 'btn btn-primary'%>
+			<%= link_to "Skip",indiv6_individuals_path,:class=>"btn btn-primary" %> 
+			</div>
 
             
 			<br><br>
@@ -45,21 +47,41 @@ Before you view your Reputation Report and tips we will take you through a few<b
 		<%end%>
 	<%end%>
     
-<%#<script type="text/javascript">
+<script type="text/javascript">
   function validateForm()
     {
     	
-	  	var a = document.getElementById('response_true').checked
-	
-	  	var b = document.getElementById('response_false').checked
+	  	var a = document.getElementById('response_1_true').checked
+	    var b = document.getElementById('response_2_true').checked
+	    var c = document.getElementById('response_3_true').checked
+	    var d = document.getElementById('response_4_true').checked
+	    var e = document.getElementById('response_5_true').checked
+	  	var A = document.getElementById('response_1_false').checked 
+	  	var B = document.getElementById('response_2_false').checked
+	  	var C = document.getElementById('response_3_false').checked
+	  	var D = document.getElementById('response_4_false').checked
+	  	var E = document.getElementById('response_5_false').checked
 
-	  	if(a == false && b == false)
+	  	if((a == false && A == false) && (b == false && B == false) && (c == false && C == false) && (d == false && D == false) && (e == false && E == false))
 		  	{
-		  		alert("Please check atleast one option.");
+		  		alert("Please provide vote on tips.");
 		  		return false;
 		  	}
+		else
+		{
+         if((a == false && A == false) || (b == false && B == false) || (c == false && C == false) || (d == false && D == false) || (e == false && E == false))
+			  {
+			  	alert("Please check all vote on tips.");
+			    return false;
+			  }
+			else
+			{
+				return true;
+			}
+		}
+		   
     };
-</script>%>	
+</script>
 
 
 
