@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
+  before_filter :statuscheck
 #Method for trial days for current_user
   def plan_expiry
       @trial_days = TrialDay.first
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
 private
+  
+  def statuscheck
+    @status_check = StatusCheck.where('user_id = ?', current_user.id)[0]
+  end
 
  #Redirect to a specific page on successful sign in
  def after_sign_in_path_for(resource) 
@@ -26,6 +30,7 @@ private
       unless @access_reputation_tip.present?
         AccessReputationTip.create(:user_id => current_user.id)
       end
+      StatusCheck.create(:user_id => current_user.id)
       edit_user_registration_path
     else
      # home_dashboard_path
