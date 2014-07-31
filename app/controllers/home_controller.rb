@@ -47,11 +47,9 @@ def dashboard
     if !@contacts.nil?
 	    @contacts.each do |contact|
 	       @con << Contact.where(email: contact[:email],user_id: current_user.id ).first_or_create
-	    end
+	  end
 	   redirect_to feedback_relationship_relationships_path ,:notice => "Contacts imported"
     end
-   
-
 end
 
 

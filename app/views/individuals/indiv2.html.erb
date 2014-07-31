@@ -13,7 +13,9 @@
 
     <div class="field">
    <%= label_tag 'email',"Email of a person who would benefit from your tips:"%>
+
     <%= text_field_tag :email ,nil, :placeholder => "Please enter email address", :class=>"form-control",:onblur =>"validateEmail(this);", :maxlength => 500 %>
+
     </div></br>
 
     <strong>Please give this person at least 2 tips below.</strong>

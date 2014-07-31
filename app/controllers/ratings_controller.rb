@@ -10,9 +10,6 @@ def new
  @rating = Rating.new
 end
 
-def add_array(a,b)
-  a.zip(b).map{|pair| pair.reduce(&:+) }
-end
 
 def condition_check 
   @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
@@ -44,24 +41,18 @@ def condition_check
     @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
    end
 
-   @over = add_array(@a, @b) #added to array
-   @all_mirror = add_array(@over , @d) # added over array with @d array
-   @w = []
-   @all_mirror.each do |r|
-    @w << (r.to_f / 3).to_f
-  end
-   @aa = @all_mirror.inject{ |sum, el| sum + el }.to_f / @w.size 
-   @q = @aa/3 # overall impression
+
    @avg = AvgRating.where("user_id = ?",current_user.id).first_or_create
-   unless @w.empty?
-     @avg.overall = @w[0]
-     @avg.trustworthy = @w[1]
-     @avg.kind_helpful = @w[2]
-     @avg.potential = @w[3]
-     @avg.presentable = @w[4]
-     @avg.perform_well = @w[5]
-     @avg.emotianally_mature = @w[6]
-     @avg.friendly_social = @w[7]
+   
+   unless @a.empty?
+     @avg.overall = @a[0]
+     @avg.trustworthy = @a[1]
+     @avg.kind_helpful = @a[2]
+     @avg.potential = @a[3]
+     @avg.presentable = @a[4]
+     @avg.perform_well = @a[5]
+     @avg.emotianally_mature = @a[6]
+     @avg.friendly_social = @a[7]
      @avg.user_id = current_user.id
      @avg.save
    end

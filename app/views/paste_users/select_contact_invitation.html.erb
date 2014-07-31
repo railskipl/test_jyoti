@@ -10,26 +10,15 @@
 
       <tr>
          <td> <%= user rescue nil%>
-         <!-- <td><%#= check_box_tag "feedback", 1, :checked %><br/> -->
-         <!-- <td><%#= check_box_tag "invite" %><br/> -->
-
-         
-         <!-- <td><%#= radio_button_tag 'feedback', "1", false %></td>  -->
-         <!-- <td><%#= radio_button_tag 'invite', "0", false %></td>  -->
-
-
-        <!--  <td><%#= radio_button :sex , "feedback",:class=>"first-icon fui-radio-unchecked" %></td>
-         <td><%#= radio_button :sex , "invite",:class=>"second-icon fui-radio-checked" %></td> -->
-
-
-
-
+        
+        <form>
          <div class="toggle">
               <td><label><input type="radio" name="toggle",'feedback'></label></td>    
          </div>
          <div class="toggle">
               <td><label><input type="radio" name="toggle",'invite'></label></td>
          </div>
+         </form>
       </tr>
     <% end %>
   <%end%>
