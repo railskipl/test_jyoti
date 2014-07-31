@@ -9,39 +9,43 @@ Before you view your Reputation Report and tips we will take you through a few<b
 
 	<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
 
-	    <%unless @ww.nil?%>
-	       <% @w.each do |typ|%>
-		    <%if @ww.typee == "praise"%>
+	    <%unless @vote_on_tips.nil?%>
 
-		      <%= @ww.praise_comment rescue nil%><br>
-		    <%elsif @ww.typee == "criticism"%>
-		      <%= @ww.criticism_comment rescue nil%><br>
-		    <%else @ww.typee == "general"%>
-		      <%= @ww.general_comment rescue nil%><br>
-		    <%end%>
-
-			<%= hidden_field_tag :id, @ww.id rescue nil%>
-			<%= hidden_field_tag :typee, @ww.typee rescue nil%>
-			
-			Does this sound appropriate and helpful?
-			 &nbsp;<%= radio_button_tag :response, 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag :response, 'false' %> &nbsp;No 
-						<br><br>	      
+	      	<% @vote_on_tips.each_with_index do |vote_on_tip,index|%>
+	      	  <% i = 0%>
+	      	  <span style="color: #999999; font-size: 48px; white-space: nowrap;"><%= i = index + 1 %></span>
+	           <%if vote_on_tip.typee == "praise"%>
+		         <span>"<%= vote_on_tip.praise_comment rescue nil%>"</span><br/>
+		         <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+			     <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+		       <%elsif vote_on_tip.typee == "criticism"%>
+		          <span>"<%= vote_on_tip.criticism_comment rescue nil%>"</span><br/>
+		          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+			      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+		       <%else vote_on_tip.typee == "general"%>
+		          <span>"<%= vote_on_tip.general_comment rescue nil%>"</span><br/>
+		          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+			      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+		       <%end%>
+			   <%= hidden_field_tag :email, params[:email] rescue nil%>
+			   Does this sound appropriate and helpful?
+			    &nbsp;<%= radio_button_tag "response_#{i}", 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag "response_#{i}", 'false' %> &nbsp;No 
+						<br><br>
+	        <%end%>
+		    
+	      
 	      <br><br>
 			<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
 			<div style="float:right;padding: 30px;"><%= submit_tag "CONTINUE", :class => 'btn btn-primary'%></div>
-
-			
 
             
 			<br><br>
 		<%else%>
 		  No Tips avaliable
 		<%end%>
-		<%end%>
 	<%end%>
     
-	
-<script type="text/javascript">
+<%#<script type="text/javascript">
   function validateForm()
     {
     	
@@ -55,7 +59,8 @@ Before you view your Reputation Report and tips we will take you through a few<b
 		  		return false;
 		  	}
     };
-</script>
+</script>%>	
+
 
 
 

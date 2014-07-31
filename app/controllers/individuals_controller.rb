@@ -1,6 +1,6 @@
 class IndividualsController < ApplicationController
 	respond_to :html, :js
-  
+  include IndividualsHelper
  def index
  	 @individuals = Individual.all
  end
@@ -92,7 +92,7 @@ class IndividualsController < ApplicationController
         @criticism = Criticism.create(:email => params[:email], :criticism_comment => params[:criticism],:provider_user_id => params[:user_id], :typee => "criticism")
       end
 
-      if params[:general]
+      if params[:helpful_tips]
         @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
       end
 
@@ -105,42 +105,8 @@ class IndividualsController < ApplicationController
 
 
   def submit_indiv3
-     # raise indiv3.email.inspect
-     if params[:typee] == "praise"
-         @tip = Praise.find(params[:id])
-     elsif params[:typee] == "criticism"
-         @tip = Criticism.find(params[:id])
-     else  params[:typee] == "general"
-       @tip = General.find(params[:id])
-     end
-
-     sum = 1
-    user_view = 1
-    #logic for decidind the tip is helpful or not
-    if @tip.tip_accept = 2
-      @w = 1           #for deciding helpful tip
-    elsif @tip.tip_reject = 2 
-      @w = 2          #for deciding unhelpful tip
-    else 
-      @w = 0
-    end
-   
-    if params[:response] == "true"
-      @sum = @tip.tip_accept + sum
-      @tip.tip_accept = @sum
-    else
-      @sum = @tip.tip_reject + sum
-      @tip.tip_reject = @sum
-    end
-    @tip.tip_prediction = @w
-    @tip.tip_viewed = @tip.tip_viewed + user_view
-    if params[:typee] == "praise"
-         @tip.update_attributes(params[:praise])
-      elsif params[:typee] == "criticism"
-         @tip.update_attributes(params[:criticism])
-      else  params[:typee] == "general"
-       @tip.update_attributes(params[:general])
-      end
+    #raise params.inspect
+    rating_individuals
       #for onbording sequence quality check
       @quality_check = AccessReputationTip.where('user_id = ?', current_user.id)
       if @quality_check
@@ -148,10 +114,7 @@ class IndividualsController < ApplicationController
         @quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
         @aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
       end
-    flash[:notice] = "Vote on tips provided."
-    redirect_to indiv4_individuals_path(:email => indiv3.email, :user_id => current_user.id)
-
-     # @tip = Tip.create(:response => params[:response]) 
+    redirect_to indiv4_individuals_path(:email => params[:email], :user_id => current_user.id)
        
   end
 
@@ -187,54 +150,43 @@ class IndividualsController < ApplicationController
 
   def indiv3
     @praise = Praise.where('provider_user_id != ?', current_user.id)
-    @praises = Praise.where('email != ?', current_user.email)
+    @praises = @praise.where('email != ?', current_user.email)
 
     @criticism = Criticism.where('provider_user_id != ?', current_user.id)
-    @criticisms = Criticism.where('email != ?', current_user.email)
+    @criticisms = @criticism.where('email != ?', current_user.email)
 
     @general = General.where('provider_user_id != ?', current_user.id)
-    @generals = General.where('email != ?', current_user.email)
+    @generals = @general.where('email != ?', current_user.email)
     
     #high priority 
-    @second_priority1 = @praises.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ?', 1, 1, 1 ).order("RANDOM()").first rescue nil
-    @second_priority2 = @criticisms.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ? ', 1, 1, 1 ).order("RANDOM()").first rescue nil
-    @second_priority3 = @generals.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ?', 1, 1, 1 ).order("RANDOM()").first rescue nil
-    
-    if @second_priority1.nil?
-    #low priority
-    @zero_priority1 = @praises.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    @zero_priority2 = @criticisms.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    @zero_priority3 = @generals.where('tip_accept = ? or tip_reject = ? and tip_viewed = ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    
-    #low priority
-    @bb1 = @praises.where('tip_accept >= ? or tip_reject >= ? and tip_viewed >= ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    @bb2 = @criticisms.where('tip_accept >= ? or tip_reject >= ? and tip_viewed >= ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    @bb3 = @generals.where('tip_accept >= ? or tip_reject >= ? and tip_viewed >= ?', 0, 0, 0).order("RANDOM()").first rescue nil
-    @bb4 = [@bb1, @bb2, @bb3].shuffle #logic for random
-    a = []
-    @bb4.each do |b|
-      unless b.nil? && a.count <= 2
-        a << b
+    @second_priority1 = @praises.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+    @second_priority2 = @criticisms.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ? ', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+    @second_priority3 = @generals.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+    b = []
+    @second_priority1.each do |praise|
+      unless praise.nil? 
+        b << praise
       end
     end
-  end
-    @random = a
 
-    h = [@second_priority1,@second_priority2,@second_priority3, @random.last, @random.first]
-    @second_priority = h
-    
-    v = [@zero_priority1,@zero_priority2,@zero_priority3, @random.last, @random.first]
-    @zero_priority = v
+    @second_priority2.each do |criticism|
+      unless criticism.nil? 
+        b << criticism
+      end
+    end
 
-    if @second_priority.present?
-      @priority = @second_priority
-    else
-      @priority = @zero_priority
+    @second_priority3.each do |general|
+      unless general.nil? 
+        b << general
+      end
     end
-    @power = PowerGroup.where('email = ? and circle_name = ?', current_user.email, @priority.circle_name) rescue nil
-    if @power.blank?
-     @ww = @priority
+    a = []
+    b.each do |random|
+      unless a.count >= 5 
+        a << random
+      end
     end
+    @vote_on_tips = a.shuffle
   end
 
 
@@ -249,7 +201,7 @@ class IndividualsController < ApplicationController
   end
 
   def indiv6
-    @tips = Tip.all
+    #@tips = Tip.all
   end
 
   def indiv7
@@ -259,8 +211,6 @@ class IndividualsController < ApplicationController
   def indiv8
     
   end
-
-
 end
 
 
