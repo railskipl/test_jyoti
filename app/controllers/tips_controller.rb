@@ -65,7 +65,7 @@ class TipsController < ApplicationController
 			end
 		else
 			redirect_to new_tip_path
-	        flash[:notice] = 'Please Give atleast Two tips'
+	        flash[:notice] = 'Please give at least two helpful tips to register your anonymous feedback'
 		end
 	end
     

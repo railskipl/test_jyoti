@@ -99,7 +99,7 @@ class IndividualsController < ApplicationController
       redirect_to indiv4_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
     else
       redirect_to :back
-      flash[:notice] = 'Please Give atleast Two tips'
+      flash[:notice] = 'Please give at least two helpful tips to register your anonymous feedback'
     end
   end
 
@@ -132,7 +132,7 @@ class IndividualsController < ApplicationController
         end
     @status_check.update_attributes(:give_rating => true)
     @ratingother = Ratingother.create(:email => params[:email],:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv5_individuals_path, notice: "Rating has been done." 
+    redirect_to indiv5_individuals_path, notice: "Thank you for rating this person!" 
   end
 
 

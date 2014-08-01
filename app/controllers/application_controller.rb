@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 private
   
   def statuscheck
-    @status_check = StatusCheck.where('user_id = ?', current_user.id)[0]
+    @status_check = StatusCheck.where('user_id = ?', current_user.id)[0] rescue nil
   end
 
  #Redirect to a specific page on successful sign in
