@@ -85,7 +85,7 @@ class PasteUsersController < ApplicationController
           # @user = current_user.first_name
           # @user1 = current_user.last_name
           # Mailer.paste_user(ui,@signup_url,@user).deliver
-          #FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
+          FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
         end
         if @inviteuser.first.invite_other >= 3
           @status_check.invite_others = true
