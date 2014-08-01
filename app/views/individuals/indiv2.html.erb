@@ -1,3 +1,4 @@
+<% unless @status_check.give_feedback == true %>  
   <h5>See how it works - give tips to one person</h5>
 
   Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!
@@ -38,13 +39,33 @@
   </div>
 
   <div class="actions">
-    <%= submit_tag "Save & Continue",:class => "btn btn-primary" %> 
-    <%= link_to "Skip",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary", :style => "float:right;" %>       
+    <%= submit_tag "Save & Continue",:class => "btn btn-primary" %>
+     
+    <%= link_to "Go to next step",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary", :style => "float:right;" %>       
   </div>
   
 
   </div>
 <% end %>
+<%else%>
+  <p>Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!<br><br><br>
+  You done with this onbording sequence.
+
+  <div class="actions">
+
+ <%if @status_check.give_rating == false %>
+   <%= link_to "Go to next step",indiv4_individuals_path(:email => @status_check.track_last_email),:class=>"btn btn-primary" %>
+ <%elsif @status_check.self_image == false %>
+   <%= link_to "Go to next step",indiv5_individuals_path,:class=>"btn btn-primary" %>
+ <%elsif @status_check.vote_on_tips == false %>
+   <%= link_to "Go to next step",indiv3_individuals_path,:class=>"btn btn-primary" %>
+ <%else%>
+   <%= link_to "Go to next step",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary", :style => "float:right;" %>  
+ <%end%>     
+  </div>
+
+  </p>
+<%end%>
 
 <script type="text/javascript">
   function validate_step(){

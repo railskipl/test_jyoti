@@ -127,7 +127,8 @@
  
    
 </div>
-
+<%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false%>
+<%else%>
  <div class="sidebar">
   <span>
      <p style="font-size:12px;">
@@ -142,3 +143,4 @@
   </span>
 
  </div>
+<%end%>

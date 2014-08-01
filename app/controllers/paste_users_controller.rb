@@ -66,22 +66,31 @@ class PasteUsersController < ApplicationController
 
   def create
     @paste_user = PasteUser.new(paste_user_params)
-     # raise params.inspect
+    @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
      respond_to do |format|
       if @paste_user.save
         @paste_user.user_invitations.each do |ui|
-           c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
-           if c.email.nil?
+          c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
+          if c.email.nil?
             c.email = ui.email
             c.user_id = current_user.id
             c.save
-           end
+
+            if @inviteuser
+              a = 1
+              @inviteuser.first.invite_other = @inviteuser.first.invite_other + a 
+              @inviteuser.first.update_attributes(params[:access_reputation_tip])
+            end
+          end
           # @user = current_user.first_name
           # @user1 = current_user.last_name
-           # Mailer.paste_user(ui,@signup_url,@user).deliver
-           # FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
+          # Mailer.paste_user(ui,@signup_url,@user).deliver
+          #FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
         end
-        # 
+        if @inviteuser.first.invite_other >= 3
+          @status_check.invite_others = true
+          @status_check.update_attributes(params[:status_check])
+        end
         format.html { redirect_to  new_paste_user_path, notice: 'Invitation was successfully sent.' }
         format.json { render :show, status: :created, location: @paste_user }
       else
@@ -178,7 +187,6 @@ class PasteUsersController < ApplicationController
       puts users
       paste_user ||= []
       users.each do |email|
-       
         u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email, 
           :invite_for_feedback => feedback,:invite_for_curiosity => invite )
         if u.id.nil?
