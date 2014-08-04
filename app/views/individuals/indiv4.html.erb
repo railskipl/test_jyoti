@@ -1,68 +1,78 @@
-<h4>Meet the standard factors!</h4><br>
+<% unless @status_check.give_rating == true%>
+  <h4>Meet the standard factors!</h4><br>
 
-Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
+  Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
 
-Now please rate the person you gave tips to already:  
-
-
-
-<h5>Now please rate the person.</h5>
-<%= javascript_include_tag "progress"%>
+  Now please rate the person you gave tips to already:  
 
 
- <%#= form_for Ratingother.new do |f| %>
-  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv4'), :method => 'post' do %>
 
-  
-   <% unless user_signed_in?%>
-      <%= hidden_field_tag :anonymous_user ,:value => true %>      
-   <%end%>
-
-     <% if params[:email]%>
-      <%= hidden_field_tag :email, params[:email] %>
-     <br>
+  <h5>Now please rate the person.</h5>
+  <%= javascript_include_tag "progress"%>
 
 
-   <%= label_tag :trustworthy %><br>
+   <%#= form_for Ratingother.new do |f| %>
+    <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv4'), :method => 'post' do %>
 
-  <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider", :required => true %></br>
- 
-    <%= label_tag 'Kind and Helpful' %><br>
+    
+     <% unless user_signed_in?%>
+        <%= hidden_field_tag :anonymous_user ,:value => true %>      
+     <%end%>
 
-
-    <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-
-    <%= label_tag 'Has ability/Potential' %><br>
-
-    <%= range_field_tag :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-    <%= label_tag :performs_well %><br>
+       <% if params[:email]%>
+        <%= hidden_field_tag :email, params[:email] %>
+       <br>
 
 
-   <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
- 
-      <%= label_tag 'Persuasive and Presentable' %><br>
+     <%= label_tag :trustworthy %><br>
 
-       <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-
-   <%= label_tag :emotionally_Mature %><br>
+    <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider", :required => true %></br>
+   
+      <%= label_tag 'Kind and Helpful' %><br>
 
 
-   <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-   <%= label_tag :friendly_and_social %><br>
+      <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
 
 
- <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+      <%= label_tag 'Has ability/Potential' %><br>
+
+      <%= range_field_tag :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
+
+      <%= label_tag :performs_well %><br>
+
+
+     <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+   
+        <%= label_tag 'Persuasive and Presentable' %><br>
+
+         <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
+
+
+     <%= label_tag :emotionally_Mature %><br>
+
+
+     <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+
+     <%= label_tag :friendly_and_social %><br>
+
+
+   <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+    <% end %>
+     <% unless user_signed_in? %>
+     <% else %>
+      <%= hidden_field_tag :user_id,:value => current_user.id %>
+     <% end %>
+
+      <div style="float:right;padding: 30px;"><%= submit_tag "Save & Continue",:class=>"btn btn-primary" %>
+      <%= link_to "Go to next step",indiv5_individuals_path,:class=>"btn btn-primary" %> </div>
+
   <% end %>
-   <% unless user_signed_in? %>
-   <% else %>
-    <%= hidden_field_tag :user_id,:value => current_user.id %>
-   <% end %>
+<%else%>
+  <p>Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
 
-    <div style="float:right;padding: 30px;"><%= submit_tag "Continue",:class=>"btn btn-primary" %>
-    <%= link_to "Skip",indiv5_individuals_path,:class=>"btn btn-primary" %> </div>
+  You done with this onbording sequence.
 
-<% end %>
+  <div style="float:right;padding: 30px;">
+      <%= link_to "Go to next step",indiv5_individuals_path,:class=>"btn btn-primary" %> </div>
+  </p>
+<%end%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731091810) do
+ActiveRecord::Schema.define(version: 20140801102553) do
 
   create_table "access_reputation_tips", force: true do |t|
     t.integer  "user_id"
@@ -421,14 +421,15 @@ ActiveRecord::Schema.define(version: 20140731091810) do
   end
 
   create_table "status_checks", force: true do |t|
-    t.boolean  "give_feedback", default: false
-    t.boolean  "give_rating",   default: false
-    t.boolean  "self_image",    default: false
-    t.boolean  "vote_on_tips",  default: false
-    t.boolean  "invite_others", default: false
+    t.boolean  "give_feedback",    default: false
+    t.boolean  "give_rating",      default: false
+    t.boolean  "self_image",       default: false
+    t.boolean  "vote_on_tips",     default: false
+    t.boolean  "invite_others",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "track_last_email"
   end
 
   create_table "subscriptions", force: true do |t|

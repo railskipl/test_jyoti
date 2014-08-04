@@ -1,50 +1,67 @@
+<% unless @status_check.give_feedback == true %>  
   <h5>See how it works - give tips to one person</h5>
 
   Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!
 
- <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv2') ,:method => 'post' do %>
+ <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv2') ,:method => 'post',:onsubmit => "return validate_email()" do %>
 
-  <div class="col-xs-4"style="padding: 55px;">
+  <div class="col-xs-4" style="padding: 55px;" >
 
-  <% unless user_signed_in? %>
-   <% else %>
-    <%= hidden_field_tag :user_id, current_user.id %>
-   <% end  %>
+     <% unless user_signed_in? %>
+     <% else %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+     <% end  %>
 
-    <div class="field">
-   <%= label_tag 'email',"Email of a person who would benefit from your tips:"%>
+      <div class="field">
+      <%= label_tag 'email',"Email of a person who would benefit from your tips:"%>
 
-    <%= text_field_tag :email ,nil, :placeholder => "Please enter email address", :class=>"form-control",:onblur =>"validateEmail(this);", :maxlength => 500 %>
+      <%= text_field_tag :email ,nil, :placeholder => "Please enter email address", :class=>"form-control",:onblur =>"validateEmail(this);", :maxlength => 500 %>
 
-    </div></br>
+      </div></br>
 
-    <strong>Please give this person at least 2 tips below.</strong>
+      <strong>Please give this person at least 2 tips below.</strong>
 
-          Please try to make sure they are appropriate and helpful. 
-  </br></br><div class="field">
-    <%= label_tag 'praise' %><br>
-    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
-    <%= text_area_tag :praise ,nil,:placeholder => "Say something praiseworthy here",:class=>"form-control",  :style => "height:80px !important;"%><br>
+            Please try to make sure they are appropriate and helpful. 
+        </br></br>
+      <div class="field">
+        <%= label_tag 'praise' %><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <%= text_area_tag :praise ,nil,:placeholder => "Say something praiseworthy here",:class=>"form-control",  :style => "height:80px !important;"%><br>
+      </div>
+      <div class="field">
+        <%= label_tag 'criticism' %><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <%= text_area_tag :criticism ,nil,:placeholder => "A criticism, phrased in a constructive way",:class=>"form-control" , :style => "height:80px !important;"  %><br>
+      </div>
+      <div class="field">
+        <%= label_tag 'General' %><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <%= text_area_tag :helpful_tips ,nil,:placeholder => "Another helpful tip",:class=>"form-control" , :style => "height:80px !important;" %><br>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag "Save & Continue",:class => "btn btn-primary" %>
+        <%= link_to "Go to next step",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary" %>       
+      </div>
   </div>
-  <div class="field">
-    <%= label_tag 'criticism' %><br>
-    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
-    <%= text_area_tag :criticism ,nil,:placeholder => "A criticism, phrased in a constructive way",:class=>"form-control" , :style => "height:80px !important;"  %><br>
-  </div>
-  <div class="field">
-    <%= label_tag 'General' %><br>
-    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
-    <%= text_area_tag :helpful_tips ,nil,:placeholder => "Another helpful tip",:class=>"form-control" , :style => "height:80px !important;" %><br>
-  </div>
+  <% end %>
+<%else%>
+  <p>Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!<br><br><br>
+  You done with this onbording sequence.</p>
 
   <div class="actions">
-    <%= submit_tag "Save & Continue",:class => "btn btn-primary" %> 
-    <%= link_to "Skip",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary", :style => "float:right;" %>       
-  </div>
-  
 
+   <%if @status_check.give_rating == false %>
+     <%= link_to "Go to next step",indiv4_individuals_path(:email => @status_check.track_last_email),:class=>"btn btn-primary" %>
+   <%elsif @status_check.self_image == false %>
+     <%= link_to "Go to next step",indiv5_individuals_path,:class=>"btn btn-primary" %>
+   <%elsif @status_check.vote_on_tips == false %>
+     <%= link_to "Go to next step",indiv3_individuals_path,:class=>"btn btn-primary" %>
+   <%else%>
+     <%= link_to "Go to next step",indiv5_individuals_path,:onclick => "return validate_step()",:class=>"btn btn-primary", :style => "float:right;" %>  
+   <%end%>     
   </div>
-<% end %>
+<%end%>
 
 <script type="text/javascript">
   function validate_step(){
@@ -53,18 +70,24 @@
     var b = document.getElementById('praise').value
     var c = document.getElementById('criticism').value
     var d = document.getElementById('helpful_tips').value
-    if( a != null && a != "" && b != null && b != "" && c != null && c != "" && d != null && d != ""   )
-    {
-     r = confirm("Are you sure you want to skip this step, all the changes will be not be saved.");
-     if (r == true )
+     
+      if( 
+          a != null && a != "" && b != null && b != "" && c != null && c != ""    || 
+          a != null && a != "" && b != null && b != "" && d != null && d != ""    || 
+          a != null && a != "" && c != null && c != "" && d != null && d != "" 
+        )
+
       {
-        return true;
-      }
-     else
-      {
-         return false;
-      }
-    }  
+       r = confirm("Are you sure you want to skip this step, all the changes will be not be saved.");
+       if (r == true )
+        {
+          return true;
+        }
+       else
+        {
+           return false;
+        }
+      } 
   };
 </script>
 
@@ -82,4 +105,17 @@
 
       };
 </script>
+
+<script type="text/javascript">
+  function validate_email(){
+     
+    var a = document.getElementById('email').value
+
+    if(a == null || a == "")
+    {
+      alert('Please enter email address');
+            return false;
+    }
+  };
+</script>>
 

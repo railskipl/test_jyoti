@@ -33,9 +33,35 @@ private
       StatusCheck.create(:user_id => current_user.id)
       edit_user_registration_path
     else
+
+    if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false
+     if @status_check.give_feedback == false
+         indiv2_individuals_path
+     elsif @status_check.give_rating == false
+         indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+         indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+         indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+         indiv6_individuals_path
+     else
+         my_mirror_paste_users_path
+     end
+    else
+      @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+         indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+         indiv8_individuals_path
+       else
+         my_mirror_paste_users_path
+       end
+    end
      # home_dashboard_path
-     my_mirror_paste_users_path
+     
    end
+
  	end
    
  end

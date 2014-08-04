@@ -83,7 +83,7 @@ class IndividualsController < ApplicationController
           @givefeedback.first.update_attributes(params[:access_reputation_tip])
         end
       end
-      @status_check.update_attributes(:give_feedback => true)
+      @status_check.update_attributes(:give_feedback => true, :track_last_email => params[:email])
       if params[:praise]
         @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
       end
@@ -110,7 +110,7 @@ class IndividualsController < ApplicationController
       #for onbording sequence quality check
       @quality_check = AccessReputationTip.where('user_id = ?', current_user.id)
       if @quality_check
-        a = 1
+        a = 5
         @quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
         @aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
       end
@@ -130,7 +130,7 @@ class IndividualsController < ApplicationController
             @reputation.first.update_attributes(params[:access_reputation_tip])
           end
         end
-    @status_check.update_attributes(:give_rating => true)
+    @status_check.update_attributes(:give_rating => true, :track_last_email => nil)
     @ratingother = Ratingother.create(:email => params[:email],:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
     redirect_to indiv5_individuals_path, notice: "Thank you for rating this person!" 
   end
@@ -145,7 +145,10 @@ class IndividualsController < ApplicationController
        @selfimage.first.update_attributes(params[:access_reputation_tip])
      end 
     @status_check.update_attributes(:self_image => true)
-    @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    @present = Rating.where('user_id = ?', current_user.id)[0] rescue nil
+    unless @present
+      @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    end
     redirect_to indiv3_individuals_path, notice: "Rating has been done." 
   end
 

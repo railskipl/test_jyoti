@@ -1,51 +1,65 @@
-<h4>Vote on tips</h4><br>
+<% unless @status_check.vote_on_tips == true%>
+	<h4>Vote on tips</h4><br>
 
-Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br>
+	Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br>
 
-<strong>Vote yes/no on all 5 of these real tips below, which haven't been seen by <br>the recipient yet.</strong><br><br>
+	<strong>Vote yes/no on all 5 of these real tips below, which haven't been seen by <br>the recipient yet.</strong><br><br>
 
-<i style="color: #666666;">Note: Tips are randomly chosen from outside your city and your circles. Each tip will be voted on<br> by up to 3 randomly chosen users, and a majority of the 3 will decide if the tip is going to be in<br> the "approved" category or "non-approved" category (both are viewable). Vote no only if you feel<br> that the tip is inappropriate or unhelpful. Try to be on the side of the majority opinion.</i><br><br><br>
+	<i style="color: #666666;">Note: Tips are randomly chosen from outside your city and your circles. Each tip will be voted on<br> by up to 3 randomly chosen users, and a majority of the 3 will decide if the tip is going to be in<br> the "approved" category or "non-approved" category (both are viewable). Vote no only if you feel<br> that the tip is inappropriate or unhelpful. Try to be on the side of the majority opinion.</i><br><br><br>
 
 
-	<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
+		<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
 
-	    <%unless @vote_on_tips.nil?%>
-            
-	      	<% @vote_on_tips.each_with_index do |vote_on_tip,index|%>
-	      	  <% i = 0%>
-	      	  <span style="color: #999999; font-size: 48px; white-space: nowrap;"><%= i = index + 1 %></span>
-	           <%if vote_on_tip.typee == "praise"%>
-		         <span>"<%= vote_on_tip.praise_comment rescue nil%>"</span><br/>
-		         <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
-			     <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
-		       <%elsif vote_on_tip.typee == "criticism"%>
-		          <span>"<%= vote_on_tip.criticism_comment rescue nil%>"</span><br/>
-		          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
-			      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
-		       <%else vote_on_tip.typee == "general"%>
-		          <span>"<%= vote_on_tip.general_comment rescue nil%>"</span><br/>
-		          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
-			      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
-		       <%end%>
-			   <%= hidden_field_tag :email, params[:email] rescue nil%>
-			   Does this sound appropriate and helpful?
-			    &nbsp;<%= radio_button_tag "response_#{i}", 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag "response_#{i}", 'false' %> &nbsp;No 
-						<br><br>
-	        <%end%>
-		    
-	      
-	      <br><br>
-			<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
-			<div style="float:right;padding: 30px;"><%= submit_tag "CONTINUE", :class => 'btn btn-primary'%>
-			<%= link_to "Skip",indiv6_individuals_path,:class=>"btn btn-primary" %> 
-			</div>
+		    <%unless @vote_on_tips.nil?%>
+	            
+		      	<% @vote_on_tips.each_with_index do |vote_on_tip,index|%>
+		      	  <% i = 0%>
+		      	  <span style="color: #999999; font-size: 48px; white-space: nowrap;"><%= i = index + 1 %></span>
+		           <%if vote_on_tip.typee == "praise"%>
+			         <span>"<%= vote_on_tip.praise_comment rescue nil%>"</span><br/>
+			         <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+				     <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+			       <%elsif vote_on_tip.typee == "criticism"%>
+			          <span>"<%= vote_on_tip.criticism_comment rescue nil%>"</span><br/>
+			          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+				      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+			       <%else vote_on_tip.typee == "general"%>
+			          <span>"<%= vote_on_tip.general_comment rescue nil%>"</span><br/>
+			          <%= hidden_field_tag "id_#{i}", vote_on_tip.id rescue nil%>
+				      <%= hidden_field_tag "typee_#{i}", vote_on_tip.typee rescue nil%>
+			       <%end%>
+				   <%= hidden_field_tag :email, params[:email] rescue nil%>
+				   Does this sound appropriate and helpful?
+				    &nbsp;<%= radio_button_tag "response_#{i}", 'true' %> &nbsp;Yes&nbsp;&nbsp;<%= radio_button_tag "response_#{i}", 'false' %> &nbsp;No 
+							<br><br>
+		        <%end%>
+			    
+		      
+		      <br><br>
+				<%#= submit_tag :Submit, :class => 'btn btn-primary'%>
+				<div style="float:right;padding: 30px;"><%= submit_tag "Save & Continue", :class => 'btn btn-primary'%>
+				<%= link_to "Go to next step",indiv6_individuals_path,:class=>"btn btn-primary" %> 
+				</div>
 
-            
-			<br><br>
-		<%else%>
-		  No Tips avaliable
+	            
+				<br><br>
+			<%else%>
+			  No Tips avaliable
+			<%end%>
 		<%end%>
-	<%end%>
+<%else%>
+ <p>
+ Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
+
+ You done with this onbording sequence.
+
+ <div style="float:right;padding: 30px;">
+	<%= link_to "Go to next step",indiv6_individuals_path,:class=>"btn btn-primary" %> 
+ </div>
+
+ </p>
+ 
+<%end%>
     
 <script type="text/javascript">
   function validateForm()
