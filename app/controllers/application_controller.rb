@@ -16,6 +16,7 @@ private
   
   def statuscheck
     @status_check = StatusCheck.where('user_id = ?', current_user.id)[0] rescue nil
+    @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
   end
 
  #Redirect to a specific page on successful sign in

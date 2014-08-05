@@ -12,7 +12,16 @@
 }
  </style>
 
- 
+ <style type="text/css">
+   .side {
+    float: right;
+    height: 132px;
+    margin-right: 196px;
+    margin-top: -302px;
+    padding: 18px;
+    width: 405px;
+}
+ </style>
 
 
 
@@ -127,20 +136,44 @@
  
    
 </div>
-<%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false%>
+<%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false %>
+  <div class="side">
+    <span>
+      <p style="font-size:19px;">
+        <% if  @status_check.give_feedback == false %>
+         Back to <%= link_to  "complete Process", indiv2_individuals_path %>
+        <%elsif @status_check.give_rating == false %>
+         Back to <%= link_to  "complete Process", indiv4_individuals_path(:email => @status_check.track_last_email) %>
+        <%elsif @status_check.self_image == false %>
+            Back to <%= link_to "complete Process", indiv5_individuals_path %>
+        <%elsif @status_check.vote_on_tips == false %>
+           Back to <%= link_to  "complete Process", indiv3_individuals_path %>
+        <%elsif @status_check.invite_others == false %>
+           Back to <%= link_to  "complete Process", indiv6_individuals_path %>
+        <%else%>
+           Back to <%= link_to  "complete Process", my_mirror_paste_users_path %>
+        <%end%>
+      </p>
+    </span>
+  </div>
 <%else%>
+ <%if @access_reputation_tip.got_feedback >= 6 %>
  <div class="sidebar">
   <span>
-     <p style="font-size:12px;">
+    <% if @access_reputation_tip.give_feedback <= 10 && @access_reputation_tip.vote_on_tips <= 25 && @access_reputation_tip.invite_other <= 3 %>
+    <p style="font-size:12px;">
      To access your Reputation Report and eligible Tips  your community participation needed now is:<br/>
 
      Give feedback:  10 tips<br/>
 
      Vote on tips:   25 votes on others people's tips <br/>
 
-    Invite Others:     3 invites (general or for feedback) <br/>
+     Invite Others:  3 invites (general or for feedback) <br/>
     </p>
+    <%end%>
+
   </span>
 
  </div>
+ <%end%>
 <%end%>
