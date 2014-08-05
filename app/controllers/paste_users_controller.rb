@@ -18,9 +18,9 @@ class PasteUsersController < ApplicationController
   # GET /paste_users/new
   def new
     @paste_user = PasteUser.new
-    1.times do
-      @paste_user.user_invitations.build
-    end
+    # 1.times do
+    #   @paste_user.user_invitations.build
+    # end
   end
 
   # GET /paste_users/1/edit
@@ -31,34 +31,34 @@ class PasteUsersController < ApplicationController
   # POST /paste_users
   # POST /paste_users.json
   # def create
-  #   @paste_user = PasteUser.new
-  #   paste_users = paste_user_params
-  #   @paste_users = paste_users[:email].split(",")
-  #   @paste_users.delete_if {|i| User.find_by_email(i).present? }
+  # @paste_user = PasteUser.new
+  # paste_users = paste_user_params
+  # @paste_users = paste_users[:email].split(",")
+  # @paste_users.delete_if {|i| User.find_by_email(i).present? }
 
-  #      # @emails_txt = @paste_user.email
-  #      # @paste_user = @emails_txt.split(/\s*,\s*/)
+  # # @emails_txt = @paste_user.email
+  # # @paste_user = @emails_txt.split(/\s*,\s*/)
   
-  #     # email = @paste_users.join(',')
-  #      # raise paste_users.inspect
-  #   @paste_users.each do |email|
-  #    random_password = ('0'..'z').to_a.shuffle.first(8).join
-  #    @user = User.new(:email => email, :password => random_password,
-  #                 :password_confirmation => random_password)
+  # # email = @paste_users.join(',')
+  # # raise paste_users.inspect
+  # @paste_users.each do |email|
+  # random_password = ('0'..'z').to_a.shuffle.first(8).join
+  # @user = User.new(:email => email, :password => random_password,
+  # :password_confirmation => random_password)
      
-  #    p = PasteUser.new(:user_id => current_user.id, :email => email)
-  #    p.save
-  #     if @user.save
-  #       Mailer.paste_user(p,@signup_url, random_password).deliver
-  #       # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-  #       # format.json { render :show, status: :created, location: @paste_user }
-  #      else
-  #       # random_password = ('0'..'z').to_a.shuffle.first(8).join
-  #       # format.html { render :new }
-  #       # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  #     redirect_to :back
+  # p = PasteUser.new(:user_id => current_user.id, :email => email)
+  # p.save
+  # if @user.save
+  # Mailer.paste_user(p,@signup_url, random_password).deliver
+  # # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
+  # # format.json { render :show, status: :created, location: @paste_user }
+  # else
+  # # random_password = ('0'..'z').to_a.shuffle.first(8).join
+  # # format.html { render :new }
+  # # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+  # end
+  # end
+  # redirect_to :back
      
   # end
 
@@ -66,36 +66,46 @@ class PasteUsersController < ApplicationController
 
   def create
     @paste_user = PasteUser.new(paste_user_params)
+    paste_users = paste_user_params
+    @paste_users = paste_users[:email].split(",")
+    @paste_users.delete_if {|i| User.find_by_email(i).present? }
+
+    
+
     @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
-     respond_to do |format|
-      if @paste_user.save
+     @paste_users.each do |email|
+     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email)
+     p = PasteUser.new(:user_id => current_user.id, :email => email)
+     p.save
+
+      if @user_invitation.save
+        
+
+        FeedbackMailer.relationship_feedback(@paste_user).deliver
+        
         @paste_user.user_invitations.each do |ui|
           c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
           if c.email.nil?
             c.email = ui.email
             c.user_id = current_user.id
             c.save
-
+          
+           
             if @inviteuser
               a = 1
-              @inviteuser.first.invite_other = @inviteuser.first.invite_other + a 
+              @inviteuser.first.invite_other = @inviteuser.first.invite_other + a
               @inviteuser.first.update_attributes(params[:access_reputation_tip])
             end
-          end
-          # @user = current_user.first_name
-          # @user1 = current_user.last_name
-          # Mailer.paste_user(ui,@signup_url,@user).deliver
-          FeedbackMailer.relationship_feedback(ui,@user,@user1).deliver
+          end          
         end
         if @inviteuser.first.invite_other >= 3
           @status_check.invite_others = true
           @status_check.update_attributes(params[:status_check])
         end
-        format.html { redirect_to  new_paste_user_path, notice: 'Invitation was successfully sent.' }
-        format.json { render :show, status: :created, location: @paste_user }
-      else
-        format.html { render :new }
-        format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+         redirect_to new_paste_user_path,:notice => 'Invitation was successfully sent.'  and return 
+        # redirect_to new_paste_user_path, :notice => 'Invitation was successfully sent.' 
+       else
+        render :new
       end
     end
   end
@@ -106,16 +116,16 @@ class PasteUsersController < ApplicationController
 
 
   # def email_list
-  #   departments.collect { |d| d.department_name }.join(', ')
+  # departments.collect { |d| d.department_name }.join(', ')
   # end
 
   # def email_list=(email)
-  #   if id && text
-  #     emails.destroy_all
-  #     email.split(',').each do |d|
-  #       paste_user.create(department_name: d.strip.capitalize)
-  #     end
-  #   end
+  # if id && text
+  # emails.destroy_all
+  # email.split(',').each do |d|
+  # paste_user.create(department_name: d.strip.capitalize)
+  # end
+  # end
   # end
 
  
@@ -126,7 +136,7 @@ class PasteUsersController < ApplicationController
   def update
     respond_to do |format|
       if @paste_user.update(paste_user_params)
-        format.html { redirect_to  new_paste_user, notice: 'Paste user was successfully updated.' }
+        format.html { redirect_to new_paste_user, notice: 'Paste user was successfully updated.' }
         format.json { render :show, status: :ok, location: @paste_user }
       else
         format.html { render :edit }
@@ -146,7 +156,7 @@ class PasteUsersController < ApplicationController
   end
 
   def select_contacts
-    @contacts = Contact.where("user_id = ? " ,current_user.id)    
+    @contacts = Contact.where("user_id = ? " ,current_user.id)
   end
 
   def import_csv
@@ -158,17 +168,17 @@ class PasteUsersController < ApplicationController
     if users.nil?
     # @paste_users.each do |email|
      
-    #  p = PasteUser.new(:user_id => current_user.id, :email => email)
+    # p = PasteUser.new(:user_id => current_user.id, :email => email)
     
-    #   if p.save
-    #     Mailer.paste_user(p,@signup_url).deliver
-    #     # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-    #     # format.json { render :show, status: :created, location: @paste_user }
-    #    else
-    #     # random_password = ('0'..'z').to_a.shuffle.first(8).join
-    #     # format.html { render :new }
-    #     # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
-    #   end
+    # if p.save
+    # Mailer.paste_user(p,@signup_url).deliver
+    # # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
+    # # format.json { render :show, status: :created, location: @paste_user }
+    # else
+    # # random_password = ('0'..'z').to_a.shuffle.first(8).join
+    # # format.html { render :new }
+    # # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
+    # end
     # end
     redirect_to select_contacts_paste_users_path, :notice => "Please select contacts"
     else
@@ -187,17 +197,17 @@ class PasteUsersController < ApplicationController
       puts users
       paste_user ||= []
       users.each do |email|
-        u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email, 
+        u = UserInvitation.create(:paste_user_id => paste_user.id, :user_id => current_user.id,:email => email,
           :invite_for_feedback => feedback,:invite_for_curiosity => invite )
         if u.id.nil?
  
         else
-          #for onbording sequence invite users 
+          #for onbording sequence invite users
           @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id)
 
           if @inviteuser
             a = 1
-            @inviteuser.first.invite_other = @inviteuser.first.invite_other + a 
+            @inviteuser.first.invite_other = @inviteuser.first.invite_other + a
             @inviteuser.first.update_attributes(params[:access_reputation_tip])
           end
 
@@ -207,7 +217,7 @@ class PasteUsersController < ApplicationController
           if u.invite_for_feedback == true && u.invite_for_curiosity == false
             Mailer.paste_user1(u,@user,@user1).deliver
             flash[:notice] = "Invitation send successfully"
-          elsif u.invite_for_feedback == true &&  u.invite_for_curiosity == true 
+          elsif u.invite_for_feedback == true && u.invite_for_curiosity == true
             Mailer.paste_user(u,@user,@user1).deliver
             flash[:notice] = "Invitation send successfully"
             #redirect_to select_contacts_paste_users_path, :notice => "Invitation send successfully"
@@ -215,7 +225,7 @@ class PasteUsersController < ApplicationController
          
           #redirect_to select_contacts_paste_users_url, :notice => "Invitation send successfully"
         end
-      end    
+      end
     end
   end
 
@@ -253,7 +263,7 @@ class PasteUsersController < ApplicationController
       if user_signed_in?
         else
         redirect_to root_path, :alert => "Unauthorised Access"
-      end     
+      end
     end
 
     
