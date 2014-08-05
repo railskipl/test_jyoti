@@ -61,7 +61,7 @@ def create
 
     if @ratingother.save
       flash[:notice] = "Thank you for rating this person!"
-      redirect_to :root
+      redirect_to encourage_signing_up_ratingothers_path
      else
       render 'new'
      end 

@@ -1,26 +1,27 @@
 <h5>Emails of those you'd like to directly invite to join</h5>
 
-<%= form_for(@paste_user) do |f| %>
+
+  <%= form_for(@paste_user) do |f| %>
   <% if @paste_user.errors.any? %>
     <div id="error_explanation">
-   
+      <h2><%= pluralize(@paste_user.errors.count, "error") %> prohibited this paste_user from being saved:</h2>
 
-      
+      <ul>
       <% @paste_user.errors.full_messages.each do |message| %>
-        <p class="alert-box"><%= message %></p>
+        <li><%= message %></li>
       <% end %>
+      </ul>
     </div>
   <% end %>
 
-  <%= f.hidden_field :user_id,:value => current_user.id %>
+ <%= f.hidden_field :user_id,:value => current_user.id %>
 
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  
 
-
-  <%= f.fields_for :user_invitations do |builder| %>
-  <%= render  "user_invitation_fields", :f => builder %>
-  <% end %>
-
-  <div ><%= link_to_add_fields "Add User Invitation",f,:user_invitations%></div>
 
 
   <div class="actions">
