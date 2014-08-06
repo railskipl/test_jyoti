@@ -173,7 +173,7 @@ class IndividualsController < ApplicationController
     unless @present
       @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
     end
-    redirect_to indiv3_individuals_path, notice: "Rating has been done." 
+    redirect_to indiv3_individuals_path, notice: "Your self-ratings were successful." 
   end
 
 
@@ -199,9 +199,9 @@ class IndividualsController < ApplicationController
     @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
      
      @paste_users.each do |email|
-     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email)
-     p = PasteUser.new(:user_id => current_user.id, :email => email)
+     p = PasteUser.new(:user_id => current_user.id)
      p.save
+     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email, :paste_user_id => p.id)
      
     @contact = Contact.create(:user_id => current_user.id, :email => email)
       

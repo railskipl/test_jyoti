@@ -69,10 +69,7 @@ class PasteUsersController < ApplicationController
 
     @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil   
 
-      if @paste_user.save
-        
-
-        
+      if @paste_user.save        
         @paste_user.user_invitations.each do |ui|
           c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
           if c.email.nil?
@@ -93,7 +90,7 @@ class PasteUsersController < ApplicationController
           @status_check.invite_others = true
           @status_check.update_attributes(params[:status_check])
         end
-         redirect_to new_paste_user_path,:notice => 'Invitation was successfully sent.'  and return 
+         redirect_to new_paste_user_path,:notice => 'Invitation was successfully sent.'  
         # redirect_to new_paste_user_path, :notice => 'Invitation was successfully sent.' 
        else
         render :new
