@@ -5,7 +5,7 @@
 
 	<strong>Vote yes/no on all 5 of these real tips below, which haven't been seen by <br>the recipient yet.</strong><br><br>
 
-	<i style="color: #666666;">Note: Tips are randomly chosen from outside your city and your circles. Each tip will be voted on<br> by up to 3 randomly chosen users, and a majority of the 3 will decide if the tip is going to be in<br> the "approved" category or "non-approved" category (both are viewable). Vote no only if you feel<br> that the tip is inappropriate or unhelpful. Try to be on the side of the majority opinion.</i><br><br><br>
+	<i style="color: #666666;">Note: Tips are randomly chosen from outside your city and your circles. Each tip will be voted on<br> by up to 3 randomly chosen users, and a majority of the 3 will decide if the tip is going to be in<br> the "approved" category or "sensitive" category (both are viewable). Vote no only if you feel<br> that the tip is inappropriate or unhelpful. Try to be on the side of the majority opinion.</i><br><br><br>
 
 
 		<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv3'), :method => 'post',:onsubmit => "return validateForm()"  do |f| %>
@@ -85,7 +85,7 @@
 		{
          if((a == false && A == false) || (b == false && B == false) || (c == false && C == false) || (d == false && D == false) || (e == false && E == false))
 			  {
-			  	alert("Please check all vote on tips.");
+			  	alert("Please vote on all tips shown to complete this step.");
 			    return false;
 			  }
 			else

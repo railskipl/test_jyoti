@@ -5,7 +5,7 @@
 
  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv2') ,:method => 'post',:onsubmit => "return validate_email()" do %>
 
-  <div class="col-xs-4" style="padding: 55px;" >
+  <div class="col-xs-4" style="padding: 55px;">
 
      <% unless user_signed_in? %>
      <% else %>
@@ -25,17 +25,17 @@
         </br></br>
       <div class="field">
         <%= label_tag 'praise' %><br>
-        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is less than 30</label></i><br>
         <%= text_area_tag :praise ,nil,:placeholder => "Say something praiseworthy here",:class=>"form-control",  :style => "height:80px !important;"%><br>
       </div>
       <div class="field">
         <%= label_tag 'criticism' %><br>
-        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is less than 30</label></i><br>
         <%= text_area_tag :criticism ,nil,:placeholder => "A criticism, phrased in a constructive way",:class=>"form-control" , :style => "height:80px !important;"  %><br>
       </div>
       <div class="field">
         <%= label_tag 'General' %><br>
-        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+        <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is less than 30</label></i><br>
         <%= text_area_tag :helpful_tips ,nil,:placeholder => "Another helpful tip",:class=>"form-control" , :style => "height:80px !important;" %><br>
       </div>
 
@@ -78,7 +78,7 @@
         )
 
       {
-       r = confirm("Are you sure you want to skip this step, all the changes will be not be saved.");
+       r = confirm("If you do not save and continue, what you have typed will not be saved. Are you sure you want to skip this step?");
        if (r == true )
         {
           return true;
@@ -117,5 +117,5 @@
             return false;
     }
   };
-</script>>
+</script>
 
