@@ -1,5 +1,5 @@
 class Ratingother < ActiveRecord::Base
- attr_accessible :user_id,:email,:trustworthy, :kind_helpful, :potential,:perform_well,:presentable,:emotianally_mature,:friendly_social,:rate_count,:anonymous_user
+ attr_accessible :user_id,:email,:trustworthy, :kind_helpful, :potential,:perform_well,:presentable,:emotianally_mature,:friendly_social,:rate_count,:anonymous_user, :overall_impresions
  belongs_to  :user
  belongs_to :advice_contact
  validates_presence_of :email
