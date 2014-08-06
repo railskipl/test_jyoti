@@ -226,7 +226,7 @@ class TipsController < ApplicationController
 	   	  	          :praise_id => params[:criticism_id]  , :response_user_id => current_user.id, 
 	   	  	          :provider_user_id => @criticism.first.provider_user_id)
 	   else params[:general_id]
-	   	  @criticism = Criticism.where('id = ?', params[:general_id])
+	   	  @general = General.where('id = ?', params[:general_id])
 	   	  @response = Response.create(:response_comment => params[:response_comment], 
 	   	  	          :praise_id => params[:general_id]  , :response_user_id => current_user.id, 
 	   	  	          :provider_user_id => @general.first.provider_user_id)
