@@ -1,0 +1,20 @@
+<h5>Emails of those you'd like to directly invite to join</h5>
+
+<%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv9') ,:method => 'post',:onsubmit => "return validate_email()" do %>
+  <%#= form_for(@paste_user) do |f| %>
+ 
+
+ <%= hidden_field_tag :user_id,:value => current_user.id %>
+
+  <div class="field">
+    <%= label_tag :email %><br>
+    <%= text_field_tag :email %>
+  </div>
+  
+
+
+
+  <div class="actions">
+    <%= submit_tag "Send Invite" ,:class => "btn btn-primary"%>
+  </div>
+<% end %>

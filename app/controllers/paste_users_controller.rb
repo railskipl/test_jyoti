@@ -18,9 +18,9 @@ class PasteUsersController < ApplicationController
   # GET /paste_users/new
   def new
     @paste_user = PasteUser.new
-    # 1.times do
-    #   @paste_user.user_invitations.build
-    # end
+     1.times do
+       @paste_user.user_invitations.build
+     end
   end
 
   # GET /paste_users/1/edit
@@ -65,23 +65,13 @@ class PasteUsersController < ApplicationController
 
 
   def create
-    @paste_user = PasteUser.new(paste_user_params)
-    paste_users = paste_user_params
-    @paste_users = paste_users[:email].split(",")
-    @paste_users.delete_if {|i| User.find_by_email(i).present? }
+    @paste_user = PasteUser.new(paste_user_params)   
 
-    
+    @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil   
 
-    @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
-     @paste_users.each do |email|
-     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email)
-     p = PasteUser.new(:user_id => current_user.id, :email => email)
-     p.save
-
-      if @user_invitation.save
+      if @paste_user.save
         
 
-        FeedbackMailer.relationship_feedback(@paste_user).deliver
         
         @paste_user.user_invitations.each do |ui|
           c = Contact.where("email like ? and user_id = ?",ui.email,current_user.id).first_or_create
@@ -96,7 +86,8 @@ class PasteUsersController < ApplicationController
               @inviteuser.first.invite_other = @inviteuser.first.invite_other + a
               @inviteuser.first.update_attributes(params[:access_reputation_tip])
             end
-          end          
+          end 
+          FeedbackMailer.relationship_feedback(ui).deliver         
         end
         if @inviteuser.first.invite_other >= 3
           @status_check.invite_others = true
@@ -108,7 +99,6 @@ class PasteUsersController < ApplicationController
         render :new
       end
     end
-  end
 
 
 

@@ -153,6 +153,48 @@ class IndividualsController < ApplicationController
   end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def submit_indiv9
+    @paste_user = params[:email]
+    @paste_users = params[:email].split(",")
+    # raise @paste_users.inspect
+
+    @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
+     
+     @paste_users.each do |email|
+     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email)
+     p = PasteUser.new(:user_id => current_user.id, :email => email)
+     p.save
+     
+    @contact = Contact.create(:user_id => current_user.id, :email => email)
+      
+
+      if @user_invitation.save       
+
+        FeedbackMailer.relationship_feedback_invite(@paste_user).deliver     
+        
+         redirect_to indiv9_individuals_path,:notice => 'Invitation was successfully sent.'  and return 
+        # redirect_to new_paste_user_path, :notice => 'Invitation was successfully sent.' 
+       else
+        redirect_to indiv9_individuals_path and return
+      end
+    end
+  end
+
+
   def indiv3
     @praise = Praise.where('provider_user_id != ?', current_user.id)
     @praises = @praise.where('email != ?', current_user.email)
@@ -215,6 +257,14 @@ class IndividualsController < ApplicationController
 
   def indiv8
     
+  end
+
+  def indiv9
+    @paste_user = PasteUser.new
+
+    1.times do
+       @paste_user.user_invitations.build
+     end
   end
 end
 
