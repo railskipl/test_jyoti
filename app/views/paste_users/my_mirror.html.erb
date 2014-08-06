@@ -1,6 +1,6 @@
 <%= javascript_include_tag "jquery.js"%>
  <style type="text/css">
-   .sidebar {
+  .sidebar {
     border: 1px solid #ddd;
     box-sizing: border-box;
     float: right;
@@ -9,18 +9,27 @@
     margin-top: -173px;
     padding: 18px;
     width: 405px;
-}
- </style>
-
- <style type="text/css">
-   .side {
+  }
+ 
+  .side {
     float: right;
     height: 132px;
     margin-right: 196px;
     margin-top: -302px;
     padding: 18px;
     width: 405px;
-}
+  }
+
+  .side_box {
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    float: right;
+    height: 183px;
+    margin-right: 165px;
+    margin-top: -198px;
+    padding: 14px;
+    width: 464px;
+  }
  </style>
 
 
@@ -136,6 +145,7 @@
  
    
 </div>
+<%#raise (5 >= 5).inspect%>
 <%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false %>
   <div class="side">
     <span>
@@ -156,24 +166,52 @@
       </p>
     </span>
   </div>
-<%else%>
- <%if @access_reputation_tip.got_feedback >= 6 %>
- <div class="sidebar">
+<%elsif @status_check.give_feedback == true && @status_check.give_rating == true && @status_check.self_image == true && @status_check.vote_on_tips == true && @status_check.invite_others == true &&  @access_reputation_tip.got_feedback < 5 && @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false%>
+<div class="side_box">
   <span>
-    <% if @access_reputation_tip.give_feedback <= 10 && @access_reputation_tip.vote_on_tips <= 25 && @access_reputation_tip.invite_other <= 3 %>
-    <p style="font-size:12px;">
-     To access your Reputation Report and eligible Tips  your community participation needed now is:<br/>
-
-     Give feedback:  10 tips<br/>
-
-     Vote on tips:   25 votes on others people's tips <br/>
-
-     Invite Others:  3 invites (general or for feedback) <br/>
-    </p>
-    <%end%>
-
-  </span>
+ <p style="font-size:12px;">"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."</p>
+ </span>
 
  </div>
- <%end%>
+<%else%>
+
+  <%unless @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false%>
+    <% if @access_reputation_tip.give_feedback < 10 && @access_reputation_tip.vote_on_tips < 25 && @access_reputation_tip.invite_other < 3 %>
+    <div class="sidebar">
+      <span>
+      <p style="font-size:12px;">
+        To access your Reputation Report and eligible Tips  your community participation needed now is:<br/>
+
+        Give feedback:  10 tips<br/>
+
+        Vote on tips:   25 votes on others people's tips <br/>
+
+        Invite Others:  3 invites (general or for feedback) <br/>
+      </p>
+      </span>
+    </div>
+    <%elsif @access_reputation_tip.give_feedback >= 10 && @access_reputation_tip.vote_on_tips >= 25 && @access_reputation_tip.invite_other >= 3 && @access_reputation_tip.got_feedback < 5%>
+      <div class="side_box">
+        <span>
+        <p style="font-size:12px;">"None. Your participation level meets the minimum.However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
+        </p>
+        </span>
+      </div>
+    <%elsif @access_reputation_tip.give_feedback >= 10 && @access_reputation_tip.vote_on_tips >= 25 && @access_reputation_tip.invite_other >= 3 && @access_reputation_tip.got_feedback >= 5 %>
+      <div class="side_box">
+        <span>
+        <p style="font-size:12px;">
+
+        Recommended for you today:<br/>
+
+        Give feedback:  3 tips<br/>
+
+        Vote on tips:   5 votes on others people's tips <br/>
+
+        Invite Others:  1 invites (general or for feedback) <br/>
+        </p>
+        </span>
+      </div>
+    <%end%>
+  <%end%>
 <%end%>
