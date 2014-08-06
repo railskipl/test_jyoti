@@ -1,7 +1,7 @@
 <% unless @status_check.give_feedback == true %>  
   <h5>See how it works - give tips to one person</h5>
 
-  Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works!
+  Before you view your Reputation Report and tips we will take you through a few<br> hands-on steps to make sure there is enough community participation and so you get<br> a feel for how this all works.
 
  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv2') ,:method => 'post',:onsubmit => "return validate_email()" do %>
 
