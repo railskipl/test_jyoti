@@ -31,12 +31,12 @@ class FeedbackMailer < ActionMailer::Base
 # end
 
 
-def relationship_feedback(ui)
-    @ui = ui
+def relationship_feedback(relationship)
+    @relationship = relationship
     # @current_user = user
     # @current_user1 = user1
     subject = "Please send me Feedback"
-    mail(:subject => 'Relationship Feedback', :to => ui.email)
+    mail(:subject => 'Relationship Feedback', :to => relationship.email)
   end
 
 

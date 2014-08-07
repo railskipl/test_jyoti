@@ -68,7 +68,7 @@ class RelationshipsController < ApplicationController
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
           @user = current_user.first_name
           @user1 = current_user.last_name
-          FeedbackMailer.relationship_feedback(@relationship,@user,@user1).deliver
+          FeedbackMailer.relationship_feedback(@relationship).deliver
         else
           redirect_to  new_relationship_path
         end
