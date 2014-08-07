@@ -51,7 +51,31 @@ class IndividualsController < ApplicationController
   end
 
   def indiv2
-    
+    if @status_check.give_feedback == true
+     if @status_check.give_feedback == false
+      redirect_to   indiv2_individuals_path
+     elsif @status_check.give_rating == false
+      redirect_to   indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+      redirect_to   indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+      redirect_to   indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+      redirect_to   indiv6_individuals_path
+     else
+       @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+        redirect_to indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+        redirect_to indiv8_individuals_path
+       else
+        redirect_to  my_mirror_paste_users_path
+       end
+     end
+
+    else
+     
+    end
   end
 
   def submit_indiv2
@@ -83,7 +107,7 @@ class IndividualsController < ApplicationController
           @givefeedback.first.update_attributes(params[:access_reputation_tip])
         end
       end
-
+      @status_check.update_attributes(:give_feedback => true, :track_last_email => params[:email])
       if params[:praise]
         @praise = Praise.create(:email => params[:email], :praise_comment => params[:praise], :provider_user_id => params[:user_id],:typee => "praise")
       end
@@ -96,25 +120,25 @@ class IndividualsController < ApplicationController
         @general = General.create(:email => params[:email], :general_comment => params[:helpful_tips],:provider_user_id => params[:user_id], :typee => "general")
       end
 
-      redirect_to indiv3_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
+      redirect_to indiv4_individuals_path(:email => params[:email]), notice: "Tips has been provided to this particular user." 
     else
       redirect_to :back
-      flash[:notice] = 'Please Give atleast Two tips'
+      flash[:notice] = 'Please give at least two out of three tips to complete this step. The quality of your tips matter too.'
     end
   end
 
 
   def submit_indiv3
-    #raise params.inspect
     rating_individuals
+      @status_check.update_attributes(:vote_on_tips => true)
       #for onbording sequence quality check
       @quality_check = AccessReputationTip.where('user_id = ?', current_user.id)
       if @quality_check
-        a = 1
+        a = 5
         @quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
         @aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
       end
-    redirect_to indiv4_individuals_path(:email => params[:email], :user_id => current_user.id)
+    redirect_to indiv6_individuals_path
        
   end
 
@@ -130,8 +154,9 @@ class IndividualsController < ApplicationController
             @reputation.first.update_attributes(params[:access_reputation_tip])
           end
         end
+    @status_check.update_attributes(:give_rating => true, :track_last_email => nil)
     @ratingother = Ratingother.create(:email => params[:email],:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv5_individuals_path, notice: "Rating has been done." 
+    redirect_to indiv5_individuals_path, notice: "Thank you for rating this person!" 
   end
 
 
@@ -143,65 +168,208 @@ class IndividualsController < ApplicationController
        @selfimage.first.give_selfimage = @selfimage.first.give_selfimage + a
        @selfimage.first.update_attributes(params[:access_reputation_tip])
      end 
-    @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    redirect_to indiv6_individuals_path, notice: "Rating has been done." 
+    @status_check.update_attributes(:self_image => true)
+    @present = Rating.where('user_id = ?', current_user.id)[0] rescue nil
+    unless @present
+      @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    end
+    redirect_to indiv3_individuals_path, notice: "Your self-ratings were successful." 
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def submit_indiv9
+    @paste_user = params[:email]
+    @paste_users = params[:email].split(",")
+    # raise @paste_users.inspect
+
+    @inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
+     
+     @paste_users.each do |email|
+     p = PasteUser.new(:user_id => current_user.id)
+     p.save
+     @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email, :paste_user_id => p.id)
+     
+    @contact = Contact.create(:user_id => current_user.id, :email => email)
+      
+
+      if @user_invitation.save       
+
+        FeedbackMailer.relationship_feedback_invite(@paste_user).deliver     
+        
+         redirect_to indiv9_individuals_path,:notice => 'Invitation was successfully sent.'  and return 
+        # redirect_to new_paste_user_path, :notice => 'Invitation was successfully sent.' 
+       else
+        redirect_to indiv9_individuals_path and return
+      end
+    end
   end
 
 
   def indiv3
-    @praise = Praise.where('provider_user_id != ?', current_user.id)
-    @praises = @praise.where('email != ?', current_user.email)
+    if @status_check.vote_on_tips == true
+     if @status_check.give_feedback == false
+      redirect_to   indiv2_individuals_path
+     elsif @status_check.give_rating == false
+      redirect_to   indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+      redirect_to   indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+      redirect_to   indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+      redirect_to   indiv6_individuals_path
+     else
+       @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+        redirect_to indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+        redirect_to indiv8_individuals_path
+       else
+        redirect_to  my_mirror_paste_users_path
+       end
+     end
 
-    @criticism = Criticism.where('provider_user_id != ?', current_user.id)
-    @criticisms = @criticism.where('email != ?', current_user.email)
+    else
+      @praise = Praise.where('provider_user_id != ?', current_user.id)
+      @praises = @praise.where('email != ?', current_user.email)
 
-    @general = General.where('provider_user_id != ?', current_user.id)
-    @generals = @general.where('email != ?', current_user.email)
-    
-    #high priority 
-    @second_priority1 = @praises.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
-    @second_priority2 = @criticisms.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ? ', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
-    @second_priority3 = @generals.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
-    b = []
-    @second_priority1.each do |praise|
-      unless praise.nil? 
-        b << praise
-      end
-    end
+      @criticism = Criticism.where('provider_user_id != ?', current_user.id)
+      @criticisms = @criticism.where('email != ?', current_user.email)
 
-    @second_priority2.each do |criticism|
-      unless criticism.nil? 
-        b << criticism
+      @general = General.where('provider_user_id != ?', current_user.id)
+      @generals = @general.where('email != ?', current_user.email)
+      
+      #high priority 
+      @second_priority1 = @praises.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+      @second_priority2 = @criticisms.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ? ', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+      @second_priority3 = @generals.where('tip_accept >= ? or tip_reject >= ? and tip_viewed <= ?', 0, 0, 2 ).order("RANDOM()").limit(10) rescue nil
+      b = []
+      @second_priority1.each do |praise|
+        unless praise.nil? 
+          b << praise
+        end
       end
-    end
 
-    @second_priority3.each do |general|
-      unless general.nil? 
-        b << general
+      @second_priority2.each do |criticism|
+        unless criticism.nil? 
+          b << criticism
+        end
       end
-    end
-    a = []
-    b.each do |random|
-      unless a.count >= 5 
-        a << random
+
+      @second_priority3.each do |general|
+        unless general.nil? 
+          b << general
+        end
       end
+      a = []
+      b.each do |random|
+        unless a.count >= 5 
+          a << random
+        end
+      end
+      @vote_on_tips = a.shuffle
     end
-    @vote_on_tips = a.shuffle
   end
 
 
 
 
   def indiv4
-    
+    if @status_check.give_rating == true
+     if @status_check.give_feedback == false
+      redirect_to   indiv2_individuals_path
+     elsif @status_check.give_rating == false
+      redirect_to   indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+      redirect_to   indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+      redirect_to   indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+      redirect_to   indiv6_individuals_path
+     else
+       @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+        redirect_to indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+        redirect_to indiv8_individuals_path
+       else
+        redirect_to  my_mirror_paste_users_path
+       end
+     end
+
+    else
+     
+    end
   end
 
   def indiv5
-    @ratings = Rating.new    
+      
+    if @status_check.self_image == true
+     if @status_check.give_feedback == false
+      redirect_to   indiv2_individuals_path
+     elsif @status_check.give_rating == false
+      redirect_to   indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+      redirect_to   indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+      redirect_to  indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+      redirect_to   indiv6_individuals_path
+     else
+       @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+        redirect_to indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+        redirect_to indiv8_individuals_path
+       else
+        redirect_to  my_mirror_paste_users_path
+       end
+     end
+
+    else
+      @ratings = Rating.new
+    end  
   end
 
   def indiv6
-    #@tips = Tip.all
+    if @status_check.invite_others == true
+     if @status_check.give_feedback == false
+      redirect_to   indiv2_individuals_path
+     elsif @status_check.give_rating == false
+      redirect_to   indiv4_individuals_path(:email => @status_check.track_last_email)
+     elsif @status_check.self_image == false
+      redirect_to   indiv5_individuals_path
+     elsif @status_check.vote_on_tips == false
+      redirect_to   indiv3_individuals_path
+     elsif @status_check.invite_others == false 
+      redirect_to   indiv6_individuals_path
+     else
+       @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
+       if @access_reputation_tip.got_feedback <= 5
+        redirect_to indiv7_individuals_path
+       elsif @access_reputation_tip.got_feedback >= 6
+        redirect_to indiv8_individuals_path
+       else
+        redirect_to  my_mirror_paste_users_path
+       end
+     end
+
+    else
+     
+    end
   end
 
   def indiv7
@@ -210,6 +378,14 @@ class IndividualsController < ApplicationController
 
   def indiv8
     
+  end
+
+  def indiv9
+    @paste_user = PasteUser.new
+
+    1.times do
+       @paste_user.user_invitations.build
+     end
   end
 end
 

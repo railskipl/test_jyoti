@@ -12,5 +12,5 @@ ActionMailer::Base.smtp_settings = {
 if Rails.env == "development"
 	ActionMailer::Base.default_url_options[:host] = "localhost:3000"
 else
-	ActionMailer::Base.default_url_options[:host] = "http://m360.herokuapp.com"
+	ActionMailer::Base.default_url_options[:host] = "http://www.mirror360.com/"
 end

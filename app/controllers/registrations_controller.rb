@@ -36,8 +36,7 @@ def update
       if current_user.sign_in_count > 1
         redirect_to root_path 
       else
-      redirect_to home_fork_users_path 
-        
+      redirect_to home_fork_users_path        
       end
       # redirect_to after_update_path_for(resource)
     else

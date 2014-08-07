@@ -107,6 +107,7 @@ Rails.application.routes.draw do
       get :indiv6
       get :indiv7
       get :indiv8
+      get :indiv9
     }
   end
 
@@ -172,6 +173,7 @@ end
   post '/indiv3' => "individuals#submit_indiv3"
   post '/indiv4' => "individuals#submit_indiv4"
   post '/indiv5' => "individuals#submit_indiv5"
+  post '/indiv9' => "individuals#submit_indiv9"
 
   resources :pages do
     collection {

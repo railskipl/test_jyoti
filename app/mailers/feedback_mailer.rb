@@ -16,11 +16,37 @@ class FeedbackMailer < ActionMailer::Base
     mail(:subject => 'Feedback', :to => feedback.email) 
   end 
 
-  def relationship_feedback(relationship,user,user1)
-    @relationship = relationship
-    @current_user = user
-    @current_user1 = user1
+#   def relationship_feedback(paste_user)
+#     @paste_user = paste_user
+#     @p = @paste_user.email
+#     @recipients = @p
+#     # raise @recipients.inspect
+#     # @current_user = user
+#     # @current_user1 = user1
+#     @recipients.each do |recipient|
+#     subject = "Please send me Feedback"
+#     mail(:subject => 'Relationship Feedback', :to => recipient.email) 
+#   end
+#   end 
+# end
+
+
+def relationship_feedback(ui)
+    @ui = ui
+    # @current_user = user
+    # @current_user1 = user1
     subject = "Please send me Feedback"
-    mail(:subject => 'Relationship Feedback', :to => relationship.email) 
-  end 
+    mail(:subject => 'Relationship Feedback', :to => ui.email)
+  end
+
+
+  def relationship_feedback_invite(paste_user)
+    @paste_user = paste_user
+    # @current_user = user
+    # @current_user1 = user1
+    subject = "Please send me Feedback"
+    mail(:subject => 'Relationship Feedback', :to => paste_user)
+  end
 end
+
+

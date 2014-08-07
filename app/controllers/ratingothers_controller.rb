@@ -52,7 +52,7 @@ def create
         end
         
         if @ratingother.save
-          redirect_to :root, notice: "Rating has been done."
+          redirect_to :root, notice: "Thank you for rating this person!"
         else
           render 'new'
         end
@@ -60,13 +60,13 @@ def create
   else
 
     if @ratingother.save
-      flash[:notice] = "Rating has been done."
-      redirect_to :root
-    else
+      flash[:notice] = "Thank you for rating this person!"
+      redirect_to encourage_signing_up_ratingothers_path
+     else
       render 'new'
-    end 
+     end 
+    end
   end
-end
 
 def failure
   

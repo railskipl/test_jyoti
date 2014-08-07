@@ -5,7 +5,7 @@
   <%= f.label :email%>
   <%= f.text_field :email, autofocus: true ,:style=>"width:20%; background-color: #fff;background-image: none;border: 1px solid #ccc;border-radius: 7px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;color: #555;font-size: 14px;height: 37px;line-height: 2.429;padding: 6px 12px;"%><p>
   <%= f.label :circle_id %>
-  <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"},:style=>"width:15%;font:10px"%></br>
+  <%= f.collection_select :circle_id, Circle.all, :id, :name, {prompt: "Select circle"},:style=>"width:15%;font:10px"%></br> 
 
   
   <%= f.label :invite_for_feedback, "Send Mirror Invite(to give me feedback)" %>

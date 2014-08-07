@@ -1,4 +1,50 @@
 
+
+
+<!-- 
+<%#= form_for(@paste_user) do |f| %>
+  <#% if @paste_user.errors.any? %>
+    <div id="error_explanation">
+   
+
+      
+      <%# @paste_user.errors.full_messages.each do |message| %>
+        <p class="alert-box"><%= message %></p>
+      <#% end %>
+    </div>
+  <#% end %>
+
+  <%#= f.hidden_field :user_id,:value => current_user.id %>
+
+
+
+  <%#= f.fields_for :user_invitations do |builder| %>
+  <%#= render  "user_invitation_fields", :f => builder %>
+  <%# end %> -->
+
+  <!-- <div ><%#= link_to_add_fields "Add User Invitation",f,:user_invitations%></div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  <h6> My Mirror </h6>
 

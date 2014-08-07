@@ -71,6 +71,4 @@ end
    @page = Page.where( 'title like ?', '%Contact Us%' ) 
  end 
 
-
-
 end

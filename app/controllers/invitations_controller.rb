@@ -48,9 +48,7 @@ class InvitationsController < ApplicationController
   else
    flash[:error] = "Something went wrong"
    redirect_to :back
-  end  
-
-  
+  end    
 end
 
 

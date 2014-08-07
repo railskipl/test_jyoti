@@ -8,7 +8,7 @@
   <%= form_tag complete_paste_users_path, :method => :post do %>
 
   <div class="field">
- Select Users : <br/>
+ <strong>Select contacts to invite (can also ask for their feedback on the next page)</strong> <br/><br>
    <select multiple="true" class="multiselect1" name="myselecttsms1" size= 20 id="select-toggle" style="width:300px;">
  	<% @contacts.each do |c| %>
      <option value="<%= c.email %>"> <%= c.email %></option>

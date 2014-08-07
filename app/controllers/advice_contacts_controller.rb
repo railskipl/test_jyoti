@@ -78,7 +78,7 @@ class AdviceContactsController < ApplicationController
         end
       else  
           redirect_to new_advice_contact_path
-          flash[:notice] = 'Please Give atleast Two tips' 
+          flash[:notice] = 'Please give at least two out of three tips to complete this step. The quality of your tips matter too.' 
       end 
   end
 

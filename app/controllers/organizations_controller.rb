@@ -13,11 +13,8 @@ class OrganizationsController < ApplicationController
 
   def new
   @contacts = Contact.where("user_id = ? " ,current_user.id)
-  @organization = Organization.new
-   
+  @organization = Organization.new   
   end
-
-
   
   
   def create
@@ -34,7 +31,7 @@ class OrganizationsController < ApplicationController
     end
     else
       redirect_to new_organization_path, notice: "Please upload atleast 5 users." 
-  end
+   end
   end
 
 
