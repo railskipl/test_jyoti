@@ -10,7 +10,7 @@ def new
  @rating = Rating.new
 end
 
-
+  
 def condition_check 
   @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
    @c = []
