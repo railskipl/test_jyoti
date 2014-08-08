@@ -36,6 +36,7 @@
  *      $.get('blah.html', function(data) { $.facebox(data) })
  *    })
  *
+ 
  *  The above will show a loading screen before the passed function is called,
  *  allowing for a better ajaxy experience.
  *

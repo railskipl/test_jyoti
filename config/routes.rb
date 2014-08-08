@@ -164,7 +164,7 @@ end
   resources :omniauth_callbacks
 
   get "/import_contact" => "home#import_contact"
- 
+  get 'users/auth/:provider/callback' => 'omniauth_callbacks#google_oauth2'
   get "import_social_contacts" => "paste_users#import_social_contacts"
   get '/reputation_report/failure' => "ratingothers#failure"
   get "/users/:provider/contact_callback" => "home#dashboard"
