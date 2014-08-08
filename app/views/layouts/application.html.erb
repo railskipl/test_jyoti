@@ -10,7 +10,7 @@
 <body>
   
 
-<div class="container">
+<div class="container" style="min-height:600px;">
  
   
  <%= render 'layouts/navigation' %>
@@ -24,12 +24,14 @@
   <% end %>
 
  <% end %> 
+
  <%= yield %>
- 
+  
+
 
  </div>
-
- <%= render 'shared/footer' %>
+<%= render 'shared/footer' %>
+ 
 
  <script type="text/javascript">
    var _mfq = _mfq || [];
