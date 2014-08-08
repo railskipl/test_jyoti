@@ -155,7 +155,13 @@ class IndividualsController < ApplicationController
           end
         end
     @status_check.update_attributes(:give_rating => true, :track_last_email => nil)
-    @ratingother = Ratingother.create(:email => params[:email],:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
+    @ratingother = Ratingother.create(
+      :email => params[:email],:user_id => current_user.id,
+      :trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], 
+      :potential => params[:potential], :perform_well => params[:perform_well], 
+      :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], 
+      :friendly_social => params[:friendly_social] , :overall_impresions => params[:overall_impresions]
+      )
     redirect_to indiv5_individuals_path, notice: "Thank you for rating this person!" 
   end
 
@@ -169,26 +175,9 @@ class IndividualsController < ApplicationController
        @selfimage.first.update_attributes(params[:access_reputation_tip])
      end 
     @status_check.update_attributes(:self_image => true)
-    @present = Rating.where('user_id = ?', current_user.id)[0] rescue nil
-    unless @present
-      @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social] )
-    end
+      @rating = Rating.create(:user_id => current_user.id,:trustworthy => params[:trustworthy],:kind_helpful => params[:kind_helpful], :potential => params[:potential], :perform_well => params[:perform_well], :presentable => params[:presentable], :emotianally_mature => params[:emotianally_mature], :friendly_social => params[:friendly_social], :overall_impresions => params[:overall_impresions])
     redirect_to indiv3_individuals_path, notice: "Your self-ratings were successful." 
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   def submit_indiv9
@@ -355,7 +344,7 @@ class IndividualsController < ApplicationController
      elsif @status_check.vote_on_tips == false
       redirect_to   indiv3_individuals_path
      elsif @status_check.invite_others == false 
-      redirect_to   indiv6_individuals_path
+      redirect_to indiv6_individuals_path
      else
        @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
        if @access_reputation_tip.got_feedback <= 5
@@ -366,10 +355,8 @@ class IndividualsController < ApplicationController
         redirect_to  my_mirror_paste_users_path
        end
      end
-
-    else
-     
-    end
+   else
+   end
   end
 
   def indiv7

@@ -121,17 +121,17 @@ class RelationshipsController < ApplicationController
     
     @a = PowerGroup.where('user_id = ?', current_user.id)
     @q =  @a.size.to_i + @relationships.size.to_i
-    @w = (8 - @q).abs
+    @w = (10 - @q).abs
 
 
-    if (8 >= @q.to_i)
+    if (10 >= @q.to_i)
       @relationships.each do |r|
           powergroup = PowerGroup.new( :user_id => current_user.id, :relationship_id => r.id,:email => r.email, :circle_name => r.name )
           powergroup.save
           Mailer.power_group_invitation(powergroup,@signup_url).deliver
       end
     else
-      flash[:notice] = "You are allowed to add 8 users to your power group, you have selected more #{@w} users."
+      flash[:notice] = "You are allowed to add 10 users to your power group, you have selected more #{@w} users."
       redirect_to :back
     end
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)

@@ -24,42 +24,50 @@
        <br>
 
 
-     
+     <span style="margin-left:px;">1</span>
+<span style="margin-left:110px;">2</span>
+<span style="margin-left:110px;">3</span>
+<span style="margin-left:104px;">4</span>
+<span style="margin-left:110px;">5</span>
+<span style="margin-left:104px;">6</span>
+<span style="margin-left:110px;">7</span>
+<span style="margin-left:104px;">8</span>
+<span style="margin-left:110px;">9</span>
+<span style="margin-left:103px;">10</span>
+<br>
+<br>
 
     <%= label_tag :overall_impresion %><br>
-    <%= range_field_tag :overall_impresion, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
+    <input type="range" value="2" name="overall_impresions" min="1" max="10" id="slider" class="ui-slider"></br>
     <%= label_tag :trustworthy %><br>
-    <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider", :required => true %></br>
-   
-      <%= label_tag 'Kind and Helpful' %><br>
+ 
+    </br>
+    <input type="range" value="2" name="trustworthy" min="1" max="10" id="slider" class="ui-slider">
+      <%= label_tag :kind_helpful %><br>
 
+      </br>
+      <input type="range" value="2" name="kind_helpful" min="1" max="10" id="slider" class="ui-slider">
 
-      <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
+      <%= label_tag :potential %><br>
 
+    </br>
+      <input type="range" value="2" name="potential" min="1" max="10" id="slider" class="ui-slider">
+      <%= label_tag :perform_well %><br>
 
-      <%= label_tag 'Has ability/Potential' %><br>
+</br>
+     <input type="range" value="2" name="perform_well" min="1" max="10" id="slider" class="ui-slider">
+        <%= label_tag :presentable %><br>
 
-      <%= range_field_tag :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
+   </br>
+         <input type="range" value="2" name="presentable" min="1" max="10" id="slider" class="ui-slider">
 
-      <%= label_tag :performs_well %><br>
+     <%= label_tag :emotianally_mature %><br>
 
-
-     <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
-   
-        <%= label_tag 'Persuasive and Presentable' %><br>
-
-         <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-
-     <%= label_tag :emotionally_Mature %><br>
-
-
-     <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
-
-     <%= label_tag :friendly_and_social %><br>
-
-
-   <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider", :required => true %></br>
+</br>
+     <input type="range" value="2" name="emotianally_mature" min="1" max="10" id="slider" class="ui-slider">
+     <%= label_tag :friendly_social %><br>
+                  
+  <input type="range" value="2" name="friendly_social" min="1" max="10" id="slider" class="ui-slider">
     <% end %>
      <% unless user_signed_in? %>
      <% else %>
