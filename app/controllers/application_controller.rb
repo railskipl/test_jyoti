@@ -37,6 +37,7 @@ private
     unless @status_check.present?
       StatusCheck.create(:user_id => current_user.id)
     end
+    statuscheck
     if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false
      if @status_check.give_feedback == false
          indiv2_individuals_path
