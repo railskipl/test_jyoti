@@ -11,7 +11,7 @@ body {
 
 
 #plans,#plans ul,#plans ul li {
-	margin: 0;
+	margin: -4px;
 	padding: 0;
 	list-style: none;
 }
@@ -181,7 +181,8 @@ body {
 }
 
 #pricePlans #plans .plan {
-	width: 48%;
+
+	width: 28%;
 	margin: 0 1.33% 20px 0;
 
 	-webkit-transition: all .25s;

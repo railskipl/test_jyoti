@@ -1,0 +1,56 @@
+<% if params[:case] == '1' %>
+  <%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false  %>
+    <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+        <%unless @status_check.give_feedback == true && @status_check.give_rating == true%>
+	         Give tips and ratings to at least 1 person <br/>
+        <%end%>
+      
+        <%unless @status_check.vote_on_tips == true%>
+	         Judge the quality of 5 tips.<br/>
+        <%end%>
+        <%unless @status_check.self_image == true%>
+	         provide your self-image ratings on the 7 factors <br/>
+        <%end%>
+        <%unless @status_check.invite_others == true%>
+	         Invite at least 5 people</p> <br/>
+        <%end%>
+        <% if  @status_check.give_feedback == false %>
+         Back to <%= link_to  "complete Process", indiv2_individuals_path %>
+        <%elsif @status_check.give_rating == false %>
+         Back to <%= link_to  "complete Process", indiv4_individuals_path(:email => @status_check.track_last_email) %>
+        <%elsif @status_check.self_image == false %>
+            Back to <%= link_to "complete Process", indiv5_individuals_path %>
+        <%elsif @status_check.vote_on_tips == false %>
+           Back to <%= link_to  "complete Process", indiv3_individuals_path %>
+        <%elsif @status_check.invite_others == false %>
+           Back to <%= link_to  "complete Process", indiv6_individuals_path %>
+        <%else%>
+           Back to <%= link_to  "complete Process", my_mirror_paste_users_path %>
+        <%end%>
+     
+        <br/>
+    <%#end%>
+  <%else @status_check.give_feedback == true && @status_check.give_rating == true && @status_check.self_image == true && @status_check.vote_on_tips == true && @status_check.invite_others == true &&  @access_reputation_tip.got_feedback < 5 %>
+<div class="side_box">
+  <span>
+ <p style="font-size:19px;">"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."</p>
+ </span>
+
+ </div>
+  <%end%>
+<%else%>
+  <%unless @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false %>
+    <% if @access_reputation_tip.give_feedback < 10 && @access_reputation_tip.vote_on_tips < 25 && @access_reputation_tip.invite_other < 3%>
+
+      <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+      a.     Give at least 10 feedbacks.But you have given <%= @access_reputation_tip.give_feedback rescue nil%> feedbacks so far.<br/>
+
+      b.     Provide 25 votes on others people's tips . But you have given <%= @access_reputation_tip.vote_on_tips rescue nil %> so far.<br/>
+
+      c.     Invite at least 3 (general or for feedback), you have invited <%= @access_reputation_tip.invite_other rescue nil%> so far. </p> <br/>
+    <%else @access_reputation_tip.give_feedback >= 10 && @access_reputation_tip.vote_on_tips >=25 && @access_reputation_tip.invite_other >= 3 && @access_reputation_tip.got_feedback < 5 %>
+
+        <p>"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system.</p>
+    <%end%>
+  <%end%>
+<%end%> 

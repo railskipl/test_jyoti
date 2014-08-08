@@ -40,7 +40,7 @@ class FeedbacksController < ApplicationController
         end
       end
     else
-      redirect_to root_path, :notice => "Please Enter Valid Email for Feedback"
+      redirect_to root_path
     end
   end
 

@@ -23,36 +23,38 @@
      <br>
 
 
+  <%= f.label :overall_impresion %><br>
+  <%= f.range_field :overall_impresion, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
    <%= f.label :trustworthy %><br>
 
   <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
  
-    <%= f.label :kind_helpful %><br>
+    <%= f.label :kind_and_helpful %><br>
 
 
     <%= f.range_field :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
 
-    <%= f.label :potential %><br>
+    <%= f.label :potential,'Has ability/Potential' %><br>
 
     <%= f.range_field :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
-    <%= f.label :perform_well %><br>
+    <%= f.label :performs_well %><br>
 
 
    <%= f.range_field :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
  
-      <%= f.label :presentable %><br>
+      <%= f.label :presentable,'Persuasive and Presentable' %><br>
 
        <%= f.range_field :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
 
-   <%= f.label :emotianally_mature %><br>
+   <%= f.label :emotionally_Mature %><br>
 
 
    <%= f.range_field :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
 
-   <%= f.label :friendly_social %><br>
+   <%= f.label :friendly_and_social %><br>
 
 
  <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>

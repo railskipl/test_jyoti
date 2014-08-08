@@ -1,0 +1,24 @@
+<%= link_to 'New Score factor', new_score_factor_path, :class => "btn btn-primary" %>
+<br/><br/>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @score_factors.each do |score_factor| %>
+      <tr>
+        <td><%= score_factor.name %></td>
+        <td><%= score_factor.description %></td>
+        <td><%= link_to 'Edit', edit_score_factor_path(score_factor) %></td>
+        <%#= link_to 'Destroy', score_factor, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

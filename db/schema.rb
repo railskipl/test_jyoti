@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722062937) do
+ActiveRecord::Schema.define(version: 20140806122306) do
+
+  create_table "access_reputation_tips", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "give_feedback",          default: 0
+    t.integer  "vote_on_tips",           default: 0
+    t.integer  "invite_other",           default: 0
+    t.integer  "give_ratings",           default: 0
+    t.integer  "give_selfimage",         default: 0
+    t.integer  "got_feedback",           default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.boolean  "intial_reaction_view",   default: false
+    t.boolean  "intial_reputation_view", default: false
+  end
 
   create_table "advice_contacts", force: true do |t|
     t.string   "email"
@@ -21,6 +37,20 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "avg_ratings", force: true do |t|
+    t.float    "trustworthy"
+    t.float    "kind_helpful"
+    t.float    "potential"
+    t.float    "presentable"
+    t.float    "perform_well"
+    t.float    "emotianally_mature"
+    t.float    "friendly_social"
+    t.float    "overall"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "circles", force: true do |t|
@@ -246,6 +276,7 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anonymous_user",     default: false
+    t.integer  "overall_impresions"
   end
 
   create_table "ratings", force: true do |t|
@@ -261,6 +292,19 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "count",              default: 0, null: false
+    t.integer  "overall_impresions"
+  end
+
+  create_table "reactions", force: true do |t|
+    t.text     "reaction_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "provider_user_id"
+    t.integer  "reciver_user_id"
+    t.integer  "response_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "relationships", force: true do |t|
@@ -308,12 +352,40 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.datetime "updated_at"
   end
 
+  create_table "responses", force: true do |t|
+    t.text     "response_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "response_user_id"
+    t.integer  "provider_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rhd_stores", force: true do |t|
+    t.float    "recency"
+    t.float    "history"
+    t.float    "diversity"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "score_factors", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "factor_type"
   end
 
   create_table "sponsees", force: true do |t|
@@ -347,6 +419,18 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.integer  "user_id"
   end
 
+  create_table "status_checks", force: true do |t|
+    t.boolean  "give_feedback",    default: false
+    t.boolean  "give_rating",      default: false
+    t.boolean  "self_image",       default: false
+    t.boolean  "vote_on_tips",     default: false
+    t.boolean  "invite_others",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.text     "track_last_email"
+  end
+
   create_table "subscriptions", force: true do |t|
     t.integer  "plan_id"
     t.integer  "user_id"
@@ -357,6 +441,18 @@ ActiveRecord::Schema.define(version: 20140722062937) do
     t.string   "paypal_customer_token"
     t.string   "paypal_recurring_profile_token"
     t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggestions", force: true do |t|
+    t.text     "feedback_comment"
+    t.integer  "praise_id"
+    t.integer  "criticism_id"
+    t.integer  "general_id"
+    t.integer  "provider_user_id"
+    t.string   "recipient_email"
+    t.string   "comment_quality"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

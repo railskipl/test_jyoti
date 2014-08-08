@@ -1,0 +1,13 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @score_factor.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @score_factor.description %>
+</p>
+
+<%= link_to 'Edit', edit_score_factor_path(@score_factor) %> |
+<%= link_to 'Back', score_factors_path %>

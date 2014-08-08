@@ -1,0 +1,72 @@
+<% unless @status_check.self_image == true%>
+  <h4>How do you see yourself?</h4><br><br>
+
+
+  <i>Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works.</i><br><br><br>
+
+
+
+  Now please <strong>rate yourself</strong> on the same factors you rated the other person.<br><br><br>
+
+
+
+   <%#= form_for Rating.new do |f| %>
+    
+  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv5'), :method => 'post' do %>
+     
+     <%= label_tag :trustworthy %><br>
+
+
+    <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id =>"slider", :required => true %></br>
+   
+      <%= label_tag :kind_helpful %><br>
+
+
+      <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+
+      <%= label_tag :potential %><br>
+
+      <%= range_field_tag :potential, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+      <%= label_tag :perform_well %><br>
+
+
+     <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+   
+        <%= label_tag :presentable %><br>
+
+         <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
+
+
+     <%= label_tag :emotianally_mature %><br>
+
+
+     <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+
+     <%= label_tag :friendly_social %><br>
+
+
+   <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
+
+      <%= hidden_field_tag :user_id,:value => current_user.id %>
+    
+      <!-- <div style="float:right;padding: 30px;"><%#= link_to "CONTINUE",indiv6_individuals_path,:class=>"btn btn-primary" %></div> -->
+
+      <div style="float:right;padding: 30px;"><%= submit_tag "Save & Continue",:class=>"btn btn-primary" %>
+      <%= link_to "Go to next step",indiv3_individuals_path,:class=>"btn btn-primary" %> 
+      </div>
+            
+  <% end %>
+<%else%>
+  <p>Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works!<br><br><br>
+
+  You done with this onbording sequence.
+
+  <div style="float:right;padding: 30px;">
+    <%= link_to "Go to next step",indiv3_individuals_path,:class=>"btn btn-primary" %> 
+  </div>
+
+  </p>
+<%end%>
+

@@ -1,0 +1,36 @@
+<%= form_for(@score_factor) do |f| %>
+  <% if @score_factor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@score_factor.errors.count, "error") %> prohibited this score_factor from being saved:</h2>
+
+      <ul>
+      <% @score_factor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <% if params[:action] == "edit" %>
+    <%= f.text_field :name, :readonly => true %>
+    <% else %>
+    <%= f.text_field :name %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :factor_type %><br>
+    <select name = "score_factor[factor_type]">
+      <option value="low">Low</option> 
+      <option value="raise">Raise</option> 
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>

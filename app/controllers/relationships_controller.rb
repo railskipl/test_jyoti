@@ -36,6 +36,7 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships/1/edit
   def edit
+    @relationship = Relationship.find(params[:id])
   end
 
   # POST /relationships
@@ -63,9 +64,11 @@ class RelationshipsController < ApplicationController
 
        if @relationship.save        
           sponsee = Sponsee.create( :user_id => current_user.id, :relationship_id => @relationship.id, :email => @relationship.email )
-          redirect_to new_tip_path(:email => @relationship.email)
+          redirect_to new_tip_path(:email => @relationship.email, :name => @relationship.name)
           # Mailer.power_group_invitation(@relationship, @signup_url).deliver
-          # FeedbackMailer.relationship_feedback(@relationship).deliver
+          @user = current_user.first_name
+          @user1 = current_user.last_name
+          FeedbackMailer.relationship_feedback(@relationship).deliver
         else
           redirect_to  new_relationship_path
         end
@@ -74,7 +77,7 @@ class RelationshipsController < ApplicationController
 
 
   def feddback_form
-    @relationships = Relationship.new(relationships_params)
+    @relationships = RelationshipsControllership.new(relationships_params)
     if @relationships.save 
     if params[:relationships_params][:email] == "true" 
       redirect_to new_tip_path(:email => relationships.email)
@@ -87,6 +90,7 @@ class RelationshipsController < ApplicationController
   # PATCH/PUT /relationships/1
   # PATCH/PUT /relationships/1.json
   def update
+    @relationship = Relationship.find(params[:id])
     respond_to do |format|
       if @relationship.update(relationship_params)
         format.html { redirect_to new_tip_path(:email => @relationship.email), notice: 'Relationship was successfully updated.' }
@@ -151,8 +155,8 @@ class RelationshipsController < ApplicationController
   
 
   def power_group
-    @relationships = PowerGroup.where('user_id = ?', current_user)
-    
+    @relationships = Tip.all
+    @relationship1 = Relationship.all
     @relationship = Relationship.new  
 
      @p = @relationship.how_well_you_know_the_person.to_i
@@ -167,9 +171,16 @@ class RelationshipsController < ApplicationController
   end
 
 
+  def power_group1    
+    @relationship = Relationship.create(:how_well_you_know_the_person => params[:how_well_you_know_the_person], :your_influence => params[:your_influence], :influence_on_your => params[:influence_on_your])
+    redirect_to power_feedback_relationships_path
+  end
+
+
 
   def power_feedback
-   @relationships = PowerGroup.where('user_id = ?', current_user)
+    @relationship = Relationship.all  
+    @relationships = Tip.where('user_id = ?', current_user)
    if request.post?
       invite = params[:invite].nil? ? 0 : params[:invite]
       @relationships.each do |r|

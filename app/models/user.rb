@@ -2,10 +2,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,:confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status
+
+
+  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status,:city
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :paste_users
 
   has_many :ratings
+  has_one :rhd_store
   has_many :tips
   has_many :influences
   has_many :relationships
@@ -24,13 +27,28 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :contacts
   has_many :advice_contacts
-
+  
   has_many   :emails
   has_many   :plans
   has_many   :subscriptions
   belongs_to :trial_day
 
+  has_many :suggestions
+  has_many :praises
+  has_many :criticisms
+  has_many :generals
+  has_many :responses
+  has_many :reactions
+  belongs_to :country
+
   before_create :set_invitation_limit
+
+ 
+
+
+  # def congrats_email
+  #    mail(to: self.email, subject: "Welcome Message")
+  # end
 
   # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
 
@@ -132,6 +150,10 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
       @current_date = (Time.zone.now)
       @remaining_days = (@admin_user_plan_expiry - @current_date).to_i / 1.day
   end
+
+
+
+
 
 
 private

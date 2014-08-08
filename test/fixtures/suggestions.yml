@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feedback_comment: MyText
+  praise_id: 1
+  criticism_id: 1
+  general_id: 1
+  provider_user_id: 1
+  recipient_user_id: 1
+  comment_quality: MyString
+
+two:
+  feedback_comment: MyText
+  praise_id: 1
+  criticism_id: 1
+  general_id: 1
+  provider_user_id: 1
+  recipient_user_id: 1
+  comment_quality: MyString

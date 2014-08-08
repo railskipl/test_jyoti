@@ -18,21 +18,21 @@
 
       <tr>
       <% if relationship.user_id == current_user.id %>
-      <td> 
+       <td> 
          <%if @relationship.present? %>
-            <input type="checkbox" disabled="disabled" checked="checked">
+            <!-- <input type="checkbox" disabled="disabled" checked="checked"> -->
           <%else%>
-             <%= check_box_tag "relationship_ids[]", relationship.id %>
+             <%#= check_box_tag "relationship_ids[]", relationship.id %>
             
           <%end%>
-        </td>
+        </td> 
         <!-- <td><%#= check_box_tag "relationship_ids[]", relationship.id %></td> -->
         
         <td><%= relationship.email %> &nbsp&nbsp&nbsp&nbsp</td>
         <% if @relationship.nil? %>
-       <td><%= link_to 'Create Relationship', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
+       <td><%= link_to 'Give Feedback', new_relationship_path(:email => relationship.email),:class => 'btn btn-primary'  %></td>
        <% else %>
-       <td><%= link_to 'Edit Relationship', edit_relationship_path(@relationship),:class => 'btn btn-primary'  %></td>
+       <td><%= link_to 'More Feedback?', edit_relationship_path(@relationship),:class => 'btn btn-primary'  %></td>
         <% end %>
        <% end %>
       </tr> 

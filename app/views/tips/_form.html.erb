@@ -11,23 +11,27 @@
 
   <% if params[:email]%>
     <%= f.hidden_field :email,:value => params[:email] %>
+    <%= f.hidden_field :name, :value => params[:name]%>
     <%= f.hidden_field :relationship_id,:value => params[:relationship_id] %>
     <%= f.hidden_field :rating, :value => "true"%>
   <%end%>
 
   <div class="field">
-    <%= f.label :praise %><br>
-    <%= f.text_field :praise,:class=>"form-control11" %>
+   <%= f.label :praise %><br>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :praise,:placeholder => "Say something praiseworthy here",:class=>"form-control11", :maxlength => 30 %><br>
   </div>
 
   <div class="field">
     <%= f.label :criticism %><br>
-    <%= f.text_field :criticism,:class=>"form-control11" %>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :criticism,:placeholder => "A criticism, phrased in a constructive way",:class=>"form-control11", :maxlength => 30 %><br>
   </div>
 
   <div class="field">
     <%= f.label :general %><br>
-    <%= f.text_field :helpful,:class=>"form-control11"%>
+    <i style="color: #B8B8B8;"><label for="male">Maximum Character Length is 30</label></i><br>
+    <%= f.text_area :helpful,:placeholder => "Another helpful tip",:class=>"form-control11", :maxlength => 30%><br><br>
   </div>
 
   <% unless user_signed_in? %>
@@ -36,7 +40,9 @@
    <% end %>
 
   <div class="actions">
-    <%= f.submit "Save" ,:class => "btn btn-primary"%></div>
+    <%= f.submit "Save" ,:class => "btn btn-primary"%>
+
+    <%= link_to "Skip",'#',:class => "btn btn-primary"%></div>
     
 <% end %>
 

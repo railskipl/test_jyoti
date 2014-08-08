@@ -9,7 +9,8 @@ class Tip < ActiveRecord::Base
 	belongs_to :user_invitation
 	belongs_to :response_tip
 	belongs_to :advice_contact
-
+    belongs_to :relationship
+    
     # validates_presence_of  :praise, :criticism, :helpful
     # validates :email, :uniqueness => {:scope => :user_id}
     

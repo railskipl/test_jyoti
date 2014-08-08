@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :score_factors
+
   resources :response_tips
 
   resources :trial_days
@@ -26,6 +28,9 @@ Rails.application.routes.draw do
       get :feedback_form
     }
   end
+
+   post '/power_group' => "relationships#power_group1"
+
 
   resources :tips do
     collection {
@@ -85,8 +90,26 @@ Rails.application.routes.draw do
 
 
   resources :invitations
-  resources :organizations
-  resources :individuals
+  resources :organizations do
+    collection{
+      get :org2
+    }
+  end
+
+
+  resources :individuals do
+    collection {
+      get :indiv_path
+      get :indiv2
+      get :indiv3
+      get :indiv4
+      get :indiv5
+      get :indiv6
+      get :indiv7
+      get :indiv8
+      get :indiv9
+    }
+  end
 
   resources :ratings do
     collection {
@@ -141,11 +164,16 @@ end
   resources :omniauth_callbacks
 
   get "/import_contact" => "home#import_contact"
-
+ 
   get "import_social_contacts" => "paste_users#import_social_contacts"
-
+  get '/reputation_report/failure' => "ratingothers#failure"
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
+  post '/indiv2' => "individuals#submit_indiv2"
+  post '/indiv3' => "individuals#submit_indiv3"
+  post '/indiv4' => "individuals#submit_indiv4"
+  post '/indiv5' => "individuals#submit_indiv5"
+  post '/indiv9' => "individuals#submit_indiv9"
 
   resources :pages do
     collection {
@@ -195,8 +223,13 @@ end
     get '/home/how_it_works_for_my_team' => 'home#how_it_works_for_my_team'
     get 'home/fork_users' => 'home#fork_users'
     get '/reputation_report' => 'ratings#reputation_report'
+    get '/approved_tips' => 'tips#approved_tips'
 
- 
+    get '/react_to_response' => 'tips#react_to_response'
+    post '/react_to_response' => 'tips#submit_response'
+
+    get '/reaction_for_response' => 'tips#reaction_for_response'
+    post '/reaction_for_response' => 'tips#submit_reaction'
     resource :contactus
    get '/home/contactus' => 'home#contactus'
 

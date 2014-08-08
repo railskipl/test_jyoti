@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  give_feedback: 1
+  vote_on_tips: 1
+  invite_other: 1
+  give_ratings: 1
+  give_selfimage: 1
+  got_feedback: 1
+
+two:
+  user_id: 1
+  give_feedback: 1
+  vote_on_tips: 1
+  invite_other: 1
+  give_ratings: 1
+  give_selfimage: 1
+  got_feedback: 1

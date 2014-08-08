@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  give_feedback: false
+  give_rating: false
+  self_image: false
+  vote_on_tips: false
+  invite_others: false
+
+two:
+  give_feedback: false
+  give_rating: false
+  self_image: false
+  vote_on_tips: false
+  invite_others: false

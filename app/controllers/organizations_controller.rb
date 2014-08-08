@@ -1,24 +1,41 @@
 class OrganizationsController < ApplicationController
 	respond_to :html, :js
+  require 'will_paginate/array'
   
  def index
  	 @organizations = Organization.all
+
  end
 
+ def import_csv
+    @contacts = Contact.where("user_id = ? " ,current_user.id).paginate :page => params[:page],:per_page => 10
+ end
 
   def new
-    @organization = Organization.new
-   
+  @contacts = Contact.where("user_id = ? " ,current_user.id)
+  @organization = Organization.new   
   end
+  
   
   def create
     @organization = Organization.new(params[:organization])
-    if @organization.save
-     redirect_to organizations_path
+    @organization = Organization.new
+    @contacts = Contact.new
+    
+    @contacts = Contact.all
+    if @contacts.count >= 5
+    if @organization.save   
+     redirect_to org2_organizations_path
     else
-      render 'new'
+       render 'org2'
     end
+    else
+      redirect_to new_organization_path, notice: "Please upload atleast 5 users." 
+   end
   end
+
+
+  
 
  def status
   @organization = Organization.find(params[:id])
@@ -45,4 +62,9 @@ class OrganizationsController < ApplicationController
     @organization.destroy
     redirect_to organizations_path
   end
+
+  def org2
+    
+  end
+
 end
