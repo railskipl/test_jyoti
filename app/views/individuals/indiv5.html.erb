@@ -1,3 +1,4 @@
+
 <% unless @status_check.self_image == true%>
   <h4>How do you see yourself?</h4><br><br>
 
@@ -12,44 +13,54 @@
 
    <%#= form_for Rating.new do |f| %>
     
-  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv5'), :method => 'post' do %>
-     
+  <%= form_tag url_for(:controller => 'individuals', :action => 'submit_indiv5'), :method => 'post' do |f|%>
+
+  <span style="margin-left:px;">1</span>
+  <span style="margin-left:110px;">2</span>
+  <span style="margin-left:110px;">3</span>
+  <span style="margin-left:104px;">4</span>
+  <span style="margin-left:110px;">5</span>
+  <span style="margin-left:104px;">6</span>
+  <span style="margin-left:110px;">7</span>
+  <span style="margin-left:104px;">8</span>
+  <span style="margin-left:110px;">9</span>
+  <span style="margin-left:103px;">10</span>
+  <br>
+  <br>
+  <%= label_tag :overall_impression %><br>
+    </br>
+    <input type="range" value="2" name="overall_impresions" min="1" max="10" id="slider" class="ui-slider">
      <%= label_tag :trustworthy %><br>
-
-
-    <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id =>"slider", :required => true %></br>
-   
+ 
+   </br>
+    <input type="range" value="2" name="trustworthy" min="1" max="10" id="slider" class="ui-slider">
       <%= label_tag :kind_helpful %><br>
 
-
-      <%= range_field_tag :kind_helpful, :min=>1, :max=>10,:value => 1,:class=>"ui-slider", :id=>"slider" %></br>
-
+</br>
+      <input type="range" value="2" name="kind_helpful" min="1" max="10" id="slider" class="ui-slider">
 
       <%= label_tag :potential %><br>
-
-      <%= range_field_tag :potential, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
-
+</br>
+      <input type="range" value="2" name="potential" min="1" max="10" id="slider" class="ui-slider">
       <%= label_tag :perform_well %><br>
 
-
-     <%= range_field_tag :perform_well, :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
-   
+</br>
+     <input type="range" value="2" name="perform_well" min="1" max="10" id="slider" class="ui-slider">
         <%= label_tag :presentable %><br>
 
-         <%= range_field_tag :presentable, :min=>1, :max=>10, :value => 1,:class=>"ui-slider", :id=>"slider" %></br>
-
+       </br>
+         <input type="range" value="2" name="presentable" min="1" max="10" id="slider" class="ui-slider">
 
      <%= label_tag :emotianally_mature %><br>
 
-
-     <%= range_field_tag :emotianally_mature , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
-
+</br>
+     <input type="range" value="2" name="emotianally_mature" min="1" max="10" id="slider" class="ui-slider">
      <%= label_tag :friendly_social %><br>
 
 
-   <%= range_field_tag :friendly_social , :min=>1, :max=>10,:value => 1, :class=>"ui-slider", :id=>"slider" %></br>
-
-      <%= hidden_field_tag :user_id,:value => current_user.id %>
+</br>
+  <input type="range" value="2" name="friendly_social" min="1" max="10" id="slider" class="ui-slider">
+      <%= hidden_field_tag :user_id, current_user.id %>
     
       <!-- <div style="float:right;padding: 30px;"><%#= link_to "CONTINUE",indiv6_individuals_path,:class=>"btn btn-primary" %></div> -->
 
