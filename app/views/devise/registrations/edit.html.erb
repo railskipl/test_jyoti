@@ -11,7 +11,55 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
   <%= devise_error_messages! %>
-  
+
+  <% if current_user.sign_in_count == 1 %>
+  <div><%= f.label :email %>
+      <%= f.email_field :email, autofocus: true,:class=>"form-control"  %>
+  </div>
+
+  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off",:class=>"form-control"  %></div>
+
+  <div><%= f.label :first_name %>
+     <%= f.text_field :first_name,:class=>"form-control" %></div>
+
+  <div><%= f.label :last_name%>
+     <%= f.text_field :last_name ,:class=>"form-control"%></div>
+ 
+  <div>
+      <%= f.label :birthday %>
+      <%= f.text_field :birthday,:id=>"datepicker",:class=>"form-control" %>
+  </div>
+
+  <div>
+      Male <%= f.radio_button :sex , "male",:class=>"first-icon fui-radio-unchecked" %>
+      Female <%= f.radio_button :sex , "female",:class=>"second-icon fui-radio-checked" %>
+  </div>
+
+
+  <div><%= f.label :country%>
+  <%= f.select(:location,Country.all.map {|country| [ country.name,country.name ]},{:class => "form-control"} ,:prompt =>"Select Country",:class=>"form-control")%>
+  </div>
+
+  <div><%= f.label :city%>
+  <%= f.text_field :city ,:class=>"form-control"%>
+  </div>
+ 
+
+    
+  <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
+   <div>
+    <%= f.label :secondary_email %>
+    <%= f.text_area :email,:class=>"form-control field span12", :rows=>"4",:id => "email_text",:placeholder => "Enter email address separated by (,) ..." ,:class=>"form-control"%>
+   </div><br>
+     <div><%= f.submit "CONTINUE SETUP",:class=>"btn btn-primary" %></div>
+   <% end %>
+  <% end %>
+
+
+
+
+  <% if current_user.sign_in_count > 1 %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true,:class=>"form-control"  %></div>
 
@@ -64,7 +112,6 @@
   <%= f.text_field :orgsize,:class=>"form-control"  %></div>
 
   <div><%= f.submit "Update",:class=>"btn btn-primary" %></div>
-<% end %>
 
 <h5>Add secondary email</h5>
   <%= form_for :email,:url=>{:controller=>'emails',:action =>'create'} do |f| %>
@@ -80,3 +127,6 @@
 
 <%= link_to "Back",home_dashboard_path,:class=>"btn btn-primary" %>
 </div>
+
+<% end %>
+<% end %>
