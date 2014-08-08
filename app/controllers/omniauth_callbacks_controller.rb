@@ -35,6 +35,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 end
 
 def check_db
+  raise "hi"
   @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id) rescue nil
   @status_check = StatusCheck.where('user_id = ?', current_user.id)[0] rescue nil
   unless @access_reputation_tip.present?
