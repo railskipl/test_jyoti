@@ -48,7 +48,7 @@ class AdviceContactsController < ApplicationController
           #    render '/individuals/indiv3'
           # end
 
-          if user_signed_in?
+         if user_signed_in?
             #for onbording sequence give feedback to others
               @givefeedback = AccessReputationTip.where(:user_id => current_user.id)
                 
@@ -74,7 +74,7 @@ class AdviceContactsController < ApplicationController
           redirect_to new_ratingother_path(:email => @advice_contact.email) 
         else
           redirect_to new_advice_contact_path
-         flash[:notice] = "Please enter valid email."
+          flash[:notice] = "Please enter valid email."
         end
       else  
           redirect_to new_advice_contact_path

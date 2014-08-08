@@ -1,3 +1,5 @@
+
+
   # #For Local machine keys
 # OmniAuth.config.logger = Rails.logger
 # 
@@ -16,10 +18,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '1463677190567218','f21b189f3362ed4ca8f9d3d88961449c'
   provider :google_oauth2, '881639063021-cna2s7l4sqot6vh1kf2s735vhi6gbl7d.apps.googleusercontent.com','9CnwRY9v0a1q-xd7civFE9D5'
 end
-
-
-
-
-
-
  

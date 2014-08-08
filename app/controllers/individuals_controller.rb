@@ -97,7 +97,7 @@ class IndividualsController < ApplicationController
       end
     end
 
-    if params[:praise].present? && params[:criticism].present? || params[:praise].present? && params[:general].present? || params[:criticism].present? && params[:general].present?
+  if params[:praise].present? && params[:criticism].present? || params[:praise].present? && params[:general].present? || params[:criticism].present? && params[:general].present?
       if user_signed_in?
         #for onbording sequence give feedback to others
         @givefeedback = AccessReputationTip.where('user_id = ?', current_user.id) 
@@ -138,8 +138,7 @@ class IndividualsController < ApplicationController
         @quality_check.first.vote_on_tips = @quality_check.first.vote_on_tips + a
         @aa = @quality_check.first.update_attributes(params[:access_reputation_tip])
       end
-    redirect_to indiv6_individuals_path
-       
+    redirect_to indiv6_individuals_path       
   end
 
 
@@ -176,20 +175,7 @@ class IndividualsController < ApplicationController
     redirect_to indiv3_individuals_path, notice: "Your self-ratings were successful." 
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
   def submit_indiv9
     @paste_user = params[:email]
@@ -203,7 +189,7 @@ class IndividualsController < ApplicationController
      p.save
      @user_invitation = UserInvitation.new(:user_id => current_user.id, :email => email, :paste_user_id => p.id)
      
-    @contact = Contact.create(:user_id => current_user.id, :email => email)
+     @contact = Contact.create(:user_id => current_user.id, :email => email)
       
 
       if @user_invitation.save       
@@ -240,7 +226,7 @@ class IndividualsController < ApplicationController
        else
         redirect_to  my_mirror_paste_users_path
        end
-     end
+    end
 
     else
       @praise = Praise.where('provider_user_id != ?', current_user.id)
@@ -309,14 +295,12 @@ class IndividualsController < ApplicationController
         redirect_to  my_mirror_paste_users_path
        end
      end
-
-    else
-     
+    else     
     end
   end
 
-  def indiv5
-      
+
+  def indiv5      
     if @status_check.self_image == true
      if @status_check.give_feedback == false
       redirect_to   indiv2_individuals_path
@@ -338,11 +322,12 @@ class IndividualsController < ApplicationController
         redirect_to  my_mirror_paste_users_path
        end
      end
-
     else
       @ratings = Rating.new
     end  
   end
+
+
 
   def indiv6
     if @status_check.invite_others == true
@@ -366,11 +351,10 @@ class IndividualsController < ApplicationController
         redirect_to  my_mirror_paste_users_path
        end
      end
-
-    else
-     
+    else     
     end
   end
+
 
   def indiv7
     
