@@ -13,7 +13,7 @@
 
 # For heroku server keys
 OmniAuth.config.logger = Rails.logger
-OmniAuth.config.full_host = "http://localhost:3000"
+OmniAuth.config.full_host = "http://m360.herokuapp.com"
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '1463677190567218','f21b189f3362ed4ca8f9d3d88961449c'
   provider :google_oauth2, '537798958660-e4a44el7n3sfs590h3hjm7gsqsjssbfk.apps.googleusercontent.com','PUc-fKZSgOE3aemtEw0e0noG'
