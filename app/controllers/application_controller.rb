@@ -16,6 +16,7 @@ private
   
   def statuscheck
     @status_check = StatusCheck.where('user_id = ?', current_user.id)[0] rescue nil
+
     @access_reputation_tip = AccessReputationTip.where('user_id = ?', current_user.id)[0] rescue nil
   end
 
@@ -37,6 +38,8 @@ private
     unless @status_check.present?
       StatusCheck.create(:user_id => current_user.id)
     end
+
+    
     if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false
      if @status_check.give_feedback == false
          indiv2_individuals_path
