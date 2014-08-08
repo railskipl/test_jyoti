@@ -24,8 +24,11 @@
        <br>
 
 
-     <%= label_tag :trustworthy %><br>
+     
 
+    <%= label_tag :overall_impresion %><br>
+    <%= range_field_tag :overall_impresion, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
+    <%= label_tag :trustworthy %><br>
     <%= range_field_tag :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider", :required => true %></br>
    
       <%= label_tag 'Kind and Helpful' %><br>
