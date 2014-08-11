@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
@@ -13,7 +13,7 @@ gem 'pg'
 # gem 'mysql'
 gem 'koala'
 gem 'csv_validator'
-# gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 gem 'devise'
 gem 'execjs'
