@@ -16,6 +16,6 @@ OmniAuth.config.logger = Rails.logger
 OmniAuth.config.full_host = "http://m360.herokuapp.com"
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '1463677190567218','f21b189f3362ed4ca8f9d3d88961449c'
-  provider :google_oauth2, '1037207908183-aktokcaldv3l76kmjapc8psddcutde6c.apps.googleusercontent.com','w2ugCG0cn5fSs9LER2CtVdgh'
+  provider :google_oauth2, '537798958660-1rokanhb4ciitb8h1oipocnf07mbjje0.apps.googleusercontent.com','rJY0iMCDy06n9N0JkbKFqUQu'
 end
  
