@@ -47,7 +47,7 @@ Rails.application.configure do
             :domain => "imap.gmail.com",
             :authentication => :login,
             :user_name => "atishkunalinfotech@gmail.com",
-            :password => "!@#kunalinfotechkipl"
+            :password => "rubyonrails"
         }
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
