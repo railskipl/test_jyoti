@@ -27,7 +27,7 @@ Devise.setup do |config|
   require 'omniauth-facebook'
   require "omnicontacts"
 
-  
+  config.omniauth :google_oauth2, ENV['TEST_KEY'], ENV['TEST_SECRET']
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
