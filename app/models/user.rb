@@ -96,25 +96,25 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
 
 
 
- # def self.find_for_google_oauth2(auth, signed_in_resource=nil)
- #    user = User.where(:provider => auth.provider, :uid => auth.uid).first
- #    if user
- #      return user
- #    else
- #      registered_user = User.where(:email => auth.info.email).first
- #      if registered_user
- #        return registered_user
- #      else
- #        user = User.create(name:auth.extra.raw_info.name,
- #                            provider:auth.provider,
- #                            uid:auth.uid,
- #                            email:auth.info.email,
- #                            password:Devise.friendly_token[0,20]
- #                          )
- #      end
+ def self.find_for_google_oauth2(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.info.email).first
+      if registered_user
+        return registered_user
+      else
+        user = User.create(name:auth.extra.raw_info.name,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.info.email,
+                            password:Devise.friendly_token[0,20]
+                          )
+      end
        
- #    end
- #  end
+    end
+  end
 
 
 
@@ -133,6 +133,25 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
   #   end
   #   user
   # end
+
+
+
+ def self.from_omniauth(auth)
+  if user = User.find_by_email(auth.info.email)
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user
+  else
+   where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.username = auth.info.name
+      user.email = auth.info.email
+      user.avatar = auth.info.image
+   end
+  end
+end
+
 
 
 
@@ -164,36 +183,16 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
 
 
  def google_oauth2
-  user = User.from_omniauth(request.env["omniauth.auth"])
-  if user.persisted?
-  flash.notice = "Signed in Through Google!"
-  sign_in_and_redirect user
-  else
-  session["devise.user_attributes"] = user.attributes
-  flash.notice = "You are almost Done! Please provide a password to finish setting up your account"
-  redirect_to new_user_registration_url
-  end
- end
-
-
-
-
- def self.from_omniauth(auth)
-  if user = User.find_by_email(auth.info.email)
-  user.provider = auth.provider
-  user.uid = auth.uid
-  user
-  else
-  where(auth.slice(:provider, :uid)).first_or_create do |user|
-  user.provider = auth.provider
-  user.uid = auth.uid
-  user.username = auth.info.name
-  user.email = auth.info.email
-  user.avatar = auth.info.image
-  end
-  end
- end
-
+user = User.from_omniauth(request.env["omniauth.auth"])
+if user.persisted?
+flash.notice = "Signed in Through Google!"
+sign_in_and_redirect user
+else
+session["devise.user_attributes"] = user.attributes
+flash.notice = "You are almost Done! Please provide a password to finish setting up your account"
+redirect_to new_user_registration_url
+end
+end
 
 
   def facebook
