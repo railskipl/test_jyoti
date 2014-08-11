@@ -1,3 +1,7 @@
+ require 'devise/orm/active_record'
+  require 'omniauth-google-oauth2'
+  require 'omniauth-facebook'
+  require "omnicontacts"
 
 
   # #For Local machine keys
