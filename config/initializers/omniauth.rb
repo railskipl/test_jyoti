@@ -1,4 +1,4 @@
-
+require 'google/api_client'
 
   # #For Local machine keys
 # OmniAuth.config.logger = Rails.logger
