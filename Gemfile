@@ -22,7 +22,7 @@ gem 'therubyracer'
 gem 'protected_attributes'
 gem 'omniauth'
 gem "omniauth-facebook"
-gem "omniauth-google-oauth2"
+gem "omniauth-google-oauth2", '~> 0.2.4'
 gem "fb_graph"
 gem 'oauth2'
 gem "omnicontacts"
