@@ -14,6 +14,7 @@ gem 'pg'
 gem 'koala'
 gem 'csv_validator'
 gem 'rails_12factor', group: :production
+gem 'unicorn'
 
 gem 'devise'
 gem 'execjs'
