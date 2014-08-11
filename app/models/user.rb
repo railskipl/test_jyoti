@@ -51,7 +51,7 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
       user = User.where(:email => data["email"],:provider => "Facebook").first
         #User.skip_confirmation!
       unless user
-       user= User.create(name: data["name"],# if user in not present then create user email,name and provider.
+       user= User.create(first_name: data["first_name"],# if user in not present then create user email,name and provider.
                          email: data["email"],
                          provider: "Facebook",
                          password: Devise.friendly_token[0,20]
@@ -93,7 +93,7 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.info #access_token contain all the information about user provider.
     user = User.where(:email => data["email"],:provider => "Google").first
     unless user
-      user = User.create(name: data["name"],# if user in not present then create user email,name and provider.
+      user = User.create(first_name: data["first_name"],# if user in not present then create user email,name and provider.
                          email: data["email"],
                          provider: "Google",
                          password: Devise.friendly_token[0,20]
