@@ -278,7 +278,7 @@ DEPENDENCIES
   oauth2
   omniauth
   omniauth-facebook
-  omniauth-google-oauth2 (~> 0.2.4)
+  omniauth-google-oauth2
   omnicontacts
   paperclip
   paypal-recurring
