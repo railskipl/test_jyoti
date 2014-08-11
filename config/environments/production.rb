@@ -91,7 +91,7 @@ Rails.application.configure do
             :domain => "imap.gmail.com",
             :authentication => :login,
             :user_name => "rubyrails9@gmail.com",
-            :password => "kipl123!@#"
+            :password => "kunalinfotechkipl"
         }
   config.action_mailer.default_url_options = { :host => 'http://m360.herokuapp.com/' }
 
