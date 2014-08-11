@@ -43,28 +43,9 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
- 
-
-
-  # def congrats_email
-  #    mail(to: self.email, subject: "Welcome Message")
-  # end
-
-  # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
-
-  # before_create :check_user_date
-
-  # def check_user_date
-  #   c = AdviceContact.where("email like ? ",self.email).first
-  #   current_date = Date.today
-  #   if c
-  #     created_date = c.created_at.to_date
-  #     if (current_date - created_date) <= 7
-  #     end
-  #   end
-  # end
 
  
+
 def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
       data = access_token.extra.raw_info
       user = User.where(:email => data["email"],:provider => "Facebook").first
