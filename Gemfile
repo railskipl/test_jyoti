@@ -14,6 +14,7 @@ gem 'pg'
 # gem 'mysql'
 gem 'koala'
 gem 'csv_validator'
+gem 'rails_12factor'
 
 gem 'devise'
 gem 'execjs'
