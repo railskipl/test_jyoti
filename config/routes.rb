@@ -138,7 +138,7 @@ end
     }
   end
     
-  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks",:registrations=>"registrations"}
+  devise_for :users, :controllers => {:registration => "registration", :omniauth_callbacks => "omniauth_callbacks"}
   post '/signup/:invitation_token', :to =>'users#new', :as =>'signup'
   
 
