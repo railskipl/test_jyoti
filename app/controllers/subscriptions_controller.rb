@@ -47,21 +47,6 @@ class SubscriptionsController < ApplicationController
   def edit
   end
 
-  
-
-  # PATCH/PUT /subscriptions/1
-  # PATCH/PUT /subscriptions/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @subscription.update(subscription_params)
-  #       format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @subscription }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @subscription.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   def update
     @subscription = current_user.subscription

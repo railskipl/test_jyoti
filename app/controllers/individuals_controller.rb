@@ -1,5 +1,6 @@
 class IndividualsController < ApplicationController
 	respond_to :html, :js
+  
   include IndividualsHelper
  def index
  	 @individuals = Individual.all

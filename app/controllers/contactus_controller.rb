@@ -1,4 +1,6 @@
 class ContactusController < ApplicationController
+ before_filter :authenticate_user!
+
 
 def index
   @contactus = Contactus.all

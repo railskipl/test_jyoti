@@ -1,7 +1,8 @@
 class RelationshipsController < ApplicationController
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new,:feedback_relationship,:power_group,:power_feedback]
-
+  before_filter :authenticate_user!
+  
 
   require 'will_paginate/array'
   # GET /relationships

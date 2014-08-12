@@ -1,6 +1,7 @@
 class ScoreFactorsController < ApplicationController
   before_action :set_score_factor, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  
   # GET /score_factors
   # GET /score_factors.json
   def index

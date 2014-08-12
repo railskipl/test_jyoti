@@ -336,16 +336,7 @@ class TipsController < ApplicationController
 	end
  end
 
- # def responses_to_your_tips
- # 	@reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
- # 	unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
- # 	  if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
- # 	  condition_check
- # 	  else
- # 	  end
- # 	else
- # 	end
- # end
+ 
 
  def tips_and_rating
 	 
@@ -356,15 +347,7 @@ class TipsController < ApplicationController
  end
 
 private
-		# Use callbacks to share common setup or constraints between actions.
-
-		# def check_user
-		#   if user_signed_in?
-		#   else
-		#     redirect_to root_path, :alert => "Unauthorised Access"
-		#   end
-		 
-		# end
+		
 
 
 end
