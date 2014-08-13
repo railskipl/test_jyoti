@@ -13,13 +13,6 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find_by_plan_id(params[:id])
   end
 
-  # GET /subscriptions/new
-  # def new
-  #   @subscription = Subscription.new
-  # end
-
- 
-  
 
   def new
   @subscription = Subscription.new(:user_id => params[:user_id], :token => params[:token], :price => params[:price], :name => params[:name])

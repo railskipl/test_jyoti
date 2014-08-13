@@ -3,9 +3,9 @@ class PagesController < ApplicationController
 respond_to :html, :js
   
 
- def index
+  def index
  	 @pages = Page.all
- end
+  end
 
 
   def new
@@ -22,16 +22,16 @@ respond_to :html, :js
     end
   end
 
-def show
+  def show
    @page = Page.all
-end
+  end
 
- def status
-  @page = Page.find(params[:id])
-  @page.status = !@page.status?
-    @page.save!
-    redirect_to :back 
- end
+  def status
+    @page = Page.find(params[:id])
+    @page.status = !@page.status?
+      @page.save!
+      redirect_to :back 
+  end
 
   def edit
     @page = Page.find(params[:id])
@@ -58,9 +58,7 @@ end
   end
 
   def faq
-
-    @page = Page.where( 'title like ?', '%FAQ%' ) 
-
+    @page = Page.where( 'title like ?', '%FAQ%' )
   end
 
   def term_condition
@@ -69,6 +67,6 @@ end
 
   def contactus
    @page = Page.where( 'title like ?', '%Contact Us%' ) 
- end 
+  end 
 
 end

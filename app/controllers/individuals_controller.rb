@@ -79,6 +79,7 @@ class IndividualsController < ApplicationController
     end
   end
 
+
   def submit_indiv2
     @user = User.where('email = ?', params[:email]) rescue nil
     if @user.present?
@@ -98,7 +99,7 @@ class IndividualsController < ApplicationController
       end
     end
 
-  if params[:praise].present? && params[:criticism].present? || params[:praise].present? && params[:general].present? || params[:criticism].present? && params[:general].present?
+   if params[:praise].present? && params[:criticism].present? || params[:praise].present? && params[:general].present? || params[:criticism].present? && params[:general].present?
       if user_signed_in?
         #for onbording sequence give feedback to others
         @givefeedback = AccessReputationTip.where('user_id = ?', current_user.id) 

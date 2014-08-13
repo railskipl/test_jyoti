@@ -38,9 +38,14 @@ def import
       redirect_to :back, notice: "Users imported."
     end
 end
+
+
+
 def sign_out
   
 end
+
+
 def toggled_status
    @user = User.find(params[:id])
    @user.status = !@user.status?

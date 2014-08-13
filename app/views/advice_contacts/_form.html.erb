@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <div class="col-xs-4"style="padding: 55px;">
+  <div class="col-xs-5"style="padding: 55px;">
 
   <% unless user_signed_in? %>
    <% else %>
@@ -18,11 +18,11 @@
    <% end  %>
 
     <div class="field">
-   <%= f.label :email,"Email of a person who would benefit from your tips:"%>
+   <%= f.label :email,"Email of a person who would benefit from your tips:" %>
     <%= f.text_area :email ,:placeholder => "Please enter email address", :class=>"form-control", :maxlength => 500 %>
     </div></br>
 
-    <strong>Please give this person at least 2 tips below.</strong>
+    <strong>Please give this person at least 2 tips below.</strong><br>
 
           Please try to make sure they are appropriate and helpful. 
   </br></br><div class="field">

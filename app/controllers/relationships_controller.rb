@@ -9,7 +9,6 @@ class RelationshipsController < ApplicationController
   # GET /relationships.json
   def index
     @relationships = Relationship.where('user_id = ?' , current_user.id)
-
   end
 
   def feedback_relationship
@@ -20,8 +19,7 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships/1
   # GET /relationships/1.json
-  def show
-    
+  def show    
   end
 
   # GET /relationships/new
@@ -32,7 +30,6 @@ class RelationshipsController < ApplicationController
 
   def cal
     @relationships = Relationship.all
-
   end
 
   # GET /relationships/1/edit
@@ -72,9 +69,8 @@ class RelationshipsController < ApplicationController
           FeedbackMailer.relationship_feedback(@relationship).deliver
         else
           redirect_to  new_relationship_path
-        end
-    
-  end
+        end    
+    end
 
 
   def feddback_form
@@ -143,10 +139,8 @@ class RelationshipsController < ApplicationController
   def add_feedback
     
     relationship_ids = params["relationship_ids"]
-    @relationships ||= []
-    
+    @relationships ||= []    
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-
     relationship_ids.to_a.each do |r|
        @relationships << Relationship.find(r)
     end 

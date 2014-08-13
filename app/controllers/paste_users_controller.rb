@@ -59,7 +59,7 @@ class PasteUsersController < ApplicationController
        else
         render :new
       end
-    end
+  end
 
 
   # PATCH/PUT /paste_users/1
