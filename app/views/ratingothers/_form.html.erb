@@ -21,7 +21,7 @@
     <% if params[:email]%>
       <%= f.hidden_field :email,:value => params[:email] %>
      <br>
-  <span style="margin-left:px;">1</span>
+<span style="margin-left:px;">1</span>
 <span style="margin-left:110px;">2</span>
 <span style="margin-left:110px;">3</span>
 <span style="margin-left:104px;">4</span>
@@ -36,40 +36,40 @@
 
   <%= f.label :overall_impresion %><br>
   <%= f.range_field :overall_impresions, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
-   <%= f.label :trustworthy %><br>
 
+
+  <%= f.label :trustworthy %><br>
   <%= f.range_field :trustworthy, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id =>"slider" %></br>
+
+
  
-    <%= f.label :kind_and_helpful %><br>
-
-
-    <%= f.range_field :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider" %></br>
+   <%= f.label :kind_and_helpful %><br>
+   <%= f.range_field :kind_helpful, :min=>1, :max=>10,:value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
 
     <%= f.label :potential,'Has ability/Potential' %><br>
-
     <%= f.range_field :potential, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
-    <%= f.label :performs_well %><br>
 
-
+   <%= f.label :performs_well %><br>
    <%= f.range_field :perform_well, :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
- 
-      <%= f.label :presentable,'Persuasive and Presentable' %><br>
 
-       <%= f.range_field :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
+
+ 
+   <%= f.label :presentable,'Persuasive and Presentable' %><br>
+   <%= f.range_field :presentable, :min=>1, :max=>10, :value => 2,:class=>"ui-slider", :id=>"slider" %></br>
 
 
    <%= f.label :emotionally_Mature %><br>
-
-
    <%= f.range_field :emotianally_mature , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
 
+
+
    <%= f.label :friendly_and_social %><br>
+   <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
+   <%end%>
 
 
- <%= f.range_field :friendly_social , :min=>1, :max=>10,:value => 2, :class=>"ui-slider", :id=>"slider" %></br>
- <%end%>
    <% unless user_signed_in? %>
    <% else %>
     <%= f.hidden_field :user_id,:value => current_user.id %>
