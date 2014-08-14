@@ -58,6 +58,7 @@ def create
       end
     end
   end
+end
 
   def failure
     
@@ -77,16 +78,7 @@ def create
     @tip = @praise.count + @criticism.count + @general.count
   end
 
-private
-    # Use callbacks to share common setup or constraints between actions.
-
-    # def check_user
-    #   if user_signed_in?
-    #   else
-    #     redirect_to root_path, :alert => "Unauthorised Access"
-    #   end
-     
-    # end
-
+  private
+   
 
 end

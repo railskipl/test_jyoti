@@ -1,19 +1,24 @@
 source 'https://rubygems.org'
-
-
+ruby '2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 
 
 
+<<<<<<< HEAD
 #gem 'pg'
 
+=======
+gem 'pg'
+>>>>>>> 3c057685a74c26abec25d44067eeb3ca4c386004
 gem 'sqlite3'
 
 # gem 'mysql'
 gem 'koala'
 gem 'csv_validator'
+# gem 'rails_12factor', group: :production
+gem 'unicorn'
 
 gem 'devise'
 gem 'execjs'
@@ -21,7 +26,7 @@ gem 'therubyracer'
 gem 'protected_attributes'
 gem 'omniauth'
 gem "omniauth-facebook"
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 gem "fb_graph"
 gem 'oauth2'
 gem "omnicontacts"

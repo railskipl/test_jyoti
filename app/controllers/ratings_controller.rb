@@ -7,7 +7,6 @@ def index
 end
 
 def new
- # @q = Rating.where('user_id = ?', current_user.id)
  @rating = Rating.new
 end
 

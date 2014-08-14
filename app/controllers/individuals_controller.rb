@@ -1,7 +1,12 @@
 class IndividualsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:facebook]
 	respond_to :html, :js
+<<<<<<< HEAD
 	include IndividualsHelper
+=======
+  
+  include IndividualsHelper
+>>>>>>> 3c057685a74c26abec25d44067eeb3ca4c386004
  def index
 	 @individuals = Individual.all
  end

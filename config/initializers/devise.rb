@@ -27,7 +27,6 @@ Devise.setup do |config|
   require 'omniauth-facebook'
   require "omnicontacts"
 
-  
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

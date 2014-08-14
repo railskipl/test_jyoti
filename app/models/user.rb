@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
 
 
-  attr_accessible :email, :password, :password_confirmation,:provider, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status,:city
+  attr_accessible :email, :password, :password_confirmation,:provider,:uid, :invitation_token,:recipient_email,:first_name,:last_name,:sex,:zip,:location,:birthday,:secondary_email,:organization,:industry,:orgsize,:toggled_status,:city
 
   devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
@@ -44,45 +44,15 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
- 
-
-
-  # def congrats_email
-  #    mail(to: self.email, subject: "Welcome Message")
-  # end
-
-  # validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"new error message here" 
-
-  # before_create :check_user_date
-
-  # def check_user_date
-  #   c = AdviceContact.where("email like ? ",self.email).first
-  #   current_date = Date.today
-  #   if c
-  #     created_date = c.created_at.to_date
-  #     if (current_date - created_date) <= 7
-  #     end
-  #   end
-  # end
 
  
-  # def self.find_for_facebook_oauth(auth)
-  #   where(auth.slice(:provider, :uid)).first_or_create do |user|
-  #     user.provider = auth.provider
-  #     user.uid = auth.uid
-  #     user.email = auth.info.email
-  #     user.password = Devise.friendly_token[0,20]
-  #     # user.name = auth.info.name   # assuming the user model has a name
-  #     # user.image = auth.info.image # assuming the user model has an image
-  #  end
-  # end
 
 def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
       data = access_token.extra.raw_info
       user = User.where(:email => data["email"],:provider => "Facebook").first
         #User.skip_confirmation!
       unless user
-       user= User.create(name: data["name"],# if user in not present then create user email,name and provider.
+       user= User.create(first_name: data["first_name"],# if user in not present then create user email,name and provider.
                          email: data["email"],
                          provider: "Facebook",
                          password: Devise.friendly_token[0,20]
@@ -124,7 +94,7 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.info #access_token contain all the information about user provider.
     user = User.where(:email => data["email"],:provider => "Google").first
     unless user
-      user = User.create(name: data["name"],# if user in not present then create user email,name and provider.
+      user = User.create(first_name: data["name"],# if user in not present then create user email,name and provider.
                          email: data["email"],
                          provider: "Google",
                          password: Devise.friendly_token[0,20]
@@ -134,6 +104,23 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     end
     user
   end
+
+
+
+ def self.from_omniauth(auth)
+  if user = User.find_by_email(auth.info.email)
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user
+  else
+   where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+   end
+  end
+end
+
 
 
 
@@ -159,6 +146,22 @@ def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
 # end
 
 
+
+
+
+
+
+ def google_oauth2
+user = User.from_omniauth(request.env["omniauth.auth"])
+if user.persisted?
+flash.notice = "Signed in Through Google!"
+sign_in_and_redirect user
+else
+session["devise.user_attributes"] = user.attributes
+flash.notice = "You are almost Done! Please provide a password to finish setting up your account"
+redirect_to new_user_registration_url
+end
+end
 
 
   def facebook

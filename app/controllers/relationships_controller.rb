@@ -1,14 +1,14 @@
 class RelationshipsController < ApplicationController
   before_action :set_relationship, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new,:feedback_relationship,:power_group,:power_feedback]
-
+  before_filter :authenticate_user!
+  
 
   require 'will_paginate/array'
   # GET /relationships
   # GET /relationships.json
   def index
     @relationships = Relationship.where('user_id = ?' , current_user.id)
-
   end
 
   def feedback_relationship
@@ -19,8 +19,7 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships/1
   # GET /relationships/1.json
-  def show
-    
+  def show    
   end
 
   # GET /relationships/new
@@ -31,7 +30,6 @@ class RelationshipsController < ApplicationController
 
   def cal
     @relationships = Relationship.all
-
   end
 
   # GET /relationships/1/edit
@@ -71,9 +69,8 @@ class RelationshipsController < ApplicationController
           FeedbackMailer.relationship_feedback(@relationship).deliver
         else
           redirect_to  new_relationship_path
-        end
-    
-  end
+        end    
+    end
 
 
   def feddback_form
@@ -142,10 +139,8 @@ class RelationshipsController < ApplicationController
   def add_feedback
     
     relationship_ids = params["relationship_ids"]
-    @relationships ||= []
-    
+    @relationships ||= []    
     # @relationships = Relationship.where("user_id = ? " ,current_user.id)
-
     relationship_ids.to_a.each do |r|
        @relationships << Relationship.find(r)
     end 

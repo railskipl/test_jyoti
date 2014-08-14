@@ -29,42 +29,6 @@ class PasteUsersController < ApplicationController
   end
 
 
-  # POST /paste_users
-  # POST /paste_users.json
-  # def create
-  # @paste_user = PasteUser.new
-  # paste_users = paste_user_params
-  # @paste_users = paste_users[:email].split(",")
-  # @paste_users.delete_if {|i| User.find_by_email(i).present? }
-
-  # # @emails_txt = @paste_user.email
-  # # @paste_user = @emails_txt.split(/\s*,\s*/)
-  
-  # # email = @paste_users.join(',')
-  # # raise paste_users.inspect
-  # @paste_users.each do |email|
-  # random_password = ('0'..'z').to_a.shuffle.first(8).join
-  # @user = User.new(:email => email, :password => random_password,
-  # :password_confirmation => random_password)
-     
-  # p = PasteUser.new(:user_id => current_user.id, :email => email)
-  # p.save
-  # if @user.save
-  # Mailer.paste_user(p,@signup_url, random_password).deliver
-  # # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-  # # format.json { render :show, status: :created, location: @paste_user }
-  # else
-  # # random_password = ('0'..'z').to_a.shuffle.first(8).join
-  # # format.html { render :new }
-  # # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
-  # end
-  # end
-  # redirect_to :back
-     
-  # end
-
-
-
   def create
     @paste_user = PasteUser.new(paste_user_params)   
 
@@ -96,27 +60,7 @@ class PasteUsersController < ApplicationController
        else
         render :new
       end
-    end
-
-
-
-
-
-
-  # def email_list
-  # departments.collect { |d| d.department_name }.join(', ')
-  # end
-
-  # def email_list=(email)
-  # if id && text
-  # emails.destroy_all
-  # email.split(',').each do |d|
-  # paste_user.create(department_name: d.strip.capitalize)
-  # end
-  # end
-  # end
-
- 
+  end
 
 
   # PATCH/PUT /paste_users/1
@@ -154,20 +98,6 @@ class PasteUsersController < ApplicationController
   def complete
     users = params[:emails]
     if users.nil?
-    # @paste_users.each do |email|
-     
-    # p = PasteUser.new(:user_id => current_user.id, :email => email)
-    
-    # if p.save
-    # Mailer.paste_user(p,@signup_url).deliver
-    # # format.html { redirect_to home_dashboard_path, notice: 'Paste user was successfully created.' }
-    # # format.json { render :show, status: :created, location: @paste_user }
-    # else
-    # # random_password = ('0'..'z').to_a.shuffle.first(8).join
-    # # format.html { render :new }
-    # # format.json { render json: @paste_user.errors, status: :unprocessable_entity }
-    # end
-    # end
     redirect_to select_contacts_paste_users_path, :notice => "Please select contacts"
     else
       redirect_to select_contact_invitation_paste_users_path(:emails => users)

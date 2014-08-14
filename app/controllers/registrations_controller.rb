@@ -13,9 +13,7 @@ def after_inactive_sign_up_path_for(resource)
 end
 
 def update
-
   @user = User.find(current_user.id)
-
       successfully_updated = if needs_password?(@user, params)
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
     else
@@ -23,7 +21,7 @@ def update
       # update_without_password doesn't know how to ignore it
       params[:user].delete(:current_password)
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-     end
+    end
 
 
      
@@ -43,7 +41,7 @@ def update
       clean_up_passwords(resource)
       redirect_to root_path # That's the line I need to change
     end
-  end
+end
 
 
   

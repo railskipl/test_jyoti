@@ -18,6 +18,8 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = false
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -47,7 +49,7 @@ Rails.application.configure do
             :domain => "imap.gmail.com",
             :authentication => :login,
             :user_name => "atishkunalinfotech@gmail.com",
-            :password => "!@#kunalinfotechkipl"
+            :password => "rubyonrails"
         }
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

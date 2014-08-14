@@ -22,23 +22,6 @@ def fork_users
   
 end
 
-#def dashboard
-   #  @contacts = request.env['omnicontacts.contacts']
-   #  @plans = Plan.all
-   #  @trial_days = TrialDay.first
-   #  # @user = User.find_by_id(current_user)
-   #  @plan_expiry = plan_expiry
-   #  @con ||= []
-   #  if !@contacts.nil?
-	  #   @contacts.each do |contact|
-	  #      @con << Contact.where(email: contact[:email],user_id: current_user.id ).first_or_create
-	  #   end
-	  # end
-    # respond_to do |format|
-    #   format.html 
-    # end
-
-
 
 def dashboard
     @contacts = request.env['omnicontacts.contacts']
@@ -47,7 +30,7 @@ def dashboard
     if !@contacts.nil?
 	    @contacts.each do |contact|
 	       @con << Contact.where(email: contact[:email],user_id: current_user.id ).first_or_create
-	  end
+	    end
 	   redirect_to feedback_relationship_relationships_path ,:notice => "Contacts imported"
     end
 end
@@ -57,8 +40,7 @@ def plan
     @plans = Plan.all
 end
 
-def contactus
-  
+def contactus  
 end
 
 
@@ -68,13 +50,11 @@ end
 def mspoint
 end
 
-def help
-    
+def help    
 end
 
 
-def faq
-    
+def faq    
 end
 
 def term_condition
@@ -83,23 +63,16 @@ end
 def privacypolicy
 end
 
-def tip_rating
-    
+def tip_rating    
 end
 
-def how_it_works
-  
+def how_it_works  
 end
 
-def how_it_works_for_me
-  
+def how_it_works_for_me  
 end
 
-def how_it_works_for_my_team
-  
+def how_it_works_for_my_team  
 end
-
-
-
 
 end

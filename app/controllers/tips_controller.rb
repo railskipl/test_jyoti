@@ -349,5 +349,6 @@ class TipsController < ApplicationController
  def rejected_tips
 	 
  end
+
 end
  
