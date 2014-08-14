@@ -6,13 +6,10 @@ gem 'rails', '4.1.0'
 
 
 
-<<<<<<< HEAD
-#gem 'pg'
 
-=======
 gem 'pg'
->>>>>>> 3c057685a74c26abec25d44067eeb3ca4c386004
-gem 'sqlite3'
+
+#gem 'sqlite3'
 
 # gem 'mysql'
 gem 'koala'
