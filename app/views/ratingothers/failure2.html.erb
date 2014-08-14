@@ -1,0 +1,23 @@
+<%unless @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false %>
+	<% if @tip >= 10 && @vote_track.count >= 25 && @track_invites.count >= 3 && @all_critic < 3 || 
+		@all_praise < 3 || @all_general < 3 %>
+		    
+	    <div class="side_box">
+			<span>
+			   <p style="font-size:19px;">"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 3 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."</p><br/>
+
+	 
+	           <p>
+			   Recommended for you today:<br/>
+
+				<p>Give feedback: 3 tips</p>
+
+				<p>&nbsp&nbsp&nbsp&nbspVote on tips:  5 votes on others people's tips</p> 
+
+				<p>&nbsp&nbsp&nbspInvite Others: 20 invites (general or for feedback)</p>
+
+			   </p>
+			</span>
+	    </div>
+	<%end%>
+<%end%>

@@ -1,0 +1,57 @@
+
+	<%unless @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false %>
+
+	<% if @tip < 10 && @vote_track.count < 25 && @track_invites.count < 3 %>
+
+		<p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+		a. Give at least 10 feedbacks.But you have given <%= @tip rescue nil%> feedbacks so far.<br/>
+		b. Provide 25 votes on others people's tips . But you have given <%= @vote_track.count rescue nil %> so far.<br/>
+		c. Invite at least 3 (general or for feedback), you have invited <%= @track_invites.count rescue nil%> so far. </p> <br/>
+	<%elsif @tip >= 10 && @vote_track.count < 25 && @track_invites.count >= 3%>
+	     <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+
+		a. Provide 25 votes on others people's tips . But you have given <%= @vote_track.count rescue nil %> so far.<br/>
+		 </p> <br/>
+	<%elsif @tip >= 10 && @vote_track.count >= 25 && @track_invites.count < 3 %>
+        a. Invite at least 3 (general or for feedback), you have invited <%= @track_invites.count rescue nil%> so far.<br/>
+    <%elsif @tip < 10 && @vote_track.count >= 25 && @track_invites.count >= 3 %>
+      <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+        a. Give at least 10 feedbacks.But you have given <%= @tip rescue nil%> feedbacks so far.<br/>
+    <%elsif @tip < 10 && @vote_track.count < 25 && @track_invites.count >= 3 %>
+        <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+		a. Give at least 10 feedbacks.But you have given <%= @tip rescue nil%> feedbacks so far.<br/>
+		b. Provide 25 votes on others people's tips . But you have given <%= @vote_track.count rescue nil %> so far.<br/>
+           </p> <br/>
+    <%elsif @tip < 10 && @vote_track.count >= 25 && @track_invites.count < 3 %>
+        <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+		a. Give at least 10 feedbacks.But you have given <%= @tip rescue nil%> feedbacks so far.<br/>
+		b. Invite at least 3 (general or for feedback), you have invited <%= @track_invites.count rescue nil%> so far. </p> <br/>
+    <%elsif @tip >= 10 && @vote_track.count < 25 && @track_invites.count < 3 %>
+        <p>None. Your participation level meets the minimum. To view your Reputation Report and tips you must have to: <br/>
+
+		a. Provide 25 votes on others people's tips . But you have given <%= @vote_track.count rescue nil %> so far.<br/>
+		b. Invite at least 3 (general or for feedback), you have invited <%= @track_invites.count rescue nil%> so far. </p> <br/>
+	<%else @tip >= 10 && @vote_track.count >= 25 && @track_invites.count >= 3 && @all_critic < 3 || @all_praise < 3 || @all_general < 3 %>
+	    
+	    <div class="side_box">
+			<span>
+			   <p style="font-size:19px;">"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 3 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."</p><br/>
+
+	 
+	           <p>
+			   Recommended for you today:<br/>
+
+				<p>Give feedback: 3 tips</p>
+
+				<p>Vote on tips:  5 votes on others people's tips</p> 
+
+				<p>Invite Others: 20 invites (general or for feedback)</p>
+
+			   </p>
+			</span>
+	    </div>
+
+    <%end%>	
+<%end%>
+
+    

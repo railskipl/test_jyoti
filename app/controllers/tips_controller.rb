@@ -1,18 +1,19 @@
 class TipsController < ApplicationController
+ include TipsHelper
  before_filter :authenticate_user!
 	# before_filter :authenticate_user!
 	# before_filter :check_user, only: [:new,:index]
 
-	def index
-		@users = User.all
-	 @response_tip = ResponseTip.all
-		@tips = Tip.all
-		@user_invitations = UserInvitation.all
+	# def index
+	# 	@users = User.all
+	#     @response_tip = ResponseTip.all
+	# 	@tips = Tip.all
+	# 	@user_invitations = UserInvitation.all
 		
-	end
+	# end
 
 	def advice
-	  @tips = Tip.all  
+	  #@tips = Tip.all  
 	end
 
 	def new
@@ -44,17 +45,17 @@ class TipsController < ApplicationController
 	            end
 	        end
 	        if @tip.praise
-	         	@praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name])
+	         	@praise = Praise.new(:email => @tip.email, :provider_user_id => @tip.user_id, :praise_comment => @tip.praise, :typee => "praise", :circle_name => @tip[:name], :city => current_user.city)
 			 	@praise.save
 			end
 		
 			if @tip.criticism
-			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name], :city => current_user.city)
 			  @criticism.save
 	        end
 
 	        if @tip.helpful
-			  @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
+			  @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name], :city => current_user.city)
 			  @general.save
 	        end
 
@@ -89,15 +90,18 @@ class TipsController < ApplicationController
 	end
 
 	def helpful_tips
+		
+	end
 
+	def votes
 		@praise = Praise.where('provider_user_id != ? ', current_user.id)
-		@praises = Praise.where('email != ?', current_user.email)
+		@praises = Praise.where('email != ? and city != ? or city IS ?', current_user.email, current_user.city,nil)
 
 		@criticism = Criticism.where('provider_user_id != ?', current_user.id)
-		@criticisms = Criticism.where('email != ?', current_user.email)
+		@criticisms = Criticism.where('email != ? and city != ? or city IS ?', current_user.email, current_user.city,nil)
 
 		@general = General.where('provider_user_id != ?', current_user.id)
-		@generals = General.where('email != ?', current_user.email)
+		@generals = General.where('email != ? and city != ? or city IS ?', current_user.email, current_user.city, nil)
 		
 		
 		@second_priority1 = @praises.where('tip_accept = ? or tip_reject = ? and tip_viewed >= ?', 1, 1, 1 ).order("RANDOM()").first rescue nil
@@ -124,7 +128,6 @@ class TipsController < ApplicationController
 		if @power.blank?
 		  @ww = @priority
 		end
-		
 	end
 
 	def admin_approve_tip
@@ -160,7 +163,7 @@ class TipsController < ApplicationController
          	               :provider_user_id => current_user.id, :recipient_email => @tip.email, 
          	               :comment_quality => params[:quality_of_comments] )
 	   end
-	   	
+	   	@vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
 		sum = 1
 		user_view = 1
 		#logic for decidind the tip is helpful or not
@@ -287,65 +290,57 @@ class TipsController < ApplicationController
 	
  end
 
- def condition_check
- 	@praise = Praise.where('email = ?', current_user.email).order('created_at DESC') rescue nil
-	@criticism = Criticism.where('email = ?', current_user.email).order('created_at DESC') rescue nil
-	@general = General.where('email = ?', current_user.email).order('created_at DESC') rescue nil
-
-	@praise_owner_tip = Praise.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
-	@criticism_owner_tip = Criticism.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
-	@general_owner_tip = General.where('provider_user_id = ?',current_user.id).order('created_at DESC') rescue nil
- end
-
  def responses_to_your_tips
  	@reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
-    unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
-	 	if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
-		  #for intial report // setting of logic for onbording sequence
-	        @reputation_and_tip.first.intial_reaction_view = true
-	        @reputation_and_tip.first.start_date = Date.today.to_s 
-	        @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
-	        @reputation_and_tip.first.update_attributes(params[:access_reputation_tip])
-	      ###############################################################################  
-		    condition_check
-          #After viewing the intial response and reaction on tips, we will update fields so that user 
-          #will go for case 2.
-		  
-		  if @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
-            @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
-                        :got_feedback => 0, :invite_other => 0  )
-          end
-		else
-		  redirect_to reputation_report_failure_path(:case => '1', :id => current_user.id)
-		end
-	else
-		@diffrence = (@reputation_and_tip.first.end_date).to_date - (@reputation_and_tip.first.start_date).to_date
-	    @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
-	    if @a.to_i <= 30
-	    	if @reputation_and_tip.first.give_feedback >= 10 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 25 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 3 
-	    	   condition_check
-	    	else
-	    	   redirect_to reputation_report_failure_path(:case => '2', :id => current_user.id)
-	    	end
-	    else
-	      @reputation_and_tip.first.start_date = Date.today.to_s 
-	      @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
-		  @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
-                :got_feedback => 0, :invite_other => 0 ,:start_date => @reputation_and_tip.first.start_date, :end_date => @reputation_and_tip.first.end_date )
-	    end
-	end
- end
+  unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
+    # Initial case 
+    if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && gottips >= 5 && @reputation_and_tip.first.invite_other >= 5 
+      #for intial report // setting of logic for onbording sequence
+          @reputation_and_tip.first.intial_reaction_view = true
+          @reputation_and_tip.first.start_date = Date.today.to_s 
+          @reputation_and_tip.first.end_date = (Date.today + 7.days).to_s
+          @reputation_and_tip.first.update_attributes(params[:access_reputation_tip])
+        ############################################################################### 
+          condition_check      
+    else
+      redirect_to reputation_report_failure_path
+    end
+  else
+    #After initial view of reputation report and tips.
+    #This condition will give user to access reputation report and tips for next 7 days.
+    @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
+    if @a.to_i <= 7
+      condition_check
+    else
+      # This condition used to check last 30 days data for fullfilling the critria to view 
+      # reputation reports and tips.
+        date_check
+        votes_invites_track
+        tips_provided
+        #####################################################################
+        # Tips from 3 diffrent people.
+        tips_other 
+        ###################################################
 
- # def responses_to_your_tips
- # 	@reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
- # 	unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
- # 	  if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
- # 	  condition_check
- # 	  else
- # 	  end
- # 	else
- # 	end
- # end
+      @tip = @praise.count + @criticism.count + @general.count
+      if @tip >= 10 && @vote_track.count >= 25 && @track_invites.count >= 3
+        #This condition is for to check:
+        # 1.User should provide more than 10 tips to other users.
+        # 2.Provide 25 vote on tips or more.
+        # 3.Send Invites to 3 or more people. 
+        if @all_critic >= 3 || @all_praise >= 3 || @all_general >= 3
+             # This condition will check for, does user got tips from 3 or more people for last 
+             # 30 days.
+          condition_check
+        else
+           redirect_to reputation_report_failure2_path(:case => '2', :id => current_user.id)
+        end
+      else
+        redirect_to reputation_report_failure1_path
+      end 
+    end  
+  end
+ end
 
  def tips_and_rating
 	 
@@ -354,18 +349,5 @@ class TipsController < ApplicationController
  def rejected_tips
 	 
  end
-
-private
-		# Use callbacks to share common setup or constraints between actions.
-
-		# def check_user
-		#   if user_signed_in?
-		#   else
-		#     redirect_to root_path, :alert => "Unauthorised Access"
-		#   end
-		 
-		# end
-
-
 end
  

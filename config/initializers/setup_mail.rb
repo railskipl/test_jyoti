@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
   :domain => "imap.gmail.com",
   :authentication => :login,
   :user_name => "rubyrails9@gmail.com",
-  :password => "kipl123!@#"
+  :password => "kunalinfotechkipl"
 
 }
 

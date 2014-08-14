@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+ include RatingsHelper
  before_filter :check_user, only: [:new]
   before_filter :authenticate_user!
 def index
@@ -10,92 +11,55 @@ def new
  @rating = Rating.new
 end
 
-  
-def condition_check 
-  @powergroup = PowerGroup.where('user_id = ?', current_user.id) rescue nil
-   @c = []
-   @powergroup.each do |r|
-     @c << User.where('email = ?', r.email).select('id')
-   end
-   
-   @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
-   if @d.empty?
-    @d = [0,0,0,0,0,0,0,0]
-   else
-    @d = Rating.power_mirrors(@c, current_user.id)#power mirrors
-   end
-
-   @ratingss = Rating.where('user_id = ?', current_user.id) rescue nil#self image
-   @ratingother = Ratingother.where('friend_id = ?', current_user.id) rescue nil#all mirrors
-   if @ratingother.empty? && @ratingss.empty?
-    @b = [0,0,0,0,0,0,0,0]#self image
-    @a = [0,0,0,0,0,0,0,0]#all mirrors
-   elsif @ratingother.empty? && @ratingss != nil
-    @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
-    @a = [0,0,0,0,0,0,0,0]#all mirrors
-   elsif @ratingss.empty? && @ratingother != nil
-    @b = [0,0,0,0,0,0,0,0]#self image
-    @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
-   else
-    @b = Rating.self_mirrors(@ratingss, current_user.id)#self image
-    @a = Rating.all_mirrors(@ratingother,current_user.id) #all mirrors  
-   end
-
-
-   @avg = AvgRating.where("user_id = ?",current_user.id).first_or_create
-   
-   unless @a.empty?
-     @avg.overall = @a[0]
-     @avg.trustworthy = @a[1]
-     @avg.kind_helpful = @a[2]
-     @avg.potential = @a[3]
-     @avg.presentable = @a[4]
-     @avg.perform_well = @a[5]
-     @avg.emotianally_mature = @a[6]
-     @avg.friendly_social = @a[7]
-     @avg.user_id = current_user.id
-     @avg.save
-   end
-   report
-end
-
 def reputation_report
-  @reputation_and_tip = AccessReputationTip.where('user_id = ?', current_user.id)
+  @reputation_and_tip = AccessReputationTip.where('user_id = ?',current_user.id)
   unless @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
-    if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage == 1 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 5 
+    # Initial case 
+    if @reputation_and_tip.first.give_feedback >= 1 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 5 && @reputation_and_tip.first.give_selfimage >= 1 && gottips >= 5 && @reputation_and_tip.first.invite_other >= 5 
       #for intial report // setting of logic for onbording sequence
           @reputation_and_tip.first.intial_reputation_view = true
           @reputation_and_tip.first.start_date = Date.today.to_s 
-          @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
+          @reputation_and_tip.first.end_date = (Date.today + 7.days).to_s
           @reputation_and_tip.first.update_attributes(params[:access_reputation_tip])
-        ###############################################################################  
-          condition_check
-          #After viewing the intial response and reaction on tips, we will update fields so that user 
-          #will go for case 2.
-      if @reputation_and_tip.first.intial_reaction_view == true && @reputation_and_tip.first.intial_reputation_view == true
-         @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
-                        :got_feedback => 0, :invite_other => 0  )
-      end
+        ############################################################################### 
+          condition_check      
     else
-      #flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
-      redirect_to reputation_report_failure_path(:case => '1', :id => current_user.id)
+      redirect_to reputation_report_failure_path
     end
   else
-    @diffrence = (@reputation_and_tip.first.end_date).to_date - (@reputation_and_tip.first.start_date).to_date
-      @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
-      if @a.to_i <= 30
-        if @reputation_and_tip.first.give_feedback >= 10 && @reputation_and_tip.first.give_ratings >= 1 && @reputation_and_tip.first.vote_on_tips >= 25 && @reputation_and_tip.first.got_feedback >= 5 && @reputation_and_tip.first.invite_other >= 3
+    #After initial view of reputation report and tips.
+    #This condition will give user to access reputation report and tips for next 7 days.
+    @a = Date.today.to_date - (@reputation_and_tip.first.start_date).to_date
+    if @a.to_i <= 7
+      condition_check
+    else
+      # This condition used to check last 30 days data for fullfilling the critria to view 
+      # reputation reports and tips.
+        date_check
+        votes_invites_track
+        tips_provided
+        #####################################################################
+        # Tips from 3 diffrent people.
+        tips_other 
+        ###################################################
+
+      @tip = @praise.count + @criticism.count + @general.count
+      if @tip >= 10 && @vote_track.count >= 25 && @track_invites.count >= 3
+        #This condition is for to check:
+        # 1.User should provide more than 10 tips to other users.
+        # 2.Provide 25 vote on tips or more.
+        # 3.Send Invites to 3 or more people. 
+        if @all_critic >= 3 || @all_praise >= 3 || @all_general >= 3
+             # This condition will check for, does user got tips from 3 or more people for last 
+             # 30 days.
           condition_check
         else
-           #flash[:alert] = "None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
-           redirect_to reputation_report_failure_path(:case => '2')
+           redirect_to reputation_report_failure2_path(:case => '2', :id => current_user.id)
         end
       else
-        @reputation_and_tip.first.start_date = Date.today.to_s 
-        @reputation_and_tip.first.end_date = (Date.today + 30.days).to_s
-        @reputation_and_tip.first.update_attributes(:give_feedback => 0, :give_ratings => 0, :vote_on_tips => 0, :give_selfimage => 1,
-                :got_feedback => 0, :invite_other => 0 ,:start_date => @reputation_and_tip.first.start_date, :end_date => @reputation_and_tip.first.end_date )
-      end
+        redirect_to reputation_report_failure1_path
+      end 
+    end  
   end
 end
 
@@ -120,44 +84,6 @@ def create
    @rating = @ratings.update_attributes(params[:rating])
    redirect_to reputation_report_path, notice: "Users has been rated."
  end
-end
-
-def report
-  @user = current_user
-  @total_ratings = Ratingother.where("email like ?" ,@user.email).count
-  @recent_ratings = Ratingother.where("email like ? and created_at >= ?" ,@user.email, 6.months.ago).count
-  @total_relations = Relationship.where("email like ?" ,@user.email).count
-  if @total_ratings > 0 
-    @percent = @recent_ratings*100/@total_ratings
-  
-    @long_relations = Relationship.where("email like ? and know_how_for_long_year >= ?" ,@user.email,2).count
-    if @total_relations > 0
-    @percent_history = @long_relations*150/@total_relations
-    end
-    @tr = Ratingother.where("email like ?" ,@user.email)
-    if @total_ratings > 100
-      @diversity_points = 150
-    else
-      @diversity_points = (@total_ratings*150)/100
-    end
-    
-    @weighted_rating ||= []
-    @tr.each do |r| 
-     reputation_score = ReputationScore.find_by_user_id(r.user_id).nil? ? 1:reputation_score = ReputationScore.find_by_user_id(r.user_id).score
-     @weighted_rating << ((r.trustworthy*0.2 + r.kind_helpful*0.1 + r.potential*0.1 + r.perform_well*0.2 + r.presentable*0.1+ r.emotianally_mature*0.15 + r.friendly_social*0.15)*(reputation_score*0.1)).to_i
-    end 
-    @total_score = @percent + @percent_history.to_f + @diversity_points + @weighted_rating.sum/@total_ratings 
-    r = ReputationScore.where("user_id = ?", current_user).first_or_create
-    r.user_id = current_user.id
-    r.score = @total_score
-    r.save
-    rhd = RhdStore.where(:user_id => current_user.id).first_or_create
-    rhd.recency = @percent
-    rhd.history = @percent_history.to_f 
-    rhd.diversity = @diversity_points
-    rhd.save
-    end
-
 end
 
 private

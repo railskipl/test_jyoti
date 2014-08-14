@@ -2,6 +2,7 @@ class PasteUsersController < ApplicationController
   before_action :set_paste_user, only: [:show, :edit, :update, :destroy]
   before_filter :check_user, only: [:index,:destroy,:edit,:update,:new]
   before_filter :authenticate_user!
+  include TipsHelper
   require 'will_paginate/array'
   # GET /paste_users
   # GET /paste_users.json
@@ -225,8 +226,11 @@ class PasteUsersController < ApplicationController
   end
 
   def my_mirror
-   
-    @relationships = Relationship.all
+    votes_invites_track
+    tips_provided
+    tips_other
+    @tip = @praise.count + @criticism.count + @general.count
+    #raise @vote_track.count.inspect
   end
 
   def import_social_contacts

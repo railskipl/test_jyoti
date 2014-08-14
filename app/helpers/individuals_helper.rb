@@ -3,7 +3,7 @@ module IndividualsHelper
  
   if params[:typee_1] == "praise"
      @praise = Praise.where('id = ?', params[:id_1])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
     sum = 1
     if params[:response_1] == "true"
       @sum = @praise.tip_accept + sum
@@ -20,12 +20,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @praise.tip_viewed = @praise.tip_viewed + user_view
     @praise.tip_prediction = @w
     @praise.update_attributes(params[:praise])
   elsif params[:typee_1] == "criticism"
 
   	@criticism = Criticism.where('id = ?', params[:id_1])[0]
-
+    @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
     sum = 1
     if params[:response_1] == "true"
       @sum = @criticism.tip_accept + sum
@@ -42,12 +44,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @criticism.tip_viewed = @criticism.tip_viewed + user_view
     @criticism.tip_prediction = @w
     @criticism.update_attributes(params[:criticism])
 
   elsif params[:typee_1] == "general"
     @general = General.where('id = ?', params[:id_1])[0]
-
+    @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
     sum = 1
     if params[:response_1] == "true"
       @sum = @general.tip_accept + sum
@@ -64,6 +68,8 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @general.tip_viewed = @general.tip_viewed + user_view
     @general.tip_prediction = @w
     @general.update_attributes(params[:general])
   else
@@ -74,6 +80,7 @@ module IndividualsHelper
   if params[:typee_2] == "praise"
        
      @praise = Praise.where('id = ?', params[:id_2])[0]
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_2] == "true"
       @sum = @praise.tip_accept + sum
@@ -90,12 +97,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @praise.tip_viewed = @praise.tip_viewed + user_view
     @praise.tip_prediction = @w
     @praise.update_attributes(params[:praise])
   elsif params[:typee_2] == "criticism"
 
   	@criticism = Criticism.where('id = ?', params[:id_2])[0]
-
+    @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_2] == "true"
       @sum = @criticism.tip_accept + sum
@@ -112,12 +121,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @criticism.tip_viewed = @criticism.tip_viewed + user_view
     @criticism.tip_prediction = @w
     @criticism.update_attributes(params[:criticism])
 
   elsif params[:typee_2] == "general"
   	 @general = General.where('id = ?', params[:id_2])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_2] == "true"
       @sum = @general.tip_accept + sum
@@ -134,6 +145,8 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @general.tip_viewed = @general.tip_viewed + user_view
     @general.tip_prediction = @w
     @general.update_attributes(params[:general])
   else
@@ -142,7 +155,7 @@ module IndividualsHelper
 
 
   if params[:typee_3] == "praise"
-     
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
     @praise = Praise.where('id = ?', params[:id_3])[0]
     sum = 1
     if params[:response_3] == "true"
@@ -160,12 +173,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @praise.tip_viewed = @praise.tip_viewed + user_view
     @praise.tip_prediction = @w
     @praise.update_attributes(params[:praise])
   elsif params[:typee_3] == "criticism"
 
   	@criticism = Criticism.where('id = ?', params[:id_3])[0]
-
+    @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_3] == "true"
       @sum = @criticism.tip_accept + sum
@@ -182,12 +197,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @criticism.tip_viewed = @criticism.tip_viewed + user_view
     @criticism.tip_prediction = @w
     @criticism.update_attributes(params[:criticism])
 
   elsif params[:typee_3] == "general"
   	 @general = General.where('id = ?', params[:id_3])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_3] == "true"
       @sum = @general.tip_accept + sum
@@ -204,6 +221,8 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @general.tip_viewed = @general.tip_viewed + user_view
     @general.tip_prediction = @w
     @general.update_attributes(params[:general])
   else
@@ -213,6 +232,7 @@ module IndividualsHelper
 
   if params[:typee_4] == "praise"
      @praise = Praise.where('id = ?', params[:id_4])[0]
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
     if params[:response_4] == "true"
       @sum = @praise.tip_accept + sum
@@ -229,12 +249,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @praise.tip_viewed = @praise.tip_viewed + user_view
     @praise.tip_prediction = @w
     @praise.update_attributes(params[:praise])
   elsif params[:typee_4] == "criticism"
 
   	 @criticism = Criticism.where('id = ?', params[:id_4])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_4] == "true"
       @sum = @criticism.tip_accept + sum
@@ -251,12 +273,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @criticism.tip_viewed = @criticism.tip_viewed + user_view
     @criticism.tip_prediction = @w
     @criticism.update_attributes(params[:criticism])
 
   elsif params[:typee_4] == "general"
   	 @general = General.where('id = ?', params[:id_4])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_4] == "true"
       @sum = @general.tip_accept + sum
@@ -273,6 +297,8 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @general.tip_viewed = @general.tip_viewed + user_view
     @general.tip_prediction = @w
     @general.update_attributes(params[:general])
   else
@@ -282,6 +308,7 @@ module IndividualsHelper
 
   if params[:typee_5] == "praise"
      @praise = Praise.where('id = ?', params[:id_5])[0]
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
     if params[:response_5] == "true"
       @sum = @praise.tip_accept + sum
@@ -298,12 +325,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @praise.tip_viewed = @praise.tip_viewed + user_view
     @praise.tip_prediction = @w
     @praise.update_attributes(params[:praise])
   elsif params[:typee_5] == "criticism"
 
   	@criticism = Criticism.where('id = ?', params[:id_5])[0]
-
+    @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_5] == "true"
       @sum = @criticism.tip_accept + sum
@@ -320,12 +349,14 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @criticism.tip_viewed = @criticism.tip_viewed + user_view
     @criticism.tip_prediction = @w
     @criticism.update_attributes(params[:criticism])
 
   elsif params[:typee_5] == "general"
   	 @general = General.where('id = ?', params[:id_5])[0]
-
+     @vote_track = VoteTrack.create(:user_id => current_user.id, :name => 'vote_on_tips')
      sum = 1
      if params[:response_5] == "true"
       @sum = @general.tip_accept + sum
@@ -342,6 +373,8 @@ module IndividualsHelper
     else 
       @w = 0
     end
+    user_view = 1
+    @general.tip_viewed = @general.tip_viewed + user_view
     @general.tip_prediction = @w
     @general.update_attributes(params[:general])
   else
