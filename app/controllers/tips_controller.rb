@@ -49,13 +49,13 @@ class TipsController < ApplicationController
 			end
 		
 			if @tip.criticism
-			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
-			  @criticism.save
+			   @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name])
+			   @criticism.save
 	        end
 
 	        if @tip.helpful
-			  @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
-			  @general.save
+			   @general = General.new(:email => @tip.email, :provider_user_id => @tip.user_id, :general_comment => @tip.helpful, :typee => "general", :circle_name => @tip[:name])
+			   @general.save
 	        end
 
 			if params[:tip][:rating] == "true"
