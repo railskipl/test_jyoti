@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
 
 
   def new
-  @subscription = Subscription.new(:user_id => params[:user_id], :token => params[:token], :price => params[:price], :name => params[:name])
+   @subscription = Subscription.new(:user_id => params[:user_id], :token => params[:token], :price => params[:price], :name => params[:name])
       plan = Plan.find(params[:plan_id])    
       
       @subscription = plan.subscriptions.build
@@ -26,15 +26,14 @@ class SubscriptionsController < ApplicationController
       @subscription.paypal_customer_token = params[:PayerID]
       @subscription.paypal_payment_token = params[:token]
       @subscription.email = @subscription.paypal.checkout_details.email
-
       end
 
-     if @subscription.save_with_payment
-      redirect_to plans_path, :id => @subscription.plan_id
-     else
-      render :new
-     end
- end
+      if @subscription.save_with_payment
+       redirect_to plans_path, :id => @subscription.plan_id
+      else
+       render :new
+      end
+  end
 
   # GET /subscriptions/1/edit
   def edit
@@ -43,7 +42,7 @@ class SubscriptionsController < ApplicationController
 
   def update
     @subscription = current_user.subscription
-     if @subscription.update_stripe
+    if @subscription.update_stripe
       redirect_to edit_subscription_path, :success => 'Updated Card.'
     else
       flash.alert = 'Unable to update card.'

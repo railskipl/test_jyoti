@@ -50,6 +50,7 @@ class TipsController < ApplicationController
 			end
 		
 			if @tip.criticism
+
 			  @criticism = Criticism.new(:email => @tip.email, :provider_user_id => @tip.user_id, :criticism_comment => @tip.criticism, :typee => "criticism", :circle_name => @tip[:name], :city => current_user.city)
 			  @criticism.save
 	        end
