@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       get :admin_approve_tip
       get :power_tips
       get :check_history
+      get :votes
     }
   end
 
@@ -167,6 +168,8 @@ end
   get 'users/auth/:provider/callback' => 'omniauth_callbacks#google_oauth2'
   get "import_social_contacts" => "paste_users#import_social_contacts"
   get '/reputation_report/failure' => "ratingothers#failure"
+  get '/reputation_report/failure1' => "ratingothers#failure1"
+  get '/reputation_report/failure2' => "ratingothers#failure2"
   get "/users/:provider/contact_callback" => "home#dashboard"
   get "/contacts/failure" => "home#failure"
   post '/indiv2' => "individuals#submit_indiv2"
@@ -174,6 +177,7 @@ end
   post '/indiv4' => "individuals#submit_indiv4"
   post '/indiv5' => "individuals#submit_indiv5"
   post '/indiv9' => "individuals#submit_indiv9"
+  post '/facebook' => "individuals#facebook"
 
   resources :pages do
     collection {

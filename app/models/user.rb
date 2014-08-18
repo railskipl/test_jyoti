@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :reactions
   belongs_to :country
+  has_many :vote_tracks
 
   before_create :set_invitation_limit
 

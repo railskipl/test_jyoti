@@ -6,7 +6,7 @@
     float: right;
     height: 132px;
     margin-right: 196px;
-    margin-top: -173px;
+    margin-top: -297px;
     padding: 18px;
     width: 405px;
   }
@@ -15,7 +15,7 @@
     float: right;
     height: 132px;
     margin-right: 196px;
-    margin-top: -302px;
+    margin-top: -323px;
     padding: 18px;
     width: 405px;
   }
@@ -84,7 +84,7 @@
   
     
   <div class="col-xs-3">
-          <a class="btn btn-block btn-lg btn-info" href="<%= helpful_tips_tips_path%>">Vote on Tips</a>
+          <a class="btn btn-block btn-lg btn-info" href="<%= votes_tips_path%>">Vote on Tips</a>
   </div>
 
  </div>
@@ -166,52 +166,68 @@
       </p>
     </span>
   </div>
-<%elsif @status_check.give_feedback == true && @status_check.give_rating == true && @status_check.self_image == true && @status_check.vote_on_tips == true && @status_check.invite_others == true &&  @access_reputation_tip.got_feedback < 5 && @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false%>
-<div class="side_box">
-  <span>
- <p style="font-size:12px;">"None. Your participation level meets the minimum. However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."</p>
- </span>
-
- </div>
 <%else%>
 
   <%unless @access_reputation_tip.intial_reaction_view == false && @access_reputation_tip.intial_reputation_view == false%>
-    <% if @access_reputation_tip.give_feedback < 10 && @access_reputation_tip.vote_on_tips < 25 && @access_reputation_tip.invite_other < 3 %>
-    <div class="sidebar">
-      <span>
-      <p style="font-size:12px;">
-        To access your Reputation Report and eligible Tips  your community participation needed now is:<br/>
+    <% @a = Date.today.to_date - (@access_reputation_tip.start_date).to_date %>
+      <%if @a.to_i <= 7 %>
 
-        Give feedback:  10 tips<br/>
+      <%else%>
+        <% if @tip < 10 && @vote_track.count < 25 && @track_invites.count < 3 or
+                                      @all_critic < 3 ||  @all_praise < 3 || @all_general < 3%>
+          <div class="sidebar">
+            <span>
+            <p style="font-size:12px;">
+              To access your Reputation Report and eligible Tips  your community participation needed now is:<br/>
 
-        Vote on tips:   25 votes on others people's tips <br/>
+              Give feedback:  10 tips<br/>
 
-        Invite Others:  3 invites (general or for feedback) <br/>
-      </p>
-      </span>
-    </div>
-    <%elsif @access_reputation_tip.give_feedback >= 10 && @access_reputation_tip.vote_on_tips >= 25 && @access_reputation_tip.invite_other >= 3 && @access_reputation_tip.got_feedback < 5%>
-      <div class="side_box">
-        <span>
-        <p style="font-size:12px;">"None. Your participation level meets the minimum.However, we need to anonymize the feedback on you, by waiting for at least 5 people to do so. When that happens, you will have access to your Reputation Report and Tips.  If you want to speed up or make sure you get feedback from at least 5 people, invite as many people as you can to give you feedback. Since you're already logged in, you might as well use this session to keep up with your community contribution to the feedback system."
-        </p>
-        </span>
-      </div>
-    <%elsif @access_reputation_tip.give_feedback >= 10 && @access_reputation_tip.vote_on_tips >= 25 && @access_reputation_tip.invite_other >= 3 && @access_reputation_tip.got_feedback >= 5 %>
-      <div class="side_box">
-        <span>
-        <p style="font-size:12px;">
+              Vote on tips:   25 votes on others people's tips <br/>
 
-        Recommended for you today:<br/>
+              Invite Others:  3 invites (general or for feedback) <br/>
+            </p>
+            </span>
+          </div>
+        <%elsif @tip >= 10 &&  @vote_track.count >= 25 && @track_invites.count >= 3 && 
+                                      @all_critic < 3 ||  @all_praise < 3 || @all_general < 3%>
+          <div class="side_box">
+            <span>
+              <p style="font-size:12px;">
+                <p>Your participation level meets the minimum.However, we need to anonymize the feedback on you, by waiting for at least 3 people to do so. When that happens, you will have access to your Reputation Report and Tips.</p><br/>
+                Recommended for you today:<br/>
 
-        Give feedback:  3 tips<br/>
+                Give feedback:  3 tips<br/>
 
-        Vote on tips:   5 votes on others people's tips <br/>
+                Vote on tips:   5 votes on others people's tips <br/>
 
-        Invite Others:  1 invites (general or for feedback) <br/>
-        </p>
-        </span>
-      </div>
-    <%end%>
+                Invite Others:  1 invites (general or for feedback) <br/>
+                </p>
+              </p>
+            </span>
+          </div>
+        <%elsif @tip >= 10 && @vote_track.count >= 25 && @track_invites.count >= 3 && 
+                                      @all_critic >= 3 ||  @all_praise >= 3 || @all_general >= 3%>
+          <div class="side_box">
+            <span>
+              <p style="font-size:12px;">
+          
+              Recommended for you today:<br/>
+
+              Give feedback:  3 tips<br/>
+
+              Vote on tips:   5 votes on others people's tips <br/>
+
+              Invite Others:  1 invites (general or for feedback) <br/>
+              </p>
+            </span>
+          </div>
+        <%else%>
+          <%#####%>
+        <%end%>
+      <%end%>
   <%end%>
 <%end%>
+
+
+
+

@@ -1,4 +1,4 @@
-<h4>Invite to anonymize</h4><br><br>
+<h4>Invite to anonymize </h4><br><br>
 
 Before you view your Reputation Report and tips we will take you through a few <br> hands-on steps to make sure there is enough community participation and so you get <br>a feel for how this all works.<br><br><br>
 
@@ -9,7 +9,11 @@ Although there may be tips already waiting for you, we need you to <strong>invit
 
 
  <div style="margin-bottom:15px;">
-<a href="#" id="invite_fb_friends",  class = "btn btn-facebook">Invite your friends through Facebook</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button"
+      class = "btn btn-facebook"
+      onclick="sendRequestViaMultiFriendSelector(); return false;"
+      value="Send Invites to Many Friends with Facebook"
+    />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<%= indiv9_individuals_path %>" class="btn btn-google-plus">Invite by emails</a><br/>
 </div>
 
@@ -31,22 +35,54 @@ Although there may be tips already waiting for you, we need you to <strong>invit
  </div>
 
 
-<div id="fb-root"></div>
-<script src="https://connect.facebook.net/en_US/all.js"></script>
-<script>
-$(function(){
-    $("a#invite_fb_friends").click(function(){
-        FB.init({
-        appId: '536335443133989',
-        status: true,
-        cookie: false,
-        // xfbml: true
+
+
+
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    
+    <p>
+
+    </p>
+
+    <script>
+      FB.init({
+        appId  : '536335443133989',
+        frictionlessRequests: true,
+      });
+
+      function sendRequestToRecipients() {
+        var user_ids = document.getElementsByName("user_ids")[0].value;
+        FB.ui({method: 'apprequests',
+          message: 'has invite you to connect to mirror360.com',
+          to: user_ids, 
+        }, requestCallback);
+      }
+
+      function sendRequestViaMultiFriendSelector() {
+        FB.ui({method: 'apprequests',
+          message: 'has invite you to connect to mirror360.com'
+        }, requestCallback);
+      }
+
+      function requestCallback(response) {
+       
+        //alert(response.to);
+        if(response.to){  
+        $.ajax({
+             type: "POST",
+             url: "<%= facebook_path %>",
+             data:response,
+             error: function( xhr ){ 
+                alert("ERROR ON SUBMIT");
+              },
+              success: function( data ){ 
+                //data response can contain what we want here...
+                console.log("SUCCESS, data="+data);
+              }
         });
+        }
+  }
+    </script>
 
-FB.ui({
-method: 'apprequests',
-message: 'has invite you to connect to mirror360.com'});
-});
-});
-</script>
-
+ 

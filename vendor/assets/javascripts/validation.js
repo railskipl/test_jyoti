@@ -44,6 +44,20 @@
             }
         }); 
      });
-   
 
+    jQuery("#edit_user").validate({
+    errorElement:'div',
+    rules: {
+      "user[city]":{
+                      required: true
+                }   
+        },
+    messages: {
+    "user[city]":{
+                      required: "City cannot be blank!"
+                     
+                }  
+        }
     });
+   
+});
