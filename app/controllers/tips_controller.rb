@@ -60,11 +60,17 @@ class TipsController < ApplicationController
 			  @general.save
 	        end
 
-			if params[:tip][:rating] == "true"
+			if params[:tip][:rating] == "true"  
 				redirect_to new_ratingother_path(:email => @tip.email), notice: "Tips has been provided to this particular user."
 			else
 				redirect_to my_mirror_paste_users_path, notice: "Tips has been provided to this particular user."
-			end
+		   end
+
+		 #   if Tip.select(:email).count >= 5
+			# 		@user = params[:tip][:email] 
+			# 		FeedbackMailer.received_feedback(user).deliver 					
+			# 		else 
+			# end
 		else
 			redirect_to new_tip_path
 	        flash[:notice] = 'Please give at least two out of three tips to complete this step. The quality of your tips matter too.'
