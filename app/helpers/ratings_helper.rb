@@ -170,4 +170,35 @@ module RatingsHelper
         @generalcount = General.where('created_at >= ? and Date(created_at) <= ? and provider_user_id IS ? and email = ? and status = ?', @start_date, @end_date, nil, current_user.email, false).order('created_at DESC') rescue nil    
         @all_general = @generals.count + @generalcount.count
 	end
+
+	def gottips
+    @criticisms = Criticism.where('provider_user_id != ? and email = ? and status = ?',current_user.id, current_user.email, false).select('DISTINCT(provider_user_id)').order('created_at DESC') rescue nil
+    @critic = Criticism.where('provider_user_id IS ? and email = ? and status = ?', nil, current_user.email, false).order('created_at DESC') rescue nil    
+    all_critic = @criticisms.count + @critic.count
+    
+    @praises = Praise.where('provider_user_id != ? and email = ? and status = ?',current_user.id, current_user.email, false).select('DISTINCT(provider_user_id)').order('created_at DESC') rescue nil
+    @praisecount = Praise.where('provider_user_id IS ? and email = ? and status = ?', nil, current_user.email, false).order('created_at DESC') rescue nil    
+    all_praise = @praises.count + @praisecount.count
+    #raise @all_praise.inspect
+    
+    @generals = General.where('provider_user_id != ? and email = ? and status = ?', current_user.id, current_user.email, false).select('DISTINCT(provider_user_id)').order('created_at DESC') rescue nil
+    @generalcount = General.where('provider_user_id IS ? and email = ? and status = ?', nil, current_user.email, false).order('created_at DESC') rescue nil    
+    all_general = @generals.count + @generalcount.count
+
+    if all_critic >= 5 
+       a = all_critic
+    elsif all_praise >= 5
+       a = all_praise
+    elsif all_general >= 5
+       a = all_general
+    else
+      if all_critic <= 5
+        a = all_critic
+      elsif all_praise <= 5
+        a = all_praise
+        else
+          a = all_general
+        end
+    end
+ end
 end
