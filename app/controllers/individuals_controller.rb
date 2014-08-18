@@ -187,8 +187,7 @@ class IndividualsController < ApplicationController
 	def submit_indiv9
 		@paste_user = params[:email]
 		@paste_users = params[:email].split(",")
-		# raise @paste_users.inspect
-		
+			
 		@inviteuser = AccessReputationTip.where('user_id = ?',current_user.id) rescue nil
 		 
 		@paste_users.each do |email|
@@ -382,10 +381,6 @@ class IndividualsController < ApplicationController
 
 	def indiv9
 		@paste_user = PasteUser.new
-
-		1.times do
-			 @paste_user.user_invitations.build
-		 end
 	end
 end
 

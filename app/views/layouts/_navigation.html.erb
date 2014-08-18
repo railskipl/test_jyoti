@@ -57,7 +57,18 @@
               <% else %>
                   <%if @status_check.give_feedback == false || @status_check.give_rating == false || @status_check.self_image == false || @status_check.vote_on_tips == false || @status_check.invite_others == false%>
                      <li> <%= link_to "FAQ" ,  faq_pages_path,'data-no-turbolink' => true %></li>
-                       <li><%= link_to "Help us improve", new_feedback_path, remote: true, :class=>"just_reload" %></li>  
+                      <li><%= link_to "Help us improve", new_feedback_path %></li>  
+                      <%if @status_check.give_feedback == false %> 
+                        <li><%= link_to "Back", indiv2_individuals_path  %></li>
+                      <%elsif @status_check.give_rating == false%>
+                        <li><%= link_to "Back", indiv4_individuals_path(:email => @status_check.track_last_email) %></li>
+                      <%elsif @status_check.self_image == false %>
+                        <li><%= link_to "Back", indiv5_individuals_path  %></li>
+                      <%elsif @status_check.vote_on_tips == false %>
+                        <li><%= link_to "Back", indiv3_individuals_path %></li>
+                      <%else @status_check.invite_others == false %>
+                        <li><%= link_to "Back", indiv6_individuals_path  %></li>
+                      <%end%>
                   <%else%>
                       <li> <%= link_to "My Mirror" ,  my_mirror_paste_users_path,'data-no-turbolink' => true %></li>
                        <li> <%= link_to "Give Feedback",  tip_tips_path %>  </li>

@@ -1,0 +1,53 @@
+<style type="text/css">
+  .u31 {
+      font-family: 'Calibri Bold','Calibri';
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+  }
+
+
+  .u33_input {
+    color: #000000;
+    font-family: 'Calibri';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    height: 100px;
+    left: 0;
+    text-align: left;
+    text-decoration: none;
+    top: 22px;
+    width: 630px;
+  }
+</style>
+
+<h4>Respond to tip</h4>
+
+<%if params[:praise_id].present?%>
+  <span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#AB1500;">  "<%= @praise.first.praise_comment rescue nil%>" </span>
+<%end%>
+
+<%if params[:criticism_id].present?%>
+ <span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#AB1500;">  "<%= @criticism.first.criticism_comment rescue nil%>"</span>
+<%end%>
+
+<%if params[:general_id].present?%>
+  <span style="font-family:'Calibri Bold', 'Calibri';font-weight:700;color:#AB1500;"> "<%= @general.first.general_comment rescue nil%>"</span> 
+<%end%>
+
+<br/><br/>
+<%= form_tag url_for(:controller => 'tips', :action => 'submit_respond_tip'), :method => 'post', :onsubmit => "return validateForm()"  do |f| %>
+
+ <div class="u31">Your optional follow-up response/question (sent to the user who<br/> left the tip). This will NOT BE ANONYMOUS.</div> 
+
+	<textarea id="u33_input" , name="response_comment"class="u33_input">type response to tip here</textarea> <br/>
+    <% if params[:praise_id]%>
+      <%= hidden_field_tag :praise_id, params[:praise_id]%>
+    <%elsif params[:criticism_id]%>
+      <%= hidden_field_tag :criticism_id, params[:criticism_id]%>
+    <%else params[:general_id]%>
+      <%= hidden_field_tag :general_id, params[:general_id]%>
+    <%end%>
+	<%= submit_tag :Submit, :class => 'btn btn-primary'%>
+<%end%>
