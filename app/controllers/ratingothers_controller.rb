@@ -48,10 +48,9 @@ class RatingothersController < ApplicationController
             end
         end
       else
-
         if @ratingother.save
           flash[:notice] = "Thank you for rating this person!"
-          redirect_to encourage_signing_up_ratingothers_path
+          redirect_to encourage_signing_up_ratingothers_path          
         else
           render 'new'
         end 

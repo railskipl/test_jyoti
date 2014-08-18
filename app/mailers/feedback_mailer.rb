@@ -47,6 +47,13 @@ def relationship_feedback(relationship)
     subject = "Please send me Feedback"
     mail(:subject => 'Relationship Feedback', :to => paste_user)
   end
+
+  def received_feedback(user)
+    @user = user
+   
+    subject = "Feedback"
+    mail(:subject => 'Feedback', :to => @user) 
+  end 
 end
 
 
